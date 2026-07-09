@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bushmasterson — Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: 350;
+            background: #ffffff;
+            color: #111111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .bg-shapes div {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.15;
+            background: #aaaaaa;
+            animation: float 20s ease-in-out infinite alternate;
+        }
+
+        .bg-shapes .shape1 {
+            width: 300px;
+            height: 300px;
+            top: -50px;
+            left: -80px;
+            animation-duration: 22s;
+        }
+
+        .bg-shapes .shape2 {
+            width: 200px;
+            height: 200px;
+            bottom: -30px;
+            right: -40px;
+            animation-duration: 26s;
+            background: #cccccc;
+        }
+
+        .bg-shapes .shape3 {
+            width: 150px;
+            height: 150px;
+            top: 40%;
+            left: 70%;
+            animation-duration: 30s;
+            background: #bbbbbb;
+        }
+
+        .bg-shapes .shape4 {
+            width: 100px;
+            height: 100px;
+            bottom: 20%;
+            left: 10%;
+            animation-duration: 18s;
+            background: #999999;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(60px, 30px) scale(1.1);
+            }
+        }
+
+        .container {
+            max-width: 700px;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .fade-in-delay {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-link {
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #555555;
+            padding-left: 6px;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 1rem;
+            color: #444444;
+            margin-top: 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-top: 24px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+            text-align: left;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 30px rgba(0,0,0,0.06);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .card-header span {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            opacity: 0.5;
+        }
+
+        .card-header span.open {
+            transform: rotate(180deg);
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .card-content.open {
+            max-height: 400px;
+            opacity: 1;
+            margin-top: 16px;
+        }
+
+        .card-content ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .card-content ul li {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .card-content ul li a {
+            flex-shrink: 0;
+        }
+
+        .card-content ul li .desc {
+            color: #555555;
+            font-size: 0.9rem;
+        }
+
+        .card-content p {
+            margin: 0;
+        }
+
+        footer {
+            margin-top: 60px;
+            font-size: 0.8rem;
+            color: #777777;
+            text-align: center;
+        }
+
+        footer a {
+            color: #777777;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #0d0d0d;
+                color: #e0e0e0;
+            }
+
+            header p {
+                color: #aaaaaa;
+            }
+
+            .card {
+                background: rgba(30, 30, 30, 0.8);
+                border-color: rgba(255,255,255,0.05);
+            }
+
+            .card:hover {
+                box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+            }
+
+            .project-link:hover {
+                color: #aaaaaa;
+            }
+
+            .card-content ul li .desc {
+                color: #aaaaaa;
+            }
+
+            footer {
+                color: #555555;
+            }
+
+            footer a {
+                color: #555555;
+            }
+
+            footer a:hover {
+                color: #ffffff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shapes">
+        <div class="shape1"></div>
+        <div class="shape2"></div>
+        <div class="shape3"></div>
+        <div class="shape4"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="fade-in">Bushmasterson</h1>
+            <p class="fade-in fade-in-delay">developer & minimalist & builder</p>
+        </header>
+
+        <main>
+            <div class="card" id="card-projects">
+                <div class="card-header" onclick="toggleCard('card-projects')">
+                    <h2>Projects</h2>
+                    <span id="arrow-projects">▼</span>
+                </div>
+                <div class="card-content" id="content-projects">
+                    <ul>
+                        <li>
+                            <a href="https://github.com/Bushmasterson/first-mini-project" target="_blank" class="project-link">Calculator</a>
+                            <span class="desc">— first JavaScript project</span>
+                        </li>
+                        <li>
+                            <a href="https://t.me/bushcodechannel" target="_blank" class="project-link">Bushnode</a>
+                            <span class="desc">— channel with code and projects</span>
+                        </li>
+                        <li>
+                            <a href="https://t.me/bushnewschannel" target="_blank" class="project-link">Bushnews</a>
+                            <span class="desc">— cybersecurity & IT channel</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card" id="card-contacts">
+                <div class="card-header" onclick="toggleCard('card-contacts')">
+                    <h2>Contacts</h2>
+                    <span id="arrow-contacts">▼</span>
+                </div>
+                <div class="card-content" id="content-contacts">
+                    <p>
+                        <a href="https://github.com/bushmasterson" target="_blank"><i class="fab fa-github"></i></a> &
+                        <a href="https://t.me/bushmasterson" target="_blank"><i class="fab fa-telegram-plane"></i></a> &
+                        <a href="https://twitter.com/bushmasterson02" target="_blank"><i class="fab fa-twitter"></i></a> &
+                        <a href="https://bsky.app/profile/bushmasterson" target="_blank"><i class="fab fa-bluesky"></i></a> &
+                        <a href="https://pinterest.com/bushmaster_son" target="_blank"><i class="fab fa-pinterest"></i></a> 
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p class="fade-in">© 2026 · <a href="https://github.com/Bushmasterson" target="_blank">Bushmasterson</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function toggleCard(id) {
+            const content = document.getElementById('content-' + id.replace('card-', ''));
+            const arrow = document.getElementById('arrow-' + id.replace('card-', ''));
+            const isOpen = content.classList.contains('open');
+
+            document.querySelectorAll('.card-content').forEach(el => {
+                el.classList.remove('open');
+            });
+            document.querySelectorAll('.card-header span').forEach(el => {
+                el.classList.remove('open');
+            });
+
+            if (!isOpen) {
+                content.classList.add('open');
+                arrow.classList.add('open');
+            }
+        }
+    </script>
+</body>
+</html>
