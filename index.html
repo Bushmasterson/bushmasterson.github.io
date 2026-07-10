@@ -366,10 +366,10 @@
             transform: rotate(180deg);
             transition: transform 0.9s ease;
         }
-        /* Убираем изменение цвета у ссылок */
+                /* Убираем изменение цвета у ссылок */
 a {
     color: blue;
-    text-decoration: none;
+    text-decoration: #40E0D0;
 }
 
 a:visited {
@@ -377,15 +377,24 @@ a:visited {
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: #40E0D0;
 }
-        /* Увеличение иконок соцсетей при наведении */
+/* Увеличение иконок соцсетей при наведении */
 .card-content a i {
-    transition: transform 0.2s ease;
+    transition: transform 0.44s ease;
 }
 
 .card-content a:hover i {
-    transform: scale(1.05);
+    transform: scale(1.11);
+}
+/* Лёгкий подъём иконок при наведении */
+.card-content a i {
+    transition: transform 0.44s ease, color 0.44s ease;
+}
+
+.card-content a:hover i {
+    transform: translateY(-1,5px);
+    color: #40E0D0;
 }
     </style>
 </head>
