@@ -76,12 +76,30 @@
             background: #999999;
         }
 
+        .bg-shapes .shape5 {
+            width: 100px;
+            height: 100px;
+            bottom: 5%;
+            left: 20%;
+            animation-duration: 14s;
+            background: #aaaaaa;
+        }
+
+        .bg-shapes .shape6 {
+            width: 70px;
+            height: 70px;
+            bottom: 15%;
+            right: 10%;
+            animation-duration: 16s;
+            background: #cccccc;
+        }
+
         @keyframes float {
             0% {
                 transform: translate(0, 0) scale(1);
             }
             100% {
-                transform: translate(60px, 30px) scale(1.1);
+                transform: translate(40px, 25px) scale(1.05);
             }
         }
 
@@ -124,6 +142,7 @@
             font-weight: 400;
             letter-spacing: 2px;
             margin-bottom: 8px;
+            cursor: default;
         }
 
         header p {
@@ -140,13 +159,15 @@
             margin-top: 24px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.04);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: box-shadow 0.4s ease, transform 0.3s ease, border-color 0.4s ease;
             border: 1px solid rgba(255,255,255,0.3);
             text-align: left;
         }
 
         .card:hover {
-            box-shadow: 0 6px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 0 20px rgba(64, 224, 208, 0.3), 0 6px 30px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+            border-color: rgba(64, 224, 208, 0.4);
         }
 
         .card-header {
@@ -155,6 +176,7 @@
             align-items: center;
             user-select: none;
         }
+
         .card-header h2 {
             margin: 0;
             font-size: 1.1rem;
@@ -210,6 +232,11 @@
 
         .card-content p {
             margin: 0;
+            line-height: 1.6;
+        }
+
+        .card-content p strong {
+            font-weight: 600;
         }
 
         footer {
@@ -229,6 +256,30 @@
             text-decoration: underline;
         }
 
+        /* Кастомные тултипы */
+        a[title] {
+            position: relative;
+            text-decoration: none;
+        }
+
+        a[title]:hover::after {
+            content: attr(title);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            backdrop-filter: blur(4px);
+            pointer-events: none;
+            opacity: 0.9;
+            transition: opacity 0.2s ease;
+        }
+
         @media (prefers-color-scheme: dark) {
             body {
                 background: #0d0d0d;
@@ -245,7 +296,8 @@
             }
 
             .card:hover {
-                box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+                box-shadow: 0 0 25px rgba(64, 224, 208, 0.25), 0 6px 30px rgba(0,0,0,0.5);
+                border-color: rgba(64, 224, 208, 0.3);
             }
 
             .project-link:hover {
@@ -254,6 +306,10 @@
 
             .card-content ul li .desc {
                 color: #aaaaaa;
+            }
+
+            .card-content p {
+                color: #dddddd;
             }
 
             footer {
@@ -268,14 +324,56 @@
                 color: #ffffff;
             }
         }
+
+        /* Дождь */
+        #rain-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .drop {
+            position: absolute;
+            top: -20px;
+            width: 2px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            animation: rain linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes rain {
+            0% {
+                transform: translateY(0);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0.2;
+            }
+        }
+
+        /* Пасхалка */
+        .flip-page {
+            transform: rotate(180deg);
+            transition: transform 0.8s ease;
+        }
     </style>
 </head>
 <body>
+    <div id="rain-container"></div>
     <div class="bg-shapes">
         <div class="shape1"></div>
         <div class="shape2"></div>
         <div class="shape3"></div>
         <div class="shape4"></div>
+        <div class="shape5"></div>
+        <div class="shape6"></div>
     </div>
 
     <div class="container">
@@ -283,6 +381,42 @@
             <h1 class="fade-in">Bushmasterson</h1>
             <p class="fade-in fade-in-delay">developer & minimalist & builder</p>
         </header>
+
+        <!-- About Me Card -->
+        <div class="card" id="card-about">
+            <div class="card-header" onclick="toggleCard('card-about')">
+                <h2>About Me</h2>
+                <span id="arrow-about">▼</span>
+            </div>
+            <div class="card-content" id="content-about">
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
+    <path fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 11c0 5-3 9-6 9s-6-4-6-9s2-8 6-8s6 3 6 8M4 30h24c0-9-6-10-12-10S4 21 4 30"></path>
+</svg> Bushmasterson</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
+    <g fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-width="2">
+        <path stroke-linejoin="round" d="M3 13a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <path d="m3 13l2.914 2.331c1.187.95 2.9.855 3.975-.22v0a2.985 2.985 0 0 1 4.222 0v0a2.985 2.985 0 0 0 3.975.22L21 13"></path>
+        <path stroke-linejoin="round" d="M12 6a2 2 0 0 1-2-2c0-.876.677-1.576 1.273-2.217L12 1l.727.783C13.323 2.424 14 3.124 14 4a2 2 0 0 1-2 2"></path>
+    </g>
+</svg> 13 y.o (02.11)</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
+    <g fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+        <circle cx="12" cy="10" r="3"></circle>
+        <path d="M12 2a8 8 0 0 0-8 8c0 1.892.402 3.13 1.5 4.5L12 22l6.5-7.5c1.098-1.37 1.5-2.608 1.5-4.5a8 8 0 0 0-8-8"></path>
+    </g>
+</svg> Russia · Moscow</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
+    <path fill="#40E0D0" fill-rule="evenodd" d="M9.424 2.023a.75.75 0 0 1 .556.904L7.48 13.42a.75.75 0 0 1-1.46-.348L8.52 2.58a.75.75 0 0 1 .904-.556ZM11.16 4.22a.75.75 0 0 1 1.06 0l3.25 3.25L16 8l-.53.53l-3.25 3.25a.75.75 0 1 1-1.06-1.06L13.88 8l-2.72-2.72a.75.75 0 0 1 0-1.06M4.84 5.28a.75.75 0 1 0-1.06-1.06L.53 7.47L0 8l.53.53l3.25 3.25a.75.75 0 0 0 1.06-1.06L2.12 8z" clip-rule="evenodd"></path>
+</svg> Stack: JavaScript, Rust, C</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
+    <g fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-width="2">
+        <path stroke-linejoin="round" d="M14 19c3.771 0 5.657 0 6.828-1.172S22 14.771 22 11s0-5.657-1.172-6.828S17.771 3 14 3h-4C6.229 3 4.343 3 3.172 4.172S2 7.229 2 11s0 5.657 1.172 6.828c.653.654 1.528.943 2.828 1.07"></path>
+        <path d="M14 19c-1.236 0-2.598.5-3.841 1.145c-1.998 1.037-2.997 1.556-3.489 1.225s-.399-1.355-.212-3.404L6.5 17.5"></path>
+        <path stroke-linejoin="round" d="m5.5 13.5l1-2m0 0l1.106-2.211a1 1 0 0 1 1.788 0L10.5 11.5m-4 0h4m0 0l1 2m1-6h1.982V9c0 .5-.496 1.5-1.487 1.5m3.964-3v2m0 0v4m0-4H18.5"></path>
+    </g>
+</svg> Langs: Russian, English, German</p>
+            </div>
+        </div>
 
         <main>
             <div class="card" id="card-projects">
@@ -307,6 +441,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="card" id="card-contacts">
                 <div class="card-header" onclick="toggleCard('card-contacts')">
                     <h2>Contacts</h2>
@@ -314,11 +449,11 @@
                 </div>
                 <div class="card-content" id="content-contacts">
                     <p>
-                        <a href="https://github.com/bushmasterson" target="_blank"><i class="fab fa-github"></i></a> &
-                        <a href="https://t.me/bushmasterson" target="_blank"><i class="fab fa-telegram-plane"></i></a> &
-                        <a href="https://twitter.com/bushmasterson02" target="_blank"><i class="fab fa-twitter"></i></a> &
-                        <a href="https://bsky.app/profile/bushmasterson" target="_blank"><i class="fab fa-bluesky"></i></a> &
-                        <a href="https://pinterest.com/bushmaster_son" target="_blank"><i class="fab fa-pinterest"></i></a> 
+                        <a href="https://github.com/Bushmasterson" target="_blank" title="GitHub"><i class="fab fa-github"></i></a> ·
+                        <a href="https://t.me/bushmasterson" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a> ·
+                        <a href="https://twitter.com/Bushmasterson" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a> ·
+                        <a href="https://bsky.app/profile/bushmasterson" target="_blank" title="Bluesky"><i class="fab fa-bluesky"></i></a> ·
+                        <a href="https://pinterest.com/bushmaster_son" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
                     </p>
                 </div>
             </div>
@@ -334,19 +469,43 @@
             const content = document.getElementById('content-' + id.replace('card-', ''));
             const arrow = document.getElementById('arrow-' + id.replace('card-', ''));
             const isOpen = content.classList.contains('open');
-
-            document.querySelectorAll('.card-content').forEach(el => {
-                el.classList.remove('open');
-            });
-            document.querySelectorAll('.card-header span').forEach(el => {
-                el.classList.remove('open');
-            });
-
             if (!isOpen) {
                 content.classList.add('open');
                 arrow.classList.add('open');
+            } else {
+                content.classList.remove('open');
+                arrow.classList.remove('open');
             }
         }
+
+        // Дождь
+        (function createRain() {
+            const container = document.getElementById('rain-container');
+            const dropCount = 80;
+
+            for (let i = 0; i < dropCount; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'drop';
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                drop.style.animationDelay = Math.random() * 2 + 's';
+                drop.style.height = (Math.random() * 15 + 10) + 'px';
+                drop.style.opacity = Math.random() * 0.3 + 0.2;
+                container.appendChild(drop);
+            }
+        })();
+
+        // Пасхалка: 10 кликов по заголовку
+        let clickCount = 0;
+        const header = document.querySelector('header h1');
+
+        header.addEventListener('click', function() {
+            clickCount++;
+            if (clickCount === 10) {
+                document.body.classList.add('flip-page');
+                clickCount = 0;
+            }
+        });
     </script>
 </body>
 </html>
