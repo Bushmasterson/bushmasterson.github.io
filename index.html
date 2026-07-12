@@ -428,6 +428,27 @@ a:visited:hover {
         opacity: 0.2;
     }
 }
+        /* Принудительно применяем кастомное выделение к ссылкам */
+::selection {
+    background: #40E0D0;
+    color: #40E0D0;
+}
+
+::-moz-selection {
+    background: #40E0D0;
+    color: #40E0D0;
+}
+
+/* Чтобы ссылки точно наследовали цвет при выделении */
+a::selection {
+    background: #40E0D0;
+    color: #40E0D0;
+}
+
+a::-moz-selection {
+    background: #40E0D0;
+    color: #40E0D0;
+}
     </style>
 </head>
 <body>
