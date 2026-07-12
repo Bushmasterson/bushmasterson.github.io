@@ -754,6 +754,36 @@ body {
     40%  { opacity: 0; } /* резко гаснет */
     100% { opacity: 0; } /* пауза 0.5 сек */
 }
+/* ===== ДОЖДЬ (простой, вертикальный) ===== */
+#rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.drop {
+    position: absolute;
+    top: -20px;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.35);
+    animation: rain linear infinite;
+}
+
+@keyframes rain {
+    0% {
+        transform: translateY(0);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0.15;
+    }
+}
     </style>
 </head>
 <body>
@@ -1099,6 +1129,24 @@ backToTop.addEventListener('click', () => {
         requestAnimationFrame(animate);
     }
     animate();
+})();
+// ---- ПРОСТОЙ ДОЖДЬ (без ветра) ----
+(function createRain() {
+    const container = document.getElementById('rain-container');
+    if (!container) return;
+
+    const dropCount = 80;
+
+    for (let i = 0; i < dropCount; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'drop';
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDuration = (Math.random() * 1.5 + 0.8) + 's';
+        drop.style.animationDelay = Math.random() * 2 + 's';
+        drop.style.height = (Math.random() * 12 + 8) + 'px';
+        drop.style.opacity = Math.random() * 0.3 + 0.25;
+        container.appendChild(drop);
+    }
 })();
     </script>
 </body>
