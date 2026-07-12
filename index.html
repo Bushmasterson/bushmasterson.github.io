@@ -22,87 +22,6 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
 
-        .bg-shapes {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .bg-shapes div {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.15;
-            background: #aaaaaa;
-            animation: float 20s ease-in-out infinite alternate;
-        }
-
-        .bg-shapes .shape1 {
-            width: 300px;
-            height: 300px;
-            top: -50px;
-            left: -80px;
-            animation-duration: 22s;
-        }
-
-        .bg-shapes .shape2 {
-            width: 200px;
-            height: 200px;
-            bottom: -30px;
-            right: -40px;
-            animation-duration: 26s;
-            background: #cccccc;
-        }
-
-        .bg-shapes .shape3 {
-            width: 150px;
-            height: 150px;
-            top: 40%;
-            left: 70%;
-            animation-duration: 30s;
-            background: #bbbbbb;
-        }
-
-        .bg-shapes .shape4 {
-            width: 100px;
-            height: 100px;
-            bottom: 20%;
-            left: 10%;
-            animation-duration: 18s;
-            background: #999999;
-        }
-
-        .bg-shapes .shape5 {
-            width: 100px;
-            height: 100px;
-            bottom: 5%;
-            left: 20%;
-            animation-duration: 14s;
-            background: #aaaaaa;
-        }
-
-        .bg-shapes .shape6 {
-            width: 70px;
-            height: 70px;
-            bottom: 15%;
-            right: 10%;
-            animation-duration: 16s;
-            background: #cccccc;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translate(0, 0) scale(1);
-            }
-            100% {
-                transform: translate(40px, 25px) scale(1.05);
-            }
-        }
-
         .container {
             max-width: 700px;
             padding: 40px 20px;
@@ -147,7 +66,7 @@
         }
 
         header h1:hover {
-            color: #40E0D0;
+            color: #39C7B9;
         }
 
         header p {
@@ -162,7 +81,7 @@ header p span {
 }
 
 header p span:hover {
-    color: #40E0D0;
+    color: #39C7B9;
 }
 
         /* Плавное появление карточек (через JS) */
@@ -324,7 +243,7 @@ header p span:hover {
         }
 
         #card-rules ul li .rule-number {
-            color: #40E0D0;
+            color: #39C7B9;
             font-weight: 500;
             margin-right: 4px;
         }
@@ -386,7 +305,7 @@ a {
 }
 
 a:hover {
-    color: #40E0D0;
+    color: #39C7B9;
 }
 
 a:visited {
@@ -394,7 +313,7 @@ a:visited {
 }
 
 a:visited:hover {
-    color: #40E0D0;
+    color: #39C7B9;
 }
 /* Дождь */
 #rain-container {
@@ -430,24 +349,24 @@ a:visited:hover {
 }
 /* Принудительно применяем кастомное выделение к ссылкам */
 ::selection {
-    background: #40E0D0;
-    color: #40E0D0;
+    background: #39C7B9;
+    color: #39C7B9;
 }
 
 ::-moz-selection {
-    background: #40E0D0;
-    color: #40E0D0;
+    background: #39C7B9;
+    color: #39C7B9;
 }
 
 /* Чтобы ссылки точно наследовали цвет при выделении */
 a::selection {
-    background: #40E0D0;
-    color: #40E0D0;
+    background: #39C7B9;
+    color: #39C7B9;
 }
 
 a::-moz-selection {
-    background: #40E0D0;
-    color: #40E0D0;
+    background: #39C7B9;
+    color: #39C7B9;
 }
 #back-to-top {
     position: fixed;
@@ -455,7 +374,7 @@ a::-moz-selection {
     right: 30px;
     width: 44px;
     height: 44px;
-    background: #40E0D0;
+    background: #39C7B9;
     color: #ffffff;
     border: none;
     border-radius: 50%;
@@ -617,7 +536,7 @@ body::after {
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 3;
+    z-index: 2;
     background: radial-gradient(ellipse at center, transparent 66%, rgba(0,0,0,0.25) 100%);
 }
 /* Световые рефлексы */
@@ -672,7 +591,7 @@ body::after {
 .container {
     animation: breathe 6s ease-in-out infinite;
 }
-/* Затемнение всего сайта на 9% */
+/* Затемнение всего сайта на 11% */
 body::before {
     content: '';
     position: fixed;
@@ -682,17 +601,7 @@ body::before {
     height: 100%;
     pointer-events: none;
     z-index: 2;
-    background: rgba(0, 0, 0, 0.099);
-}
-#particles-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 1;
-    overflow: hidden;
+    background: rgba(0, 0, 0, 0.11);
 }
 
 .firefly {
@@ -759,9 +668,120 @@ body::before {
     0% { opacity: 0.1; transform: translate(-50%, -50%) scale(0.8); }
     100% { opacity: 0.25; transform: translate(-50%, -50%) scale(1.6); }
 }
+/* ===== УЛУЧШЕННЫЕ СВЕТЛЯЧКИ ===== */
+#particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.firefly {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform, opacity;
+    filter: blur(0.3px);
+    backface-visibility: hidden;
+    box-shadow: 0 0 20px rgba(255, 230, 180, 0.08);
+    transition: none;
+}
+
+.firefly-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255, 250, 230, 0.9) 0%, rgba(255, 220, 160, 0.3) 100%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 3s ease-in-out infinite alternate;
+    box-shadow: 0 0 40px rgba(255, 210, 150, 0.3);
+    will-change: transform, opacity;
+}
+
+.firefly-trail {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 220, 160, 0.03) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    animation: trailPulse 6s ease-in-out infinite alternate;
+    will-change: transform, opacity;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.2; transform: translate(-50%, -50%) scale(0.5); }
+    100% { opacity: 1; transform: translate(-50%, -50%) scale(1.8); }
+}
+
+@keyframes trailPulse {
+    0% { opacity: 0.05; transform: translate(-50%, -50%) scale(0.8); }
+    100% { opacity: 0.25; transform: translate(-50%, -50%) scale(2.2); }
+}
+/* ===== ОБЛАКА (фон) ===== */
+#clouds-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+    background: transparent; /* сам фон будет виден через облака */
+}
+
+.cloud-puff {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, rgba(240, 245, 255, 0.15) 0%, rgba(220, 230, 240, 0.05) 70%, transparent 100%);
+    will-change: transform, opacity;
+    filter: blur(2px);
+    transition: none;
+}
+@media (prefers-color-scheme: dark) {
+    .project-link {
+        color: #66b3ff;
+    }
+    .project-link:hover {
+        color: #39C7B9;
+    }
+}
+body {
+    background: linear-gradient(145deg, #f0f2f5 0%, #dce3ed 99%);
+    transition: background 2s ease;
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background: linear-gradient(145deg, #181a1f 0%, #0e1015 99%);
+    }
+}
+.cursor-blink {
+    display: inline-block;
+    font-weight: 300;
+    color: #39C7B9;
+    animation: blinkCursor 0.833s steps(1) infinite; /* 0.333 + 0.5 = 0.833 */
+}
+
+@keyframes blinkCursor {
+    0%   { opacity: 1; }
+    40%  { opacity: 1; } /* горит 0.333 сек (40% от 0.833) */
+    40%  { opacity: 0; } /* резко гаснет */
+    100% { opacity: 0; } /* пауза 0.5 сек */
+}
     </style>
 </head>
 <body>
+    <div id="clouds-container"></div>
     <div id="particles-container"></div>
     <div class="reflection"></div>
     <div class="reflection"></div>
@@ -769,18 +789,10 @@ body::before {
     <div id="fog-container"></div>
     <button id="back-to-top" title="Наверх">↑</button>
     <div id="rain-container"></div>
-    <div class="bg-shapes">
-        <div class="shape1"></div>
-        <div class="shape2"></div>
-        <div class="shape3"></div>
-        <div class="shape4"></div>
-        <div class="shape5"></div>
-        <div class="shape6"></div>
-    </div>
 
     <div class="container">
         <header>
-            <h1 class="fade-in">Bushmasterson</h1>
+            <h1 class="fade-in">Bushmasterson<span class="cursor-blink">|</span></h1>
             <p class="fade-in fade-in-delay">
     <span>developer</span> &amp; <span>minimalist</span> &amp; <span>builder</span>
 </p>
@@ -795,36 +807,36 @@ body::before {
             </div>
             <div class="card-content" id="content-about">
                 <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-    <path fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 11c0 5-3 9-6 9s-6-4-6-9s2-8 6-8s6 3 6 8M4 30h24c0-9-6-10-12-10S4 21 4 30"></path>
+    <path fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 11c0 5-3 9-6 9s-6-4-6-9s2-8 6-8s6 3 6 8M4 30h24c0-9-6-10-12-10S4 21 4 30"></path>
 </svg> Bushmasterson</p>
                 <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-    <g fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-width="2">
+    <g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-width="2">
         <path stroke-linejoin="round" d="M3 13a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
         <path d="m3 13l2.914 2.331c1.187.95 2.9.855 3.975-.22v0a2.985 2.985 0 0 1 4.222 0v0a2.985 2.985 0 0 0 3.975.22L21 13"></path>
         <path stroke-linejoin="round" d="M12 6a2 2 0 0 1-2-2c0-.876.677-1.576 1.273-2.217L12 1l.727.783C13.323 2.424 14 3.124 14 4a2 2 0 0 1-2 2"></path>
     </g>
 </svg> 13 y.o (02.11)</p>
                 <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-    <g fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
         <circle cx="12" cy="10" r="3"></circle>
         <path d="M12 2a8 8 0 0 0-8 8c0 1.892.402 3.13 1.5 4.5L12 22l6.5-7.5c1.098-1.37 1.5-2.608 1.5-4.5a8 8 0 0 0-8-8"></path>
     </g>
 </svg> Russia · Moscow</p>
                 <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-    <path fill="#40E0D0" fill-rule="evenodd" d="M9.424 2.023a.75.75 0 0 1 .556.904L7.48 13.42a.75.75 0 0 1-1.46-.348L8.52 2.58a.75.75 0 0 1 .904-.556ZM11.16 4.22a.75.75 0 0 1 1.06 0l3.25 3.25L16 8l-.53.53l-3.25 3.25a.75.75 0 1 1-1.06-1.06L13.88 8l-2.72-2.72a.75.75 0 0 1 0-1.06M4.84 5.28a.75.75 0 1 0-1.06-1.06L.53 7.47L0 8l.53.53l3.25 3.25a.75.75 0 0 0 1.06-1.06L2.12 8z" clip-rule="evenodd"></path>
+    <path fill="#39C7B9" fill-rule="evenodd" d="M9.424 2.023a.75.75 0 0 1 .556.904L7.48 13.42a.75.75 0 0 1-1.46-.348L8.52 2.58a.75.75 0 0 1 .904-.556ZM11.16 4.22a.75.75 0 0 1 1.06 0l3.25 3.25L16 8l-.53.53l-3.25 3.25a.75.75 0 1 1-1.06-1.06L13.88 8l-2.72-2.72a.75.75 0 0 1 0-1.06M4.84 5.28a.75.75 0 1 0-1.06-1.06L.53 7.47L0 8l.53.53l3.25 3.25a.75.75 0 0 0 1.06-1.06L2.12 8z" clip-rule="evenodd"></path>
 </svg> Stack: JavaScript, Rust, C</p>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-    <g fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-width="2">
+    <g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-width="2">
         <path stroke-linejoin="round" d="M14 19c3.771 0 5.657 0 6.828-1.172S22 14.771 22 11s0-5.657-1.172-6.828S17.771 3 14 3h-4C6.229 3 4.343 3 3.172 4.172S2 7.229 2 11s0 5.657 1.172 6.828c.653.654 1.528.943 2.828 1.07"></path>
         <path d="M14 19c-1.236 0-2.598.5-3.841 1.145c-1.998 1.037-2.997 1.556-3.489 1.225s-.399-1.355-.212-3.404L6.5 17.5"></path>
         <path stroke-linejoin="round" d="m5.5 13.5l1-2m0 0l1.106-2.211a1 1 0 0 1 1.788 0L10.5 11.5m-4 0h4m0 0l1 2m1-6h1.982V9c0 .5-.496 1.5-1.487 1.5m3.964-3v2m0 0v4m0-4H18.5"></path>
     </g>
 </svg> Langs: Russian, English, German</p>
                 <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-    <path fill="#40E0D0" d="M442 48h-90a22 22 0 0 0 0 44h36.89l-60.39 60.39c-68.19-52.86-167-48-229.54 14.57C31.12 234.81 31.12 345.19 99 413a174.21 174.21 0 0 0 246 0c62.57-62.58 67.43-161.35 14.57-229.54L420 123.11V160a22 22 0 0 0 44 0V70a22 22 0 0 0-22-22M313.92 381.92a130.13 130.13 0 0 1-183.84 0c-50.69-50.68-50.69-133.16 0-183.84s133.16-50.69 183.84 0s50.69 133.16 0 183.84"></path>
+    <path fill="#39C7B9" d="M442 48h-90a22 22 0 0 0 0 44h36.89l-60.39 60.39c-68.19-52.86-167-48-229.54 14.57C31.12 234.81 31.12 345.19 99 413a174.21 174.21 0 0 0 246 0c62.57-62.58 67.43-161.35 14.57-229.54L420 123.11V160a22 22 0 0 0 44 0V70a22 22 0 0 0-22-22M313.92 381.92a130.13 130.13 0 0 1-183.84 0c-50.69-50.68-50.69-133.16 0-183.84s133.16-50.69 183.84 0s50.69 133.16 0 183.84"></path>
 </svg> Male</p>
                 <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-    <path fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12a2 2 0 0 1 2 2v3a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v16a2 2 0 0 0 4 0V7a2 2 0 0 1 4 0v3a2 2 0 0 0 2 2"></path>
+    <path fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12a2 2 0 0 1 2 2v3a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v16a2 2 0 0 0 4 0V7a2 2 0 0 1 4 0v3a2 2 0 0 0 2 2"></path>
 </svg> Ambivert</p>
             </div>
         </div>
@@ -891,8 +903,10 @@ body::before {
         </main>
 
         <footer>
-            <p class="fade-in">© 2026 · <a href="https://github.com/Bushmasterson" target="_blank">Bushmasterson</a></p>
-        </footer>
+    <p class="fade-in">
+        © 2026 · <a href="https://github.com/Bushmasterson" target="_blank">Bushmasterson</a>
+    </p>
+</footer>
     </div>
 
     <script>
@@ -946,16 +960,6 @@ window.addEventListener('scroll', () => {
 backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-// Параллакс для фона (без шаблонных строк)
-var bgContainer = document.querySelector('.bg-shapes');
-
-document.addEventListener('mousemove', function(e) {
-    var x = (e.clientX / window.innerWidth - 0.3) * 3;
-    var y = (e.clientY / window.innerHeight - 0.3) * 3;
-    if (bgContainer) {
-        bgContainer.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-    }
-});
 // Туман (9 слоёв)
 (function createFog() {
     const container = document.getElementById('fog-container');
@@ -966,16 +970,13 @@ document.addEventListener('mousemove', function(e) {
         container.appendChild(layer);
     }
 })();
-// Реалистичные светлячки — поведение вокруг огонька
+// ---- РЕАЛИСТИЧНЫЕ СВЕТЛЯЧКИ (живое поведение) ----
 (function createFireflies() {
     const container = document.getElementById('particles-container');
     if (!container) return;
 
-    const count = 21;
-    const fireflies = [];
-    const mouse = { x: -1000, y: -1000, active: false };
-
-    function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+    // Вспомогательная функция для случайного числа в диапазоне
+    function randomRange(min, max) { return min + Math.random() * (max - min); }
 
     class Firefly {
         constructor() {
@@ -990,27 +991,50 @@ document.addEventListener('mousemove', function(e) {
             trail.className = 'firefly-trail';
             this.el.appendChild(trail);
 
-            this.size = 4 + Math.random() * 7;
+            // ---- ИНДИВИДУАЛЬНЫЕ ПАРАМЕТРЫ ----
+            this.size = randomRange(5, 15);
             this.el.style.width = this.size + 'px';
             this.el.style.height = this.size + 'px';
 
+            // Позиция — равномерно по экрану, но с предпочтением к нижней части (там лампада)
             this.x = Math.random() * window.innerWidth;
             this.y = Math.random() * window.innerHeight;
-            this.vx = (Math.random() - 0.5) * 0.2;
-            this.vy = (Math.random() - 0.5) * 0.2;
+            if (hasLamp && Math.random() < 0.3) {
+                // 30% светлячков стартуют ближе к лампаде
+                this.x = lampX + randomRange(-250, 250);
+                this.y = lampY + randomRange(-250, 250);
+            }
 
-            this.phase = Math.random() * Math.PI * 2;
-            this.wobbleSpeed = 0.012 + Math.random() * 0.018;
-            this.wobbleAmp = 0.2 + Math.random() * 0.4;
+            // Скорости (индивидуальные)
+            this.baseSpeed = randomRange(0.08, 0.25);
+            this.vx = randomRange(-this.baseSpeed, this.baseSpeed);
+            this.vy = randomRange(-this.baseSpeed, this.baseSpeed);
 
+            // Колебания
+            this.phase = randomRange(0, Math.PI * 2);
+            this.wobbleSpeed = randomRange(0.008, 0.025);
+            this.wobbleAmp = randomRange(0.2, 0.8);
+
+            // Состояние активности
+            this.energy = randomRange(0.4, 1.0);
+            this.restTimer = 0;               // когда >0 — отдыхает
+            this.restThreshold = randomRange(200, 600); // через сколько кадров начинает отдыхать
+            this.isResting = false;
+
+            // Мерцание
+            this.glowPhase = randomRange(0, Math.PI * 2);
+            this.glowSpeed = randomRange(0.011, 0.044);
+            this.baseGlow = randomRange(0.3, 0.5);
+            this.flashTimer = 0;              // таймер для вспышки
+            this.flashChance = 0.002;          // вероятность вспышки в кадре
+
+            // Страх перед мышью
             this.fear = 0;
-            this.energy = 0.5 + Math.random() * 0.5;
-            this.glowPhase = Math.random() * Math.PI * 2;
-            this.glowSpeed = 0.02 + Math.random() * 0.03;
 
+            // Начальная непрозрачность
+            this.el.style.opacity = randomRange(0.2, 0.5);
             this.el.style.left = this.x + 'px';
             this.el.style.top = this.y + 'px';
-            this.el.style.opacity = (0.11 + Math.random() * 0.16) * 0.76;
 
             container.appendChild(this.el);
         }
@@ -1019,137 +1043,155 @@ document.addEventListener('mousemove', function(e) {
             this.phase += this.wobbleSpeed;
             this.glowPhase += this.glowSpeed;
 
-            // ---- СТАЙНОСТЬ (почти убрана) ----
-            let avgX = 0, avgY = 0, countNear = 0;
-            for (const other of fireflies) {
-                if (other === this) continue;
-                const dx = other.x - this.x;
-                const dy = other.y - this.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 250 && dist > 0) {
-                    avgX += other.x;
-                    avgY += other.y;
-                    countNear++;
+            // ---- УПРАВЛЕНИЕ АКТИВНОСТЬЮ ----
+            this.energy = Math.min(1, this.energy + 0.0005);
+            if (this.restTimer > 0) {
+                this.restTimer--;
+                this.isResting = true;
+            } else {
+                this.isResting = false;
+                // Если энергия высокая, иногда начинаем отдыхать
+                if (this.energy > 0.7 && Math.random() < 0.001) {
+                    this.restTimer = randomRange(100, 400);
+                }
+                // Если энергия низкая, отдыхаем чаще
+                if (this.energy < 0.3 && Math.random() < 0.005) {
+                    this.restTimer = randomRange(150, 500);
                 }
             }
-            if (countNear > 0) {
-                avgX /= countNear;
-                avgY /= countNear;
-                const dxAvg = avgX - this.x;
-                const dyAvg = avgY - this.y;
-                const distAvg = Math.sqrt(dxAvg * dxAvg + dyAvg * dyAvg);
-                if (distAvg > 0) {
-                    const force = 0.000005 * (1 + Math.sin(this.phase * 0.3) * 0.3);
-                    this.vx += dxAvg * force;
-                    this.vy += dyAvg * force;
+            // ---- ДВИЖЕНИЕ ----
+            if (!this.isResting) {
+                // Активное блуждание с ускорениями
+                const accel = 0.02 + this.energy * 0.03;
+                this.vx += (Math.random() - 0.5) * accel;
+                this.vy += (Math.random() - 0.5) * accel;
+
+                // Добавляем колебания
+                this.vx += Math.sin(this.phase) * this.wobbleAmp * 0.008;
+                this.vy += Math.cos(this.phase * 0.7 + 1.2) * this.wobbleAmp * 0.008;
+
+                // Притяжение к лампаде (если есть)
+                if (hasLamp) {
+                    const dxLamp = lampX - this.x;
+                    const dyLamp = lampY - this.y;
+                    const distLamp = Math.sqrt(dxLamp * dxLamp + dyLamp * dyLamp);
+                    if (distLamp < 600 && distLamp > 20) {
+                        const force = 0.00005 * (1 - distLamp / 600) * (0.5 + 0.5 * this.energy);
+                        this.vx += dxLamp * force;
+                        this.vy += dyLamp * force;
+                    }
                 }
+
+                // Ограничение скорости (зависит от энергии)
+                const maxSpeed = this.baseSpeed * (0.5 + 0.5 * this.energy);
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (speed > maxSpeed) {
+                    this.vx = (this.vx / speed) * maxSpeed;
+                    this.vy = (this.vy / speed) * maxSpeed;
+                }
+
+                // Сопротивление среды
+                this.vx *= 0.97;
+                this.vy *= 0.97;
+
+                // Перемещение
+                this.x += this.vx;
+                this.y += this.vy;
+            } else {
+                // В состоянии покоя — почти не двигаемся, только лёгкое дрожание
+                this.x += (Math.random() - 0.5) * 0.08;
+                this.y += (Math.random() - 0.5) * 0.08;
             }
 
-            // ---- ПРИТЯЖЕНИЕ К ЦЕНТРУ (огонёк) ----
-            const cx = window.innerWidth / 2;
-            const cy = window.innerHeight / 2;
-            const dxCenter = cx - this.x;
-            const dyCenter = cy - this.y;
-            const distCenter = Math.sqrt(dxCenter * dxCenter + dyCenter * dyCenter);
-            if (distCenter > 100) {
-                this.vx += dxCenter * 0.00008;
-                this.vy += dyCenter * 0.00008;
-            }
-
-            // ---- КРУГОВОЕ ДВИЖЕНИЕ ВОКРУГ ЦЕНТРА ----
-            if (distCenter > 20 && distCenter < 500) {
-                const angle = Math.atan2(dyCenter, dxCenter);
-                const orbitSpeed = 0.002 + (1 - distCenter / 500) * 0.003;
-                const perpX = -Math.sin(angle) * orbitSpeed;
-                const perpY = Math.cos(angle) * orbitSpeed;
-                this.vx += perpX * (1 + this.phase * 0.01);
-                this.vy += perpY * (1 + this.phase * 0.01);
-            }
-            // ---- РЕАКЦИЯ НА МЫШЬ (мягкая) ----
+            // ---- РЕАКЦИЯ НА МЫШЬ (ослабленная) ----
             const dxMouse = this.x - mouse.x;
             const dyMouse = this.y - mouse.y;
             const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
-            if (distMouse < 80 && mouse.active) {
-                const force = (80 - distMouse) / 80;
-                this.vx += dxMouse * force * 0.03;
-                this.vy += dyMouse * force * 0.03;
-                this.fear = Math.min(1, this.fear + 0.02);
+            if (distMouse < 120 && mouse.active) {
+                const force = (120 - distMouse) / 120;
+                this.vx += dxMouse * force * 0.025;
+                this.vy += dyMouse * force * 0.025;
+                this.fear = Math.min(1, this.fear + 0.015);
             } else {
-                this.fear *= 0.985;
+                this.fear *= 0.99;
             }
 
-            // ---- ОГРАНИЧЕНИЕ СКОРОСТИ ----
-            const maxSpeed = 0.4;
-            const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-            if (speed > maxSpeed) {
-                this.vx = (this.vx / speed) * maxSpeed;
-                this.vy = (this.vy / speed) * maxSpeed;
-            }
-
-            // ---- СЛУЧАЙНЫЕ КОЛЕБАНИЯ ----
-            this.vx += (Math.random() - 0.5) * 0.02;
-            this.vy += (Math.random() - 0.5) * 0.02;
-
-            this.vx *= 0.96;
-            this.vy *= 0.96;
-
-            this.x += this.vx + Math.sin(this.phase) * this.wobbleAmp * 0.12;
-            this.y += this.vy + Math.cos(this.phase * 0.7 + 1.2) * this.wobbleAmp * 0.12;
-
-            const margin = 30;
+            // ---- ГРАНИЦЫ ----
+            const margin = 50;
             if (this.x < -margin) this.x = window.innerWidth + margin;
             if (this.x > window.innerWidth + margin) this.x = -margin;
             if (this.y < -margin) this.y = window.innerHeight + margin;
             if (this.y > window.innerHeight + margin) this.y = -margin;
 
+            // Обновление позиции
             this.el.style.left = this.x + 'px';
             this.el.style.top = this.y + 'px';
 
-            // ---- МЕРЦАНИЕ ----
-            const flicker = 0.7 + 0.3 * Math.sin(this.glowPhase * 2.1 + Math.sin(this.phase * 0.5));
-            const baseGlow = 0.25 + Math.sin(this.glowPhase) * 0.12;
-            const fearEffect = 1 - this.fear * 0.35;
-            const energyEffect = 0.7 + this.energy * 0.3;
-            const finalOpacity = clamp(baseGlow * flicker * 0.71 + 0.1, 0.04, 0.62) * fearEffect * energyEffect * 0.76;
+            // ---- МЕРЦАНИЕ И ВСПЫШКИ ----
+            let flicker = 0.7 + 0.3 * Math.sin(this.glowPhase * 2.1 + Math.sin(this.phase * 0.6));
+            let glow = this.baseGlow + 0.15 * Math.sin(this.glowPhase * 1.3);
+
+            // Случайные вспышки (как у настоящих светлячков)
+            if (Math.random() < this.flashChance && !this.isResting) {
+                this.flashTimer = 5 + Math.floor(Math.random() * 15); // длительность вспышки
+            }
+            if (this.flashTimer > 0) {
+                glow = 1.0;
+                this.flashTimer--;
+            }
+
+            // Влияние страха и энергии
+            const fearEffect = 1 - this.fear * 0.25;
+            const energyEffect = 0.5 + 0.5 * this.energy;
+            let finalOpacity = glow * flicker * 0.8 + 0.1;
+            finalOpacity = clamp(finalOpacity, 0.05, 0.9) * fearEffect * energyEffect;
 
             this.el.style.opacity = finalOpacity;
-
-            this.energy = Math.min(1, this.energy + 0.001);
-            if (Math.random() > 0.999) this.energy *= 0.6;
+            // ---- ОБНОВЛЕНИЕ ЭНЕРГИИ ----
+            if (!this.isResting) {
+                this.energy -= 0.0008;
+            } else {
+                this.energy += 0.0004; // восстановление во время отдыха
+            }
+            this.energy = clamp(this.energy, 0.1, 1.0);
         }
     }
 
+    // Создаём светлячков
     for (let i = 0; i < count; i++) {
         fireflies.push(new Firefly());
     }
 
+    // События мыши
     document.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
         mouse.active = true;
     });
-
     document.addEventListener('mouseleave', () => {
         mouse.active = false;
     });
 
+    // Обновление позиции лампады при ресайзе
+    window.addEventListener('resize', () => {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        lampX = w * 0.9;
+        lampY = h * 0.85;
+        for (const f of fireflies) {
+            f.x = clamp(f.x, 0, w);
+            f.y = clamp(f.y, 0, h);
+        }
+    });
+
+    // Анимационный цикл
     function animate() {
         for (const f of fireflies) {
             f.update();
         }
         requestAnimationFrame(animate);
     }
-
     animate();
-
-    window.addEventListener('resize', () => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        for (const f of fireflies) {
-            f.x = clamp(f.x, 0, w);
-            f.y = clamp(f.y, 0, h);
-        }
-    });
 })();
     </script>
 </body>
