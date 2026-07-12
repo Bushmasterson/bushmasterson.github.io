@@ -3,12 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bushmasterson — Bio</title>
+    <title>Bushmasterson — Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
         body {
             margin: 0;
             padding: 0;
@@ -146,12 +143,42 @@
             letter-spacing: 2px;
             margin-bottom: 8px;
             cursor: default;
+            transition: color 0.3s ease;
+        }
+
+        header h1:hover {
+            color: #40E0D0;
         }
 
         header p {
             font-size: 1rem;
             color: #444444;
             margin-top: 0;
+}
+
+header p span {
+    transition: color 0.3s ease;
+    cursor: default;
+}
+
+header p span:hover {
+    color: #40E0D0;
+}
+
+        /* Плавное появление карточек (через JS) */
+        .card.visible {
+            opacity: 1;
+            animation: appear 0.6s ease forwards;
+        }
+
+        .card {
+            opacity: 0;
+        }
+        
+        @keyframes appear {
+            to {
+                opacity: 1;
+            }
         }
 
         .card {
@@ -244,7 +271,7 @@
 
         footer {
             margin-top: 60px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #777777;
             text-align: center;
         }
@@ -280,7 +307,26 @@
             backdrop-filter: blur(4px);
             pointer-events: none;
             opacity: 0.9;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s ease;
+        }
+
+        /* Rules card */
+        #card-rules ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #card-rules ul li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        #card-rules ul li .rule-number {
+            color: #40E0D0;
+            font-weight: 500;
+            margin-right: 4px;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -315,6 +361,10 @@
                 color: #dddddd;
             }
 
+            #card-rules ul li {
+                color: #dddddd;
+            }
+
             footer {
                 color: #555555;
             }
@@ -327,98 +377,55 @@
                 color: #ffffff;
             }
         }
-
-        /* Дождь */
-        #rain-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .drop {
-            position: absolute;
-            top: -20px;
-            width: 2px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.3);
-            animation: rain linear infinite;
-            opacity: 0.6;
-        }
-
-        @keyframes rain {
-            0% {
-                transform: translateY(0);
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(100vh);
-                opacity: 0.3;
-            }
-        }
-
-        /* Пасхалка */
-        .flip-page {
-            transform: rotate(180deg);
-            transition: transform 0.9s ease;
-        }
-        
-        /* Убираем изменение цвета у ссылок */
+       
+        /* Ссылки */
 a {
-    color: blue;
-    text-decoration: #40E0D0;
-}
-
-a:visited {
-    color: blue;
+    color: #0066cc;
+    text-decoration: none;
+    transition: color 0.2s ease;
 }
 
 a:hover {
-    text-decoration: #40E0D0;
-}
-/* Увеличение иконок соцсетей при наведении */
-.card-content a i {
-    transition: transform 0.22s ease;
-}
-
-.card-content a:hover i {
-    transform: scale(1.11);
-}
-/* Лёгкий подъём иконок при наведении */
-.card-content a i {
-    transition: transform 0.22s ease, color 0.22s ease;
-}
-
-.card-content a:hover i {
-    transform: translateY(-1,5px);
     color: #40E0D0;
 }
-/* Rules card */
-#card-rules ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+
+a:visited {
+    color: #0066cc;
 }
 
-#card-rules ul li {
-    margin-bottom: 8px;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-#card-rules ul li .rule-number {
+a:visited:hover {
     color: #40E0D0;
-    font-weight: 500;
-    margin-right: 4px;
+}
+/* Дождь */
+#rain-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
 }
 
-@media (prefers-color-scheme: dark) {
-    #card-rules ul li {
-        color: #dddddd;
+.drop {
+    position: absolute;
+    top: -20px;
+    width: 2px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    animation: rain linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes rain {
+    0% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0.2;
     }
 }
     </style>
@@ -437,8 +444,11 @@ a:hover {
     <div class="container">
         <header>
             <h1 class="fade-in">Bushmasterson</h1>
-            <p class="fade-in fade-in-delay">developer & minimalist & builder</p>
-        </header>
+            <p class="fade-in fade-in-delay">
+    <span>developer</span> &amp; <span>minimalist</span> &amp; <span>builder</span>
+</p>
+
+     </header>
 
         <!-- About Me Card -->
         <div class="card" id="card-about">
@@ -447,60 +457,43 @@ a:hover {
                 <span id="arrow-about">▼</span>
             </div>
             <div class="card-content" id="content-about">
-                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
     <path fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 11c0 5-3 9-6 9s-6-4-6-9s2-8 6-8s6 3 6 8M4 30h24c0-9-6-10-12-10S4 21 4 30"></path>
 </svg> Bushmasterson</p>
-                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
     <g fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-width="2">
         <path stroke-linejoin="round" d="M3 13a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
         <path d="m3 13l2.914 2.331c1.187.95 2.9.855 3.975-.22v0a2.985 2.985 0 0 1 4.222 0v0a2.985 2.985 0 0 0 3.975.22L21 13"></path>
         <path stroke-linejoin="round" d="M12 6a2 2 0 0 1-2-2c0-.876.677-1.576 1.273-2.217L12 1l.727.783C13.323 2.424 14 3.124 14 4a2 2 0 0 1-2 2"></path>
     </g>
-</svg> 12 y.o (02.11.2013)</p>
-<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-    <path fill="#40E0D0" d="M442 48h-90a22 22 0 0 0 0 44h36.89l-60.39 60.39c-68.19-52.86-167-48-229.54 14.57C31.12 234.81 31.12 345.19 99 413a174.21 174.21 0 0 0 246 0c62.57-62.58 67.43-161.35 14.57-229.54L420 123.11V160a22 22 0 0 0 44 0V70a22 22 0 0 0-22-22M313.92 381.92a130.13 130.13 0 0 1-183.84 0c-50.69-50.68-50.69-133.16 0-183.84s133.16-50.69 183.84 0s50.69 133.16 0 183.84"></path>
-</svg> Male
-                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
+</svg> 13 y.o (02.11)</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
     <g fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
         <circle cx="12" cy="10" r="3"></circle>
         <path d="M12 2a8 8 0 0 0-8 8c0 1.892.402 3.13 1.5 4.5L12 22l6.5-7.5c1.098-1.37 1.5-2.608 1.5-4.5a8 8 0 0 0-8-8"></path>
     </g>
 </svg> Russia · Moscow</p>
-<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-    <path fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12a2 2 0 0 1 2 2v3a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v16a2 2 0 0 0 4 0V7a2 2 0 0 1 4 0v3a2 2 0 0 0 2 2"></path>
-</svg> Ambivert
-                <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
     <path fill="#40E0D0" fill-rule="evenodd" d="M9.424 2.023a.75.75 0 0 1 .556.904L7.48 13.42a.75.75 0 0 1-1.46-.348L8.52 2.58a.75.75 0 0 1 .904-.556ZM11.16 4.22a.75.75 0 0 1 1.06 0l3.25 3.25L16 8l-.53.53l-3.25 3.25a.75.75 0 1 1-1.06-1.06L13.88 8l-2.72-2.72a.75.75 0 0 1 0-1.06M4.84 5.28a.75.75 0 1 0-1.06-1.06L.53 7.47L0 8l.53.53l3.25 3.25a.75.75 0 0 0 1.06-1.06L2.12 8z" clip-rule="evenodd"></path>
-</svg> Stack: JS, TS, Rust, C</p>
-                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 6px; transform: translateY(-3px);">
-    <g fill="none"stroke="#40E0D0" stroke-linecap="round" stroke-width="2">
+</svg> Stack: JavaScript, Rust, C</p>
+<p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
+    <g fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-width="2">
         <path stroke-linejoin="round" d="M14 19c3.771 0 5.657 0 6.828-1.172S22 14.771 22 11s0-5.657-1.172-6.828S17.771 3 14 3h-4C6.229 3 4.343 3 3.172 4.172S2 7.229 2 11s0 5.657 1.172 6.828c.653.654 1.528.943 2.828 1.07"></path>
         <path d="M14 19c-1.236 0-2.598.5-3.841 1.145c-1.998 1.037-2.997 1.556-3.489 1.225s-.399-1.355-.212-3.404L6.5 17.5"></path>
         <path stroke-linejoin="round" d="m5.5 13.5l1-2m0 0l1.106-2.211a1 1 0 0 1 1.788 0L10.5 11.5m-4 0h4m0 0l1 2m1-6h1.982V9c0 .5-.496 1.5-1.487 1.5m3.964-3v2m0 0v4m0-4H18.5"></path>
     </g>
 </svg> Langs: Russian, English, German</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
+    <path fill="#40E0D0" d="M442 48h-90a22 22 0 0 0 0 44h36.89l-60.39 60.39c-68.19-52.86-167-48-229.54 14.57C31.12 234.81 31.12 345.19 99 413a174.21 174.21 0 0 0 246 0c62.57-62.58 67.43-161.35 14.57-229.54L420 123.11V160a22 22 0 0 0 44 0V70a22 22 0 0 0-22-22M313.92 381.92a130.13 130.13 0 0 1-183.84 0c-50.69-50.68-50.69-133.16 0-183.84s133.16-50.69 183.84 0s50.69 133.16 0 183.84"></path>
+</svg> Male</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
+    <path fill="none" stroke="#40E0D0" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12a2 2 0 0 1 2 2v3a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v16a2 2 0 0 0 4 0V7a2 2 0 0 1 4 0v3a2 2 0 0 0 2 2"></path>
+</svg> Ambivert</p>
             </div>
         </div>
 
-        <!-- Rules Card -->
-<div class="card" id="card-rules">
-    <div class="card-header" onclick="toggleCard('card-rules')">
-        <h2>Rules</h2>
-        <span id="arrow-rules">▼</span>
-    </div>
-    <div class="card-content" id="content-rules">
-        <ul>
-            <li><span class="rule-number">1.</span> Spam, flooding, or inappropriate behavior = ban.</li>
-            <li><span class="rule-number">2.</span> Write to the point and clearly. If I don't understand, I won't answer.</li>
-            <li><span class="rule-number">3.</span> Use email for important formal messages.</li>
-            <li><span class="rule-number">4.</span> I am not obliged to return your gift to me if you ask.</li>
-            <li><span class="rule-number">5.</span> There may be fakes. Be vigilant and don't fall for them.</li>
-            <li><span class="rule-number">6.</span> I don't sell NFTs for fiat money. Also, I don't conduct transactions.</li>
-        </ul>
-    </div>
-</div>
-
         <main>
+            <!-- Projects Card -->
             <div class="card" id="card-projects">
                 <div class="card-header" onclick="toggleCard('card-projects')">
                     <h2>Projects</h2>
@@ -513,12 +506,8 @@ a:hover {
                             <span class="desc">— first JavaScript project</span>
                         </li>
                         <li>
-                            <a href="https://t.me/bushcodechannel" target="_blank" class="project-link">Bushcode</a>
+                            <a href="https://t.me/bushcodechannel" target="_blank" class="project-link">Bushnode</a>
                             <span class="desc">— channel with code and projects</span>
-                            <li>
-                                <a href="https://github.com/bush-bot" target="_blank" class="project-link">Bushmoderbot</a>
-                                <span class="desc">— Telegram bot on TypeScript</span>
-                            </li>
                         </li>
                         <li>
                             <a href="https://t.me/bushnewschannel" target="_blank" class="project-link">Bushnews</a>
@@ -528,6 +517,7 @@ a:hover {
                 </div>
             </div>
 
+            <!-- Contacts Card -->
             <div class="card" id="card-contacts">
                 <div class="card-header" onclick="toggleCard('card-contacts')">
                     <h2>Contacts</h2>
@@ -539,9 +529,26 @@ a:hover {
                         <a href="https://t.me/bushmasterson" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a> ·
                         <a href="https://twitter.com/Bushmasterson" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a> ·
                         <a href="https://bsky.app/profile/bushmasterson" target="_blank" title="Bluesky"><i class="fab fa-bluesky"></i></a> ·
-                        <a href="https://pinterest.com/bushmaster_son" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a> ·
-                        <a href="mailto:bushmasterson@proton.me" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://pinterest.com/bushmaster_son" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
                     </p>
+                </div>
+            </div>
+
+            <!-- Rules Card -->
+            <div class="card" id="card-rules">
+                <div class="card-header" onclick="toggleCard('card-rules')">
+                    <h2>Rules</h2>
+                    <span id="arrow-rules">▼</span>
+                </div>
+                <div class="card-content" id="content-rules">
+                    <ul>
+                        <li><span class="rule-number">1.</span> Spam, flooding, or inappropriate behavior = ban.</li>
+                        <li><span class="rule-number">2.</span> Write to the point and clearly. If I don't understand, I won't answer.</li>
+                        <li><span class="rule-number">3.</span> Use email for important formal messages.</li>
+                        <li><span class="rule-number">4.</span> I am not obliged to return your gift to me if you ask.</li>
+                        <li><span class="rule-number">5.</span> There may be fakes. Be vigilant and don't fall for them. If you notice a fake, please contact me.</li>
+                        <li><span class="rule-number">6.</span> I don't sell NFTs for fiat money. Also, I don't conduct transactions.</li>
+                    </ul>
                 </div>
             </div>
         </main>
@@ -552,6 +559,15 @@ a:hover {
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('visible');
+                }, 100 + index * 150);
+            });
+        });
+
         function toggleCard(id) {
             const content = document.getElementById('content-' + id.replace('card-', ''));
             const arrow = document.getElementById('arrow-' + id.replace('card-', ''));
@@ -563,36 +579,22 @@ a:hover {
                 content.classList.remove('open');
                 arrow.classList.remove('open');
             }
-        }
+        }// Дождь
+(function createRain() {
+    const container = document.getElementById('rain-container');
+    const dropCount = 80;
 
-        // Дождь
-        (function createRain() {
-            const container = document.getElementById('rain-container');
-            const dropCount = 80;
-
-            for (let i = 0; i < dropCount; i++) {
-                const drop = document.createElement('div');
-                drop.className = 'drop';
-                drop.style.left = Math.random() * 100 + '%';
-                drop.style.animationDuration = (Math.random() * 2 + 1) + 's';
-                drop.style.animationDelay = Math.random() * 2 + 's';
-                drop.style.height = (Math.random() * 15 + 10) + 'px';
-                drop.style.opacity = Math.random() * 0.3 + 0.2;
-                container.appendChild(drop);
-            }
-        })();
-
-        // Пасхалка: 10 кликов по заголовку
-        let clickCount = 0;
-        const header = document.querySelector('header h1');
-
-        header.addEventListener('click', function() {
-            clickCount++;
-            if (clickCount === 10) {
-                document.body.classList.add('flip-page');
-                clickCount = 0;
-            }
-        });
+    for (let i = 0; i < dropCount; i++) {
+        const drop = document.createElement('div');
+        drop.className = 'drop';
+        drop.style.left = Math.random() * 100 + '%';
+        drop.style.animationDuration = (Math.random() * 2 + 1) + 's';
+        drop.style.animationDelay = Math.random() * 2 + 's';
+        drop.style.height = (Math.random() * 15 + 10) + 'px';
+        drop.style.opacity = Math.random() * 0.3 + 0.2;
+        container.appendChild(drop);
+    }
+})();
     </script>
 </body>
 </html>
