@@ -318,20 +318,21 @@ a:visited:hover {
 /* Дождь */
 #rain-container {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -10%; /* смещаем вверх, чтобы капли не обрезались */
+    left: -10%;
+    width: 120%;
+    height: 120%;
     pointer-events: none;
     z-index: 0;
-    overflow: hidden;
+    overflow: visible; /* капли видны за пределами */
+    transform: rotate(0deg);
+    transition: transform 3s cubic-bezier(0.3, 0.8, 0.6, 1); /* плавный поворот */
 }
 
 .drop {
     position: absolute;
     top: -20px;
     width: 2px;
-    height: 20px;
     background: rgba(255, 255, 255, 0.3);
     animation: rain linear infinite;
     opacity: 0.6;
@@ -343,7 +344,7 @@ a:visited:hover {
         opacity: 0.6;
     }
     100% {
-        transform: translateY(100vh);
+        transform: translateY(110vh);
         opacity: 0.2;
     }
 }
@@ -395,9 +396,6 @@ a::-moz-selection {
 #back-to-top:hover {
     background: #2bb8a8;
     transform: scale(1.05);
-}
-.bg-shapes div {
-    transition: transform 0.1s ease-out;
 }
 /* Туман (9 слоёв) — усиленный */
 #fog-container {
@@ -609,7 +607,6 @@ body::before {
     border-radius: 50%;
     pointer-events: none;
     will-change: transform, opacity;
-    filter: blur(0.2px);
     transition: none;
     backface-visibility: hidden;
 }
@@ -727,27 +724,6 @@ body::before {
     0% { opacity: 0.05; transform: translate(-50%, -50%) scale(0.8); }
     100% { opacity: 0.25; transform: translate(-50%, -50%) scale(2.2); }
 }
-/* ===== ОБЛАКА (фон) ===== */
-#clouds-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    overflow: hidden;
-    background: transparent; /* сам фон будет виден через облака */
-}
-
-.cloud-puff {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(ellipse at center, rgba(240, 245, 255, 0.15) 0%, rgba(220, 230, 240, 0.05) 70%, transparent 100%);
-    will-change: transform, opacity;
-    filter: blur(2px);
-    transition: none;
-}
 @media (prefers-color-scheme: dark) {
     .project-link {
         color: #66b3ff;
@@ -781,7 +757,6 @@ body {
     </style>
 </head>
 <body>
-    <div id="clouds-container"></div>
     <div id="particles-container"></div>
     <div class="reflection"></div>
     <div class="reflection"></div>
@@ -930,22 +905,7 @@ body {
                 content.classList.remove('open');
                 arrow.classList.remove('open');
             }
-        }// Дождь
-(function createRain() {
-    const container = document.getElementById('rain-container');
-    const dropCount = 80;
-
-    for (let i = 0; i < dropCount; i++) {
-        const drop = document.createElement('div');
-        drop.className = 'drop';
-        drop.style.left = Math.random() * 100 + '%';
-        drop.style.animationDuration = (Math.random() * 2 + 1) + 's';
-        drop.style.animationDelay = Math.random() * 2 + 's';
-        drop.style.height = (Math.random() * 15 + 10) + 'px';
-        drop.style.opacity = Math.random() * 0.3 + 0.2;
-        container.appendChild(drop);
-    }
-})();
+ }
 // Кнопка "Наверх"
 const backToTop = document.getElementById('back-to-top');
 
@@ -975,7 +935,11 @@ backToTop.addEventListener('click', () => {
     const container = document.getElementById('particles-container');
     if (!container) return;
 
-    // Вспомогательная функция для случайного числа в диапазоне
+    const count = 42;
+    const fireflies = [];
+    const mouse = { x: -1000, y: -1000, active: false };
+
+    function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
     function randomRange(min, max) { return min + Math.random() * (max - min); }
 
     class Firefly {
@@ -991,47 +955,33 @@ backToTop.addEventListener('click', () => {
             trail.className = 'firefly-trail';
             this.el.appendChild(trail);
 
-            // ---- ИНДИВИДУАЛЬНЫЕ ПАРАМЕТРЫ ----
             this.size = randomRange(5, 15);
             this.el.style.width = this.size + 'px';
             this.el.style.height = this.size + 'px';
 
-            // Позиция — равномерно по экрану, но с предпочтением к нижней части (там лампада)
             this.x = Math.random() * window.innerWidth;
             this.y = Math.random() * window.innerHeight;
-            if (hasLamp && Math.random() < 0.3) {
-                // 30% светлячков стартуют ближе к лампаде
-                this.x = lampX + randomRange(-250, 250);
-                this.y = lampY + randomRange(-250, 250);
-            }
 
-            // Скорости (индивидуальные)
             this.baseSpeed = randomRange(0.08, 0.25);
             this.vx = randomRange(-this.baseSpeed, this.baseSpeed);
             this.vy = randomRange(-this.baseSpeed, this.baseSpeed);
 
-            // Колебания
             this.phase = randomRange(0, Math.PI * 2);
             this.wobbleSpeed = randomRange(0.008, 0.025);
             this.wobbleAmp = randomRange(0.2, 0.8);
 
-            // Состояние активности
             this.energy = randomRange(0.4, 1.0);
-            this.restTimer = 0;               // когда >0 — отдыхает
-            this.restThreshold = randomRange(200, 600); // через сколько кадров начинает отдыхать
+            this.restTimer = 0;
             this.isResting = false;
 
-            // Мерцание
             this.glowPhase = randomRange(0, Math.PI * 2);
             this.glowSpeed = randomRange(0.011, 0.044);
             this.baseGlow = randomRange(0.3, 0.5);
-            this.flashTimer = 0;              // таймер для вспышки
-            this.flashChance = 0.002;          // вероятность вспышки в кадре
+            this.flashTimer = 0;
+            this.flashChance = 0.002;
 
-            // Страх перед мышью
             this.fear = 0;
 
-            // Начальная непрозрачность
             this.el.style.opacity = randomRange(0.2, 0.5);
             this.el.style.left = this.x + 'px';
             this.el.style.top = this.y + 'px';
@@ -1043,46 +993,28 @@ backToTop.addEventListener('click', () => {
             this.phase += this.wobbleSpeed;
             this.glowPhase += this.glowSpeed;
 
-            // ---- УПРАВЛЕНИЕ АКТИВНОСТЬЮ ----
             this.energy = Math.min(1, this.energy + 0.0005);
             if (this.restTimer > 0) {
                 this.restTimer--;
                 this.isResting = true;
             } else {
                 this.isResting = false;
-                // Если энергия высокая, иногда начинаем отдыхать
                 if (this.energy > 0.7 && Math.random() < 0.001) {
                     this.restTimer = randomRange(100, 400);
                 }
-                // Если энергия низкая, отдыхаем чаще
                 if (this.energy < 0.3 && Math.random() < 0.005) {
                     this.restTimer = randomRange(150, 500);
                 }
             }
-            // ---- ДВИЖЕНИЕ ----
+
             if (!this.isResting) {
-                // Активное блуждание с ускорениями
                 const accel = 0.02 + this.energy * 0.03;
                 this.vx += (Math.random() - 0.5) * accel;
                 this.vy += (Math.random() - 0.5) * accel;
 
-                // Добавляем колебания
                 this.vx += Math.sin(this.phase) * this.wobbleAmp * 0.008;
                 this.vy += Math.cos(this.phase * 0.7 + 1.2) * this.wobbleAmp * 0.008;
 
-                // Притяжение к лампаде (если есть)
-                if (hasLamp) {
-                    const dxLamp = lampX - this.x;
-                    const dyLamp = lampY - this.y;
-                    const distLamp = Math.sqrt(dxLamp * dxLamp + dyLamp * dyLamp);
-                    if (distLamp < 600 && distLamp > 20) {
-                        const force = 0.00005 * (1 - distLamp / 600) * (0.5 + 0.5 * this.energy);
-                        this.vx += dxLamp * force;
-                        this.vy += dyLamp * force;
-                    }
-                }
-
-                // Ограничение скорости (зависит от энергии)
                 const maxSpeed = this.baseSpeed * (0.5 + 0.5 * this.energy);
                 const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
                 if (speed > maxSpeed) {
@@ -1090,20 +1022,15 @@ backToTop.addEventListener('click', () => {
                     this.vy = (this.vy / speed) * maxSpeed;
                 }
 
-                // Сопротивление среды
                 this.vx *= 0.97;
                 this.vy *= 0.97;
-
-                // Перемещение
                 this.x += this.vx;
                 this.y += this.vy;
             } else {
-                // В состоянии покоя — почти не двигаемся, только лёгкое дрожание
                 this.x += (Math.random() - 0.5) * 0.08;
                 this.y += (Math.random() - 0.5) * 0.08;
             }
 
-            // ---- РЕАКЦИЯ НА МЫШЬ (ослабленная) ----
             const dxMouse = this.x - mouse.x;
             const dyMouse = this.y - mouse.y;
             const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse);
@@ -1116,53 +1043,46 @@ backToTop.addEventListener('click', () => {
                 this.fear *= 0.99;
             }
 
-            // ---- ГРАНИЦЫ ----
             const margin = 50;
             if (this.x < -margin) this.x = window.innerWidth + margin;
             if (this.x > window.innerWidth + margin) this.x = -margin;
             if (this.y < -margin) this.y = window.innerHeight + margin;
             if (this.y > window.innerHeight + margin) this.y = -margin;
 
-            // Обновление позиции
             this.el.style.left = this.x + 'px';
             this.el.style.top = this.y + 'px';
 
-            // ---- МЕРЦАНИЕ И ВСПЫШКИ ----
             let flicker = 0.7 + 0.3 * Math.sin(this.glowPhase * 2.1 + Math.sin(this.phase * 0.6));
             let glow = this.baseGlow + 0.15 * Math.sin(this.glowPhase * 1.3);
 
-            // Случайные вспышки (как у настоящих светлячков)
             if (Math.random() < this.flashChance && !this.isResting) {
-                this.flashTimer = 5 + Math.floor(Math.random() * 15); // длительность вспышки
+                this.flashTimer = 5 + Math.floor(Math.random() * 15);
             }
             if (this.flashTimer > 0) {
                 glow = 1.0;
                 this.flashTimer--;
             }
 
-            // Влияние страха и энергии
             const fearEffect = 1 - this.fear * 0.25;
             const energyEffect = 0.5 + 0.5 * this.energy;
             let finalOpacity = glow * flicker * 0.8 + 0.1;
             finalOpacity = clamp(finalOpacity, 0.05, 0.9) * fearEffect * energyEffect;
 
             this.el.style.opacity = finalOpacity;
-            // ---- ОБНОВЛЕНИЕ ЭНЕРГИИ ----
+
             if (!this.isResting) {
                 this.energy -= 0.0008;
             } else {
-                this.energy += 0.0004; // восстановление во время отдыха
+                this.energy += 0.0004;
             }
             this.energy = clamp(this.energy, 0.1, 1.0);
         }
     }
 
-    // Создаём светлячков
     for (let i = 0; i < count; i++) {
         fireflies.push(new Firefly());
     }
 
-    // События мыши
     document.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
@@ -1172,19 +1092,6 @@ backToTop.addEventListener('click', () => {
         mouse.active = false;
     });
 
-    // Обновление позиции лампады при ресайзе
-    window.addEventListener('resize', () => {
-        const w = window.innerWidth;
-        const h = window.innerHeight;
-        lampX = w * 0.9;
-        lampY = h * 0.85;
-        for (const f of fireflies) {
-            f.x = clamp(f.x, 0, w);
-            f.y = clamp(f.y, 0, h);
-        }
-    });
-
-    // Анимационный цикл
     function animate() {
         for (const f of fireflies) {
             f.update();
