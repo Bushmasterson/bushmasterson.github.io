@@ -62,7 +62,6 @@
             letter-spacing: 2px;
             margin-bottom: 8px;
             cursor: default;
-            transition: color 0.3s ease;
         }
 
         header h1:hover {
@@ -76,7 +75,6 @@
 }
 
 header p span {
-    transition: color 0.3s ease;
     cursor: default;
 }
 
@@ -301,7 +299,6 @@ header p span:hover {
 a {
     color: #0066cc;
     text-decoration: none;
-    transition: color 0.2s ease;
 }
 
 a:hover {
@@ -693,6 +690,25 @@ body {
         transform: translateY(100vh);
         opacity: 0.15;
     }
+}
+/*Изменение на акцентный цвет
+
+/* Заголовок */
+header h1 {
+    transition: color 0.11s ease;
+}
+
+/* Подзаголовок */
+header p span {
+    transition: color 0.11s ease;
+}
+
+/* Основные ссылки */
+a {
+    transition: color 0.11s ease;
+}
+a:visited {
+    transition: color 0.11s ease;
 }
     </style>
 </head>
