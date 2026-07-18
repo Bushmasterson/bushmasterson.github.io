@@ -72,17 +72,17 @@
             font-size: 1rem;
             color: #444444;
             margin-top: 0;
+        }
+        
+        header p span {
+            cursor: default;
+        }
+        
+        header p span:hover {
+            color: #39C7B9;
 }
 
-header p span {
-    cursor: default;
-}
-
-header p span:hover {
-    color: #39C7B9;
-}
-
-        /* Плавное появление карточек (через JS) */
+        /* Плавное появление карточек */
         .card.visible {
             opacity: 1;
             animation: appear 0.6s ease forwards;
@@ -227,7 +227,7 @@ header p span:hover {
             transition: opacity 0.2s ease;
         }
 
-        /* Rules card */
+        /* Нумерация правил */
         #card-rules ul {
             list-style: none;
             padding: 0;
@@ -294,8 +294,8 @@ header p span:hover {
                 color: #ffffff;
             }
         }
-       
-        /* Ссылки */
+
+/* Ссылки */
 a {
     color: #0066cc;
     text-decoration: none;
@@ -394,7 +394,7 @@ a::-moz-selection {
     background: #2bb8a8;
     transform: scale(1.05);
 }
-/* Туман (6слоёв) — усиленный */
+/* Туман */
 #fog-container {
     position: fixed;
     top: 0;
@@ -417,38 +417,38 @@ a::-moz-selection {
 }
 
 .fog-layer:nth-child(1) {
-    animation-duration: 60s;
-    animation-delay: 0s;
+    animation-duration: 61s;
+    animation-delay: 1s;
     background: radial-gradient(ellipse at 20% 50%, rgba(200, 220, 240, 0.065) 0%, transparent 70%);
 }
 
 .fog-layer:nth-child(2) {
     animation-duration: 73s;
-    animation-delay: -10s;
+    animation-delay: -3s;
     background: radial-gradient(ellipse at 70% 30%, rgba(180, 200, 220, 0.055) 0%, transparent 70%);
 }
 
 .fog-layer:nth-child(3) {
     animation-duration: 67s;
-    animation-delay: -20s;
+    animation-delay: -7s;
     background: radial-gradient(ellipse at 40% 80%, rgba(210, 230, 250, 0.06) 0%, transparent 70%);
 }
 
 .fog-layer:nth-child(4) {
-    animation-duration: 80s;
-    animation-delay: -30s;
+    animation-duration: 78s;
+    animation-delay: -7s;
     background: radial-gradient(ellipse at 80% 60%, rgba(190, 210, 230, 0.05) 0%, transparent 70%);
 }
 
 .fog-layer:nth-child(5) {
     animation-duration: 64s;
-    animation-delay: -40s;
+    animation-delay: -2s;
     background: radial-gradient(ellipse at 10% 40%, rgba(170, 190, 210, 0.055) 0%, transparent 70%);
 }
 
 .fog-layer:nth-child(6) {
     animation-duration: 69s;
-    animation-delay: -50s;
+    animation-delay: -8s;
     background: radial-gradient(ellipse at 60% 90%, rgba(220, 240, 255, 0.05) 0%, transparent 70%);
 }
 
@@ -559,7 +559,7 @@ body::after {
 .container {
     animation: breathe 6s ease-in-out infinite;
 }
-/* Затемнение всего сайта на 11% */
+/* Затемнение всего сайта на 9% */
 body::before {
     content: '';
     position: fixed;
@@ -569,10 +569,10 @@ body::before {
     height: 100%;
     pointer-events: none;
     z-index: 2;
-    background: rgba(0, 0, 0, 0.11);
+    background: rgba(0, 0, 0, 0.09);
 }
 
-/* ===== УЛУЧШЕННЫЕ СВЕТЛЯЧКИ ===== */
+/* Светлячки */
 #particles-container {
     position: fixed;
     top: 0;
@@ -661,7 +661,7 @@ body {
     40%  { opacity: 0; } /* резко гаснет */
     100% { opacity: 0; } /* пауза 0.5 сек */
 }
-/* ===== ДОЖДЬ (простой, вертикальный) ===== */
+/* Дождь */
 #rain-container {
     position: fixed;
     top: 0;
@@ -691,7 +691,7 @@ body {
         opacity: 0.15;
     }
 }
-/*Изменение на акцентный цвет
+/* Изменение на акцентный цвет
 
 /* Заголовок */
 header h1 {
@@ -730,7 +730,7 @@ a:visited {
 
      </header>
 
-        <!-- About Me Card -->
+        <!-- About Me  -->
         <div class="card" id="card-about">
             <div class="card-header" onclick="toggleCard('card-about')">
                 <h2>About Me</h2>
@@ -752,17 +752,17 @@ a:visited {
         <circle cx="12" cy="10" r="3"></circle>
         <path d="M12 2a8 8 0 0 0-8 8c0 1.892.402 3.13 1.5 4.5L12 22l6.5-7.5c1.098-1.37 1.5-2.608 1.5-4.5a8 8 0 0 0-8-8"></path>
     </g>
-</svg> Russia · Moscow</p>
-                <p><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
+</svg> Moscow</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
     <path fill="#39C7B9" fill-rule="evenodd" d="M9.424 2.023a.75.75 0 0 1 .556.904L7.48 13.42a.75.75 0 0 1-1.46-.348L8.52 2.58a.75.75 0 0 1 .904-.556ZM11.16 4.22a.75.75 0 0 1 1.06 0l3.25 3.25L16 8l-.53.53l-3.25 3.25a.75.75 0 1 1-1.06-1.06L13.88 8l-2.72-2.72a.75.75 0 0 1 0-1.06M4.84 5.28a.75.75 0 1 0-1.06-1.06L.53 7.47L0 8l.53.53l3.25 3.25a.75.75 0 0 0 1.06-1.06L2.12 8z" clip-rule="evenodd"></path>
-</svg> Stack: JavaScript, C</p>
+</svg> JavaScript, C</p>
 <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
     <g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-width="2">
         <path stroke-linejoin="round" d="M14 19c3.771 0 5.657 0 6.828-1.172S22 14.771 22 11s0-5.657-1.172-6.828S17.771 3 14 3h-4C6.229 3 4.343 3 3.172 4.172S2 7.229 2 11s0 5.657 1.172 6.828c.653.654 1.528.943 2.828 1.07"></path>
         <path d="M14 19c-1.236 0-2.598.5-3.841 1.145c-1.998 1.037-2.997 1.556-3.489 1.225s-.399-1.355-.212-3.404L6.5 17.5"></path>
         <path stroke-linejoin="round" d="m5.5 13.5l1-2m0 0l1.106-2.211a1 1 0 0 1 1.788 0L10.5 11.5m-4 0h4m0 0l1 2m1-6h1.982V9c0 .5-.496 1.5-1.487 1.5m3.964-3v2m0 0v4m0-4H18.5"></path>
     </g>
-</svg> Langs: Russian, English, German</p>
+</svg> Russian, English</p>
                 <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
     <path fill="#39C7B9" d="M442 48h-90a22 22 0 0 0 0 44h36.89l-60.39 60.39c-68.19-52.86-167-48-229.54 14.57C31.12 234.81 31.12 345.19 99 413a174.21 174.21 0 0 0 246 0c62.57-62.58 67.43-161.35 14.57-229.54L420 123.11V160a22 22 0 0 0 44 0V70a22 22 0 0 0-22-22M313.92 381.92a130.13 130.13 0 0 1-183.84 0c-50.69-50.68-50.69-133.16 0-183.84s133.16-50.69 183.84 0s50.69 133.16 0 183.84"></path>
 </svg> Male</p>
@@ -773,7 +773,7 @@ a:visited {
         </div>
 
         <main>
-            <!-- Projects Card -->
+            <!-- Projects -->
             <div class="card" id="card-projects">
                 <div class="card-header" onclick="toggleCard('card-projects')">
                     <h2>Projects</h2>
@@ -782,12 +782,12 @@ a:visited {
                 <div class="card-content" id="content-projects">
                     <ul>
                         <li>
-                            <a href="https://github.com/Bushmasterson/first-mini-project" target="_blank" class="project-link">Calculator</a>
-                            <span class="desc">— first JavaScript project</span>
+                            <a href="https://github.com/Bushmasterson/bush-bot" target="_blank" class="project-link">Bushbot</a>
+                            <span class="desc">— my telegram bot</span>
                         </li>
                         <li>
                             <a href="https://t.me/bushcodechannel" target="_blank" class="project-link">Bushcode</a>
-                            <span class="desc">— channel with code and projects</span>
+                            <span class="desc">— code & projects</span>
                         </li>
                         <li>
                             <a href="https://t.me/bushnewschannel" target="_blank" class="project-link">Bushnews</a>
@@ -797,7 +797,7 @@ a:visited {
                 </div>
             </div>
 
-            <!-- Rules Card -->
+            <!-- Rules -->
             <div class="card" id="card-rules">
                 <div class="card-header" onclick="toggleCard('card-rules')">
                     <h2>Rules</h2>
@@ -815,7 +815,7 @@ a:visited {
                 </div>
             </div>
 
-            <!-- Contacts Card -->
+            <!-- Contacts -->
             <div class="card" id="card-contacts">
                 <div class="card-header" onclick="toggleCard('card-contacts')">
                     <h2>Contacts</h2>
@@ -862,6 +862,7 @@ a:visited {
                 arrow.classList.remove('open');
             }
  }
+
 // Кнопка "Наверх"
 const backToTop = document.getElementById('back-to-top');
 
@@ -876,7 +877,8 @@ window.addEventListener('scroll', () => {
 backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-// Туман (9 слоёв)
+
+// Туман
 (function createFog() {
     const container = document.getElementById('fog-container');
     if (!container) return;
@@ -886,7 +888,8 @@ backToTop.addEventListener('click', () => {
         container.appendChild(layer);
     }
 })();
-// ---- РЕАЛИСТИЧНЫЕ СВЕТЛЯЧКИ (живое поведение) ----
+
+// Светлячки
 (function createFireflies() {
     const container = document.getElementById('particles-container');
     if (!container) return;
@@ -1001,7 +1004,7 @@ backToTop.addEventListener('click', () => {
                 this.fear *= 0.99;
             }
 
-            const margin = 50;
+            const margin = 49;
             if (this.x < -margin) this.x = window.innerWidth + margin;
             if (this.x > window.innerWidth + margin) this.x = -margin;
             if (this.y < -margin) this.y = window.innerHeight + margin;
@@ -1058,7 +1061,8 @@ backToTop.addEventListener('click', () => {
     }
     animate();
 })();
-// ---- ПРОСТОЙ ДОЖДЬ (без ветра) ----
+
+// Дождь
 (function createRain() {
     const container = document.getElementById('rain-container');
     if (!container) return;
@@ -1070,10 +1074,10 @@ backToTop.addEventListener('click', () => {
     for (let i = 0; i < dropCount; i++) {
         const drop = document.createElement('div');
         drop.className = 'drop';
-        drop.style.left = Math.random() * 100 + '%';
+        drop.style.left = Math.random() * 99 + '%';
         drop.style.animationDuration = (Math.random() * 1.5 + 0.8) + 's';
         drop.style.animationDelay = Math.random() * 2 + 's';
-        drop.style.height = (Math.random() * 12 + 8) + 'px';
+        drop.style.height = (Math.random() * 11 + 9) + 'px';
         drop.style.opacity = Math.random() * 0.3 + 0.25;
         container.appendChild(drop);
     }
