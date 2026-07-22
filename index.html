@@ -4,435 +4,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bushmasterson — developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+        /* ===== Базовые настройки ===== */
+        html { scroll-behavior: smooth; }
 
         body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 350;
-    background: #0b0d11;  /* глубокий тёмно-синий, почти чёрный */
-    color: #e0e0e0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    transition: background 0.4s ease, color 0.4s ease;
-}
-
-        /* Canvas созвездия */
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-            display: block;
+            margin: 0; padding: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 350;
+            background: #0b0d11;
+            color: #e0e0e0;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh;
+            position: relative; overflow-x: hidden;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
-        /* Контейнер */
+        #particles-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0; display: block;
+        }
+
         .container {
-            max-width: 700px;
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 1;
+            max-width: 700px; padding: 40px 20px; text-align: center;
+            position: relative; z-index: 1;
             animation: breathe 6s ease-in-out infinite;
         }
 
-        @keyframes breathe {
-            0% { opacity: 1; }
-            50% { opacity: 0.97; }
-            100% { opacity: 1; }
-        }
+        @keyframes breathe { 0% { opacity: 1; } 50% { opacity: 0.97; } 100% { opacity: 1; } }
 
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.8s ease forwards;
-        }
+        .fade-in { opacity: 0; transform: translateY(20px); animation: fadeIn 0.8s ease forwards; }
+        .fade-in-delay { animation-delay: 0.2s; }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-        .fade-in-delay {
-            animation-delay: 0.2s;
-        }
+        .cursor-blink { display: inline-block; font-weight: 300; color: #39C7B9; animation: blinkCursor 0.833s steps(1) infinite; }
+        @keyframes blinkCursor { 0% { opacity: 1; } 40% { opacity: 1; } 40% { opacity: 0; } 100% { opacity: 0; } }
 
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Шапка */
-        header {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 10px;
-        }
-
-        header h1 {
-            font-size: 2.8rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            cursor: default;
-            transition: color 0.11s ease;
-        }
-
-        header h1:hover { color: #39C7B9; }
-
-        header p {
-            font-size: 1rem;
-            color: #444444;
-            margin-top: 0;
-            letter-spacing: 1px;
-        }
-
-        header p span {
-            cursor: default;
-            transition: color 0.11s ease;
-        }
-
-        header p span:hover { color: #39C7B9; }
-
-        .cursor-blink {
-            display: inline-block;
-            font-weight: 300;
-            color: #39C7B9;
-            animation: blinkCursor 0.833s steps(1) infinite;
-        }
-
-        @keyframes blinkCursor {
-            0% { opacity: 1; }
-            40% { opacity: 1; }
-            40% { opacity: 0; }
-            100% { opacity: 0; }
-        }
-
-        /* Карточки */
-        .card {
-            background: rgba(255, 255, 255, 0.7);
+        /* ===== Карточки ===== */
+        .main-card {
+            background: rgba(15, 20, 30, 0.9);
             backdrop-filter: blur(4px);
+            border-radius: 24px;
+            padding: 24px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .main-card:hover { border-color: rgba(255, 255, 255, 0.08); }
+
+        header h1 { transition: color 0.3s ease, text-shadow 0.3s ease; }
+        header h1:hover { color: #39C7B9; text-shadow: 0 0 25px rgba(57, 199, 185, 0.15); }
+        header p { transition: color 0.3s ease; }
+        header p:hover { color: #39C7B9; }
+
+        .card {
+            background: rgba(15, 20, 30, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
             border-radius: 16px;
             padding: 20px 24px;
-            margin-top: 24px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-top: 16px;
             cursor: pointer;
-            transition: box-shadow 0.4s ease, transform 0.3s ease, border-color 0.4s ease;
-            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
             text-align: left;
             opacity: 0;
         }
 
-        .card.visible {
-            opacity: 1;
-            animation: appear 0.6s ease forwards;
-        }
-
-        @keyframes appear {
-            to { opacity: 1; }
-        }
+        .card.visible { opacity: 1; animation: appear 0.6s ease forwards; }
+        @keyframes appear { to { opacity: 1; } }
 
         .card:hover {
-            box-shadow: 0 0 20px rgba(64, 224, 208, 0.25), 0 6px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 0 25px rgba(64, 224, 208, 0.15), 0 12px 48px rgba(0,0,0,0.6);
             transform: translateY(-2px);
-            border-color: rgba(64, 224, 208, 0.3);
+            border-color: rgba(64, 224, 208, 0.2);
         }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            user-select: none;
-        }
+        .card-header { display: flex; justify-content: space-between; align-items: center; user-select: none; }
+        .card-header h2 { margin: 0; font-size: 1.1rem; font-weight: 400; letter-spacing: 1px; }
+        .card-header span { font-size: 1.2rem; transition: transform 0.3s ease; opacity: 0.5; }
+        .card-header span.open { transform: rotate(180deg); }
 
-        .card-header h2 {
-            margin: 0;
-            font-size: 1.1rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
+        .card-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease; opacity: 0; margin-top: 0; }
+        .card-content.open { max-height: 400px; opacity: 1; margin-top: 16px; }
 
-        .card-header span {
-            font-size: 1.2rem;
-            transition: transform 0.3s ease;
-            opacity: 0.5;
-        }
-
-        .card-header span.open {
-            transform: rotate(180deg);
-        }
-
-        .card-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, opacity 0.3s ease, margin 0.3s ease;
-            opacity: 0;
-            margin-top: 0;
-        }
-
-        .card-content.open {
-            max-height: 400px;
-            opacity: 1;
-            margin-top: 16px;
-        }
-
-        .card-content ul {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .card-content ul li {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
+        .card-content ul { margin: 0; padding: 0; list-style: none; }
+        .card-content ul li { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
         .card-content ul li a { flex-shrink: 0; }
-        .card-content ul li .desc {
-            color: #555555;
-            font-size: 0.9rem;
-        }
+        .card-content ul li .desc { color: #aaaaaa; font-size: 0.9rem; }
+        .card-content p { margin: 0; line-height: 1.6; }
+        .card-content p strong { font-weight: 600; }
 
-        .card-content p {
-            margin: 0;
-            line-height: 1.6;
-        }
+        #card-rules ul li .rule-number { color: #39C7B9; font-weight: 500; margin-right: 4px; }
 
-        .card-content p strong {
-            font-weight: 600;
-        }
+        a { color: #39C7B9; text-decoration: none; transition: color 0.11s ease; }
+        a:hover { color: #ffffff; }
+        a:visited { color: #39C7B9; transition: color 0.11s ease; }
+        a:visited:hover { color: #ffffff; }
 
-        #card-rules ul li .rule-number {
-            color: #39C7B9;
-            font-weight: 500;
-            margin-right: 4px;
-        }
+        a[title] { position: relative; text-decoration: none; }
+        a[title]:hover::after { content: attr(title); position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: #ffffff; font-size: 0.7rem; padding: 4px 10px; border-radius: 6px; white-space: nowrap; backdrop-filter: blur(4px); pointer-events: none; opacity: 0.9; transition: opacity 0.2s ease; }
 
-        /* Ссылки */
-        a {
-            color: #0066cc;
-            text-decoration: none;
-            transition: color 0.11s ease;
-        }
-
-        a:hover { color: #39C7B9; }
-        a:visited { color: #0066cc; transition: color 0.11s ease; }
-        a:visited:hover { color: #39C7B9; }
-
-        a[title] {
-            position: relative;
-            text-decoration: none;
-        }
-
-        a[title]:hover::after {
-            content: attr(title);
-            position: absolute;
-            bottom: calc(100% + 8px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.7);
-            color: #ffffff;
-            font-size: 0.7rem;
-            padding: 4px 10px;
-            border-radius: 6px;
-            white-space: nowrap;
-            backdrop-filter: blur(4px);
-            pointer-events: none;
-            opacity: 0.9;
-            transition: opacity 0.2s ease;
-        }
-
-        /* Подвал */
-        footer {
-            margin-top: 60px;
-            font-size: 0.8rem;
-            color: #777777;
-            text-align: center;
-        }
-
-        footer a { color: #777777; text-decoration: none; }
-        footer a:hover { color: #000000; text-decoration: underline; }
-
-        /* Кнопка Наверх */
-        #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 44px;
-            height: 44px;
-            background: #39C7B9;
-            color: #ffffff;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 1000;
-            box-shadow: 0 4px 12px rgba(64, 224, 208, 0.3);
-        }
-
-        #back-to-top.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        #back-to-top:hover {
-            background: #2bb8a8;
-            transform: scale(1.05);
-        }
+        #back-to-top { position: fixed; bottom: 30px; right: 30px; width: 44px; height: 44px; background: #39C7B9; color: #ffffff; border: none; border-radius: 50%; font-size: 1.5rem; cursor: pointer; opacity: 0; transform: scale(0.8); transition: opacity 0.3s ease, transform 0.3s ease; z-index: 1000; box-shadow: 0 4px 20px rgba(64,224,208,0.3); }
+        #back-to-top.visible { opacity: 1; transform: scale(1); }
+        #back-to-top:hover { background: #2bb8a8; transform: scale(1.05); }
 
         ::selection { background: #39C7B9; color: #ffffff; }
         ::-moz-selection { background: #39C7B9; color: #ffffff; }
 
-        /* Рефлексы */
-        .reflection {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            animation: reflect 12s ease-in-out infinite alternate;
-            opacity: 0.4;
-        }
-
-        .reflection:nth-child(1) {
-            top: 15%;
-            left: 10%;
-            animation-duration: 14s;
-        }
-
-        .reflection:nth-child(2) {
-            bottom: 20%;
-            right: 15%;
-            animation-duration: 18s;
-            animation-delay: -4s;
-            width: 80px;
-            height: 80px;
-        }
-
-        .reflection:nth-child(3) {
-            top: 50%;
-            left: 70%;
-            animation-duration: 16s;
-            animation-delay: -8s;
-            width: 50px;
-            height: 50px;
-        }
-
-        @keyframes reflect {
-            0% { transform: translate(0, 0) scale(1); opacity: 0.2; }
-            50% { transform: translate(40px, -20px) scale(1.3); opacity: 0.5; }
-            100% { transform: translate(-20px, 30px) scale(0.8); opacity: 0.2; }
-        }
-
-        /* Виньетка */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            background: radial-gradient(ellipse at center, transparent 66%, rgba(0,0,0,0.15) 100%);
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 2;
-            background: rgba(0, 0, 0, 0.06);
-        }
-
-        /* Тёмная тема */
+        /* ===== Тёмная тема ===== */
         @media (prefers-color-scheme: dark) {
-            body {
-                background: #05070a;
-                color: #e0e0e0;
-            }
-
-            header p { color: #aaaaaa; }
-
-            .card {
-                background: rgba(30, 30, 30, 0.8);
-                border-color: rgba(255,255,255,0.05);
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-            }
-
-            .card:hover {
-                box-shadow: 0 0 25px rgba(64, 224, 208, 0.2), 0 6px 30px rgba(0,0,0,0.5);
-                border-color: rgba(64, 224, 208, 0.3);
-            }
-
+            body { background: #05070a; color: #e0e0e0; }
+            .main-card { background: rgba(10, 15, 25, 0.9); }
+            .card { background: rgba(10, 15, 25, 0.8); }
+            .card:hover { box-shadow: 0 0 25px rgba(64, 224, 208, 0.15); }
             .card-content ul li .desc { color: #aaaaaa; }
             .card-content p { color: #dddddd; }
             #card-rules ul li { color: #dddddd; }
-
-            a { color: #66b3ff; }
-            a:hover { color: #39C7B9; }
-            a:visited { color: #66b3ff; }
-            a:visited:hover { color: #39C7B9; }
-
-            footer { color: #555555; }
-            footer a { color: #555555; }
-            footer a:hover { color: #ffffff; }
-
-            .drop { background: rgba(255, 255, 255, 0.3); }
-
-            .reflection {
-                background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
-            }
-
-            body::after {
-                background: radial-gradient(ellipse at center, transparent 66%, rgba(0,0,0,0.35) 100%);
-            }
-
-            body::before { background: rgba(0, 0, 0, 0.12); }
         }
 
-        /* Адаптивность */
+        /* ===== Адаптивность ===== */
         @media (max-width: 600px) {
             header h1 { font-size: 2rem; }
             .container { padding: 20px 12px; }
-            .card { padding: 16px 18px; margin-top: 16px; }
-            .window-controls { top: 12px; left: 12px; }
-            .window-controls .dot { width: 10px; height: 10px; }
-            .card-content ul li {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 2px;
-            }
-            #back-to-top {
-                bottom: 20px;
-                right: 20px;
-                width: 36px;
-                height: 36px;
-                font-size: 1.2rem;
-            }
-            .reflection { display: none; }
+            .main-card { padding: 18px 14px; }
+            .card { padding: 16px 18px; margin-top: 14px; }
+            .card-content ul li { flex-direction: column; align-items: flex-start; gap: 2px; }
+            #back-to-top { bottom: 20px; right: 20px; width: 36px; height: 36px; font-size: 1.2rem; }
             .container { animation: none; }
         }
-
         @media (max-width: 400px) {
             header h1 { font-size: 1.6rem; }
             .card-header h2 { font-size: 1rem; }
@@ -441,80 +144,36 @@
     </style>
 </head>
 <body>
-    <!-- Холст созвездий -->
     <canvas id="particles-canvas"></canvas>
-    <!-- Атмосфера -->
-    <div class="reflection"></div>
-    <div class="reflection"></div>
-    <div class="reflection"></div>
-
     <button id="back-to-top" title="Наверх">↑</button>
 
     <div class="container">
-        <header>
-            <h1 class="fade-in">bushmasterson<span class="cursor-blink">|</span></h1>
-            <p class="fade-in fade-in-delay">
-                <span>developer</span>
-            </p>
-        </header>
+        <!-- Главная карточка -->
+        <div class="main-card">
+            <header>
+                <h1 class="fade-in">Bushmasterson<span class="cursor-blink">|</span></h1>
+                <p class="fade-in fade-in-delay">
+                    <span>developer</span>
+                </p>
+            </header>
 
-        <!-- About Me -->
-        <div class="card" id="card-about">
-            <div class="card-header" onclick="toggleCard('card-about')">
-                <h2>About Me</h2>
-                <span id="arrow-about">▼</span>
+            <!-- About Me -->
+            <div class="card" id="card-about">
+                <div class="card-header" onclick="toggleCard('card-about')">
+                    <h2>About Me</h2>
+                    <span id="arrow-about">▼</span>
+                </div>
+                <div class="card-content" id="content-about">
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);"><path fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 11c0 5-3 9-6 9s-6-4-6-9s2-8 6-8s6 3 6 8M4 30h24c0-9-6-10-12-10S4 21 4 30"></path></svg> Bushmasterson</p>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);"><g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-width="2"><path stroke-linejoin="round" d="M3 13a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="m3 13l2.914 2.331c1.187.95 2.9.855 3.975-.22v0a2.985 2.985 0 0 1 4.222 0v0a2.985 2.985 0 0 0 3.975.22L21 13"></path><path stroke-linejoin="round" d="M12 6a2 2 0 0 1-2-2c0-.876.677-1.576 1.273-2.217L12 1l.727.783C13.323 2.424 14 3.124 14 4a2 2 0 0 1-2 2"></path></g></svg> 02.11</p>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);"><g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="10" r="3"></circle><path d="M12 2a8 8 0 0 0-8 8c0 1.892.402 3.13 1.5 4.5L12 22l6.5-7.5c1.098-1.37 1.5-2.608 1.5-4.5a8 8 0 0 0-8-8"></path></g></svg> Moscow</p>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);"><path fill="#39C7B9" fill-rule="evenodd" d="M9.424 2.023a.75.75 0 0 1 .556.904L7.48 13.42a.75.75 0 0 1-1.46-.348L8.52 2.58a.75.75 0 0 1 .904-.556ZM11.16 4.22a.75.75 0 0 1 1.06 0l3.25 3.25L16 8l-.53.53l-3.25 3.25a.75.75 0 1 1-1.06-1.06L13.88 8l-2.72-2.72a.75.75 0 0 1 0-1.06M4.84 5.28a.75.75 0 1 0-1.06-1.06L.53 7.47L0 8l.53.53l3.25 3.25a.75.75 0 0 0 1.06-1.06L2.12 8z" clip-rule="evenodd"></path></svg> JavaScript, C#</p>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);"><g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-width="2"><path stroke-linejoin="round" d="M14 19c3.771 0 5.657 0 6.828-1.172S22 14.771 22 11s0-5.657-1.172-6.828S17.771 3 14 3h-4C6.229 3 4.343 3 3.172 4.172S2 7.229 2 11s0 5.657 1.172 6.828c.653.654 1.528.943 2.828 1.07"></path><path d="M14 19c-1.236 0-2.598.5-3.841 1.145c-1.998 1.037-2.997 1.556-3.489 1.225s-.399-1.355-.212-3.404L6.5 17.5"></path><path stroke-linejoin="round" d="m5.5 13.5l1-2m0 0l1.106-2.211a1 1 0 0 1 1.788 0L10.5 11.5m-4 0h4m0 0l1 2m1-6h1.982V9c0 .5-.496 1.5-1.487 1.5m3.964-3v2m0 0v4m0-4H18.5"></path></g></svg> Russian, English</p>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);"><path fill="#39C7B9" d="M442 48h-90a22 22 0 0 0 0 44h36.89l-60.39 60.39c-68.19-52.86-167-48-229.54 14.57C31.12 234.81 31.12 345.19 99 413a174.21 174.21 0 0 0 246 0c62.57-62.58 67.43-161.35 14.57-229.54L420 123.11V160a22 22 0 0 0 44 0V70a22 22 0 0 0-22-22M313.92 381.92a130.13 130.13 0 0 1-183.84 0c-50.69-50.68-50.69-133.16 0-183.84s133.16-50.69 183.84 0s50.69 133.16 0 183.84"></path></svg> Male</p>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);"><path fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12a2 2 0 0 1 2 2v3a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v16a2 2 0 0 0 4 0V7a2 2 0 0 1 4 0v3a2 2 0 0 0 2 2"></path></svg> Introvert</p>
+                </div>
             </div>
-            <div class="card-content" id="content-about">
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-                        <path fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 11c0 5-3 9-6 9s-6-4-6-9s2-8 6-8s6 3 6 8M4 30h24c0-9-6-10-12-10S4 21 4 30"></path>
-                    </svg> Bushmasterson
-                </p>
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-                        <g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-width="2">
-                            <path stroke-linejoin="round" d="M3 13a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                            <path d="m3 13l2.914 2.331c1.187.95 2.9.855 3.975-.22v0a2.985 2.985 0 0 1 4.222 0v0a2.985 2.985 0 0 0 3.975.22L21 13"></path>
-                            <path stroke-linejoin="round" d="M12 6a2 2 0 0 1-2-2c0-.876.677-1.576 1.273-2.217L12 1l.727.783C13.323 2.424 14 3.124 14 4a2 2 0 0 1-2 2"></path>
-                        </g>
-                    </svg> 02.11
-                </p>
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-                        <g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-                            <circle cx="12" cy="10" r="3"></circle>
-                            <path d="M12 2a8 8 0 0 0-8 8c0 1.892.402 3.13 1.5 4.5L12 22l6.5-7.5c1.098-1.37 1.5-2.608 1.5-4.5a8 8 0 0 0-8-8"></path>
-                        </g>
-                    </svg> Moscow
-                </p>
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 16 16" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-                        <path fill="#39C7B9" fill-rule="evenodd" d="M9.424 2.023a.75.75 0 0 1 .556.904L7.48 13.42a.75.75 0 0 1-1.46-.348L8.52 2.58a.75.75 0 0 1 .904-.556ZM11.16 4.22a.75.75 0 0 1 1.06 0l3.25 3.25L16 8l-.53.53l-3.25 3.25a.75.75 0 1 1-1.06-1.06L13.88 8l-2.72-2.72a.75.75 0 0 1 0-1.06M4.84 5.28a.75.75 0 1 0-1.06-1.06L.53 7.47L0 8l.53.53l3.25 3.25a.75.75 0 0 0 1.06-1.06L2.12 8z" clip-rule="evenodd"></path>
-                    </svg> JavaScript, C#
-                </p>
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-                        <g fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-width="2">
-                            <path stroke-linejoin="round" d="M14 19c3.771 0 5.657 0 6.828-1.172S22 14.771 22 11s0-5.657-1.172-6.828S17.771 3 14 3h-4C6.229 3 4.343 3 3.172 4.172S2 7.229 2 11s0 5.657 1.172 6.828c.653.654 1.528.943 2.828 1.07"></path>
-                            <path d="M14 19c-1.236 0-2.598.5-3.841 1.145c-1.998 1.037-2.997 1.556-3.489 1.225s-.399-1.355-.212-3.404L6.5 17.5"></path>
-                            <path stroke-linejoin="round" d="m5.5 13.5l1-2m0 0l1.106-2.211a1 1 0 0 1 1.788 0L10.5 11.5m-4 0h4m0 0l1 2m1-6h1.982V9c0 .5-.496 1.5-1.487 1.5m3.964-3v2m0 0v4m0-4H18.5"></path>
-                        </g>
-                    </svg> Russian, English
-                </p>
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 512 512" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-                        <path fill="#39C7B9" d="M442 48h-90a22 22 0 0 0 0 44h36.89l-60.39 60.39c-68.19-52.86-167-48-229.54 14.57C31.12 234.81 31.12 345.19 99 413a174.21 174.21 0 0 0 246 0c62.57-62.58 67.43-161.35 14.57-229.54L420 123.11V160a22 22 0 0 0 44 0V70a22 22 0 0 0-22-22M313.92 381.92a130.13 130.13 0 0 1-183.84 0c-50.69-50.68-50.69-133.16 0-183.84s133.16-50.69 183.84 0s50.69 133.16 0 183.84"></path>
-                    </svg> Male
-                </p>
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" style="display: inline-block; vertical-align: middle; margin-right: 8px; transform: translateY(-3px);">
-                        <path fill="none" stroke="#39C7B9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 12a2 2 0 0 1 2 2v3a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v16a2 2 0 0 0 4 0V7a2 2 0 0 1 4 0v3a2 2 0 0 0 2 2"></path>
-                    </svg> Introvert
-                </p>
-            </div>
-        </div>
 
-        <main>
             <!-- Projects -->
             <div class="card" id="card-projects">
                 <div class="card-header" onclick="toggleCard('card-projects')">
@@ -523,18 +182,9 @@
                 </div>
                 <div class="card-content" id="content-projects">
                     <ul>
-                        <li>
-                            <a href="https://github.com/Bushmasterson/bush-bot" target="_blank" class="project-link">Bushbot</a>
-                            <span class="desc">— my telegram bot</span>
-                        </li>
-                        <li>
-                            <a href="https://t.me/bushcodechannel" target="_blank" class="project-link">Bushcode</a>
-                            <span class="desc">— code & projects</span>
-                        </li>
-                        <li>
-                            <a href="https://t.me/bushnewschannel" target="_blank" class="project-link">Bushnews</a>
-                            <span class="desc">— cybersecurity & IT channel</span>
-                        </li>
+                        <li><a href="https://github.com/Bushmasterson/bush-bot" target="_blank" class="project-link">Bushbot</a> <span class="desc">— my telegram bot</span></li>
+                        <li><a href="https://t.me/bushcodechannel" target="_blank" class="project-link">Bushcode</a> <span class="desc">— code & projects</span></li>
+                        <li><a href="https://t.me/bushnewschannel" target="_blank" class="project-link">Bushnews</a> <span class="desc">— cybersecurity & IT channel</span></li>
                     </ul>
                 </div>
             </div>
@@ -548,11 +198,11 @@
                 <div class="card-content" id="content-rules">
                     <ul>
                         <li><span class="rule-number">1.</span> Spam, flooding, or inappropriate behavior = ban.</li>
-                        <li><span class="rule-number">2.</span> Write to the point and clearly. If I don't understand, I won't answer.</li>
-                        <li><span class="rule-number">3.</span> Use email for important formal messages.</li>
-                        <li><span class="rule-number">4.</span> I am not obliged to return your gift to me if you ask.</li>
-                        <li><span class="rule-number">5.</span> There may be fakes. Be vigilant and don't fall for them. If you notice a fake, contact me.</li>
-                        <li><span class="rule-number">6.</span> I don't sell NFTs for fiat money. Also, I don't conduct transactions.</li>
+                        <li><span class="rule-number">2.</span> Write concisely. If I don't understand, I won't reply.</li>
+                        <li><span class="rule-number">3.</span> Use email for formal matters.</li>
+                        <li><span class="rule-number">4.</span> I am not obliged to return your gift.</li>
+                        <li><span class="rule-number">5.</span> There may be fakes. Be vigilant. Notice: contact me.</li>
+                        <li><span class="rule-number">6.</span> I don't sell NFTs for fiat.</li>
                     </ul>
                 </div>
             </div>
@@ -573,155 +223,113 @@
                     </p>
                 </div>
             </div>
-        </main>
-
-        <footer>
-            <p class="fade-in">
-                © 2026 · <a href="https://github.com/Bushmasterson" target="_blank">Bushmasterson</a>
-            </p>
-        </footer>
+        </div>
     </div>
 
     <script>
-        // Звезды
+        // === Частицы (99 точек, 0.11с отстёгивание) ===
         (function initConstellation() {
-    const canvas = document.getElementById('particles-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
-    window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-    });
+            const canvas = document.getElementById('particles-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
 
-    const mouse = { x: null, y: null };
-    const clicked = { x: null, y: null, active: false };
-    document.addEventListener('mousemove', e => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-    });
-    document.addEventListener('mouseleave', () => {
-        mouse.x = null;
-        mouse.y = null;
-    });
-
-    // Настройки
-    const COUNT = 99;
-    const CONNECT = 155;
-    const OPACITY = 0.33;
-    const FALL_SPEED = 0.66;    // Быстрое падение
-    const REPULSE_RADIUS = 111;
-
-    const particles = [];
-    for (let i = 0; i < COUNT; i++) {
-        particles.push({
-            x: Math.random() * w,
-            y: Math.random() * h,
-            r: Math.random() * 2 + 1.5,
-            speed: FALL_SPEED + (Math.random() - 0.5) * 0.2,
-            drift: (Math.random() - 0.5) * 0.3
-        });
-    }
-
-    function animate() {
-        ctx.clearRect(0, 0, w, h);
-
-        // 1. Движение (приоритет #1 — автодвижение)
-        particles.forEach(p => {
-            p.y += p.speed;
-            p.x += p.drift * 0.15;
-
-            // Если упала вниз — появляется сверху
-            if (p.y > h + 20) {
-                p.y = -20;
-                p.x = Math.random() * w;
-                p.drift = (Math.random() - 0.5) * 0.3;
-            }
-            if (p.x < -20) p.x = w + 20;
-            if (p.x > w + 20) p.x = -20;
-        });
-
-        // 2. Возмущение от мыши (приоритет #2 — лёгкое отклонение)
-        if (mouse.x !== null && mouse.y !== null) {
-            particles.forEach(p => {
-                const dx = p.x - mouse.x;
-                const dy = p.y - mouse.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < REPULSE_RADIUS && dist > 0) {
-                    const force = (REPULSE_RADIUS - dist) / REPULSE_RADIUS;
-                    // Отталкиваем точку от мыши (очень мягко)
-                    p.x += (p.x - mouse.x) * force * 0.008;
-                    p.y += (p.y - mouse.y) * force * 0.008;
-                }
+            let w = canvas.width = window.innerWidth;
+            let h = canvas.height = window.innerHeight;
+            window.addEventListener('resize', () => {
+                w = canvas.width = window.innerWidth;
+                h = canvas.height = window.innerHeight;
             });
-        }
 
-        // 3. Линии между точками
-        ctx.lineWidth = 0.6;
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const a = particles[i];
-                const b = particles[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < CONNECT) {
-                    const alpha = (1 - dist / CONNECT) * OPACITY;
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-                    ctx.beginPath();
-                    ctx.moveTo(a.x, a.y);
-                    ctx.lineTo(b.x, b.y);
-                    ctx.stroke();
-                }
-            }
-        }
+            const mouse = { x: null, y: null };
+            let mouseStrength = 1.0;
+            let lastMouseLeave = 0;
+            const FADE_DURATION = 0.11; // 0.11 с затухание
 
-        // 4. Линия от мыши к нескольким ближайшим точкам (эффект «сетки»)
-        if (mouse.x !== null && mouse.y !== null) {
-            const nearby = particles
-                .map(p => ({ p, dist: Math.sqrt((p.x - mouse.x) * (p.x - mouse.x) + (p.y - mouse.y) * (p.y - mouse.y)) }))
-                .sort((a, b) => a.dist - b.dist)
-                .slice(0, 3);
-
-            nearby.forEach(({ p, dist }) => {
-                if (dist < CONNECT * 1.5) {
-                    const alpha = (1 - dist / (CONNECT * 1.5)) * 0.4;
-                    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-                    ctx.lineWidth = 0.8;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.stroke();
-                }
+            document.addEventListener('mousemove', e => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                mouseStrength = 1.0;
             });
-        }
+            document.addEventListener('mouseleave', () => {
+                lastMouseLeave = performance.now();
+            });
 
-        // 5. Рисуем сами точки
-        particles.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${OPACITY + 0.2})`;
-            ctx.fill();
-        });
+            const COUNT = 99, CONNECT = 155, OPACITY = 0.33, FALL_SPEED = 0.66, REPULSE_RADIUS = 111.11;
+            const particles = [];
+            for (let i = 0; i < COUNT; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 1.8 + 1.2,
+                    speed: FALL_SPEED + (Math.random() - 0.5) * 0.15,
+                    drift: (Math.random() - 0.5) * 0.2
+                });
+            }
 
-        requestAnimationFrame(animate);
-    }
-    animate();
-})();
-        // ============================================================
-        //  Логика карточек и туман
-        // ============================================================
+            function animate(time) {
+                ctx.clearRect(0, 0, w, h);
+                if (mouse.x === null) {
+                    const elapsed = (time - lastMouseLeave) / 1000;
+                    mouseStrength = Math.max(0, 1 - elapsed / FADE_DURATION);
+                }
+                particles.forEach(p => {
+                    p.y += p.speed;
+                    p.x += p.drift * 0.1;
+                    if (p.y > h + 20) {
+                        p.y = -20;
+                        p.x = Math.random() * w;
+                        p.drift = (Math.random() - 0.5) * 0.2;
+                    }
+                    if (p.x < -20) p.x = w + 20;
+                    if (p.x > w + 20) p.x = -20;
+                });
+                ctx.lineWidth = 0.5;
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const a = particles[i], b = particles[j];
+                        const dx = a.x - b.x, dy = a.y - b.y, dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < CONNECT) {
+                            const alpha = (1 - dist / CONNECT) * OPACITY;
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+                            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+                        }
+                    }
+                }
+                if (mouseStrength > 0.01) {
+                    const targetX = mouse.x !== null ? mouse.x : w / 2;
+                    const targetY = mouse.y !== null ? mouse.y : h / 2;
+                    const nearby = particles
+                        .map(p => ({ p, dist: Math.sqrt((p.x - targetX)**2 + (p.y - targetY)**2) }))
+                        .sort((a,b) => a.dist - b.dist)
+                        .slice(0, 3);
+                    nearby.forEach(({ p, dist }) => {
+                        if (dist < CONNECT * 1.5 * mouseStrength) {
+                            const alpha = (1 - dist / (CONNECT * 1.5)) * 0.4 * mouseStrength;
+                            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+                            ctx.lineWidth = 0.7;
+                            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(targetX, targetY); ctx.stroke();
+                        }
+                    });
+                }
+                particles.forEach(p => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${OPACITY + 0.2})`;
+                    ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        })();
 
+        // === Карточки (плавное появление) ===
         document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.classList.add('visible');
-                }, 100 + index * 150);
+            document.querySelectorAll('.card').forEach((card, i) => {
+                setTimeout(() => card.classList.add('visible'), 100 + i * 150);
             });
         });
 
+        // === Переключатель карточек ===
         function toggleCard(id) {
             const content = document.getElementById('content-' + id.replace('card-', ''));
             const arrow = document.getElementById('arrow-' + id.replace('card-', ''));
@@ -735,13 +343,10 @@
             }
         }
 
+        // === Кнопка «Наверх» ===
         const backToTop = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
+            backToTop.classList.toggle('visible', window.scrollY > 300);
         });
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
