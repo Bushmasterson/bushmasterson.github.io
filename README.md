@@ -1,15 +1,18 @@
-# About
+# Bushmasterson — developer portfolio
 
-Personal portfolio and biography — minimalist, melancholic, atmospheric
+Minimalist personal site with interactive starfield and dark/light themes.
 
-## Tech
-
-HTML / CSS / Vanilla JS · Font Awesome · SVG · No frameworks
+---
 
 ## Features
 
-- Gentle vertical rain  
-- 6 drifting fog layers  
-- Realistic fireflies with random flashes  
-- Light & dark themes  
-- Fully responsive 
+- Interactive constellation with mouse‑driven lines and 0.11s fade
+- JetBrains Mono for a clean, technical look
+- One‑card accordion layout
+- Fully responsive, works on all screen sizes
+
+---
+
+## Tech Stack
+
+- HTML, CSS, JavaScript
