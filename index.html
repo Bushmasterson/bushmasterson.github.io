@@ -322,7 +322,7 @@
                         if (dist < CONNECT * 1.5 * mouseStrength) {
                             const alpha = (1 - dist / (CONNECT * 1.5)) * 0.4 * mouseStrength;
                             ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
-                            ctx.lineWidth = 0.7;
+                            ctx.lineWidth = 0.8;
                             ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(targetX, targetY); ctx.stroke();
                         }
                     });
