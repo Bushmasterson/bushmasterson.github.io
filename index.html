@@ -254,9 +254,9 @@
                 lastMouseLeave = performance.now();
             });
 
-            const COUNT = 101, 
-            CONNECT = 166, 
-            OPACITY = 0.404, 
+            const COUNT = 111.111, 
+            CONNECT = 166.666, 
+            OPACITY = 0.444, 
             FALL_SPEED = 0.555, 
             REPULSE_RADIUS = 111.111;
 
@@ -303,6 +303,17 @@
                 if (mouseStrength > 0.01) {
                     const targetX = mouse.x !== null ? mouse.x : w / 2;
                     const targetY = mouse.y !== null ? mouse.y : h / 2;
+
+                    // Задержка для линий (11 мс)
+                    let lastDrawTime = 0;
+
+                    if (mouseStrength > 0.01) {
+                    const now = performance.now();
+                    if (now - lastDrawTime > 33) { // 11 мс задержка
+                    lastDrawTime = now;
+    }
+}
+
                     const nearby = particles
                         .map(p => ({ p, dist: Math.sqrt((p.x - targetX)**2 + (p.y - targetY)**2) }))
                         .sort((a,b) => a.dist - b.dist)
