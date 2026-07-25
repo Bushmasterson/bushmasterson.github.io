@@ -89,6 +89,7 @@
         .card-content p strong { font-weight: 600; }
 
         #card-rules ul li .rule-number { color: #39C7B9; font-weight: 500; margin-right: 4px; }
+        #content-social p { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;}
 
         a { color: #39C7B9; text-decoration: none; transition: color 0.22s ease; }
         a:hover { color: #ffffff;}
