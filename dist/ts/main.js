@@ -125,6 +125,30 @@ function toggleCard(id) {
         }
     }
 }
+// === Универсальный обработчик кликов по карточкам ===
+document.addEventListener('click', (e) => {
+    const target = e.target;
+    const header = target.closest('.card-header');
+    if (header) {
+        const card = header.closest('.card');
+        if (card) {
+            const id = card.id;
+            const content = document.getElementById('content-' + id.replace('card-', ''));
+            const arrow = document.getElementById('arrow-' + id.replace('card-', ''));
+            const isOpen = content?.classList.contains('open');
+            if (content && arrow) {
+                if (!isOpen) {
+                    content.classList.add('open');
+                    arrow.classList.add('open');
+                }
+                else {
+                    content.classList.remove('open');
+                    arrow.classList.remove('open');
+                }
+            }
+        }
+    }
+});
 // === Кнопка «Наверх» ===
 const backToTop = document.getElementById('back-to-top');
 window.addEventListener('scroll', () => {
