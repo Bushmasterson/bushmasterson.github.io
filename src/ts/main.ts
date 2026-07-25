@@ -113,53 +113,6 @@
     animate(performance.now());
 })();
 
-// === Карточки ===
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.card').forEach((card, index) => {
-        setTimeout(() => card.classList.add('visible'), 100 + index * 150);
-    });
-});
-
-function toggleCard(id: string): void {
-    const content = document.getElementById('content-' + id.replace('card-', ''));
-    const arrow = document.getElementById('arrow-' + id.replace('card-', ''));
-    const isOpen = content?.classList.contains('open');
-    if (content && arrow) {
-        if (!isOpen) {
-            content.classList.add('open');
-            arrow.classList.add('open');
-        } else {
-            content.classList.remove('open');
-            arrow.classList.remove('open');
-        }
-    }
-}
-
-// === Универсальный обработчик кликов по карточкам ===
-document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    const header = target.closest('.card-header');
-    if (header) {
-        const card = header.closest('.card');
-        if (card) {
-            const id = card.id;
-            const content = document.getElementById('content-' + id.replace('card-', ''));
-            const arrow = document.getElementById('arrow-' + id.replace('card-', ''));
-            const isOpen = content?.classList.contains('open');
-
-            if (content && arrow) {
-                if (!isOpen) {
-                    content.classList.add('open');
-                    arrow.classList.add('open');
-                } else {
-                    content.classList.remove('open');
-                    arrow.classList.remove('open');
-                }
-            }
-        }
-    }
-});
-
 // === Кнопка «Наверх» ===
 const backToTop = document.getElementById('back-to-top') as HTMLButtonElement;
 window.addEventListener('scroll', () => {
