@@ -2,6 +2,8 @@
 
 Minimalist personal site with interactive starfield and dark/light themes.
 
+---
+
 ## Features
 
 - Interactive constellation with mouse‑driven lines and 0.11s fade
@@ -9,6 +11,10 @@ Minimalist personal site with interactive starfield and dark/light themes.
 - One‑card accordion layout
 - Fully responsive, works on all screen sizes
 
+---
+
 ## Tech Stack
 
-- HTML, CSS, JavaScript
+- HTML5
+- CSS3
+- TypeScript
