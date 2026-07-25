@@ -52,19 +52,17 @@
         header p { transition: color 0.3s ease; }
         header p:hover { color: #39C7B9; }
 
-        .card {
-            background: rgba(15, 20, 30, 0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
-            border-radius: 16px;
-            padding: 20px 24px;
-            margin-top: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: left;
-            opacity: 0;
-        }
+       .card {
+        background: rgba(15, 20, 30, 0.7);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.5);
+        border-radius: 16px;
+        padding: 20px 24px;
+        margin-top: 16px;
+        text-align: left;
+        transition: all 0.3s ease;
+}
 
         .card.visible { opacity: 1; animation: appear 0.6s ease forwards; }
         @keyframes appear { to { opacity: 1; } }
