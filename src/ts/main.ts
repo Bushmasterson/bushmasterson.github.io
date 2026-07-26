@@ -112,9 +112,10 @@
         particles.forEach((p) => {
             const size = p.r * (0.8 + 0.4 * Math.sin(time * 0.003 + p.y));
             const opacityValue = Math.round((OPACITY + 0.2) * 255);
+            const alpha = Math.round(opacityValue).toString(16).padStart(2, '0');
             ctx.beginPath();
             ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${opacityValue / 255})`;
+            ctx.fillStyle = `#ffffff${alpha}`;
             ctx.fill();
         });
         requestAnimationFrame(animate);

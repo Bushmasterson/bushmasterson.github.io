@@ -1,5 +1,5 @@
 "use strict";
-// === Звёзды ===
+// Particle constellation animation
 (function initConstellation() {
     const canvas = document.getElementById('particles-canvas');
     if (!canvas)
@@ -22,14 +22,15 @@
     });
     document.addEventListener('mouseleave', () => {
         lastMouseLeave = performance.now();
+        mouse.x = null;
+        mouse.y = null;
     });
-    const COUNT = 111.111;
-    const CONNECT = 166.666;
+    const PARTICLE_COUNT = 111;
+    const CONNECT_DISTANCE = 166.66;
     const OPACITY = 0.666;
     const FALL_SPEED = 0.666;
-    const REPULSE_RADIUS = 111.111;
     const particles = [];
-    for (let i = 0; i < COUNT; i++) {
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
         particles.push({
             x: Math.random() * w,
             y: Math.random() * h,
@@ -57,6 +58,7 @@
             if (p.x > w + 20)
                 p.x = -20;
         });
+        // Draw connections between nearby particles
         ctx.lineWidth = 0.5;
         for (let i = 0; i < particles.length; i++) {
             for (let j = i + 1; j < particles.length; j++) {
@@ -65,8 +67,8 @@
                 const dx = a.x - b.x;
                 const dy = a.y - b.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < CONNECT) {
-                    const alpha = Math.round((1 - dist / CONNECT) * OPACITY * 255).toString(16).padStart(2, '0');
+                if (dist < CONNECT_DISTANCE) {
+                    const alpha = Math.round((1 - dist / CONNECT_DISTANCE) * OPACITY * 255).toString(16).padStart(2, '0');
                     ctx.strokeStyle = `#ffffff${alpha}`;
                     ctx.beginPath();
                     ctx.moveTo(a.x, a.y);
@@ -75,6 +77,7 @@
                 }
             }
         }
+        // Draw mouse-to-particle connections
         if (mouseStrength > 0.01) {
             const targetX = mouse.x !== null ? mouse.x : w / 2;
             const targetY = mouse.y !== null ? mouse.y : h / 2;
@@ -83,8 +86,8 @@
                 .sort((a, b) => a.dist - b.dist)
                 .slice(0, 3);
             nearby.forEach(({ p, dist }) => {
-                if (dist < CONNECT * 1.5 * mouseStrength) {
-                    const alpha = Math.round((1 - dist / (CONNECT * 1.5)) * 0.4 * mouseStrength * 255).toString(16).padStart(2, '0');
+                if (dist < CONNECT_DISTANCE * 1.5 * mouseStrength) {
+                    const alpha = Math.round((1 - dist / (CONNECT_DISTANCE * 1.5)) * 0.4 * mouseStrength * 255).toString(16).padStart(2, '0');
                     ctx.strokeStyle = `#ffffff${alpha}`;
                     ctx.lineWidth = 0.8;
                     ctx.beginPath();
@@ -94,17 +97,21 @@
                 }
             });
         }
+        // Draw particles with animated size
         particles.forEach((p) => {
+            const size = p.r * (0.8 + 0.4 * Math.sin(time * 0.003 + p.y));
+            const opacityValue = Math.round((OPACITY + 0.2) * 255);
+            const alpha = Math.round(opacityValue).toString(16).padStart(2, '0');
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `#ffffff`;
+            ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
+            ctx.fillStyle = `#ffffff${alpha}`;
             ctx.fill();
         });
         requestAnimationFrame(animate);
     }
     animate(performance.now());
 })();
-// === Кнопка «Наверх» ===
+// Back to top button scroll behavior
 const backToTop = document.getElementById('back-to-top');
 window.addEventListener('scroll', () => {
     backToTop?.classList.toggle('visible', window.scrollY > 300);
