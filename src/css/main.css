@@ -231,9 +231,10 @@ header p:hover {
 /* Rules section list styling */
 #card-rules ol {
     margin: 0;
-    padding: 0 0 0 2.5em;
+    padding: 0;
     list-style: decimal;
     list-style-position: inside;
+    padding-left: 1.5em;
 }
 
 #card-rules ol li {
