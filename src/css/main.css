@@ -45,7 +45,7 @@ body {
     position: relative;
     z-index: 1;
     animation: breathe 6s ease-in-out infinite;
-    text-shadow: 0 4px 30px #FFFFFF0A;
+    text-shadow: 0 4px 30px #E6E6E606;
     transform: scale(0.88);
 }
 
@@ -112,19 +112,19 @@ header p:hover {
     backdrop-filter: blur(4px);
     border-radius: 24px;
     padding: 24px 20px;
-    border: 1px solid #FFFFFF08;
-    box-shadow: 0 8px 32px #FFFFFF14;
+    border: 1px solid #E6E6E606;
+    box-shadow: 0 8px 32px #E6E6E60D;
     transition: all 0.3s ease;
 }
 
 .main-card:hover {
-    border-color: #FFFFFF05;
+    border-color: #39C7B908;
 }
 
 .card {
     background: #0F141EB3;
     backdrop-filter: blur(8px);
-    border: 1px solid #FFFFFF0F;
+    border: 1px solid #E6E6E60A;
     box-shadow: 0 12px 48px #00000080;
     border-radius: 16px;
     padding: 20px 24px;
@@ -143,9 +143,9 @@ header p:hover {
 }
 
 .card:hover {
-    box-shadow: 0 0 25px #FFFFFF19, 0 12px 48px #00000099;
+    box-shadow: 0 0 25px #39C7B91A, 0 12px 48px #00000099;
     transform: translateY(-2px);
-    border-color: #FFFFFF33;
+    border-color: #39C7B914;
 }
 
 /*
@@ -168,8 +168,9 @@ header p:hover {
 
 .card-header span {
     font-size: 1.2rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
     opacity: 0.5;
+    color: #e0e0e0;
 }
 
 .card-header span.open {
@@ -240,6 +241,10 @@ header p:hover {
     margin-bottom: 8px;
 }
 
+#card-rules ol li::marker {
+    color: #39C7B9;
+}
+
 /*
    Social Links
  */
@@ -258,7 +263,7 @@ a {
 }
 
 a:hover {
-    color: #ffffff;
+    color: #d4d4d4; /* Softer white instead of harsh white */
 }
 
 a:visited {
@@ -267,7 +272,7 @@ a:visited {
 }
 
 a:visited:hover {
-    color: #ffffff;
+    color: #d4d4d4; /* Softer white instead of harsh white */
 }
 
 /* Tooltip styling for links with title attribute */
@@ -283,7 +288,7 @@ a[title]:hover::after {
     left: 50%;
     transform: translateX(-50%);
     background: #000000CC;
-    color: #ffffff;
+    color: #d4d4d4; /* Softer white for better balance */
     font-size: 0.7rem;
     padding: 4px 10px;
     border-radius: 6px;
@@ -304,7 +309,7 @@ a[title]:hover::after {
     object-fit: cover;
     margin-top: -100px;
     margin-bottom: 10px;
-    border: 2.5px solid #e6e6e6;
+    border: 2.5px solid #d4d4d4;
     z-index: 2;
     transition: box-shadow 0.444s ease, transform 0.444s ease;
     transform: scale(1);
@@ -326,14 +331,14 @@ a[title]:hover::after {
 }
 
 .avatar:hover {
-    box-shadow: 0 0 30px #FFFFFF66;
+    box-shadow: 0 0 30px #39C7B944;
     transform: scale(1.04);
 }
 
 .help-footer {
     margin-top: 32px;
     padding-top: 16px;
-    border-top: 1px solid #FFFFFF14;
+    border-top: 1px solid #39C7B91A;
     text-align: center;
 }
 
@@ -401,7 +406,7 @@ a[title]:hover::after {
     }
 
     .card:hover {
-        box-shadow: 0 0 25px #40E0D026;
+        box-shadow: 0 0 25px #39C7B91E;
     }
 
     .card-content ul li .desc {
@@ -414,6 +419,10 @@ a[title]:hover::after {
 
     #card-rules ol li {
         color: #dddddd;
+    }
+
+    #card-rules ol li::marker {
+        color: #39C7B9;
     }
 }
 

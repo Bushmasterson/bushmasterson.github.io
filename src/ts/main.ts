@@ -24,14 +24,14 @@
     const FADE_DURATION = 0.11;
     const PARTICLE_COUNT = 111;
     const CONNECT_DISTANCE = 166.66;
-    const OPACITY = 0.666;
+    const OPACITY = 0.555; // Refined for softer, more melancholic appearance
     const FALL_SPEED = 0.666;
     const SPEED_VARIATION = 0.15;
     const DRIFT_RANGE = 0.2;
     const PARTICLE_SIZE_MIN = 1.2;
     const PARTICLE_SIZE_MAX = 3.0;
     const MOUSE_CONNECTION_DISTANCE_MULTIPLIER = 1.5;
-    const MOUSE_CONNECTION_OPACITY = 0.4;
+    const MOUSE_CONNECTION_OPACITY = 0.35; // Refined for calmer mouse interactions
     const PARTICLE_LINE_WIDTH = 0.5;
     const MOUSE_LINE_WIDTH = 0.8;
 
@@ -81,7 +81,8 @@
 
                 if (dist < CONNECT_DISTANCE) {
                     const alpha = Math.round((1 - dist / CONNECT_DISTANCE) * OPACITY * 255).toString(16).padStart(2, '0');
-                    ctx.strokeStyle = `#ffffff${alpha}`;
+                    // Use balanced white with soft opacity for calm, intentional feel
+                    ctx.strokeStyle = `#d4d4d4${alpha}`;
                     ctx.beginPath();
                     ctx.moveTo(a.x, a.y);
                     ctx.lineTo(b.x, b.y);
@@ -110,7 +111,8 @@
                     255
                 ).toString(16).padStart(2, '0');
 
-                ctx.strokeStyle = `#ffffff${alpha}`;
+                // Use teal accent for intentional, calm mouse interactions
+                ctx.strokeStyle = `#39C7B9${alpha}`;
                 ctx.lineWidth = MOUSE_LINE_WIDTH;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
@@ -120,15 +122,15 @@
         });
     }
 
-    function drawParticles(time: number): void {
+    function drawParticles(): void {
         particles.forEach((p) => {
-            const size = p.r * (0.8 + 0.4 * Math.sin(time * 0.003 + p.y));
-            const opacityValue = Math.round((OPACITY + 0.2) * 255);
+            const opacityValue = Math.round(OPACITY * 255);
             const alpha = opacityValue.toString(16).padStart(2, '0');
 
             ctx.beginPath();
-            ctx.arc(p.x, p.y, size, 0, Math.PI * 2);
-            ctx.fillStyle = `#ffffff${alpha}`;
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            // Use softer white (#d4d4d4) instead of harsh white for melancholic feel
+            ctx.fillStyle = `#d4d4d4${alpha}`;
             ctx.fill();
         });
     }
@@ -168,7 +170,7 @@
             drawMouseConnections(targetX, targetY);
         }
 
-        drawParticles(time);
+        drawParticles();
         requestAnimationFrame(animate);
     }
 
