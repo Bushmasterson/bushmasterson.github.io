@@ -140,7 +140,9 @@ html { scroll-behavior: smooth; scroll-padding-top: 10px; }
 
     .card-content p strong { font-weight: 600; }
 
-    #card-rules ul li .rule-number { color: #39C7B9; font-weight: 500; margin-right: 4px; }
+    #card-rules ol { margin: 0; padding: 0 0 0 1.5em; list-style: decimal; }
+    
+    #card-rules ol li { color: #e0e0e0; }
 
     #content-social p {
         display: flex; justify-content: center; gap: 12px;
