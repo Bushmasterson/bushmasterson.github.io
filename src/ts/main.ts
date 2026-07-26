@@ -121,12 +121,12 @@ window.addEventListener('scroll', () => {
 backToTop?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-// === Фоновая музыка ===
+// === Фоновая музыка (одна песня, loop) ===
 const bgMusic = document.getElementById('bg-music') as HTMLAudioElement;
 const toggleBtn = document.getElementById('music-toggle') as HTMLButtonElement;
 let isPlaying = false;
 
-// Пытаемся запустить музыку при первом клике по странице
+// Запуск по первому клику
 document.addEventListener('click', () => {
     if (!isPlaying) {
         bgMusic.play().catch(() => {});
@@ -135,7 +135,7 @@ document.addEventListener('click', () => {
     }
 }, { once: true });
 
-// Переключение по кнопке
+// Кнопка
 toggleBtn.addEventListener('click', () => {
     if (isPlaying) {
         bgMusic.pause();
