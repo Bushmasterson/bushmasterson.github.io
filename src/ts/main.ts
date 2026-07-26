@@ -130,12 +130,12 @@
 // Back to Top Button
 // ============================================================================
 
-const backToTop = document.getElementById('back-to-top') as HTMLButtonElement;
+const backToTopEl = document.getElementById('back-to-top') as HTMLButtonElement | null;
 
 window.addEventListener('scroll', () => {
-    backToTop?.classList.toggle('visible', window.scrollY > 300);
+    backToTopEl?.classList.toggle('visible', window.scrollY > 300);
 });
 
-backToTop?.addEventListener('click', () => {
+backToTopEl?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
