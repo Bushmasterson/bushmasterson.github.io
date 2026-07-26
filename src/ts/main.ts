@@ -121,28 +121,3 @@ window.addEventListener('scroll', () => {
 backToTop?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
-// === Фоновая музыка (одна песня, loop) ===
-const bgMusic = document.getElementById('bg-music') as HTMLAudioElement;
-const toggleBtn = document.getElementById('music-toggle') as HTMLButtonElement;
-let isPlaying = false;
-
-// Запуск по первому клику
-document.addEventListener('click', () => {
-    if (!isPlaying) {
-        bgMusic.play().catch(() => {});
-        isPlaying = true;
-        toggleBtn.textContent = '🔊';
-    }
-}, { once: true });
-
-// Кнопка
-toggleBtn.addEventListener('click', () => {
-    if (isPlaying) {
-        bgMusic.pause();
-        toggleBtn.textContent = '🔇';
-    } else {
-        bgMusic.play();
-        toggleBtn.textContent = '🔊';
-    }
-    isPlaying = !isPlaying;
-});
