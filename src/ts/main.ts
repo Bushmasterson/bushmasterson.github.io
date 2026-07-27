@@ -1,141 +1,188 @@
-// === Constellation animation (steady, no flicker) ===
-(function initConstellation(): void {
-    const canvas = document.getElementById('particles-canvas') as HTMLCanvasElement;
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+﻿const canvas = document.querySelector<HTMLCanvasElement>('#particles-canvas')!;
+const backToTopEl = document.querySelector<HTMLButtonElement>('#back-to-top');
+const ctx = canvas.getContext('2d')!;
 
-    let w = canvas.width = window.innerWidth;
-    let h = canvas.height = window.innerHeight;
-    window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-    });
+if (canvas && ctx) {
+        type Particle = { x: number; y: number; r: number; speed: number; drift: number };
 
-    const mouse = { x: null as number | null, y: null as number | null };
-    let mouseStrength = 1.0;
-    let lastMouseLeave = 0;
-    const FADE_DURATION = 0.11;
+        let width = 0;
+        let height = 0;
+        let particles: Particle[] = [];
+        let connectDistance = 160;
+        let connectDistance2 = connectDistance * connectDistance;
+        let fallSpeed = 0.7;
 
-    document.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-        mouseStrength = 1.0;
-    });
-    document.addEventListener('mouseleave', () => {
-        lastMouseLeave = performance.now();
-    });
+        const pointer = { x: null as number | null, y: null as number | null };
+        const starFill = 'rgba(212,212,212,0.38)';
+        const lineAlpha = 0.42;
+        const mouseLineColor = 'rgba(57,199,185,';
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const PARTICLE_COUNT = 111;
-    const CONNECT_DISTANCE = 166.666;
-    const OPACITY = 0.555;
-    const FALL_SPEED = 0.666;
-
-    interface Particle {
-        x: number;
-        y: number;
-        r: number;
-        speed: number;
-        drift: number;
-    }
-
-    const particles: Particle[] = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push({
-            x: Math.random() * w,
-            y: Math.random() * h,
-            r: Math.random() * 1.8 + 1.2,
-            speed: FALL_SPEED + (Math.random() - 0.5) * 0.15,
-            drift: (Math.random() - 0.5) * 0.2,
-        });
-    }
-
-    function animate(time: number): void {
-        ctx.clearRect(0, 0, w, h);
-
-        // Затухание мыши
-        if (mouse.x === null) {
-            const elapsed = (time - lastMouseLeave) / 1000;
-            mouseStrength = Math.max(0, 1 - elapsed / FADE_DURATION);
+        function createParticle(): Particle {
+            return {
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 1.6 + 1,
+                speed: fallSpeed + (Math.random() - 0.5) * 0.16,
+                drift: (Math.random() - 0.5) * 0.2,
+            };
         }
 
-        // Движение (без мерцания)
-        particles.forEach(p => {
-            p.y += p.speed;
-            p.x += p.drift * 0.1;
-            if (p.y > h + 20) {
-                p.y = -20;
-                p.x = Math.random() * w;
-                p.drift = (Math.random() - 0.5) * 0.2;
-            }
-            if (p.x < -20) p.x = w + 20;
-            if (p.x > w + 20) p.x = -20;
-        });
+        function resetCanvas(): void {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
 
-        // Линии между звёздами (белые, мягкие)
-        ctx.lineWidth = 0.5;
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
+            const compact = Math.max(width, height) < 760;
+            const targetCount = Math.max(38, Math.min(110, Math.round((width * height) / (compact ? 16000 : 10000))));
+
+            connectDistance = compact ? 120 : 160;
+            connectDistance2 = connectDistance * connectDistance;
+            fallSpeed = compact ? 0.55 : 0.7;
+
+            if (particles.length !== targetCount) {
+                particles = Array.from({ length: targetCount }, createParticle);
+            }
+        }
+
+        function updateParticle(particle: Particle): void {
+            particle.y += particle.speed;
+            particle.x += particle.drift;
+
+            if (particle.y > height + 20) {
+                particle.y = -20;
+                particle.x = Math.random() * width;
+                particle.drift = (Math.random() - 0.5) * 0.2;
+            }
+
+            if (particle.x < -20) {
+                particle.x = width + 20;
+            } else if (particle.x > width + 20) {
+                particle.x = -20;
+            }
+        }
+
+        function updatePointer(event: PointerEvent): void {
+            pointer.x = event.clientX;
+            pointer.y = event.clientY;
+        }
+
+        function clearPointer(): void {
+            pointer.x = null;
+            pointer.y = null;
+        }
+
+        function draw(): void {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(updateParticle);
+            ctx.lineWidth = 0.5;
+
+            for (let i = 0; i < particles.length; i++) {
                 const a = particles[i];
-                const b = particles[j];
-                const dx = a.x - b.x;
-                const dy = a.y - b.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < CONNECT_DISTANCE) {
-                    const alpha = (1 - dist / CONNECT_DISTANCE) * OPACITY;
-                    ctx.strokeStyle = `#d4d4d4${Math.round(alpha * 255).toString(16).padStart(2, '0')}`;
+
+                for (let j = i + 1; j < particles.length; j++) {
+                    const b = particles[j];
+                    const dx = a.x - b.x;
+                    const dy = a.y - b.y;
+                    const distance2 = dx * dx + dy * dy;
+
+                    if (distance2 >= connectDistance2) {
+                        continue;
+                    }
+
+                    const alpha = (1 - distance2 / connectDistance2) * lineAlpha;
+                    ctx.strokeStyle = `rgba(212,212,212,${alpha})`;
                     ctx.beginPath();
                     ctx.moveTo(a.x, a.y);
                     ctx.lineTo(b.x, b.y);
                     ctx.stroke();
                 }
             }
-        }
 
-        // Линии к мыши (бирюзовые)
-        if (mouseStrength > 0.01) {
-            const targetX = mouse.x !== null ? mouse.x : w / 2;
-            const targetY = mouse.y !== null ? mouse.y : h / 2;
-            const nearby = particles
-                .map(p => ({ p, dist: Math.sqrt((p.x - targetX) ** 2 + (p.y - targetY) ** 2) }))
-                .sort((a, b) => a.dist - b.dist)
-                .slice(0, 3);
-            nearby.forEach(({ p, dist }) => {
-                if (dist < CONNECT_DISTANCE * 1.5 * mouseStrength) {
-                    const alpha = Math.round((1 - dist / (CONNECT_DISTANCE * 1.5)) * 0.35 * mouseStrength * 255)
-                        .toString(16).padStart(2, '0');
-                    ctx.strokeStyle = `#39C7B9${alpha}`;
+            if (pointer.x !== null && pointer.y !== null) {
+                const targetX = pointer.x;
+                const targetY = pointer.y;
+                const maxDistance = connectDistance * 1.5;
+                const maxDistance2 = maxDistance * maxDistance;
+
+                const nearest = particles
+                    .map(particle => ({ particle, distance2: (particle.x - targetX) ** 2 + (particle.y - targetY) ** 2 }))
+                    .sort((left, right) => left.distance2 - right.distance2)
+                    .slice(0, 3);
+
+                nearest.forEach(({ particle, distance2 }) => {
+                    if (distance2 >= maxDistance2) {
+                        return;
+                    }
+
+                    const alpha = (1 - distance2 / maxDistance2) * 0.28;
+                    ctx.strokeStyle = `${mouseLineColor}${alpha})`;
                     ctx.lineWidth = 0.8;
                     ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
+                    ctx.moveTo(particle.x, particle.y);
                     ctx.lineTo(targetX, targetY);
                     ctx.stroke();
-                }
+                });
+            }
+
+            particles.forEach(particle => {
+                ctx.beginPath();
+                ctx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
+                ctx.fillStyle = starFill;
+                ctx.fill();
             });
+
+            requestAnimationFrame(draw);
         }
 
-        // Отрисовка звёзд (фиксированный размер, без мерцания)
-        particles.forEach(p => {
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `#d4d4d4${Math.round(OPACITY * 255).toString(16).padStart(2, '0')}`;
-            ctx.fill();
-        });
+        resetCanvas();
 
-        requestAnimationFrame(animate);
+        if (!reducedMotion) {
+            window.addEventListener('resize', resetCanvas);
+            document.addEventListener('pointermove', updatePointer);
+            document.addEventListener('pointerleave', clearPointer);
+            document.addEventListener('pointercancel', clearPointer);
+            requestAnimationFrame(draw);
+        } else {
+            canvas.style.display = 'none';
+        }
+}
+
+if (backToTopEl) {
+    window.addEventListener('scroll', () => {
+        backToTopEl.classList.toggle('visible', window.scrollY > 300);
+    });
+
+    backToTopEl.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+// ===== Theme toggle =====
+const themeBtn = document.getElementById('theme-toggle') as HTMLButtonElement;
+const themeIcon = themeBtn?.querySelector('i') as HTMLElement;
+
+function applyTheme(theme: 'dark' | 'light') {
+    if (theme === 'light') {
+        document.body.classList.add('light-mode');
+        document.body.classList.remove('dark-mode');
+        themeIcon.className = 'fas fa-sun';
+    } else {
+        document.body.classList.remove('light-mode');
+        document.body.classList.add('dark-mode');
+        themeIcon.className = 'fas fa-moon';
     }
-    animate(performance.now());
-})();
+    localStorage.setItem('theme', theme);
+}
 
-// ============================================================================
-// Back to Top Button
-// ============================================================================
+// Dark mode by default, unless the user has a saved preference
+const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
+if (savedTheme) {
+    applyTheme(savedTheme);
+} else {
+    applyTheme('dark');
+}
 
-const backToTopEl = document.getElementById('back-to-top') as HTMLButtonElement | null;
-
-window.addEventListener('scroll', () => {
-    backToTopEl?.classList.toggle('visible', window.scrollY > 300);
-});
-
-backToTopEl?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// Клик по кнопке
+themeBtn?.addEventListener('click', () => {
+    const isDark = document.body.classList.contains('dark-mode');
+    applyTheme(isDark ? 'light' : 'dark');
 });
