@@ -1,6 +1,6 @@
 # Bushmasterson — developer portfolio
 
-Minimalist personal site with interactive starfield and dark/light themes.
+Minimalist personal site with interactive starfield
 
 ## Features
 
