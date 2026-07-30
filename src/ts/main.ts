@@ -156,33 +156,3 @@ if (backToTopEl) {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 }
-// ===== Theme toggle =====
-const themeBtn = document.getElementById('theme-toggle') as HTMLButtonElement;
-const themeIcon = themeBtn?.querySelector('i') as HTMLElement;
-
-function applyTheme(theme: 'dark' | 'light') {
-    if (theme === 'light') {
-        document.body.classList.add('light-mode');
-        document.body.classList.remove('dark-mode');
-        themeIcon.className = 'fas fa-sun';
-    } else {
-        document.body.classList.remove('light-mode');
-        document.body.classList.add('dark-mode');
-        themeIcon.className = 'fas fa-moon';
-    }
-    localStorage.setItem('theme', theme);
-}
-
-// Dark mode by default, unless the user has a saved preference
-const savedTheme = localStorage.getItem('theme') as 'dark' | 'light' | null;
-if (savedTheme) {
-    applyTheme(savedTheme);
-} else {
-    applyTheme('dark');
-}
-
-// Клик по кнопке
-themeBtn?.addEventListener('click', () => {
-    const isDark = document.body.classList.contains('dark-mode');
-    applyTheme(isDark ? 'light' : 'dark');
-});
