@@ -1,4 +1,5 @@
-﻿const canvas = document.querySelector<HTMLCanvasElement>('#particles-canvas')!;
+﻿// Subtle starfield gives depth without distracting interaction; disabled when user requests reduced motion.
+const canvas = document.querySelector<HTMLCanvasElement>('#particles-canvas')!;
 const backToTopEl = document.querySelector<HTMLButtonElement>('#back-to-top');
 const ctx = canvas.getContext('2d')!;
 

@@ -14,3 +14,20 @@ Minimalist personal site with interactive starfield
 - HTML5
 - CSS3
 - TypeScript
+
+Repository structure:
+
+- index.html — entrypoint served at root
+- media/ — images, icons, fonts and other static media
+- src/ — source code (ts, css)
+- dist/ — compiled output served to the browser
+- config/ — development configuration and package files
+
+Build:
+
+From the config directory run:
+
+npm install
+npm run build
+
+This keeps the project organized and makes development predictable.
