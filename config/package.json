@@ -1,0 +1,13 @@
+{
+  "name": "bushmasterson.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p .",
+    "watch": "tsc -p . -w"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
