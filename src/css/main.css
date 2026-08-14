@@ -114,19 +114,19 @@ header p:hover {
 
 .main-card {
     background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 28px 24px;
+    border: 2px solid var(--border);
+    border-radius: 22px;
+    padding: 22px 22px;
     box-shadow: var(--shadow);
 }
 
 .main-card:hover {
-    border-color: rgba(57, 199, 185, 0.08);
+    border-color: #f0ebe0;
 }
 
 .card {
     background: var(--surface-soft);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid #f0ebe0;
     border-radius: 18px;
     padding: 22px 24px;
     margin-top: 18px;
@@ -138,7 +138,7 @@ header p:hover {
 
 .card:hover {
     transform: translateY(-1px);
-    border-color: rgba(57, 199, 185, 0.1);
+    border-color: #f0ebe0;
     box-shadow: 0 22px 56px rgba(0, 0, 0, 0.2);
 }
 
