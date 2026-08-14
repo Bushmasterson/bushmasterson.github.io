@@ -4,22 +4,25 @@
     box-sizing: border-box;
 }
 
-
 html {
     scroll-behavior: smooth;
 }
 
 :root {
     color-scheme: dark;
+    /* Фоны */
     --bg: #121212;
-    --surface: #1818181;   
+    --surface: #181818;
     --surface-soft: #1e1e1e;
     --border: #2a2a2a;
     --accent: #39c7b9;
     --text: #f0ebe0;
-    --muted: #8888888;
-    --shadow: 0 22px 55px #00000e;
-    --card-bg: #0a;
+    --muted: #888888;
+    --shadow: 0 22px 55px rgba(0, 0, 0, 0.4);
+    /* Карточки */
+    --card-border: rgba(255, 255, 255, 0.04);
+    --card-border-hover: rgba(255, 255, 255, 0.10);
+    --card-glow: rgba(255, 255, 255, 0.02);
 }
 
 body {
@@ -32,10 +35,9 @@ body {
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
-    background-color: var(--bg-color);
-    transition: background-color 0.3s, color 0.3s;
 }
 
+/* ===== Частицы ===== */
 #particles-canvas {
     position: fixed;
     inset: 0;
@@ -45,6 +47,7 @@ body {
     z-index: 0;
 }
 
+/* ===== Контейнер ===== */
 .container {
     position: relative;
     z-index: 1;
@@ -53,6 +56,7 @@ body {
     text-align: center;
 }
 
+/* ===== Заголовок ===== */
 header {
     margin-bottom: 1.2rem;
 }
@@ -63,7 +67,6 @@ header h1 {
     letter-spacing: 0.05em;
     transition: color 0.3s ease, text-shadow 0.3s ease;
 }
-
 header h1:hover {
     color: var(--accent);
     text-shadow: 0 0 28px rgba(57, 199, 185, 0.32);
@@ -75,26 +78,20 @@ header p {
     color: var(--muted);
     transition: color 0.3s ease;
 }
-
 header p:hover {
     color: var(--text);
 }
 
+/* ===== Анимации ===== */
 .fade-in {
     opacity: 0;
     transform: translateY(1rem);
     animation: fadeIn 0.7s ease forwards;
 }
-
-.fade-in-delay {
-    animation-delay: 0.2s;
-}
+.fade-in-delay { animation-delay: 0.2s; }
 
 @keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .cursor-blink {
@@ -102,44 +99,38 @@ header p:hover {
     color: var(--accent);
     animation: blinkCursor 0.9s steps(1) infinite;
 }
-
 @keyframes blinkCursor {
-    0%, 40% {
-        opacity: 1;
-    }
-    41%, 100% {
-        opacity: 0;
-    }
+    0%, 40% { opacity: 1; }
+    41%, 100% { opacity: 0; }
 }
 
+/* ===== Карточки ===== */
 .main-card {
     background: var(--surface);
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: 22px;
-    padding: 22px 22px;
+    padding: 22px;
     box-shadow: var(--shadow);
+    transition: border-color 0.3s ease;
 }
-
 .main-card:hover {
-    border-color: #f0ebe0;
+    border-color: var(--card-border-hover);
 }
 
 .card {
     background: var(--surface-soft);
-    border: 1px solid #f0ebe0;
+    border: 1px solid var(--card-border);
     border-radius: 18px;
     padding: 22px 24px;
     margin-top: 18px;
     text-align: left;
-    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
-
 .card:hover {
     transform: translateY(-1px);
-    border-color: #f0ebe0;
-    box-shadow: 0 22px 56px rgba(0, 0, 0, 0.2);
+    border-color: var(--card-border-hover);
+    box-shadow: 0 22px 56px rgba(0, 0, 0, 0.3), 0 0 40px var(--card-glow);
 }
 
 .card-header {
@@ -148,7 +139,6 @@ header p:hover {
     gap: 0.8rem;
     margin-bottom: 1rem;
 }
-
 .card-header h2 {
     margin: 0;
     font-size: 1.05rem;
@@ -161,7 +151,6 @@ header p:hover {
     opacity: 1;
     margin-top: 0;
 }
-
 .card-content ul {
     margin: 0;
     padding: 0;
@@ -169,96 +158,37 @@ header p:hover {
     display: grid;
     gap: 0.7rem;
 }
-
 .card-content ul li {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
     align-items: center;
 }
-
 .card-content ul li .desc {
     color: var(--muted);
     font-size: 0.95rem;
 }
-
 .card-content p {
     margin: 0.55rem 0;
     line-height: 1.7;
 }
 
+/* ===== Правила ===== */
 #card-rules ol {
     margin: 0;
     padding: 0 0 0 1.4rem;
     list-style: decimal;
     list-style-position: inside;
 }
-
 #card-rules ol li {
     color: var(--text);
     margin-bottom: 0.7rem;
 }
-
 #card-rules ol li::marker {
     color: var(--accent);
 }
 
-.feature-icon {
-    width: 1.375rem;
-    height: 1.375rem;
-    vertical-align: middle;
-    margin-right: 0.5rem;
-    flex-shrink: 0;
-}
-
-.social-links {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.85rem;
-    list-style: none;
-}
-
-.social-links li {
-    margin: 0;
-}
-
-a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-a:hover {
-    color: #e8e8e8;
-}
-
-.footer-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.footer-links a {
-    color: var(--muted);
-    font-size: 0.95rem;
-}
-
-.footer-links a:hover {
-    color: var(--text);
-}
-
-.footer-note {
-    margin-top: 1rem;
-    color: #9fa2ad;
-    font-size: 0.95rem;
-    line-height: 1.65;
-}
-
+/* ===== Аватар ===== */
 .avatar {
     position: relative;
     width: min(200px, 45vw);
@@ -266,16 +196,49 @@ a:hover {
     border-radius: 999px;
     object-fit: cover;
     margin: -90px auto 10px;
-    border: 2px solid rgba(255, 255, 255, 0.18);
+    border: 2px solid rgba(255, 255, 255, 0.10);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.24);
     transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
-
 .avatar:hover {
     transform: scale(1.04);
     box-shadow: 0 26px 56px rgba(57, 199, 185, 0.2);
 }
 
+/* ===== Ссылки ===== */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+a:hover {
+    color: #e8e8e8;
+}
+
+/* ===== Футер ===== */
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.footer-links a {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+.footer-links a:hover {
+    color: var(--text);
+}
+
+.footer-note {
+    margin-top: 1rem;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+}
+
+/* ===== Кнопка "Наверх" ===== */
 #back-to-top {
     position: fixed;
     bottom: 26px;
@@ -294,59 +257,30 @@ a:hover {
     z-index: 1000;
     box-shadow: 0 16px 36px rgba(0, 0, 0, 0.22);
 }
-
 #back-to-top.visible {
     opacity: 1;
     transform: scale(1);
 }
-
 #back-to-top:hover {
     background: #2bb8a8;
 }
 
+/* ===== Выделение текста ===== */
 ::selection {
     background: var(--accent);
     color: #ffffff;
 }
 
+/* ===== Адаптивность ===== */
 @media (max-width: 720px) {
-    .container {
-        padding: 24px 18px;
-    }
-
-    .main-card {
-        padding: 22px 18px;
-    }
-
-    .card {
-        padding: 18px 18px;
-        margin-top: 14px;
-    }
-
-    .card-content ul li {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 38px;
-        height: 38px;
-    }
+    .container { padding: 24px 18px; }
+    .main-card { padding: 22px 18px; }
+    .card { padding: 18px; margin-top: 14px; }
+    .card-content ul li { flex-direction: column; align-items: flex-start; }
+    #back-to-top { bottom: 20px; right: 20px; width: 38px; height: 38px; }
 }
-
 @media (max-width: 480px) {
-    header h1 {
-        font-size: clamp(1.6rem, 7vw, 2.4rem);
-    }
-
-    .card-header h2 {
-        font-size: 1rem;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        gap: 0.6rem;
-    }
+    header h1 { font-size: clamp(1.6rem, 7vw, 2.4rem); }
+    .card-header h2 { font-size: 1rem; }
+    .footer-links { flex-direction: column; gap: 0.6rem; }
 }
