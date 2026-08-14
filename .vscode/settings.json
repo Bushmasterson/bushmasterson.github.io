@@ -1,7 +1,0 @@
-{
-    "git.ignoreLimitWarning": true,
-    "editor.minimap.enabled": false,
-    "editor.formatOnSave": true,
-    "files.autoSave": "onFocusChange",
-    "breadcrumbs.enabled": false
-}
