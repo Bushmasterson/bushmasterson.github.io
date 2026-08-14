@@ -1,5 +1,15 @@
+# Зависимости
 node_modules/
-.DS_Store
 package-lock.json
-docs/
-.vscode
+
+# Сборка
+dist/
+*.log
+
+# Редакторы
+.vscode/
+.idea/
+
+# Системные файлы
+.DS_Store
+Thumbs.db
