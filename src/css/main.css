@@ -369,6 +369,10 @@ a:hover {
     animation-delay: 0.4s;
 }
 
+.card:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
 @keyframes fadeUp {
     to {
         opacity: 1;
