@@ -1,19 +1,33 @@
-# bushmasterson.github.io
+# Bushmasterson — developer portfolio
 
-Minimalist personal portfolio website with an interactive starfield background.
+Minimalist personal site with interactive starfield
 
-## 📌 About
+## Features
 
-A personal landing page for Bushmasterson — developer, cybersecurity enthusiast, and creator.  
-The site showcases key projects, rules, and social links.
+- Interactive constellation with mouse‑driven lines and 0.11s fade
+- JetBrains Mono for a clean, technical look
+- One‑card accordion layout
+- Fully responsive, works on all screen sizes
 
-- Stack: TypeScript, CSS, HTML
-- Feature: interactive particle background
-- Style: dark, clean, minimal
+## Tech Stack
 
-## 🛠️ Build
+- HTML5
+- CSS3
+- TypeScript
 
-```powershell
+Repository structure:
+
+- index.html — entrypoint served at root
+- media/ — images, icons, fonts and other static media
+- src/ — source code (ts, css)
+- dist/ — compiled output served to the browser
+- config/ — development configuration and package files
+
+Build:
+
+From the config directory run:
+
 npm install
 npm run build
-```
+
+This keeps the project organized and makes development predictable.
