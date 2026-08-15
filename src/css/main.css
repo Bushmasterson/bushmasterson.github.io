@@ -369,10 +369,6 @@ a:hover {
     animation-delay: 0.4s;
 }
 
-.card:nth-child(5) {
-    animation-delay: 0.5s;
-}
-
 #card-rules {
     opacity: 0;
     transform: translateY(20px);
