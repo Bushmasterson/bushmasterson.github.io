@@ -21,7 +21,6 @@ Repository structure:
 - media/ — images, icons, fonts and other static media
 - src/ — source code (ts, css)
 - dist/ — compiled output served to the browser
-- config/ — development configuration and package files
 
 Build:
 
