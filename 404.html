@@ -1,57 +1,55 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 — page not found</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>404 — page not found</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+      body {
+        background: #121212;
+        color: #f0ebe0;
+        font-family: "JetBrains Mono", monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 1.5rem;
+      }
 
-    body {
-      background: #121212;
-      color: #f0ebe0;
-      font-family: "JetBrains Mono", monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 1.5rem;
-    }
+      .container {
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+      }
 
-    .container {
-      max-width: 600px;
-      width: 100%;
-      text-align: center;
-    }
+      h1 {
+        font-size: 3rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+      }
 
-    h1 {
-      font-size: 3rem;
-      font-weight: 400;
-      margin-bottom: 1rem;
-    }
+      a {
+        color: #f0ebe0;
+        text-decoration: underline;
+        transition: opacity 0.2s ease;
+      }
 
-    a {
-      color: #f0ebe0;
-      text-decoration: underline;
-      transition: opacity 0.2s ease;
-    }
+      a:hover {
+        opacity: 0.6;
+      }
+    </style>
+  </head>
 
-    a:hover {
-      opacity: 0.6;
-    }
-  </style>
-</head>
-
-<body>
-  <div class="container">
-    <h1>404 Page</h1>
-    <p>back to <a href="https://bushmasterson.github.io">correct page</a></p>
-  </div>
-</body>
-
+  <body>
+    <div class="container">
+      <h1>404 page</h1>
+      <p>back to <a href="https://bushmasterson.github.io">correct page</a></p>
+    </div>
+  </body>
 </html>
