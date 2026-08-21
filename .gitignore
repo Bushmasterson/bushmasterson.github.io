@@ -2,7 +2,6 @@
 node_modules/
 
 # Папки сборки и кеша
-dist/
 .vite/
 .wrangler/
 
