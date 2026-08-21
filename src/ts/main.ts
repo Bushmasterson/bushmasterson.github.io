@@ -159,4 +159,11 @@ if (backToTopEl) {
   backToTopEl.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
+
+  const avatar = document.querySelector('.avatar');
+  if (avatar) {
+    avatar.addEventListener('load', () => {
+      avatar.classList.add('loaded');
+    });
+  }
 }

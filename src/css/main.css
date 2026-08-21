@@ -109,6 +109,7 @@ header p:hover {
 }
 
 @keyframes blinkCursor {
+
   0%,
   40% {
     opacity: 1;
@@ -379,5 +380,18 @@ a:hover {
   .footer-links {
     flex-direction: column;
     gap: 0.6rem;
+  }
+
+  .avatar {
+    opacity: 0;
+    transform: scale(0.9);
+    transition:
+      opacity 0.66s ease,
+      transform 0.66s ease;
+  }
+
+  .avatar.loaded {
+    opacity: 1;
+    transform: scale(1);
   }
 }
