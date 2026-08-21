@@ -18,7 +18,7 @@ Minimalist personal site with interactive starfield.
 Repository structure:
 
 - index.html — entrypoint served at root.
-- media/ — images, icons, fonts and other static media.
+- assets/ — images, icons, fonts and other static media.
 - src/ — source code (ts, css).
 - dist/ — compiled output served to the browser.
 
