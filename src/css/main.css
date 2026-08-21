@@ -21,7 +21,7 @@
   --muted: #8a8580;
 
   --shadow-card: 0 22px 55px rgba(0, 0, 0, 0.45);
-  --shadow-hover: 0 26px 60px rgba(0, 0, 0, 0.55), 0 0 40px var(--accent-dim);
+  --shadow-hover: 0 26px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(255, 255, 255, 0.15);
 }
 
 body {
@@ -109,7 +109,6 @@ header p:hover {
 }
 
 @keyframes blinkCursor {
-
   0%,
   40% {
     opacity: 1;
