@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>404 — page not found</title>
+    <canvas id="tv-noise" aria-hidden="true"></canvas>
     <style>
       * {
         margin: 0;
@@ -43,6 +44,37 @@
       a:hover {
         opacity: 0.6;
       }
+
+      #tv-noise {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0;
+        animation: tvNoise 9s infinite;
+      }
+
+      @keyframes tvNoise {
+        0%,
+        87% {
+          opacity: 0;
+        }
+
+        88% {
+          opacity: 1;
+        }
+
+        91% {
+          opacity: 1;
+        }
+
+        92%,
+        100% {
+          opacity: 0;
+        }
+      }
     </style>
   </head>
 
@@ -52,4 +84,67 @@
       <p>back to <a href="https://bushmasterson.github.io">correct page</a></p>
     </div>
   </body>
+  <script>
+    // Эффект "сломанного телевизора" - каждые 9 секунд
+    const noiseCanvas = document.getElementById("tv-noise");
+    const noiseCtx = noiseCanvas?.getContext("2d");
+
+    if (noiseCanvas && noiseCtx) {
+      const noiseW = window.innerWidth;
+      const noiseH = window.innerHeight;
+
+      noiseCanvas.width = noiseW;
+      noiseCanvas.height = noiseH;
+
+      let frame = 0;
+
+      window.addEventListener("resize", () => {
+        noiseCanvas.width = window.innerWidth;
+        noiseCanvas.height = window.innerHeight;
+      });
+
+      requestAnimationFrame(function drawNoise() {
+        frame++;
+
+        // Каждые 9 секунд (540 кадров) - резкий сбой
+        if (frame % 540 === 0) {
+          noiseCtx.clearRect(0, 0, noiseW, noiseH);
+
+          // Рисуем случайные цветные пиксели
+          for (let i = 0; i < 2500; i++) {
+            const x = Math.random() * noiseW;
+            const y = Math.random() * noiseH;
+            const r = Math.random() * 3 + 1;
+            const color = ["rgba(255, 0, 255, 0.5)", "rgba(0, 255, 0, 0.5)", "rgba(255, 255, 255, 0.3)"][
+              Math.floor(Math.random() * 3)
+            ];
+            noiseCtx.beginPath();
+            noiseCtx.arc(x, y, r, 0, Math.PI * 2);
+            noiseCtx.fillStyle = color;
+            noiseCtx.fill();
+          }
+
+          // Рисуем полосы помех
+          for (let i = 0; i < 5; i++) {
+            const y = Math.random() * noiseH;
+            noiseCtx.fillStyle = "rgba(255, 255, 255, 0.2)";
+            noiseCtx.fillRect(0, y, noiseW, 2);
+          }
+
+          // Рисуем "разрывы" строк
+          for (let i = 0; i < 3; i++) {
+            const x = Math.random() * noiseW;
+            const y = Math.random() * noiseH;
+            noiseCtx.beginPath();
+            noiseCtx.moveTo(x, y);
+            noiseCtx.lineTo(x + Math.random() * 100, y + Math.random() * 50);
+            noiseCtx.strokeStyle = "rgba(255, 0, 0, 0.4)";
+            noiseCtx.stroke();
+          }
+        }
+
+        requestAnimationFrame(drawNoise);
+      });
+    }
+  </script>
 </html>
