@@ -1,7 +1,24 @@
+# Зависимости
 node_modules/
-dist/
+
+# Папки сборки и кеша
+.vite/
 .wrangler/
-.dev.vars
+
+# Файлы с секретами
 .env
-*.log
+.env.local
+.env.*.local
+
+# Системные файлы (Windows/macOS)
 .DS_Store
+Thumbs.db
+desktop.ini
+
+# Файлы логов и временные файлы
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# VS Code (личные настройки)
+.vscode/
