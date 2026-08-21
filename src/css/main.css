@@ -109,7 +109,6 @@ header p:hover {
 }
 
 @keyframes blinkCursor {
-
   0%,
   40% {
     opacity: 1;

@@ -11,20 +11,14 @@
   "endOfLine": "lf",
   "overrides": [
     {
-      "files": [
-        "*.html",
-        "*.htm"
-      ],
+      "files": ["*.html", "*.htm"],
       "options": {
         "printWidth": 120,
         "singleQuote": false
       }
     },
     {
-      "files": [
-        "*.json",
-        "*.jsonc"
-      ],
+      "files": ["*.json", "*.jsonc"],
       "options": {
         "printWidth": 80,
         "trailingComma": "none"
