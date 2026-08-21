@@ -1,5 +1,28 @@
+# Зависимости
 node_modules/
+
+# Папки сборки и кеша
+dist/
+.vite/
+.wrangler/
+
+# Файлы с секретами
+.env
+.env.local
+.env.*.local
+
+# Системные файлы (Windows/macOS)
 .DS_Store
-package-lock.json
+Thumbs.db
+desktop.ini
+
+# Файлы логов и временные файлы
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# VS Code (личные настройки)
+.vscode/
+
+# Документация (если не нужна в репозитории)
 docs/
-.vscode
