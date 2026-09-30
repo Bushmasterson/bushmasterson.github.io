@@ -44,12 +44,12 @@
 
     --border-subtle: rgba(255, 255, 255, 0.045);
     --border-hover: rgba(255, 255, 255, 0.14);
-    --border-active: rgba(61, 212, 196, 0.35);
+    --border-active: rgba(74, 155, 146, 0.35);
 
-    --accent: #3dd4c4;
-    --accent-bright: #55e6d6;
-    --accent-dim: rgba(61, 212, 196, 0.08);
-    --accent-glow: rgba(61, 212, 196, 0.18);
+    --accent: #4a9b92;
+    --accent-bright: #5fb3a8;
+    --accent-dim: rgba(74, 155, 146, 0.08);
+    --accent-glow: rgba(74, 155, 146, 0.18);
 
     --cursor-line: rgba(255, 255, 255, 0.14);
 
@@ -57,7 +57,6 @@
     --text-soft: #c8c2b8;
     --muted: #8d8880;
 
-    /* White-tinted shadows */
     --shadow-card: 0 22px 55px rgba(255, 255, 255, 0.06), 0 4px 12px rgba(255, 255, 255, 0.04);
     --shadow-hover:
       0 26px 60px rgba(255, 255, 255, 0.1), 0 0 40px rgba(255, 255, 255, 0.06),
@@ -103,7 +102,7 @@
   a {
     color: var(--accent);
     text-decoration: none;
-    transition: color 0.2s var(--ease-out);
+    transition: color 0.35s var(--ease-out);
   }
 
   a:hover {
@@ -144,12 +143,12 @@
 
   header h1 {
     margin: 0;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
     font-weight: 500;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.03em;
     transition:
-      color 0.35s var(--ease-out),
-      text-shadow 0.35s var(--ease-out);
+      color 0.55s var(--ease-out),
+      text-shadow 0.55s var(--ease-out);
   }
 
   header h1:hover {
@@ -158,13 +157,14 @@
   }
 
   header p {
-    margin: 0.5rem auto 0;
+    margin: 0.6rem auto 0;
     max-width: 34rem;
     color: var(--muted);
+    font-size: 0.92rem;
     line-height: 1.65;
     transition:
-      color 0.35s var(--ease-out),
-      text-shadow 0.35s var(--ease-out);
+      color 0.55s var(--ease-out),
+      text-shadow 0.55s var(--ease-out);
   }
 
   header p:hover {
@@ -184,9 +184,9 @@
     backdrop-filter: blur(12px) saturate(120%);
     -webkit-backdrop-filter: blur(12px) saturate(120%);
     transition:
-      border-color 0.45s var(--ease-out),
-      box-shadow 0.45s var(--ease-out),
-      transform 0.35s var(--ease-out);
+      border-color 0.6s var(--ease-out),
+      box-shadow 0.6s var(--ease-out),
+      transform 0.5s var(--ease-out);
   }
 
   .main-card:hover {
@@ -205,11 +205,11 @@
     box-shadow: var(--shadow-card);
     opacity: 0;
     transform: translateY(20px);
-    animation: fadeUp 0.65s var(--ease-out) forwards;
+    animation: fadeUp 0.9s var(--ease-out) forwards;
     transition:
-      border-color 0.45s var(--ease-out),
-      box-shadow 0.45s var(--ease-out),
-      transform 0.35s var(--ease-out);
+      border-color 0.6s var(--ease-out),
+      box-shadow 0.6s var(--ease-out),
+      transform 0.5s var(--ease-out);
   }
 
   .card:hover {
@@ -219,13 +219,13 @@
   }
 
   #card-about {
-    animation-delay: 0.1s;
+    animation-delay: 0.15s;
   }
   #card-projects {
-    animation-delay: 0.2s;
+    animation-delay: 0.3s;
   }
   #card-rules {
-    animation-delay: 0.3s;
+    animation-delay: 0.45s;
   }
 
   .card-header {
@@ -237,9 +237,34 @@
 
   .card-header h2 {
     margin: 0;
-    font-size: 1.05rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.04em;
+  }
+
+  .prompt {
+    color: var(--muted);
+    margin-right: 0.35em;
+    font-weight: 400;
+  }
+
+  .badge {
+    display: inline-block;
+    margin-left: 0.6em;
+    padding: 0.15em 0.55em;
+    font-size: 0.72em;
+    color: var(--muted);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.04em;
+    transition:
+      color 0.55s var(--ease-out),
+      border-color 0.55s var(--ease-out);
+  }
+
+  .badge:hover {
+    color: var(--accent);
+    border-color: var(--border-active);
   }
 
   .card-content p {
@@ -307,9 +332,9 @@
     image-rendering: auto;
     backface-visibility: hidden;
     transition:
-      transform 0.4s var(--ease-out),
-      box-shadow 0.4s var(--ease-out),
-      border-color 0.4s var(--ease-out);
+      transform 0.5s var(--ease-out),
+      box-shadow 0.5s var(--ease-out),
+      border-color 0.5s var(--ease-out);
   }
 
   .avatar:hover {
@@ -330,10 +355,20 @@
   .footer-links a {
     color: var(--muted);
     font-size: 1.05rem;
+    transition: color 0.4s var(--ease-out);
   }
 
   .footer-links a:hover {
     color: var(--text);
+  }
+
+  .footer-note {
+    margin: 1.4rem 0 0;
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--muted);
+    opacity: 0.7;
+    letter-spacing: 0.02em;
   }
 
   #back-to-top {
@@ -351,10 +386,10 @@
     z-index: 1000;
     box-shadow: 0 16px 36px rgba(255, 255, 255, 0.08);
     transition:
-      opacity 0.3s var(--ease-out),
-      transform 0.3s var(--ease-out),
-      background 0.25s var(--ease-out),
-      box-shadow 0.25s var(--ease-out);
+      opacity 0.4s var(--ease-out),
+      transform 0.4s var(--ease-out),
+      background 0.35s var(--ease-out),
+      box-shadow 0.35s var(--ease-out);
   }
 
   #back-to-top.visible {
@@ -373,11 +408,11 @@
   .fade-in {
     opacity: 0;
     transform: translateY(1rem);
-    animation: fadeIn 0.75s var(--ease-out) forwards;
+    animation: fadeIn 1s var(--ease-out) forwards;
   }
 
   .fade-in-delay {
-    animation-delay: 0.2s;
+    animation-delay: 0.3s;
   }
 
   .cursor-blink {
@@ -455,10 +490,10 @@
 
 @media (max-width: 480px) {
   header h1 {
-    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    font-size: clamp(1.1rem, 5.5vw, 1.6rem);
   }
   .card-header h2 {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .footer-links {
     flex-direction: column;
@@ -468,8 +503,8 @@
     opacity: 0;
     transform: scale(0.9);
     transition:
-      opacity 0.66s var(--ease-out),
-      transform 0.66s var(--ease-out);
+      opacity 0.8s var(--ease-out),
+      transform 0.8s var(--ease-out);
   }
   .avatar.loaded {
     opacity: 1;
