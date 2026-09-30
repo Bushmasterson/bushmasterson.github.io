@@ -104,7 +104,7 @@ header p:hover {
 
 .cursor-blink {
   display: inline-block;
-  color: var(--accent);
+  color: #f0ebe0;
   animation: blinkCursor 0.9s steps(1) infinite;
 }
 
