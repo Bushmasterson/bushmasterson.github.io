@@ -8,5 +8,4 @@ export type Particle = {
   baseAlpha: number;
   twinkleSpeed: number;
   twinklePhase: number;
-  fade: number;
 };

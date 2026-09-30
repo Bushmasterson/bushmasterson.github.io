@@ -27,7 +27,6 @@ export function initParticles(canvas, ctx) {
             twinkleSpeed: CFG.twinkleSpeedMin +
                 Math.random() * (CFG.twinkleSpeedMax - CFG.twinkleSpeedMin),
             twinklePhase: Math.random() * Math.PI * 2,
-            fade: 0,
         };
     }
     function resetCanvas() {
@@ -53,13 +52,10 @@ export function initParticles(canvas, ctx) {
     function updateParticle(p) {
         p.y += p.speed;
         p.x += p.drift;
-        if (p.fade < 1)
-            p.fade = Math.min(1, p.fade + 0.008);
         if (p.y > height + 20) {
             p.y = -20;
             p.x = Math.random() * width;
             p.drift = (Math.random() - 0.5) * (0.06 + p.depth * 0.22);
-            p.fade = 0;
         }
         if (p.x < -20)
             p.x = width + 20;
@@ -114,7 +110,7 @@ export function initParticles(canvas, ctx) {
             const count = Math.min(CFG.cursorNearest, nearest.length);
             for (let i = 0; i < count; i++) {
                 const { p, d2 } = nearest[i];
-                const alpha = (1 - d2 / maxDistance2) * CFG.cursorLineAlpha * p.fade;
+                const alpha = (1 - d2 / maxDistance2) * CFG.cursorLineAlpha;
                 ctx.strokeStyle = `rgba(${cursorRGB},${alpha})`;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
@@ -127,9 +123,7 @@ export function initParticles(canvas, ctx) {
         for (let i = 0; i < particles.length; i++) {
             const p = particles[i];
             const twinkle = 0.65 + 0.35 * Math.sin(time * p.twinkleSpeed + p.twinklePhase);
-            const alpha = p.baseAlpha * twinkle * p.fade;
-            if (alpha <= 0.001)
-                continue;
+            const alpha = p.baseAlpha * twinkle;
             if (p.depth > 0.7) {
                 ctx.shadowBlur = 6 * p.depth;
                 ctx.shadowColor = `rgba(212,212,212,${alpha * 0.4})`;
