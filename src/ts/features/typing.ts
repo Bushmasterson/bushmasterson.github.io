@@ -1,19 +1,20 @@
-/** Type text into elements marked with [data-typed]. */
+/**
+ * Type text into elements marked with [data-typed].
+ * - Respects prefers-reduced-motion (renders final text instantly).
+ * - Screen readers read the pre-set text via an .sr-only sibling.
+ */
 export function initTyping(): void {
   const els = document.querySelectorAll<HTMLElement>('[data-typed]');
   if (!els.length) return;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (reduced) {
-    els.forEach((el) => {
-      el.textContent = el.dataset.typed ?? '';
-    });
-    return;
-  }
-
   els.forEach((el) => {
     const text = el.dataset.typed ?? '';
+    el.textContent = text;
+
+    if (reduced) return;
+
     const speed = Number(el.dataset.speed ?? 55);
     const delay = Number(el.dataset.delay ?? 0);
 

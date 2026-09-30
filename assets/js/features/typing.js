@@ -3,14 +3,11 @@ export function initTyping() {
     if (!els.length)
         return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) {
-        els.forEach((el) => {
-            el.textContent = el.dataset.typed ?? '';
-        });
-        return;
-    }
     els.forEach((el) => {
         const text = el.dataset.typed ?? '';
+        el.textContent = text;
+        if (reduced)
+            return;
         const speed = Number(el.dataset.speed ?? 55);
         const delay = Number(el.dataset.delay ?? 0);
         el.textContent = '';
