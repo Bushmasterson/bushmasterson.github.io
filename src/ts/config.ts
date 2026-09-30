@@ -14,7 +14,7 @@ export const CFG = {
   cursorLineAlpha: 0.42,
   cursorLineWidth: 0.8,
   cursorNearest: 3,
-  pointerLerp: 0.08,
+  pointerLerp: 0.25,
 
   /* Movement */
   fallSpeed: 0.55,

@@ -27,8 +27,7 @@ export function initParticles(canvas, ctx) {
             drift: (Math.random() - 0.5) * (0.06 + depth * 0.22),
             depth,
             baseAlpha: 0.25 + depth * 0.45 + Math.random() * 0.15,
-            twinkleSpeed: CFG.twinkleSpeedMin +
-                Math.random() * (CFG.twinkleSpeedMax - CFG.twinkleSpeedMin),
+            twinkleSpeed: CFG.twinkleSpeedMin + Math.random() * (CFG.twinkleSpeedMax - CFG.twinkleSpeedMin),
             twinklePhase: Math.random() * Math.PI * 2,
             fade: 0,
         };
