@@ -2,10 +2,7 @@ import { CFG } from '../config.js';
 import type { Particle } from '../types.js';
 import { cssVar, rgbTriple } from '../utils/color.js';
 
-export function initParticles(
-  canvas: HTMLCanvasElement,
-  ctx: CanvasRenderingContext2D,
-): void {
+export function initParticles(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void {
   let width = 0;
   let height = 0;
   let dpr = 1;
@@ -34,8 +31,7 @@ export function initParticles(
       depth,
       baseAlpha: 0.25 + depth * 0.45 + Math.random() * 0.15,
       twinkleSpeed:
-        CFG.twinkleSpeedMin +
-        Math.random() * (CFG.twinkleSpeedMax - CFG.twinkleSpeedMin),
+        CFG.twinkleSpeedMin + Math.random() * (CFG.twinkleSpeedMax - CFG.twinkleSpeedMin),
       twinklePhase: Math.random() * Math.PI * 2,
     };
   }
