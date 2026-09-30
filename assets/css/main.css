@@ -83,7 +83,7 @@
     --radius-card-sm: 18px;
     --radius-pill: 999px;
 
-    /* Fluid type scale (min–max based on viewport) */
+    /* Fluid type scale */
     --fs-xs: clamp(0.72rem, 0.7rem + 0.1vw, 0.8rem);
     --fs-sm: clamp(0.82rem, 0.8rem + 0.15vw, 0.92rem);
     --fs-base: clamp(0.9rem, 0.88rem + 0.2vw, 1rem);
@@ -108,7 +108,7 @@
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
       monospace;
 
-    /* Safe areas (notches, home indicator) */
+    /* Safe areas */
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-right: env(safe-area-inset-right, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -155,7 +155,6 @@
     color: #0f0f10;
   }
 
-  /* Focus — visible, high contrast, works in both dark and forced-colors */
   :focus {
     outline: none;
   }
@@ -426,7 +425,6 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    /* Minimum touch target 44×44 (WCAG 2.5.5) */
     min-width: 44px;
     min-height: 44px;
     color: var(--muted);
@@ -509,7 +507,6 @@
     animation: blinkCursor 0.9s steps(1) infinite;
   }
 
-  /* Screen-reader only: visually hidden, still read by AT */
   .sr-only {
     position: absolute !important;
     width: 1px;
@@ -521,28 +518,6 @@
     clip-path: inset(50%);
     white-space: nowrap;
     border: 0;
-  }
-
-  .skip-link {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, -150%);
-    z-index: 2000;
-    padding: 0.7rem 1.2rem;
-    background: var(--accent);
-    color: #0f0f10;
-    font-size: var(--fs-sm);
-    font-weight: 600;
-    border-radius: 0 0 12px 12px;
-    transition: transform 0.25s var(--ease-out);
-  }
-
-  .skip-link:focus,
-  .skip-link:focus-visible {
-    transform: translate(-50%, 0);
-    outline: 2px solid var(--accent-bright);
-    outline-offset: 3px;
   }
 }
 
@@ -587,7 +562,6 @@
 
 /* ─── Accessibility ─── */
 @layer a11y {
-  /* Windows High Contrast / forced-colors mode */
   @media (forced-colors: active) {
     :root {
       --accent: Highlight;
@@ -619,7 +593,6 @@
     }
   }
 
-  /* High contrast preference */
   @media (prefers-contrast: more) {
     :root {
       --text: #ffffff;
@@ -630,7 +603,6 @@
     }
   }
 
-  /* Increase legibility when transparency is disabled */
   @media (prefers-reduced-transparency: reduce) {
     :root {
       --surface: #1a1a1c;
@@ -642,7 +614,6 @@
     }
   }
 
-  /* Datasaver / dark data */
   @media (prefers-reduced-data: reduce) {
     #particles-canvas {
       display: none;
@@ -665,7 +636,6 @@
 
     #particles-canvas,
     #back-to-top,
-    .skip-link,
     .badge,
     .cursor-blink {
       display: none !important;
@@ -720,7 +690,6 @@
   }
 }
 
-/* Landscape phones — reduce vertical padding */
 @media (max-height: 500px) and (orientation: landscape) {
   .container {
     padding-block: var(--space-2);
@@ -730,7 +699,6 @@
   }
 }
 
-/* Foldables / ultra narrow */
 @media (max-width: 300px) {
   .footer-links a {
     min-width: 40px;
