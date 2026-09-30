@@ -36,6 +36,10 @@
   </head>
 
   <body>
+    <div id="boot" aria-hidden="true">
+      <div class="boot-output"></div>
+    </div>
+
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="0"
@@ -143,7 +147,7 @@
         />
 
         <header>
-          <h1 class="typed-line" id="page-title">
+          <h1 class="typed-line" id="page-title" title="click me 5 times">
             <span aria-hidden="true">
               <span class="prompt">bushmasterson@arch:~$</span>
               <span
@@ -360,5 +364,32 @@
         </p>
       </article>
     </main>
+
+    <div
+      id="terminal"
+      role="dialog"
+      aria-label="Hidden terminal"
+      aria-hidden="true"
+    >
+      <div class="term-bar">
+        <span class="term-dot"></span>
+        <span class="term-dot"></span>
+        <span class="term-dot"></span>
+        <span class="term-title">bushmasterson@arch: ~</span>
+      </div>
+      <div class="term-output"></div>
+      <div class="term-prompt">
+        <span class="prompt">~$</span>
+        <input
+          class="term-input"
+          type="text"
+          autocomplete="off"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          aria-label="Terminal input"
+        />
+      </div>
+    </div>
   </body>
 </html>

@@ -701,3 +701,202 @@
     margin-top: calc(-1 * clamp(40px, 10vw, 55px));
   }
 }
+
+/* ─── Easter eggs: boot, terminal, vim ─── */
+@layer components {
+  /* Boot screen */
+  #boot {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #0a0a0b;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    padding: 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    transition: opacity 0.45s var(--ease-out);
+  }
+
+  #boot.boot-done {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .boot-output {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .boot-line {
+    opacity: 0;
+    animation: bootLine 0.25s var(--ease-out) forwards;
+  }
+
+  @keyframes bootLine {
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Terminal */
+  #terminal {
+    position: fixed;
+    left: 50%;
+    bottom: calc(1rem + var(--safe-bottom));
+    transform: translate(-50%, calc(100% + 2rem));
+    width: min(680px, calc(100vw - 2rem));
+    max-height: min(360px, 50vh);
+    background: rgba(10, 10, 11, 0.96);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    border: 1px solid var(--border-hover);
+    border-radius: var(--radius-card-sm);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    transition: transform 0.45s var(--ease-out);
+  }
+
+  #terminal.open {
+    transform: translate(-50%, 0);
+  }
+
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .term-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .term-dot:nth-child(1) {
+    background: #ff5f57;
+  }
+  .term-dot:nth-child(2) {
+    background: #febc2e;
+  }
+  .term-dot:nth-child(3) {
+    background: #28c840;
+  }
+
+  .term-title {
+    margin-left: 0.6rem;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+  }
+
+  .term-output {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0.75rem;
+    color: var(--text-soft);
+    line-height: 1.55;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-hover) transparent;
+  }
+
+  .term-output::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .term-output::-webkit-scrollbar-thumb {
+    background: var(--border-hover);
+    border-radius: 999px;
+  }
+
+  .term-line {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .term-echo {
+    color: var(--muted);
+    margin-top: 0.35rem;
+  }
+
+  .term-prompt {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .term-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font: inherit;
+    caret-color: var(--accent);
+  }
+
+  /* Vim-style highlight under the title */
+  .typed-line {
+    position: relative;
+    display: inline-block;
+    padding: 0.15em 0.55em;
+    margin: -0.15em -0.55em;
+    cursor: default;
+  }
+
+  .typed-line::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--accent-dim);
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0.6;
+    animation: vimBlink 1.8s steps(2, start) infinite;
+  }
+
+  @keyframes vimBlink {
+    0%,
+    55% {
+      opacity: 0.25;
+    }
+    56%,
+    100% {
+      opacity: 0.7;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .typed-line::before {
+      animation: none;
+      opacity: 0.5;
+    }
+
+    #terminal {
+      transition: none;
+    }
+  }
+
+  /* Print — hide easter eggs */
+  @media print {
+    #boot,
+    #terminal,
+    .typed-line::before {
+      display: none !important;
+    }
+  }
+}
