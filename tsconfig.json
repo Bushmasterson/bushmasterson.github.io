@@ -9,8 +9,8 @@
     "useDefineForClassFields": true,
 
     /* === Emit === */
-    "rootDir": "src",
-    "outDir": "dist",
+    "rootDir": "src/ts",
+    "outDir": "assets/js",
     "sourceMap": true,
     "removeComments": true,
     "noEmitOnError": true,
@@ -45,8 +45,8 @@
     /* === Performance === */
     "skipLibCheck": true,
     "incremental": true,
-    "tsBuildInfoFile": "dist/.tsbuildinfo"
+    "tsBuildInfoFile": "assets/js/.tsbuildinfo"
   },
   "include": ["src/ts/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "exclude": ["node_modules"]
 }
