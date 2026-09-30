@@ -7,5 +7,7 @@ export function initAvatar(): void {
     return;
   }
 
-  avatar.addEventListener('load', () => avatar.classList.add('loaded'), { once: true });
+  avatar.addEventListener('load', () => avatar.classList.add('loaded'), {
+    once: true,
+  });
 }

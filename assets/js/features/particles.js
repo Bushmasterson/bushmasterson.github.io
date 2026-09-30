@@ -24,7 +24,8 @@ export function initParticles(canvas, ctx) {
             drift: (Math.random() - 0.5) * (0.06 + depth * 0.22),
             depth,
             baseAlpha: 0.25 + depth * 0.45 + Math.random() * 0.15,
-            twinkleSpeed: CFG.twinkleSpeedMin + Math.random() * (CFG.twinkleSpeedMax - CFG.twinkleSpeedMin),
+            twinkleSpeed: CFG.twinkleSpeedMin +
+                Math.random() * (CFG.twinkleSpeedMax - CFG.twinkleSpeedMin),
             twinklePhase: Math.random() * Math.PI * 2,
         };
     }
@@ -40,7 +41,9 @@ export function initParticles(canvas, ctx) {
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         const compact = Math.max(width, height) < CFG.breakpoint;
-        connectDistance = compact ? CFG.connectDistanceCompact : CFG.connectDistance;
+        connectDistance = compact
+            ? CFG.connectDistanceCompact
+            : CFG.connectDistance;
         connectDistance2 = connectDistance * connectDistance;
         const density = compact ? CFG.densityFar * 1.4 : CFG.densityFar;
         const targetCount = Math.max(CFG.countMin, Math.min(CFG.countMax, Math.round((width * height) / density)));

@@ -1,5 +1,5 @@
 {
-  "printWidth": 100,
+  "printWidth": 90,
   "tabWidth": 2,
   "useTabs": false,
 
@@ -26,18 +26,19 @@
     {
       "files": ["*.html", "*.htm"],
       "options": {
-        "printWidth": 120,
+        "printWidth": 80,
         "singleQuote": false,
         "htmlWhitespaceSensitivity": "css",
         "bracketSameLine": false
       }
     },
     {
-      "files": ["*.json", "*.jsonc"],
+      "files": ["*.json", "*.jsonc", ".prettierrc", ".prettierrc.json"],
       "options": {
         "printWidth": 80,
         "trailingComma": "none",
-        "singleQuote": false
+        "singleQuote": false,
+        "tabWidth": 2
       }
     },
     {
@@ -45,7 +46,8 @@
       "options": {
         "printWidth": 80,
         "proseWrap": "always",
-        "singleQuote": false
+        "singleQuote": false,
+        "tabWidth": 2
       }
     },
     {
@@ -53,14 +55,32 @@
       "options": {
         "printWidth": 80,
         "singleQuote": true,
-        "trailingComma": "none"
+        "trailingComma": "none",
+        "tabWidth": 2
       }
     },
     {
       "files": ["*.css", "*.scss", "*.less"],
       "options": {
-        "printWidth": 100,
-        "singleQuote": false
+        "printWidth": 80,
+        "singleQuote": false,
+        "tabWidth": 2
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx", "*.mts", "*.cts"],
+      "options": {
+        "printWidth": 80,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "semi": true
+      }
+    },
+    {
+      "files": [".prettierignore", ".gitignore", ".editorconfig"],
+      "options": {
+        "printWidth": 80,
+        "tabWidth": 2
       }
     }
   ]

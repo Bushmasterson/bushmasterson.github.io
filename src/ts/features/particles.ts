@@ -2,7 +2,10 @@ import { CFG } from '../config.js';
 import type { Particle } from '../types.js';
 import { cssVar, rgbTriple } from '../utils/color.js';
 
-export function initParticles(canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D): void {
+export function initParticles(
+  canvas: HTMLCanvasElement,
+  ctx: CanvasRenderingContext2D,
+): void {
   let width = 0;
   let height = 0;
   let dpr = 1;
@@ -12,9 +15,13 @@ export function initParticles(canvas: HTMLCanvasElement, ctx: CanvasRenderingCon
 
   const pointer = { x: null as number | null, y: null as number | null };
 
-  const cursorRGB = rgbTriple(cssVar('--cursor-line', 'rgba(255,255,255,0.14)'));
+  const cursorRGB = rgbTriple(
+    cssVar('--cursor-line', 'rgba(255,255,255,0.14)'),
+  );
   const lineRGB = '212,212,212';
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)',
+  ).matches;
 
   function pickDepth(): number {
     return Math.random() ** 1.6;
@@ -31,7 +38,8 @@ export function initParticles(canvas: HTMLCanvasElement, ctx: CanvasRenderingCon
       depth,
       baseAlpha: 0.25 + depth * 0.45 + Math.random() * 0.15,
       twinkleSpeed:
-        CFG.twinkleSpeedMin + Math.random() * (CFG.twinkleSpeedMax - CFG.twinkleSpeedMin),
+        CFG.twinkleSpeedMin +
+        Math.random() * (CFG.twinkleSpeedMax - CFG.twinkleSpeedMin),
       twinklePhase: Math.random() * Math.PI * 2,
     };
   }
@@ -52,7 +60,9 @@ export function initParticles(canvas: HTMLCanvasElement, ctx: CanvasRenderingCon
     ctx.lineJoin = 'round';
 
     const compact = Math.max(width, height) < CFG.breakpoint;
-    connectDistance = compact ? CFG.connectDistanceCompact : CFG.connectDistance;
+    connectDistance = compact
+      ? CFG.connectDistanceCompact
+      : CFG.connectDistance;
     connectDistance2 = connectDistance * connectDistance;
 
     const density = compact ? CFG.densityFar * 1.4 : CFG.densityFar;
@@ -154,7 +164,8 @@ export function initParticles(canvas: HTMLCanvasElement, ctx: CanvasRenderingCon
     const time = performance.now() * 0.001;
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i]!;
-      const twinkle = 0.65 + 0.35 * Math.sin(time * p.twinkleSpeed + p.twinklePhase);
+      const twinkle =
+        0.65 + 0.35 * Math.sin(time * p.twinkleSpeed + p.twinklePhase);
       const alpha = p.baseAlpha * twinkle;
 
       if (p.depth > 0.7) {

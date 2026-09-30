@@ -1,5 +1,7 @@
 export function cssVar(name, fallback) {
-    const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    const value = getComputedStyle(document.documentElement)
+        .getPropertyValue(name)
+        .trim();
     return value || fallback;
 }
 export function rgbTriple(rgba, fallback = '212,212,212') {

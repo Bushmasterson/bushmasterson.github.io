@@ -6,6 +6,8 @@ export function initAvatar() {
         avatar.classList.add('loaded');
         return;
     }
-    avatar.addEventListener('load', () => avatar.classList.add('loaded'), { once: true });
+    avatar.addEventListener('load', () => avatar.classList.add('loaded'), {
+        once: true,
+    });
 }
 //# sourceMappingURL=avatar.js.map
