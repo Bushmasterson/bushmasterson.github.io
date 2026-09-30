@@ -47,7 +47,6 @@
 
     /* Surfaces */
     --bg: #0f0f10;
-    --bg-grain: 0.035;
     --surface: rgba(24, 24, 26, 0.42);
     --surface-card: #17171a;
     --surface-card-hover: #1b1b1e;
@@ -70,7 +69,6 @@
     --text: #f1ece2;
     --text-soft: #d6d1c6;
     --muted: #a5a09a;
-    --faint: rgba(165, 160, 154, 0.55);
 
     /* Shadows */
     --shadow-card:
@@ -142,18 +140,6 @@
       "liga" 1,
       "calt" 1;
     -webkit-tap-highlight-color: transparent;
-  }
-
-  /* Grain overlay */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-    opacity: var(--bg-grain);
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
   }
 
   a {
@@ -257,8 +243,7 @@
     -webkit-backdrop-filter: blur(14px) saturate(130%);
     transition:
       border-color 0.5s var(--ease-out),
-      box-shadow 0.5s var(--ease-out),
-      transform 0.4s var(--ease-out);
+      box-shadow 0.5s var(--ease-out);
   }
 
   @media (hover: hover) {
@@ -307,7 +292,6 @@
   .card-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: 0.5rem;
     padding-bottom: 0.6rem;
     margin-bottom: 0.7rem;
@@ -321,14 +305,6 @@
     letter-spacing: 0.08em;
     text-transform: lowercase;
     color: var(--muted);
-  }
-
-  .meta {
-    font-size: var(--fs-xs);
-    color: var(--faint);
-    letter-spacing: 0.1em;
-    font-weight: 400;
-    flex-shrink: 0;
   }
 
   .prompt {
@@ -378,62 +354,6 @@
     height: 1.1em;
     flex-shrink: 0;
     opacity: 0.9;
-  }
-
-  /* Tech tags */
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    margin-top: 0.8rem;
-    padding-top: 0.7rem;
-    border-top: 1px dashed var(--border-subtle);
-  }
-
-  .tag {
-    display: inline-block;
-    padding: 0.15em 0.5em;
-    font-size: 0.68em;
-    color: var(--muted);
-    border: 1px solid var(--border-subtle);
-    border-radius: 5px;
-    letter-spacing: 0.03em;
-    background: rgba(255, 255, 255, 0.012);
-    transition:
-      color 0.3s var(--ease-out),
-      border-color 0.3s var(--ease-out),
-      background-color 0.3s var(--ease-out);
-  }
-
-  @media (hover: hover) {
-    .tag:hover {
-      color: var(--accent);
-      border-color: var(--border-active);
-      background: rgba(92, 184, 172, 0.06);
-    }
-  }
-
-  .tag-sm {
-    font-size: 0.62em;
-    padding: 0.1em 0.45em;
-    opacity: 0.85;
-  }
-
-  /* "now" line */
-  .now {
-    margin-top: 0.9rem;
-    padding-top: 0.7rem;
-    border-top: 1px dashed var(--border-subtle);
-    font-size: var(--fs-sm);
-    line-height: 1.6;
-    color: var(--text-soft);
-  }
-
-  .now .prompt {
-    color: var(--accent);
-    opacity: 1;
-    margin-right: 0.4em;
-    font-weight: 600;
   }
 
   .card-content ul {
@@ -546,25 +466,6 @@
     letter-spacing: 0.02em;
     line-height: 1.5;
     min-height: 1.1em;
-  }
-
-  .footer-bottom {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 0.4em;
-    margin: 0.9rem 0 0;
-    padding-top: 0.7rem;
-    border-top: 1px solid var(--border-subtle);
-    font-size: var(--fs-xs);
-    color: var(--faint);
-    letter-spacing: 0.1em;
-    text-transform: lowercase;
-  }
-
-  .footer-bottom .dot {
-    opacity: 0.5;
   }
 
   #back-to-top {
@@ -688,10 +589,6 @@
       --border-active: Highlight;
     }
 
-    body::before {
-      display: none;
-    }
-
     .main-card,
     .card,
     .avatar,
@@ -716,7 +613,6 @@
       --text: #ffffff;
       --text-soft: #e8e4dc;
       --muted: #c9c4bd;
-      --faint: rgba(201, 196, 189, 0.85);
       --border-subtle: rgba(255, 255, 255, 0.2);
       --border-hover: rgba(255, 255, 255, 0.4);
     }
@@ -726,10 +622,6 @@
     :root {
       --surface: #1a1a1c;
       --surface-card: #17171a;
-    }
-
-    body::before {
-      display: none;
     }
 
     .main-card {
@@ -758,13 +650,10 @@
       --border-subtle: #cccccc;
     }
 
-    body::before,
     #particles-canvas,
     #back-to-top,
     .badge,
-    .cursor-blink,
-    .tags,
-    .now .prompt {
+    .cursor-blink {
       display: none !important;
     }
 
@@ -802,9 +691,6 @@
   }
   .card-header h2 {
     font-size: 0.68rem;
-  }
-  .meta {
-    font-size: 0.6rem;
   }
 }
 
