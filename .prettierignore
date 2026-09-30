@@ -1,21 +1,22 @@
-# Dependencies
-node_modules/
-
-# TS incremental build cache
-assets/js/.tsbuildinfo
-*.tsbuildinfo
-
-# Legacy build output
+# Build artifacts
+assets/js/
+assets/icons/
 dist/
 
-# OS
-.DS_Store
-Thumbs.db
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
 
 # Editors
 .vscode/
 .idea/
 
-# Logs
-*.log
-npm-debug.log*
+# OS
+.DS_Store
+Thumbs.db
+
+# Caches
+*.tsbuildinfo
+.cache/
+coverage/

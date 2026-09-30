@@ -1,27 +1,66 @@
 {
-  "printWidth": 120,
+  "printWidth": 100,
   "tabWidth": 2,
   "useTabs": false,
+
   "semi": true,
   "singleQuote": true,
   "quoteProps": "consistent",
-  "trailingComma": "es5",
+  "jsxSingleQuote": false,
+
+  "trailingComma": "all",
   "bracketSpacing": true,
+  "bracketSameLine": false,
   "arrowParens": "always",
+
+  "proseWrap": "preserve",
+  "htmlWhitespaceSensitivity": "css",
+  "vueIndentScriptAndStyle": false,
+  "embeddedLanguageFormatting": "auto",
+
   "endOfLine": "lf",
+  "insertPragma": false,
+  "requirePragma": false,
+
   "overrides": [
     {
       "files": ["*.html", "*.htm"],
       "options": {
         "printWidth": 120,
-        "singleQuote": false
+        "singleQuote": false,
+        "htmlWhitespaceSensitivity": "css",
+        "bracketSameLine": false
       }
     },
     {
       "files": ["*.json", "*.jsonc"],
       "options": {
         "printWidth": 80,
+        "trailingComma": "none",
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["*.md", "*.mdx"],
+      "options": {
+        "printWidth": 80,
+        "proseWrap": "always",
+        "singleQuote": false
+      }
+    },
+    {
+      "files": ["*.yml", "*.yaml"],
+      "options": {
+        "printWidth": 80,
+        "singleQuote": true,
         "trailingComma": "none"
+      }
+    },
+    {
+      "files": ["*.css", "*.scss", "*.less"],
+      "options": {
+        "printWidth": 100,
+        "singleQuote": false
       }
     }
   ]
