@@ -1,5 +1,5 @@
 {
-  "printWidth": 90,
+  "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
 
@@ -13,10 +13,11 @@
   "bracketSameLine": false,
   "arrowParens": "always",
 
-  "proseWrap": "preserve",
-  "htmlWhitespaceSensitivity": "css",
-  "vueIndentScriptAndStyle": false,
+  "proseWrap": "always",
+  "htmlWhitespaceSensitivity": "strict",
+  "vueIndentScriptAndStyle": true,
   "embeddedLanguageFormatting": "auto",
+  "singleAttributePerLine": true,
 
   "endOfLine": "lf",
   "insertPragma": false,
@@ -28,8 +29,9 @@
       "options": {
         "printWidth": 80,
         "singleQuote": false,
-        "htmlWhitespaceSensitivity": "css",
-        "bracketSameLine": false
+        "htmlWhitespaceSensitivity": "strict",
+        "bracketSameLine": false,
+        "singleAttributePerLine": true
       }
     },
     {
@@ -38,7 +40,8 @@
         "printWidth": 80,
         "trailingComma": "none",
         "singleQuote": false,
-        "tabWidth": 2
+        "tabWidth": 2,
+        "singleAttributePerLine": false
       }
     },
     {
@@ -47,7 +50,8 @@
         "printWidth": 80,
         "proseWrap": "always",
         "singleQuote": false,
-        "tabWidth": 2
+        "tabWidth": 2,
+        "singleAttributePerLine": false
       }
     },
     {
@@ -56,7 +60,8 @@
         "printWidth": 80,
         "singleQuote": true,
         "trailingComma": "none",
-        "tabWidth": 2
+        "tabWidth": 2,
+        "singleAttributePerLine": false
       }
     },
     {
@@ -64,7 +69,8 @@
       "options": {
         "printWidth": 80,
         "singleQuote": false,
-        "tabWidth": 2
+        "tabWidth": 2,
+        "singleAttributePerLine": false
       }
     },
     {
@@ -73,14 +79,16 @@
         "printWidth": 80,
         "singleQuote": true,
         "trailingComma": "all",
-        "semi": true
+        "semi": true,
+        "singleAttributePerLine": false
       }
     },
     {
       "files": [".prettierignore", ".gitignore", ".editorconfig"],
       "options": {
         "printWidth": 80,
-        "tabWidth": 2
+        "tabWidth": 2,
+        "singleAttributePerLine": false
       }
     }
   ]

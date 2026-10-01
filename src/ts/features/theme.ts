@@ -20,7 +20,7 @@ function getSystem(): Theme {
 
 function apply(theme: Theme): void {
   const root = document.documentElement;
-  root.dataset.theme = theme;
+  root.dataset['theme'] = theme;
   root.style.colorScheme = theme;
 
   const meta = document.querySelector<HTMLMetaElement>(
@@ -48,7 +48,7 @@ export function initTheme(): void {
   const btn = document.querySelector<HTMLButtonElement>('#theme-toggle');
   if (btn) {
     btn.addEventListener('click', () => {
-      const current = document.documentElement.dataset.theme;
+      const current = document.documentElement.dataset['theme'];
       const next: Theme = current === 'light' ? 'dark' : 'light';
       apply(next);
       try {
