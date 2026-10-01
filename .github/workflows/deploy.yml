@@ -67,9 +67,7 @@ jobs:
             -o _site/404.html 404.html
 
       - name: Minify CSS
-        run: |
-          npx lightningcss --minify --bundle --targets ">= 0.25%" \
-            -o _site/assets/css/main.css assets/css/main.css
+        run: npx esbuild assets/css/main.css --minify --outfile=_site/assets/css/main.css
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
