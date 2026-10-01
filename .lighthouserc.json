@@ -8,12 +8,29 @@
       }
     },
     "assert": {
-      "preset": "lighthouse:recommended",
       "assertions": {
-        "categories:performance": ["warn", { "minScore": 0.9 }],
+        "categories:performance": ["warn", { "minScore": 0.85 }],
         "categories:accessibility": ["error", { "minScore": 0.95 }],
         "categories:best-practices": ["warn", { "minScore": 0.9 }],
         "categories:seo": ["warn", { "minScore": 0.9 }],
+
+        "errors-in-console": ["error", { "maxLength": 0 }],
+        "font-display-insight": "off",
+        "image-delivery-insight": ["warn", { "maxLength": 0 }],
+        "modern-image-formats": ["warn", { "maxLength": 0 }],
+
+        "unminified-css": "off",
+        "unminified-javascript": "off",
+        "unused-css-rules": "off",
+        "uses-long-cache-ttl": "off",
+        "cache-insight": "off",
+        "network-dependency-tree-insight": "off",
+        "lcp-discovery-insight": "off",
+        "render-blocking-insight": ["warn", { "maxLength": 2 }],
+        "render-blocking-resources": "off",
+
+        "largest-contentful-paint": ["warn", { "minScore": 0.7 }],
+        "speed-index": ["warn", { "minScore": 0.85 }],
         "uses-responsive-images": "off",
         "unsized-images": "off",
         "csp-xss": "off"

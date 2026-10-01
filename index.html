@@ -30,8 +30,35 @@
 
     <title>bushmasterson | developer &amp; cybersecurity enthusiast</title>
 
-    <link rel="stylesheet" href="assets/icons/css/all.min.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f0f10'/%3E%3Ctext x='16' y='22' font-family='ui-monospace, monospace' font-size='18' font-weight='600' fill='%235cb8ac' text-anchor='middle'%3E%26%26%3C/text%3E%3C/svg%3E"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%230f0f10'/%3E%3Ctext x='90' y='120' font-family='ui-monospace, monospace' font-size='90' font-weight='600' fill='%235cb8ac' text-anchor='middle'%3E%26%26%3C/text%3E%3C/svg%3E"
+    />
+
+    <link rel="preload" as="style" href="assets/css/main.css" />
+    <link
+      rel="preload"
+      as="image"
+      href="assets/images/avatar.png"
+      fetchpriority="high"
+    />
+
     <link rel="stylesheet" href="assets/css/main.css" />
+
+    <link
+      rel="stylesheet"
+      href="assets/icons/css/all.min.css"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link rel="stylesheet" href="assets/icons/css/all.min.css" />
+    </noscript>
+
     <script type="module" src="assets/js/main.js"></script>
   </head>
 
@@ -143,6 +170,7 @@
           width="200"
           height="200"
           decoding="async"
+          fetchpriority="high"
           class="avatar"
         />
 

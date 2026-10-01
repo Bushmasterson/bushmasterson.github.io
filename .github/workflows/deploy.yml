@@ -5,12 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# Allow only one concurrent deployment, skip queued runs between.
 concurrency:
   group: pages
   cancel-in-progress: false
 
-# Least-privilege permissions for Pages deployment.
 permissions:
   contents: read
   pages: write
@@ -44,13 +42,42 @@ jobs:
       - name: Check formatting
         run: npx prettier --check .
 
+      - name: Prepare artifact
+        run: |
+          mkdir -p _site
+          cp index.html 404.html _site/
+          cp -r assets _site/
+          cp -r src _site/
+
+      - name: Minify HTML
+        run: |
+          npx html-minifier-terser \
+            --collapse-whitespace \
+            --remove-comments \
+            --remove-redundant-attributes \
+            --remove-script-type-attributes \
+            --use-short-doctype \
+            --minify-css true \
+            --minify-js true \
+            -o _site/index.html index.html
+          npx html-minifier-terser \
+            --collapse-whitespace \
+            --remove-comments \
+            --use-short-doctype \
+            -o _site/404.html 404.html
+
+      - name: Minify CSS
+        run: |
+          npx lightningcss --minify --bundle --targets ">= 0.25%" \
+            -o _site/assets/css/main.css assets/css/main.css
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: _site
           retention-days: 1
 
   deploy:
@@ -74,4 +101,3 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**URL:** ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
           echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "**Author:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
