@@ -7,10 +7,17 @@ export function initParticles(canvas, ctx) {
     let particles = [];
     let connectDistance = CFG.connectDistance;
     let connectDistance2 = connectDistance * connectDistance;
+    let cursorRGB = '255,255,255';
+    let lineRGB = '212,212,212';
+    let starRGB = '212,212,212';
     const pointer = { x: null, y: null };
-    const cursorRGB = rgbTriple(cssVar('--cursor-line', 'rgba(255,255,255,0.14)'));
-    const lineRGB = '212,212,212';
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function readColors() {
+        cursorRGB = rgbTriple(cssVar('--cursor-line', 'rgba(255,255,255,0.14)'), '255,255,255');
+        lineRGB = rgbTriple(cssVar('--star-line', 'rgba(212,212,212,1)'), '212,212,212');
+        starRGB = rgbTriple(cssVar('--star-fill', 'rgba(212,212,212,1)'), '212,212,212');
+    }
+    readColors();
     function pickDepth() {
         return Math.random() ** 1.6;
     }
@@ -128,14 +135,14 @@ export function initParticles(canvas, ctx) {
             const alpha = p.baseAlpha * twinkle;
             if (p.depth > 0.7) {
                 ctx.shadowBlur = 6 * p.depth;
-                ctx.shadowColor = `rgba(212,212,212,${alpha * 0.4})`;
+                ctx.shadowColor = `rgba(${starRGB},${alpha * 0.4})`;
             }
             else {
                 ctx.shadowBlur = 0;
             }
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(212,212,212,${alpha})`;
+            ctx.fillStyle = `rgba(${starRGB},${alpha})`;
             ctx.fill();
         }
         ctx.shadowBlur = 0;
@@ -147,6 +154,7 @@ export function initParticles(canvas, ctx) {
         document.addEventListener('pointermove', updatePointer);
         document.addEventListener('pointerleave', clearPointer);
         document.addEventListener('pointercancel', clearPointer);
+        window.addEventListener('themechange', readColors);
         requestAnimationFrame(draw);
     }
     else {

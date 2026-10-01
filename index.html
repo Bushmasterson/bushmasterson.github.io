@@ -10,8 +10,8 @@
       name="description"
       content="bushmasterson — typescript and c++ developer, cybersecurity enthusiast, creator of tools and communities."
     />
-    <meta name="theme-color" content="#4a9b92" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0f0f10" />
+    <meta name="color-scheme" content="dark light" />
 
     <meta
       property="og:title"
@@ -29,6 +29,22 @@
     <meta property="og:type" content="website" />
 
     <title>bushmasterson | developer &amp; cybersecurity enthusiast</title>
+
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
 
     <link
       rel="icon"
@@ -63,6 +79,41 @@
   </head>
 
   <body>
+    <button
+      id="theme-toggle"
+      type="button"
+      class="theme-toggle"
+      aria-label="Toggle theme"
+    >
+      <svg
+        class="theme-icon theme-icon-sun"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="4" fill="currentColor" />
+        <g stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M12 2v3" />
+          <path d="M12 19v3" />
+          <path d="M2 12h3" />
+          <path d="M19 12h3" />
+          <path d="m4.9 4.9 2.1 2.1" />
+          <path d="m17 17 2.1 2.1" />
+          <path d="m19.1 4.9-2.1 2.1" />
+          <path d="m7 17-2.1 2.1" />
+        </g>
+      </svg>
+      <svg
+        class="theme-icon theme-icon-moon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          fill="currentColor"
+          d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"
+        />
+      </svg>
+    </button>
+
     <div id="boot" aria-hidden="true">
       <div class="boot-output"></div>
     </div>
