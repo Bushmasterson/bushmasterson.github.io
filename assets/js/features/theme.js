@@ -16,7 +16,7 @@ function getSystem() {
 }
 function apply(theme) {
     const root = document.documentElement;
-    root.dataset.theme = theme;
+    root.dataset['theme'] = theme;
     root.style.colorScheme = theme;
     const meta = document.querySelector('meta[name="theme-color"]');
     if (meta)
@@ -35,7 +35,7 @@ export function initTheme() {
     const btn = document.querySelector('#theme-toggle');
     if (btn) {
         btn.addEventListener('click', () => {
-            const current = document.documentElement.dataset.theme;
+            const current = document.documentElement.dataset['theme'];
             const next = current === 'light' ? 'dark' : 'light';
             apply(next);
             try {
