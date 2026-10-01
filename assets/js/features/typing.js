@@ -4,12 +4,12 @@ export function initTyping() {
         return;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     els.forEach((el) => {
-        const text = el.dataset.typed ?? '';
+        const text = el.dataset['typed'] ?? '';
         el.textContent = text;
         if (reduced)
             return;
-        const speed = Number(el.dataset.speed ?? 55);
-        const delay = Number(el.dataset.delay ?? 0);
+        const speed = Number(el.dataset['speed'] ?? 55);
+        const delay = Number(el.dataset['delay'] ?? 0);
         el.textContent = '';
         const tick = (i) => {
             if (i >= text.length)
