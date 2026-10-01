@@ -7,16 +7,13 @@
     "moduleResolution": "bundler",
     "moduleDetection": "force",
     "useDefineForClassFields": true,
+    "types": ["vite/client"],
 
-    /* === Emit === */
-    "rootDir": "src/ts",
-    "outDir": "assets/js",
+    /* === Emit (no emit — Vite builds) === */
+    "noEmit": true,
     "sourceMap": true,
     "removeComments": true,
-    "noEmitOnError": true,
     "newLine": "lf",
-    "importHelpers": false,
-    "noEmitHelpers": false,
 
     /* === Interop === */
     "esModuleInterop": true,
@@ -29,7 +26,7 @@
     /* === Strict core === */
     "strict": true,
 
-    /* === Extreme strictness — beyond "strict" === */
+    /* === Extreme strictness === */
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitOverride": true,
@@ -51,24 +48,12 @@
     "noUnusedParameters": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "noImplicitUseStrict": false,
-    "noStrictGenericChecks": false,
-    "suppressImplicitAnyIndexErrors": false,
-    "suppressExcessPropertyErrors": false,
-    "noErrorTruncation": true,
-
-    /* === Correctness === */
-    "checkJs": false,
-
-    /* === Declarations === */
-    "declaration": false,
-    "declarationMap": false,
 
     /* === Performance === */
     "skipLibCheck": true,
     "incremental": true,
-    "tsBuildInfoFile": "assets/js/.tsbuildinfo"
+    "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo"
   },
-  "include": ["src/ts/**/*"],
-  "exclude": ["node_modules", "assets/js"]
+  "include": ["src/ts/**/*", "vite.config.ts"],
+  "exclude": ["node_modules", "assets/js", "dist"]
 }
