@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     /* === Target & Environment === */
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "module": "ES2022",
+    "target": "ES2024",
+    "lib": ["ES2024", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
     "moduleResolution": "bundler",
     "moduleDetection": "force",
     "useDefineForClassFields": true,
@@ -15,30 +15,52 @@
     "removeComments": true,
     "noEmitOnError": true,
     "newLine": "lf",
+    "importHelpers": false,
+    "noEmitHelpers": false,
 
     /* === Interop === */
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+    "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true,
 
-    /* === Strict core (keep) === */
+    /* === Strict core === */
     "strict": true,
+
+    /* === Extreme strictness — beyond "strict" === */
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noPropertyAccessFromIndexSignature": true,
     "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "strictBuiltinIteratorReturn": true,
 
-    /* === Relaxed (dev-friendly) === */
-    "noUncheckedIndexedAccess": false,
-    "exactOptionalPropertyTypes": false,
-    "noPropertyAccessFromIndexSignature": false,
-    "noImplicitOverride": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "allowUnreachableCode": true,
-    "allowUnusedLabels": true,
-    "verbatimModuleSyntax": false,
+    /* === Code quality === */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noImplicitUseStrict": false,
+    "noStrictGenericChecks": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "suppressExcessPropertyErrors": false,
+    "noErrorTruncation": true,
+
+    /* === Correctness === */
+    "checkJs": false,
+
+    /* === Declarations === */
     "declaration": false,
     "declarationMap": false,
 
@@ -48,5 +70,5 @@
     "tsBuildInfoFile": "assets/js/.tsbuildinfo"
   },
   "include": ["src/ts/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "assets/js"]
 }
