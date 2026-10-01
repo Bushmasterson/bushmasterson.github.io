@@ -2,9 +2,12 @@
 node_modules/
 
 # Build artifacts
+assets/js/
 dist/
+_site/
+.vite/
 
-# TS incremental cache
+# TS cache
 *.tsbuildinfo
 
 # Environment
@@ -26,5 +29,3 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
-
-_site/

@@ -39,12 +39,11 @@ jobs:
       - name: TypeScript type check
         run: npx tsc --noEmit
 
-      - name: Build
-        run: npx tsc
+      - name: Build with Vite
+        run: npx vite build
 
       - name: Verify build output
         run: |
           test -f assets/js/main.js || (echo "main.js missing" && exit 1)
-          test -f assets/js/config.js || (echo "config.js missing" && exit 1)
-          test -f assets/js/features/particles.js || (echo "particles.js missing" && exit 1)
+          test -f assets/js/main.js.map || (echo "main.js.map missing" && exit 1)
           echo "Build output verified."
