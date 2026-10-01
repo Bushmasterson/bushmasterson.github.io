@@ -1,0 +1,44 @@
+name: Lighthouse
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  audit:
+    name: Audit performance and accessibility
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npx tsc
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://bushmasterson.github.io
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          runs: 3
+          configPath: ./.lighthouserc.json

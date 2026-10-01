@@ -5,29 +5,73 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Allow only one concurrent deployment, skip queued runs between.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+# Least-privilege permissions for Pages deployment.
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
 jobs:
-  build-and-deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Build TypeScript
+        run: npx tsc
+
+      - name: Check formatting
+        run: npx prettier --check .
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
-
-      - name: Build with static files
-        run: |
-          echo "No build step needed — static files only."
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
+          retention-days: 1
 
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
+
+      - name: Summary
+        run: |
+          echo "### 🚀 Deployed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**URL:** ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Author:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY

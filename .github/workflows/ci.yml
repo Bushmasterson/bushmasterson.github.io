@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: Lint, type, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Prettier check
+        run: npx prettier --check .
+
+      - name: TypeScript type check
+        run: npx tsc --noEmit
+
+      - name: Build
+        run: npx tsc
+
+      - name: Verify build output
+        run: |
+          test -f assets/js/main.js || (echo "main.js missing" && exit 1)
+          test -f assets/js/config.js || (echo "config.js missing" && exit 1)
+          test -f assets/js/features/particles.js || (echo "particles.js missing" && exit 1)
+          echo "Build output verified."
