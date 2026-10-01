@@ -2,54 +2,262 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 — page not found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#4a9b92" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="robots" content="noindex" />
+
+    <title>404 — page not found | bushmasterson</title>
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f0f10'/%3E%3Ctext x='16' y='22' font-family='ui-monospace, monospace' font-size='18' font-weight='600' fill='%235cb8ac' text-anchor='middle'%3E%26%26%3C/text%3E%3C/svg%3E"
+    />
+
     <style>
-      * {
-        margin: 0;
-        padding: 0;
+      :root {
+        color-scheme: dark;
+        --bg: #0f0f10;
+        --surface: rgba(24, 24, 26, 0.42);
+        --border-subtle: rgba(255, 255, 255, 0.055);
+        --border-hover: rgba(255, 255, 255, 0.16);
+        --accent: #5cb8ac;
+        --accent-bright: #7bd0c3;
+        --accent-dim: rgba(92, 184, 172, 0.1);
+        --accent-glow: rgba(92, 184, 172, 0.22);
+        --text: #f1ece2;
+        --text-soft: #d6d1c6;
+        --muted: #a5a09a;
+        --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      *,
+      *::before,
+      *::after {
         box-sizing: border-box;
       }
 
+      html,
       body {
-        background: #121212;
-        color: #f0ebe0;
-        font-family: "JetBrains Mono", monospace;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
         min-height: 100vh;
+        min-height: 100dvh;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-mono);
+        display: flex;
+        align-items: center;
+        justify-content: center;
         padding: 1.5rem;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-feature-settings: "kern" 1, "liga" 1;
+      }
+
+      /* Subtle background grid */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: -50%;
+        background-image: radial-gradient(
+          circle at center,
+          rgba(92, 184, 172, 0.05) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+        z-index: 0;
       }
 
       .container {
-        max-width: 600px;
-        width: 100%;
-        text-align: center;
+        position: relative;
+        z-index: 1;
+        width: min(100%, 520px);
+        text-align: left;
+      }
+
+      .prompt-line {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
+        letter-spacing: 0.02em;
+      }
+
+      .prompt {
+        color: var(--accent);
+        font-weight: 500;
+        opacity: 0.85;
+      }
+
+      .cursor {
+        display: inline-block;
+        color: var(--text);
+        animation: blink 0.9s steps(1) infinite;
+        margin-left: 0.1em;
+      }
+
+      @keyframes blink {
+        0%,
+        40% {
+          opacity: 1;
+        }
+        41%,
+        100% {
+          opacity: 0;
+        }
       }
 
       h1 {
-        font-size: 3rem;
-        font-weight: 400;
-        margin-bottom: 1rem;
+        font-size: clamp(3rem, 12vw, 5.5rem);
+        font-weight: 500;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin: 0 0 1.2rem;
+        color: var(--text);
       }
 
-      a {
-        color: #f0ebe0;
-        text-decoration: underline;
-        transition: opacity 0.2s ease;
+      h1 .digit {
+        color: var(--accent);
+        text-shadow: 0 0 24px var(--accent-glow);
+        transition: text-shadow 0.5s var(--ease-out);
       }
 
-      a:hover {
-        opacity: 0.6;
+      h1:hover .digit {
+        text-shadow: 0 0 36px var(--accent-glow);
+      }
+
+      .message {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--text-soft);
+        margin: 0 0 1.8rem;
+      }
+
+      .message code {
+        color: var(--accent);
+        background: var(--accent-dim);
+        padding: 0.1em 0.4em;
+        border-radius: 4px;
+        font-size: 0.92em;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+
+      .action {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.6rem 1rem;
+        font-family: inherit;
+        font-size: 0.85rem;
+        color: var(--text-soft);
+        background: var(--surface);
+        border: 1px solid var(--border-subtle);
+        border-radius: 10px;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          color 0.3s var(--ease-out),
+          border-color 0.3s var(--ease-out),
+          background-color 0.3s var(--ease-out),
+          transform 0.3s var(--ease-out);
+      }
+
+      .action:hover {
+        color: var(--accent-bright);
+        border-color: var(--border-hover);
+        transform: translateY(-1px);
+      }
+
+      .action:focus-visible {
+        outline: 2px solid var(--accent-bright);
+        outline-offset: 3px;
+      }
+
+      .action .key {
+        font-size: 0.72rem;
+        color: var(--muted);
+        border: 1px solid var(--border-subtle);
+        border-radius: 4px;
+        padding: 0.05em 0.4em;
+        letter-spacing: 0.05em;
+      }
+
+      .footer {
+        margin-top: 2rem;
+        font-size: 0.78rem;
+        color: var(--muted);
+        font-style: italic;
+        opacity: 0.75;
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: clamp(2.5rem, 15vw, 4rem);
+        }
+        .message {
+          font-size: 0.9rem;
+        }
+        .action {
+          padding: 0.55rem 0.9rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .cursor {
+          animation: none;
+          opacity: 1;
+        }
+        * {
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
   </head>
 
   <body>
     <div class="container">
-      <h1>404 page</h1>
-      <p>back to <a href="https://bushmasterson.github.io">correct page</a></p>
+      <div class="prompt-line">
+        <span class="prompt">bushmasterson@arch:~$</span>
+        <span>cd /requested/path</span>
+        <span class="cursor" aria-hidden="true">|</span>
+      </div>
+
+      <h1>
+        <span class="digit">4</span><span class="digit">0</span><span class="digit">4</span>
+      </h1>
+
+      <p class="message">
+        no such file or directory. the page you're looking for doesn't exist,
+        was moved, or never did. <code>errno 2</code>
+      </p>
+
+      <div class="actions">
+        <a class="action" href="https://bushmasterson.github.io">
+          <span>cd ~</span>
+          <span class="key">HOME</span>
+        </a>
+        <button class="action" type="button" onclick="history.back()">
+          <span>cd ..</span>
+          <span class="key">BACK</span>
+        </button>
+      </div>
+
+      <p class="footer">— nothing to see here, move along.</p>
     </div>
   </body>
 </html>
