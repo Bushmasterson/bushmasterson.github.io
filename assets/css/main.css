@@ -63,7 +63,7 @@
     --accent-dim: rgba(92, 184, 172, 0.1);
     --accent-glow: rgba(92, 184, 172, 0.22);
 
-    /* Canvas — dark theme */
+    /* Canvas */
     --cursor-line: rgba(255, 255, 255, 0.14);
     --star-line: rgba(212, 212, 212, 1);
     --star-fill: rgba(212, 212, 212, 1);
@@ -81,9 +81,11 @@
       0 18px 42px rgba(0, 0, 0, 0.55), 0 0 32px rgba(92, 184, 172, 0.08),
       0 0 0 1px rgba(255, 255, 255, 0.03) inset;
     --shadow-avatar:
-      0 12px 32px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+      0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 18px rgba(255, 255, 255, 0.08),
+      0 0 55px rgba(255, 255, 255, 0.14), 0 14px 36px rgba(0, 0, 0, 0.35);
     --shadow-avatar-hover:
-      0 18px 40px rgba(0, 0, 0, 0.55), 0 0 28px rgba(92, 184, 172, 0.14);
+      0 0 0 1px rgba(255, 255, 255, 0.2), 0 0 28px rgba(255, 255, 255, 0.14),
+      0 0 90px rgba(255, 255, 255, 0.22), 0 20px 44px rgba(0, 0, 0, 0.4);
 
     /* Radii */
     --radius-card: 18px;
@@ -159,9 +161,11 @@
       0 18px 42px rgba(20, 20, 20, 0.1), 0 0 32px rgba(13, 122, 109, 0.06),
       0 0 0 1px rgba(20, 20, 20, 0.03) inset;
     --shadow-avatar:
-      0 12px 32px rgba(20, 20, 20, 0.08), 0 2px 6px rgba(20, 20, 20, 0.05);
+      0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 18px rgba(0, 0, 0, 0.06),
+      0 0 55px rgba(255, 255, 255, 0.9), 0 14px 36px rgba(0, 0, 0, 0.1);
     --shadow-avatar-hover:
-      0 18px 40px rgba(20, 20, 20, 0.12), 0 0 28px rgba(13, 122, 109, 0.1);
+      0 0 0 1px rgba(0, 0, 0, 0.16), 0 0 28px rgba(0, 0, 0, 0.1),
+      0 0 90px rgba(255, 255, 255, 1), 0 20px 44px rgba(0, 0, 0, 0.16);
   }
 }
 
@@ -500,7 +504,7 @@
     border-radius: var(--radius-pill);
     object-fit: cover;
     margin: calc(-1 * clamp(55px, 16vw, 80px)) auto 8px;
-    border: 2px solid var(--border-subtle);
+    border: 2px solid rgba(255, 255, 255, 0.14);
     box-shadow: var(--shadow-avatar);
     image-rendering: auto;
     backface-visibility: hidden;
@@ -510,12 +514,20 @@
       border-color 0.45s var(--ease-out);
   }
 
+  [data-theme="light"] .avatar {
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
   @media (hover: hover) {
     .avatar:hover {
-      transform: scale(1.03);
-      border-color: var(--border-active);
+      transform: scale(1.04);
+      border-color: rgba(255, 255, 255, 0.28);
       box-shadow: var(--shadow-avatar-hover);
     }
+  }
+
+  [data-theme="light"] .avatar:hover {
+    border-color: rgba(0, 0, 0, 0.16);
   }
 
   .footer-links {
@@ -826,7 +838,6 @@
 
 /* ─── Easter eggs: boot, terminal, vim ─── */
 @layer components {
-  /* Boot screen — always dark */
   #boot {
     position: fixed;
     inset: 0;
@@ -863,7 +874,6 @@
     }
   }
 
-  /* Terminal — always dark, like a real shell */
   #terminal {
     position: fixed;
     left: 50%;
@@ -976,7 +986,6 @@
     color: var(--accent);
   }
 
-  /* Vim-style highlight under the title */
   .typed-line {
     position: relative;
     display: inline-block;
