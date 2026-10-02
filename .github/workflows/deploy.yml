@@ -43,24 +43,22 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html 404.html _site/
+          cp -r projects _site/
           cp -r assets _site/
 
       - name: Minify HTML
         run: |
-          npx html-minifier-terser \
-            --collapse-whitespace \
-            --remove-comments \
-            --remove-redundant-attributes \
-            --remove-script-type-attributes \
-            --use-short-doctype \
-            --minify-css true \
-            --minify-js true \
-            -o _site/index.html index.html
-          npx html-minifier-terser \
-            --collapse-whitespace \
-            --remove-comments \
-            --use-short-doctype \
-            -o _site/404.html 404.html
+          find _site -name "*.html" -type f | while read -r file; do
+            npx html-minifier-terser \
+              --collapse-whitespace \
+              --remove-comments \
+              --remove-redundant-attributes \
+              --remove-script-type-attributes \
+              --use-short-doctype \
+              --minify-css true \
+              --minify-js true \
+              -o "$file" "$file"
+          done
 
       - name: Minify CSS
         run:
