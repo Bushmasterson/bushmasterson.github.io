@@ -5,6 +5,7 @@ import { initTyping } from './features/typing.js';
 import { initBoot } from './features/boot.js';
 import { initTerminal } from './features/terminal.js';
 import { initTheme } from './features/theme.js';
+import { initProjectFilter } from './features/projects-filter.js';
 
 initTheme();
 
@@ -20,3 +21,4 @@ initBackToTop();
 initAvatar();
 initTyping();
 initTerminal();
+initProjectFilter();
