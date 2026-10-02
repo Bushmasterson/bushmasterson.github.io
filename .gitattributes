@@ -1,7 +1,8 @@
-﻿# Default — normalize all text files to LF on commit
+# ============================================
+# Line endings — normalize everything to LF
+# ============================================
 * text=auto eol=lf
 
-# Explicit text files
 *.html      text eol=lf
 *.htm       text eol=lf
 *.css       text eol=lf
@@ -27,17 +28,14 @@
 *.ini       text eol=lf
 *.cfg       text eol=lf
 
-# Shell — LF is mandatory
 *.sh        text eol=lf
 *.bash      text eol=lf
 *.zsh       text eol=lf
 
-# Windows scripts — CRLF is mandatory
 *.bat       text eol=crlf
 *.cmd       text eol=crlf
 *.ps1       text eol=crlf
 
-# Binary — Git never touches
 *.png       binary
 *.jpg       binary
 *.jpeg      binary
@@ -59,17 +57,15 @@
 *.rar       binary
 *.exe       binary
 *.dll       binary
-*.so        binary
+*.so       binary
 *.wasm      binary
 *.mp3       binary
 *.mp4       binary
 
-# Lockfiles — keep ours, don't diff
 package-lock.json   merge=ours -diff
 pnpm-lock.yaml      merge=ours -diff
 yarn.lock           merge=ours -diff
 
-# Linguist — hide generated & vendored
 assets/icons/**     linguist-vendored
 assets/icons/**     linguist-generated
 assets/js/**        linguist-generated
@@ -79,11 +75,9 @@ package-lock.json   linguist-detectable=false
 _site/**            linguist-generated
 dist/**             linguist-generated
 
-# Documentation
 *.md                linguist-documentation
 docs/**             linguist-documentation
 
-# Export-ignore (for `git archive`)
 .github/            export-ignore
 .vscode/            export-ignore
 .gitattributes      export-ignore
