@@ -1,1 +1,98 @@
-﻿* text=auto eol=lf
+﻿# Default — normalize all text files to LF on commit
+* text=auto eol=lf
+
+# Explicit text files
+*.html      text eol=lf
+*.htm       text eol=lf
+*.css       text eol=lf
+*.scss      text eol=lf
+*.less      text eol=lf
+*.js        text eol=lf
+*.mjs       text eol=lf
+*.cjs       text eol=lf
+*.ts        text eol=lf
+*.tsx       text eol=lf
+*.mts       text eol=lf
+*.cts       text eol=lf
+*.json      text eol=lf
+*.jsonc     text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.md        text eol=lf
+*.mdx       text eol=lf
+*.svg       text eol=lf
+*.txt       text eol=lf
+*.xml       text eol=lf
+*.toml      text eol=lf
+*.ini       text eol=lf
+*.cfg       text eol=lf
+
+# Shell — LF is mandatory
+*.sh        text eol=lf
+*.bash      text eol=lf
+*.zsh       text eol=lf
+
+# Windows scripts — CRLF is mandatory
+*.bat       text eol=crlf
+*.cmd       text eol=crlf
+*.ps1       text eol=crlf
+
+# Binary — Git never touches
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.webp      binary
+*.avif      binary
+*.ico       binary
+*.bmp       binary
+*.woff      binary
+*.woff2     binary
+*.ttf       binary
+*.otf       binary
+*.eot       binary
+*.pdf       binary
+*.zip       binary
+*.gz        binary
+*.tar       binary
+*.7z        binary
+*.rar       binary
+*.exe       binary
+*.dll       binary
+*.so        binary
+*.wasm      binary
+*.mp3       binary
+*.mp4       binary
+
+# Lockfiles — keep ours, don't diff
+package-lock.json   merge=ours -diff
+pnpm-lock.yaml      merge=ours -diff
+yarn.lock           merge=ours -diff
+
+# Linguist — hide generated & vendored
+assets/icons/**     linguist-vendored
+assets/icons/**     linguist-generated
+assets/js/**        linguist-generated
+assets/js/**        linguist-detectable=false
+package-lock.json   linguist-generated
+package-lock.json   linguist-detectable=false
+_site/**            linguist-generated
+dist/**             linguist-generated
+
+# Documentation
+*.md                linguist-documentation
+docs/**             linguist-documentation
+
+# Export-ignore (for `git archive`)
+.github/            export-ignore
+.vscode/            export-ignore
+.gitattributes      export-ignore
+.gitignore          export-ignore
+.prettierrc         export-ignore
+.prettierignore     export-ignore
+.editorconfig       export-ignore
+tsconfig.json       export-ignore
+vite.config.ts      export-ignore
+package.json        export-ignore
+package-lock.json   export-ignore
+node_modules/       export-ignore

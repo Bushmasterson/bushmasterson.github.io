@@ -1,0 +1,46 @@
+name: Feature request
+description: Suggest an idea
+title: '[feat] '
+labels: ['enhancement', 'triage']
+assignees: ['Bushmasterson']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the idea.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem it solves
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives
+    validations:
+      required: false
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Scope
+      options:
+        - UI / design
+        - Performance
+        - Accessibility
+        - Privacy / security
+        - Dev experience
+        - Other
+    validations:
+      required: true

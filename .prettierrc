@@ -2,27 +2,22 @@
   "printWidth": 80,
   "tabWidth": 2,
   "useTabs": false,
-
   "semi": true,
   "singleQuote": true,
   "quoteProps": "consistent",
   "jsxSingleQuote": false,
-
   "trailingComma": "all",
   "bracketSpacing": true,
   "bracketSameLine": false,
   "arrowParens": "always",
-
   "proseWrap": "always",
   "htmlWhitespaceSensitivity": "strict",
   "vueIndentScriptAndStyle": true,
   "embeddedLanguageFormatting": "auto",
   "singleAttributePerLine": true,
-
   "endOfLine": "lf",
   "insertPragma": false,
   "requirePragma": false,
-
   "overrides": [
     {
       "files": ["*.html", "*.htm"],
@@ -84,7 +79,14 @@
       }
     },
     {
-      "files": [".prettierignore", ".gitignore", ".editorconfig"],
+      "files": [
+        "*.{prettier,git}ignore",
+        ".editorconfig",
+        ".gitattributes",
+        ".npmrc",
+        ".nvmrc",
+        ".browserslistrc"
+      ],
       "options": {
         "printWidth": 80,
         "tabWidth": 2,

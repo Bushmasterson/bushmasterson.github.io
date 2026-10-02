@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    /* === Target & Environment === */
     "target": "ES2024",
     "lib": ["ES2024", "DOM", "DOM.Iterable"],
     "module": "ESNext",
@@ -9,24 +8,23 @@
     "useDefineForClassFields": true,
     "types": ["vite/client"],
 
-    /* === Emit (no emit — Vite builds) === */
     "noEmit": true,
     "sourceMap": true,
     "removeComments": true,
     "newLine": "lf",
-
-    /* === Interop === */
+    "noEmitOnError": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
     "forceConsistentCasingInFileNames": true,
+    "allowImportingTsExtensions": false,
+    "noUncheckedSideEffectImports": true,
+    "erasableSyntaxOnly": true,
 
-    /* === Strict core === */
     "strict": true,
 
-    /* === Extreme strictness === */
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitOverride": true,
@@ -43,13 +41,32 @@
     "strictPropertyInitialization": true,
     "strictBuiltinIteratorReturn": true,
 
-    /* === Code quality === */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
 
-    /* === Performance === */
+    "noImplicitUseStrict": false,
+    "noStrictGenericChecks": false,
+    "suppressImplicitAnyIndexErrors": false,
+    "suppressExcessPropertyErrors": false,
+    "noErrorTruncation": true,
+    "disableSizeLimit": false,
+
+    "allowJs": false,
+    "checkJs": false,
+    "allowUmdGlobalAccess": false,
+    "resolvePackageJsonExports": true,
+    "resolvePackageJsonImports": true,
+    "allowArbitraryExtensions": false,
+    "customConditions": [],
+
+    "preserveSymlinks": false,
+    "noResolve": false,
+
+    "declaration": false,
+    "declarationMap": false,
+
     "skipLibCheck": true,
     "incremental": true,
     "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo"

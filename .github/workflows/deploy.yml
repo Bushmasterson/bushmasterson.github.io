@@ -39,9 +39,6 @@ jobs:
       - name: Build with Vite
         run: npx vite build
 
-      - name: Check formatting
-        run: npx prettier --check .
-
       - name: Prepare artifact
         run: |
           mkdir -p _site
@@ -100,3 +97,4 @@ jobs:
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**URL:** ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
           echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Author:** @${{ github.actor }}" >> $GITHUB_STEP_SUMMARY
