@@ -20,7 +20,7 @@ permissions:
 
 jobs:
   audit:
-    name: Dependency audit
+    name: Audit
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -42,7 +42,7 @@ jobs:
         continue-on-error: true
 
   secret-scan:
-    name: Secret scan
+    name: Secrets
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -58,7 +58,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   dependency-review:
-    name: Dependency review
+    name: Review
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     timeout-minutes: 10
@@ -77,7 +77,7 @@ jobs:
             Unlicense
 
   codeql:
-    name: Analyze TypeScript (javascript-typescript)
+    name: CodeQL
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
