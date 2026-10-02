@@ -1,0 +1,62 @@
+name: Bug report
+description: Report a bug
+title: '[bug] '
+labels: ['bug', 'triage']
+assignees: ['Bushmasterson']
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a problem.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What happens?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Click ...
+        3. See ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 130, Firefox 132, Safari 18
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      placeholder: Windows 11, macOS 15, iOS 18
+    validations:
+      required: true
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console errors
+      description: F12 → Console, copy here
+      render: shell
+    validations:
+      required: false

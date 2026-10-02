@@ -1,25 +1,58 @@
 # Dependencies
 node_modules/
 
-# Build artifacts
+# Generated
 assets/js/
 assets/icons/
 dist/
+_site/
+.vite/
+coverage/
+.nyc_output/
 
-# Lock files
+# Lockfiles
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+bun.lockb
 
 # Editors
 .vscode/
 .idea/
+*.sublime-workspace
 
 # OS
 .DS_Store
 Thumbs.db
+Desktop.ini
 
 # Caches
 *.tsbuildinfo
 .cache/
-coverage/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+
+# Git internals
+.git/
+
+# Binary-ish
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.avif
+*.ico
+*.woff
+*.woff2
+*.ttf
+*.otf
+*.eot
+*.pdf
+*.zip
+*.gz
+*.tar
+
+# Logs
+*.log

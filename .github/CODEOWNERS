@@ -1,0 +1,21 @@
+# Default — everything
+
+- @Bushmasterson
+
+# CI and workflows
+
+/.github/ @Bushmasterson
+
+# Configs
+
+/tsconfig.json @Bushmasterson /vite.config.ts @Bushmasterson /package.json
+@Bushmasterson /package-lock.json @Bushmasterson /.prettierrc @Bushmasterson
+/.editorconfig @Bushmasterson /.gitattributes @Bushmasterson
+
+# Source
+
+/src/ @Bushmasterson
+
+# Generated assets
+
+/assets/js/ @Bushmasterson /assets/icons/ @Bushmasterson

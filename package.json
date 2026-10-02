@@ -5,17 +5,25 @@
   "description": "bushmasterson — developer portfolio",
   "type": "module",
   "scripts": {
-    "dev": "vite build --watch",
+    "dev": "concurrently -k -n vite,serve -c cyan,green \"npm:dev:watch\" \"npm:dev:serve\"",
+    "dev:watch": "vite build --watch --mode development",
+    "dev:serve": "serve -p 3000 .",
     "build": "vite build",
     "preview": "serve -p 3000 .",
     "typecheck": "tsc --noEmit",
-    "clean": "rimraf assets/js dist .vite",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "typecheck:watch": "tsc --noEmit --watch --preserveWatchOutput",
+    "lint:prettier": "prettier --check .",
+    "lint:prettier:fix": "prettier --write .",
+    "check": "npm run typecheck && npm run lint:prettier",
+    "clean": "rimraf assets/js dist _site .vite node_modules/.cache",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "concurrently": "9.2.4",
     "esbuild": "^0.24.2",
     "html-minifier-terser": "^7.2.0",
+    "husky": "9.1.7",
+    "lint-staged": "15.5.2",
     "prettier": "^3.3.0",
     "rimraf": "^6.0.1",
     "serve": "^14.2.0",
@@ -25,5 +33,17 @@
   "engines": {
     "node": ">=24",
     "npm": ">=10"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,mts,cts}": [
+      "prettier --write"
+    ],
+    "*.{html,htm,css,json,yml,yaml,md}": [
+      "prettier --write"
+    ]
+  },
+  "allowScripts": {
+    "esbuild@0.24.2": true,
+    "esbuild@0.25.12": true
   }
 }
