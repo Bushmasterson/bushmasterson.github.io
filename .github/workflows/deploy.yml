@@ -42,25 +42,22 @@ jobs:
       - name: Prepare artifact
         run: |
           mkdir -p _site
-          cp index.html 404.html _site/
+          cp index.html 404.html projects.html _site/
           cp -r assets _site/
 
       - name: Minify HTML
         run: |
-          npx html-minifier-terser \
-            --collapse-whitespace \
-            --remove-comments \
-            --remove-redundant-attributes \
-            --remove-script-type-attributes \
-            --use-short-doctype \
-            --minify-css true \
-            --minify-js true \
-            -o _site/index.html index.html
-          npx html-minifier-terser \
-            --collapse-whitespace \
-            --remove-comments \
-            --use-short-doctype \
-            -o _site/404.html 404.html
+          for file in index.html 404.html projects.html; do
+            npx html-minifier-terser \
+              --collapse-whitespace \
+              --remove-comments \
+              --remove-redundant-attributes \
+              --remove-script-type-attributes \
+              --use-short-doctype \
+              --minify-css true \
+              --minify-js true \
+              -o "_site/$file" "$file"
+          done
 
       - name: Minify CSS
         run:
