@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="bushmasterson — projects, tools, and experiments."
+    />
+    <meta
+      name="theme-color"
+      content="#0f0f10"
+    />
+    <meta
+      name="color-scheme"
+      content="dark light"
+    />
+
+    <meta
+      property="og:title"
+      content="projects | bushmasterson"
+    />
+    <meta
+      property="og:description"
+      content="projects, tools, and experiments."
+    />
+    <meta
+      property="og:url"
+      content="https://bushmasterson.github.io/projects.html"
+    />
+    <meta
+      property="og:image"
+      content="https://bushmasterson.github.io/assets/images/avatar.png"
+    />
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <title>projects | bushmasterson</title>
+
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f0f10'/%3E%3Ctext x='16' y='22' font-family='ui-monospace, monospace' font-size='18' font-weight='600' fill='%235cb8ac' text-anchor='middle'%3E%26%26%3C/text%3E%3C/svg%3E"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' fill='%230f0f10'/%3E%3Ctext x='90' y='120' font-family='ui-monospace, monospace' font-size='90' font-weight='600' fill='%235cb8ac' text-anchor='middle'%3E%26%26%3C/text%3E%3C/svg%3E"
+    />
+
+    <link
+      rel="preload"
+      as="style"
+      href="assets/css/main.css"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="assets/icons/webfonts/fa-solid-900.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="assets/icons/webfonts/fa-brands-400.woff2"
+      crossorigin
+    />
+
+    <link
+      rel="stylesheet"
+      href="assets/css/main.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="assets/icons/css/all.min.css"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="assets/icons/css/all.min.css"
+      />
+    </noscript>
+
+    <script
+      type="module"
+      src="assets/js/main.js"
+    ></script>
+  </head>
+
+  <body>
+    <button
+      id="theme-toggle"
+      type="button"
+      class="theme-toggle"
+      aria-label="Toggle theme"
+    >
+      <svg
+        class="theme-icon theme-icon-sun"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="4"
+          fill="currentColor"
+        />
+        <g
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M12 2v3" />
+          <path d="M12 19v3" />
+          <path d="M2 12h3" />
+          <path d="M19 12h3" />
+          <path d="m4.9 4.9 2.1 2.1" />
+          <path d="m17 17 2.1 2.1" />
+          <path d="m19.1 4.9-2.1 2.1" />
+          <path d="m7 17-2.1 2.1" />
+        </g>
+      </svg>
+      <svg
+        class="theme-icon theme-icon-moon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          fill="currentColor"
+          d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"
+        />
+      </svg>
+    </button>
+
+    <canvas
+      id="particles-canvas"
+      aria-hidden="true"
+    ></canvas>
+    <button
+      id="back-to-top"
+      type="button"
+      aria-label="Back to top"
+      >↑</button
+    >
+
+    <main
+      class="container"
+      id="main"
+    >
+      <article
+        class="main-card"
+        aria-labelledby="page-title"
+      >
+        <header>
+          <h1
+            class="typed-line"
+            id="page-title"
+          >
+            <span aria-hidden="true">
+              <span class="prompt">bushmasterson@arch:~$</span>
+              <span
+                class="typed"
+                data-typed="cd projects"
+                data-speed="100"
+                data-delay="400"
+              ></span
+              ><span class="cursor-blink">|</span>
+            </span>
+            <span class="sr-only">projects</span>
+          </h1>
+          <p class="subtitle">
+            <span aria-hidden="true">
+              <span class="prompt">&gt;</span>
+              <span
+                class="typed"
+                data-typed="what i build and maintain."
+                data-speed="55"
+                data-delay="1400"
+              ></span>
+            </span>
+            <span class="sr-only">what i build and maintain.</span>
+          </p>
+        </header>
+
+        <section
+          class="card"
+          id="bushnews"
+          aria-labelledby="bushnews-title"
+        >
+          <div class="card-header">
+            <h2 id="bushnews-title">
+              <span class="prompt">~$</span> cat bushnews.md
+            </h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              curated cybersecurity &amp; it news. hand-picked links, security
+              advisories, and tool discoveries — no noise, only signal.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">stack</span> telegram</li>
+              <li><span class="meta-label">status</span> active</li>
+            </ul>
+            <div class="project-links">
+              <a
+                href="https://t.me/bushnewschannel"
+                target="_blank"
+                rel="noopener noreferrer"
+                >telegram channel</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="card"
+          id="bush-bot"
+          aria-labelledby="bush-bot-title"
+        >
+          <div class="card-header">
+            <h2 id="bush-bot-title">
+              <span class="prompt">~$</span> cat bush-bot.md
+            </h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              telegram bot that pushes updates from the news channel and
+              provides quick access to links and contacts.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">stack</span> typescript · node</li>
+              <li><span class="meta-label">status</span> active</li>
+            </ul>
+            <div class="project-links">
+              <a
+                href="https://github.com/Bushmasterson/bush-bot"
+                target="_blank"
+                rel="noopener noreferrer"
+                >github</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="card"
+          id="bush-tasks"
+          aria-labelledby="bush-tasks-title"
+        >
+          <div class="card-header">
+            <h2 id="bush-tasks-title">
+              <span class="prompt">~$</span> cat bush-tasks.md
+            </h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              minimal cli task tracker. written in c++ for speed, portability,
+              and zero runtime dependencies.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">stack</span> c++</li>
+              <li><span class="meta-label">license</span> mit</li>
+            </ul>
+            <div class="project-links">
+              <a
+                href="https://github.com/Bushmasterson/bush-tasks"
+                target="_blank"
+                rel="noopener noreferrer"
+                >github</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <p class="page-footer">
+          <a href="index.html">← back to home</a>
+        </p>
+      </article>
+    </main>
+  </body>
+</html>

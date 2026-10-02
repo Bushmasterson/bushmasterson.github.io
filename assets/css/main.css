@@ -1036,3 +1036,122 @@
     }
   }
 }
+
+/* ─── Project stack badge (index) ─── */
+.card-content ul li .stack {
+  display: inline-block;
+  padding: 0.1em 0.45em;
+  font-size: 0.7em;
+  color: var(--muted);
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  letter-spacing: 0.03em;
+  background: rgba(255, 255, 255, 0.012);
+}
+
+/* ─── "more info" link on index ─── */
+.card-more {
+  margin: 0.8rem 0 0;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: var(--fs-sm);
+  text-align: left;
+}
+
+.card-more a {
+  color: var(--accent);
+  transition: color 0.3s var(--ease-out);
+}
+
+.card-more a:hover {
+  color: var(--accent-bright);
+}
+
+/* ─── Projects page ─── */
+#bushnews {
+  animation-delay: 0.1s;
+}
+#bush-bot {
+  animation-delay: 0.2s;
+}
+#bush-tasks {
+  animation-delay: 0.3s;
+}
+
+.project-desc {
+  margin: 0.4rem 0 0.7rem;
+  font-size: var(--fs-sm);
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+.project-meta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.2rem;
+  font-size: var(--fs-xs);
+  color: var(--muted);
+}
+
+.project-meta li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+}
+
+.project-meta .meta-label {
+  color: var(--accent);
+  opacity: 0.7;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px dashed var(--border-subtle);
+  font-size: var(--fs-sm);
+}
+
+.project-links a {
+  color: var(--accent);
+  transition: color 0.25s var(--ease-out);
+}
+
+.project-links a:hover {
+  color: var(--accent-bright);
+}
+
+.project-links a::after {
+  content: " →";
+  opacity: 0.5;
+  transition: opacity 0.25s var(--ease-out);
+}
+
+.project-links a:hover::after {
+  opacity: 1;
+}
+
+/* ─── Back to home link ─── */
+.page-footer {
+  margin: var(--space-3) 0 0;
+  font-size: var(--fs-sm);
+  color: var(--muted);
+  text-align: center;
+}
+
+.page-footer a {
+  color: var(--muted);
+  transition: color 0.3s var(--ease-out);
+}
+
+.page-footer a:hover {
+  color: var(--accent);
+}
