@@ -45,6 +45,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `terminal` Drop whoami command
 - Update CHANGELOG (#47)
 - Update CHANGELOG (#48)
+- Update CHANGELOG (#50)
 
 ### Dependencies
 
@@ -80,6 +81,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `pages` Add /about/ and /rules/, link from home cards
 - `nav` Full footer links — about · projects · rules · social · uses
 - `about` Calisthenics, music ru, expanded hobbies + values; footer nav full
+- Aesthetic overhaul + optimization + terminal refactor (#51)
 
 ### Performance
 
