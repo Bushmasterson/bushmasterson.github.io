@@ -3,12 +3,25 @@ const CELL = 16;
 const TICK_MS = 110;
 const BEST_KEY = 'snake_best';
 
+/* Idle patrol bounds — snake bounces inside this rectangle */
+const IDLE_MIN = 4;
+const IDLE_MAX = GRID - 5;
+
+type Point = { x: number; y: number };
+
 export function initSnake(): void {
   const canvas = document.querySelector<HTMLCanvasElement>('#snake-canvas');
   const scoreEl = document.querySelector<HTMLElement>('#snake-score');
   const restartBtn =
     document.querySelector<HTMLButtonElement>('#snake-restart');
   const wrap = document.querySelector<HTMLElement>('.snake-canvas-wrap');
+  const overlay = document.querySelector<HTMLElement>('#snake-gameover');
+  const overlayRestartBtn = document.querySelector<HTMLButtonElement>(
+    '#snake-gameover-restart',
+  );
+  const finalScoreEl =
+    document.querySelector<HTMLElement>('#snake-final-score');
+  const finalBestEl = document.querySelector<HTMLElement>('#snake-final-best');
 
   if (!canvas || !wrap) return;
   const ctx = canvas.getContext('2d');
@@ -25,8 +38,6 @@ export function initSnake(): void {
   canvas.style.aspectRatio = '1 / 1';
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-  type Point = { x: number; y: number };
-
   let snake: Point[] = [];
   let dir: Point = { x: 1, y: 0 };
   let nextDir: Point = { x: 1, y: 0 };
@@ -36,6 +47,7 @@ export function initSnake(): void {
   let running = false;
   let paused = false;
   let dead = false;
+  let idle = true;
   let loopId = 0;
   let last = 0;
   let acc = 0;
@@ -64,7 +76,7 @@ export function initSnake(): void {
     food = { x: 0, y: 0 };
   };
 
-  const reset = (): void => {
+  const setSnakeDefault = (): void => {
     snake = [
       { x: 8, y: 10 },
       { x: 7, y: 10 },
@@ -72,17 +84,51 @@ export function initSnake(): void {
     ];
     dir = { x: 1, y: 0 };
     nextDir = { x: 1, y: 0 };
+  };
+
+  const showOverlay = (): void => {
+    if (!overlay) return;
+    if (finalScoreEl) finalScoreEl.textContent = String(score);
+    if (finalBestEl) finalBestEl.textContent = String(best);
+    overlay.hidden = false;
+    void overlay.offsetWidth;
+    overlay.classList.add('is-visible');
+  };
+
+  const hideOverlay = (): void => {
+    if (!overlay) return;
+    overlay.classList.remove('is-visible');
+    window.setTimeout(() => {
+      if (!overlay.classList.contains('is-visible')) overlay.hidden = true;
+    }, 380);
+  };
+
+  /* Put the snake into idle patrol mode */
+  const enterIdle = (): void => {
+    setSnakeDefault();
     score = 0;
     paused = false;
     dead = false;
-    wrap.classList.remove('snake-over');
+    idle = true;
+    hideOverlay();
     updateScore();
     placeFood();
+  };
+
+  /* Leave idle, keep current position & direction — no reset */
+  const beginPlaying = (): void => {
+    score = 0;
+    paused = false;
+    dead = false;
+    idle = false;
+    hideOverlay();
+    updateScore();
   };
 
   const gameOver = (): void => {
     running = false;
     dead = true;
+    idle = false;
     cancelAnimationFrame(loopId);
     if (score > best) {
       best = score;
@@ -92,8 +138,8 @@ export function initSnake(): void {
         /* ignore */
       }
     }
-    wrap.classList.add('snake-over');
     draw();
+    showOverlay();
   };
 
   const step = (): void => {
@@ -101,6 +147,25 @@ export function initSnake(): void {
     const head = snake[0];
     if (!head) return;
     const nh: Point = { x: head.x + dir.x, y: head.y + dir.y };
+
+    /* Idle patrol — traces the perimeter of a central rectangle.
+       Never dies, never leaves the safe zone, never hits itself. */
+    if (idle) {
+      let turn: Point | null = null;
+      if (dir.x === 1 && nh.x > IDLE_MAX) turn = { x: 0, y: -1 };
+      else if (dir.y === -1 && nh.y < IDLE_MIN) turn = { x: -1, y: 0 };
+      else if (dir.x === -1 && nh.x < IDLE_MIN) turn = { x: 0, y: 1 };
+      else if (dir.y === 1 && nh.y > IDLE_MAX) turn = { x: 1, y: 0 };
+
+      if (turn) {
+        dir = turn;
+        nextDir = turn;
+      }
+
+      snake.unshift({ x: head.x + dir.x, y: head.y + dir.y });
+      snake.pop();
+      return;
+    }
 
     if (nh.x < 0 || nh.x >= GRID || nh.y < 0 || nh.y >= GRID) {
       gameOver();
@@ -123,6 +188,35 @@ export function initSnake(): void {
     }
   };
 
+  /* Soft diffused teal frame around the play area */
+  const drawWalls = (): void => {
+    const inset = 4;
+    const x = inset;
+    const y = inset;
+    const w = W - inset * 2;
+    const h = H - inset * 2;
+
+    ctx.save();
+
+    ctx.shadowColor = 'rgba(92, 184, 172, 0.9)';
+    ctx.shadowBlur = 22;
+    ctx.strokeStyle = 'rgba(92, 184, 172, 0.35)';
+    ctx.lineWidth = 4;
+    ctx.strokeRect(x, y, w, h);
+
+    ctx.shadowBlur = 12;
+    ctx.strokeStyle = 'rgba(92, 184, 172, 0.55)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(x, y, w, h);
+
+    ctx.shadowBlur = 4;
+    ctx.strokeStyle = 'rgba(123, 208, 195, 0.85)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(x, y, w, h);
+
+    ctx.restore();
+  };
+
   const draw = (): void => {
     ctx.fillStyle = '#0a0a0b';
     ctx.fillRect(0, 0, W, H);
@@ -140,6 +234,8 @@ export function initSnake(): void {
       ctx.lineTo(W, p);
       ctx.stroke();
     }
+
+    drawWalls();
 
     ctx.fillStyle = '#ff5f57';
     ctx.shadowColor = 'rgba(255, 95, 87, 0.7)';
@@ -178,13 +274,19 @@ export function initSnake(): void {
     loopId = requestAnimationFrame(frame);
   };
 
-  const start = (): void => {
-    reset();
+  const startLoop = (): void => {
     running = true;
     last = 0;
     acc = 0;
     cancelAnimationFrame(loopId);
     loopId = requestAnimationFrame(frame);
+  };
+
+  const newGame = (): void => {
+    setSnakeDefault();
+    beginPlaying();
+    placeFood();
+    startLoop();
   };
 
   window.addEventListener('keydown', (e) => {
@@ -211,12 +313,21 @@ export function initSnake(): void {
     e.preventDefault();
 
     if (key === ' ') {
-      if (!running && dead) start();
-      else if (running) paused = !paused;
+      if (!running && dead) {
+        newGame();
+        return;
+      }
+      if (idle) {
+        beginPlaying();
+        return;
+      }
+      if (running) paused = !paused;
       return;
     }
 
-    if (!running) return;
+    if (idle) beginPlaying();
+
+    if (!running || idle) return;
 
     if (key === 'arrowup' || key === 'w') {
       if (dir.y !== 1) nextDir = { x: 0, y: -1 };
@@ -229,7 +340,13 @@ export function initSnake(): void {
     }
   });
 
-  restartBtn?.addEventListener('click', start);
+  canvas.addEventListener('pointerdown', () => {
+    if (idle) beginPlaying();
+  });
 
-  start();
+  restartBtn?.addEventListener('click', newGame);
+  overlayRestartBtn?.addEventListener('click', newGame);
+
+  enterIdle();
+  startLoop();
 }
