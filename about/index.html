@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="bushmasterson — about."
+    />
+    <meta
+      name="theme-color"
+      content="#0f0f10"
+    />
+    <meta
+      name="color-scheme"
+      content="dark light"
+    />
+
+    <meta
+      property="og:title"
+      content="about | bushmasterson"
+    />
+    <meta
+      property="og:url"
+      content="https://bushmasterson.github.io/about/"
+    />
+
+    <title>about | bushmasterson</title>
+
+    <script src="../assets/theme-init.js"></script>
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f0f10'/%3E%3Ctext x='16' y='22' font-family='ui-monospace, monospace' font-size='18' font-weight='600' fill='%235cb8ac' text-anchor='middle'%3E%26%26%3C/text%3E%3C/svg%3E"
+    />
+
+    <link
+      rel="preload"
+      as="style"
+      href="../assets/css/main.css"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="../assets/icons/webfonts/fa-solid-900.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="../assets/icons/webfonts/fa-brands-400.woff2"
+      crossorigin
+    />
+
+    <link
+      rel="stylesheet"
+      href="../assets/css/main.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../assets/icons/css/all.min.css"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="../assets/icons/css/all.min.css"
+      />
+    </noscript>
+
+    <script
+      type="module"
+      src="../assets/js/main.js"
+    ></script>
+  </head>
+
+  <body>
+    <button
+      id="theme-toggle"
+      type="button"
+      class="theme-toggle"
+      aria-label="Toggle theme"
+    >
+      <svg
+        class="theme-icon theme-icon-sun"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="4"
+          fill="currentColor"
+        />
+        <g
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M12 2v3" />
+          <path d="M12 19v3" />
+          <path d="M2 12h3" />
+          <path d="M19 12h3" />
+          <path d="m4.9 4.9 2.1 2.1" />
+          <path d="m17 17 2.1 2.1" />
+          <path d="m19.1 4.9-2.1 2.1" />
+          <path d="m7 17-2.1 2.1" />
+        </g>
+      </svg>
+      <svg
+        class="theme-icon theme-icon-moon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          fill="currentColor"
+          d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"
+        />
+      </svg>
+    </button>
+
+    <canvas
+      id="particles-canvas"
+      aria-hidden="true"
+    ></canvas>
+    <button
+      id="back-to-top"
+      type="button"
+      aria-label="Back to top"
+      >↑</button
+    >
+
+    <main
+      class="container"
+      id="main"
+    >
+      <article
+        class="main-card"
+        aria-labelledby="page-title"
+      >
+        <header>
+          <h1
+            class="typed-line"
+            id="page-title"
+          >
+            <span aria-hidden="true">
+              <span class="prompt">bushmasterson@arch:~$</span>
+              <span
+                class="typed"
+                data-typed="cat about.md"
+                data-speed="90"
+                data-delay="400"
+              ></span
+              ><span class="cursor-blink">|</span>
+            </span>
+            <span class="sr-only">about</span>
+          </h1>
+          <p class="subtitle">
+            <span aria-hidden="true">
+              <span class="prompt">&gt;</span>
+              <span
+                class="typed"
+                data-typed="a longer read."
+                data-speed="55"
+                data-delay="1400"
+              ></span>
+            </span>
+            <span class="sr-only">a longer read.</span>
+          </p>
+        </header>
+
+        <section
+          class="card project-card"
+          data-index="01"
+          aria-labelledby="about-basics"
+        >
+          <div class="card-header">
+            <h2 id="about-basics"><span class="prompt">~$</span> basics</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              the short version. if you want the long one — talk to me.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">birthday</span> november 2</li>
+              <li><span class="meta-label">location</span> moscow</li>
+              <li><span class="meta-label">gender</span> male</li>
+              <li><span class="meta-label">personality</span> intj</li>
+            </ul>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="02"
+          aria-labelledby="about-code"
+        >
+          <div class="card-header">
+            <h2 id="about-code"><span class="prompt">~$</span> code</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              c++ is home. python for the boring parts. js/ts when it has to
+              live in a browser or chat with telegram.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">main</span> c++</li>
+              <li><span class="meta-label">scripts</span> python</li>
+              <li><span class="meta-label">web & bots</span> js/ts</li>
+              <li><span class="meta-label">editor</span> vs code</li>
+              <li
+                ><span class="meta-label">terminal</span> windows terminal · git
+                bash</li
+              >
+            </ul>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="03"
+          aria-labelledby="about-languages"
+        >
+          <div class="card-header">
+            <h2 id="about-languages"
+              ><span class="prompt">~$</span> languages</h2
+            >
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              natural languages, not programming ones. slowly adding a third.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">native</span> russian</li>
+              <li><span class="meta-label">fluent</span> english</li>
+              <li><span class="meta-label">learning</span> german</li>
+            </ul>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="04"
+          aria-labelledby="about-hobbies"
+        >
+          <div class="card-header">
+            <h2 id="about-hobbies"><span class="prompt">~$</span> hobbies</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              things i do when i'm not staring at a compiler.
+            </p>
+            <ul class="project-meta">
+              <li
+                ><span class="meta-label">building</span> side projects ·
+                experiments · clis</li
+              >
+              <li
+                ><span class="meta-label">listening</span> digging underground
+                music</li
+              >
+              <li
+                ><span class="meta-label">moving</span> gym · running ·
+                sports</li
+              >
+              <li
+                ><span class="meta-label">reading</span> sci-fi · non-fiction ·
+                essays</li
+              >
+              <li
+                ><span class="meta-label">thinking</span> philosophy ·
+                self-improvement</li
+              >
+            </ul>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="05"
+          aria-labelledby="about-music"
+        >
+          <div class="card-header">
+            <h2 id="about-music"><span class="prompt">~$</span> music</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              soundcloud go+ for the underground stuff that never hits
+              streaming. everything else on repeat.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">service</span> soundcloud go+</li>
+              <li
+                ><span class="meta-label">genres</span> emo rap · cloud ·
+                rage</li
+              >
+              <li
+                ><span class="meta-label">artists</span> juice wrld · lil peep ·
+                carti · xxx</li
+              >
+            </ul>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="06"
+          aria-labelledby="about-sports"
+        >
+          <div class="card-header">
+            <h2 id="about-sports"><span class="prompt">~$</span> sports</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              not a pro, just consistent. movement keeps the head clear.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">regular</span> gym · running</li>
+              <li
+                ><span class="meta-label">mindset</span> consistency over
+                intensity</li
+              >
+            </ul>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="07"
+          aria-labelledby="about-values"
+        >
+          <div class="card-header">
+            <h2 id="about-values"><span class="prompt">~$</span> values</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              what matters to me, in no particular order.
+            </p>
+            <ul class="project-meta">
+              <li
+                ><span class="meta-label">freedom</span> of thought & action</li
+              >
+              <li><span class="meta-label">privacy</span> by default</li>
+              <li
+                ><span class="meta-label">minimalism</span> fewer things, done
+                well</li
+              >
+              <li><span class="meta-label">signal</span> no noise</li>
+            </ul>
+          </div>
+        </section>
+
+        <p class="page-footer">
+          <a href="../">← back to home</a>
+        </p>
+      </article>
+    </main>
+  </body>
+</html>
