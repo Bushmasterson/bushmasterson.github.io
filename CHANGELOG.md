@@ -44,6 +44,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Clean comments, 4-tier responsive breakpoints
 - `terminal` Drop whoami command
 - Update CHANGELOG (#47)
+- Update CHANGELOG (#48)
 
 ### Dependencies
 
