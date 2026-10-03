@@ -13,6 +13,12 @@
     <meta
       name="theme-color"
       content="#0f0f10"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#faf8f3"
+      media="(prefers-color-scheme: light)"
     />
     <meta
       name="color-scheme"
@@ -30,21 +36,17 @@
 
     <title>social | bushmasterson</title>
 
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          var theme =
-            stored === "light" || stored === "dark"
-              ? stored
-              : window.matchMedia("(prefers-color-scheme: light)").matches
-                ? "light"
-                : "dark";
-          document.documentElement.dataset.theme = theme;
-          document.documentElement.style.colorScheme = theme;
-        } catch (e) {}
-      })();
-    </script>
+    <script src="../assets/theme-init.js"></script>
+
+    <link
+      rel="preconnect"
+      href="https://bushmasterson.github.io"
+      crossorigin
+    />
+    <link
+      rel="dns-prefetch"
+      href="//bushmasterson.github.io"
+    />
 
     <link
       rel="icon"

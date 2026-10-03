@@ -13,6 +13,12 @@
     <meta
       name="theme-color"
       content="#0f0f10"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#faf8f3"
+      media="(prefers-color-scheme: light)"
     />
     <meta
       name="color-scheme"
@@ -33,6 +39,16 @@
     <script src="../assets/theme-init.js"></script>
 
     <link
+      rel="preconnect"
+      href="https://bushmasterson.github.io"
+      crossorigin
+    />
+    <link
+      rel="dns-prefetch"
+      href="//bushmasterson.github.io"
+    />
+
+    <link
       rel="icon"
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f0f10'/%3E%3Ctext x='16' y='22' font-family='ui-monospace, monospace' font-size='18' font-weight='600' fill='%235cb8ac' text-anchor='middle'%3E%26%26%3C/text%3E%3C/svg%3E"
     />
@@ -41,11 +57,6 @@
       rel="preload"
       as="style"
       href="../assets/css/main.css"
-    />
-    <link
-      rel="preload"
-      as="style"
-      href="../assets/css/disco.css"
     />
     <link
       rel="preload"
@@ -66,10 +77,6 @@
       rel="stylesheet"
       href="../assets/css/main.css"
     />
-    <link
-      rel="stylesheet"
-      href="../assets/css/disco.css"
-    />
 
     <link
       rel="stylesheet"
@@ -83,6 +90,11 @@
         href="../assets/icons/css/all.min.css"
       />
     </noscript>
+
+    <link
+      rel="stylesheet"
+      href="../assets/css/disco.css"
+    />
 
     <script
       type="module"
@@ -164,7 +176,7 @@
           class="terminal-page-output"
           id="term-output"
         >
-          <div class="term-line term-line--muted">
+          <div class="term-line term-muted">
             bushmasterson os v2.0 — type <span class="prompt">help</span> to
             begin
           </div>
