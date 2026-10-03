@@ -27,6 +27,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Shorten security job names
 - Add git-cliff automation (#44)
 - Format CHANGELOG with prettier before opening PR (#46)
+- Nvmrc + changelog format + markdownlint config (#49)
 
 ### Chores
 
@@ -42,6 +43,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Final config — husky, security workflow, templates
 - Clean comments, 4-tier responsive breakpoints
 - `terminal` Drop whoami command
+- Update CHANGELOG (#47)
 
 ### Dependencies
 
