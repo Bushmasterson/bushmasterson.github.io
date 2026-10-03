@@ -3,9 +3,14 @@
  * Filters cards by data-tags. Supports ?filter=... query param.
  */
 
-type Filter = 'all' | 'telegram' | 'typescript' | 'c++';
+type Filter = 'all' | 'telegram' | 'typescript' | 'c++' | 'python';
 
-const VALID_FILTERS: readonly Filter[] = ['telegram', 'typescript', 'c++'];
+const VALID_FILTERS: readonly Filter[] = [
+  'telegram',
+  'typescript',
+  'c++',
+  'python',
+];
 
 export function initProjectFilter(): void {
   const toolbar = document.querySelector<HTMLElement>('.projects-toolbar');

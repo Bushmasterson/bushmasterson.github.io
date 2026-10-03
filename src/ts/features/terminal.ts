@@ -27,7 +27,8 @@ const COMMANDS: Record<string, string[]> = {
   projects: [
     'bushnews   — cybersecurity & it news   [telegram]',
     'bush-bot   — telegram bot for updates  [typescript]',
-    'bush-tasks — cli task manager          [c++]',
+    'bush-tasks — cli task manager          [c++] · android (kotlin) wip',
+    'bush-math  — math animations w/ manim  [python]',
     'more       →  /projects/',
   ],
   ls: ['about.md   projects.md   rules.md   uses.md   social.md'],
