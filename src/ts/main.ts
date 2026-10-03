@@ -6,6 +6,8 @@ import { initBoot } from './features/boot.js';
 import { initTerminal } from './features/terminal.js';
 import { initTheme } from './features/theme.js';
 import { initProjectFilter } from './features/projects-filter.js';
+import { initTerminalPage } from './features/terminal-page.js';
+import { initSnake } from './features/snake.js';
 
 initTheme();
 
@@ -22,3 +24,5 @@ initAvatar();
 initTyping();
 initTerminal();
 initProjectFilter();
+initTerminalPage();
+initSnake();
