@@ -1,6 +1,7 @@
 /**
  * Project filtering on /projects page.
  * Filters cards by data-tags. Supports ?filter=... query param.
+ * Keeps URL in sync via replaceState; reacts to back/forward.
  */
 
 type Filter = 'all' | 'telegram' | 'typescript' | 'c++' | 'python';
@@ -12,6 +13,9 @@ const VALID_FILTERS: readonly Filter[] = [
   'python',
 ];
 
+const isFilter = (value: string | null): value is Filter =>
+  value !== null && (VALID_FILTERS as readonly string[]).includes(value);
+
 export function initProjectFilter(): void {
   const toolbar = document.querySelector<HTMLElement>('.projects-toolbar');
   if (!toolbar) return;
@@ -22,7 +26,7 @@ export function initProjectFilter(): void {
 
   if (!buttons.length || !cards.length) return;
 
-  function applyFilter(filter: Filter): void {
+  function applyFilter(filter: Filter, updateUrl: boolean): void {
     let visible = 0;
 
     cards.forEach((card) => {
@@ -60,21 +64,34 @@ export function initProjectFilter(): void {
         String(btn.dataset['filter'] === filter),
       );
     });
+
+    if (updateUrl) {
+      const params = new URLSearchParams(window.location.search);
+      if (filter === 'all') params.delete('filter');
+      else params.set('filter', filter);
+      const qs = params.toString();
+      const url =
+        window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+      window.history.replaceState({ filter }, '', url);
+    }
   }
 
-  // Read ?filter=... from URL
+  // Initial state from ?filter=...
   const params = new URLSearchParams(window.location.search);
   const initial = params.get('filter');
-  if (initial && (VALID_FILTERS as readonly string[]).includes(initial)) {
-    applyFilter(initial as Filter);
-  } else {
-    applyFilter('all');
-  }
+  applyFilter(isFilter(initial) ? initial : 'all', false);
 
   buttons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const filter = (btn.dataset['filter'] ?? 'all') as Filter;
-      applyFilter(filter);
+      applyFilter(filter, true);
     });
+  });
+
+  // React to browser back/forward
+  window.addEventListener('popstate', () => {
+    const p = new URLSearchParams(window.location.search);
+    const next = p.get('filter');
+    applyFilter(isFilter(next) ? next : 'all', false);
   });
 }

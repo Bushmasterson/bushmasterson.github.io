@@ -11,14 +11,17 @@ export function initTyping(): void {
 
   els.forEach((el) => {
     const text = el.dataset['typed'] ?? '';
-    el.textContent = text;
 
-    if (reduced) return;
+    if (reduced) {
+      el.textContent = text;
+      return;
+    }
+
+    /* Clear first so the full text never flashes before typing starts. */
+    el.textContent = '';
 
     const speed = Number(el.dataset['speed'] ?? 55);
     const delay = Number(el.dataset['delay'] ?? 0);
-
-    el.textContent = '';
 
     const tick = (i: number): void => {
       if (i >= text.length) return;
