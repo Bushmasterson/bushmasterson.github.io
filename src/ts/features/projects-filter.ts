@@ -1,9 +1,11 @@
 /**
  * Project filtering on /projects page.
- * Filters cards by data-tags. Updates counter. Purely client-side.
+ * Filters cards by data-tags. Supports ?filter=... query param.
  */
 
 type Filter = 'all' | 'telegram' | 'typescript' | 'c++';
+
+const VALID_FILTERS: readonly Filter[] = ['telegram', 'typescript', 'c++'];
 
 export function initProjectFilter(): void {
   const toolbar = document.querySelector<HTMLElement>('.projects-toolbar');
@@ -53,6 +55,15 @@ export function initProjectFilter(): void {
         String(btn.dataset['filter'] === filter),
       );
     });
+  }
+
+  // Read ?filter=... from URL
+  const params = new URLSearchParams(window.location.search);
+  const initial = params.get('filter');
+  if (initial && (VALID_FILTERS as readonly string[]).includes(initial)) {
+    applyFilter(initial as Filter);
+  } else {
+    applyFilter('all');
   }
 
   buttons.forEach((btn) => {

@@ -42,21 +42,7 @@
 
     <title>bushmasterson | developer &amp; cybersecurity enthusiast</title>
 
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          var theme =
-            stored === "light" || stored === "dark"
-              ? stored
-              : window.matchMedia("(prefers-color-scheme: light)").matches
-                ? "light"
-                : "dark";
-          document.documentElement.dataset.theme = theme;
-          document.documentElement.style.colorScheme = theme;
-        } catch (e) {}
-      })();
-    </script>
+    <script src="assets/theme-init.js"></script>
 
     <link
       rel="icon"
@@ -237,9 +223,9 @@
           aria-labelledby="card-about-title"
         >
           <div class="card-header">
-            <h2 id="card-about-title">
-              <span class="prompt">~$</span> cat about.md
-            </h2>
+            <h2 id="card-about-title"
+              ><span class="prompt">~$</span> cat about.md</h2
+            >
           </div>
           <div class="card-content">
             <p>
@@ -296,26 +282,38 @@
           aria-labelledby="card-projects-title"
         >
           <div class="card-header">
-            <h2 id="card-projects-title">
-              <span class="prompt">~$</span> cat projects.md
-            </h2>
+            <h2 id="card-projects-title"
+              ><span class="prompt">~$</span> cat projects.md</h2
+            >
           </div>
           <div class="card-content">
             <ul>
               <li>
                 <a href="projects/#bushnews">bushnews</a>
                 <span class="desc">— cybersecurity &amp; it news</span>
-                <span class="stack">telegram</span>
+                <a
+                  class="stack"
+                  href="projects/?filter=telegram"
+                  >telegram</a
+                >
               </li>
               <li>
                 <a href="projects/#bush-bot">bush-bot</a>
                 <span class="desc">— telegram bot for updates</span>
-                <span class="stack">typescript</span>
+                <a
+                  class="stack"
+                  href="projects/?filter=typescript"
+                  >typescript</a
+                >
               </li>
               <li>
                 <a href="projects/#bush-tasks">bush-tasks</a>
                 <span class="desc">— cli task manager</span>
-                <span class="stack">c++</span>
+                <a
+                  class="stack"
+                  href="projects/?filter=c%2B%2B"
+                  >c++</a
+                >
               </li>
             </ul>
             <p class="card-more">
@@ -330,9 +328,9 @@
           aria-labelledby="card-rules-title"
         >
           <div class="card-header">
-            <h2 id="card-rules-title">
-              <span class="prompt">~$</span> cat rules.md
-            </h2>
+            <h2 id="card-rules-title"
+              ><span class="prompt">~$</span> cat rules.md</h2
+            >
           </div>
           <div class="card-content">
             <ol>
@@ -353,109 +351,99 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-            >
-              <i
+              ><i
                 class="fab fa-github"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
             <a
               href="https://telegram.me/bushmasterson"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Telegram"
-            >
-              <i
+              ><i
                 class="fab fa-telegram-plane"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
             <a
               href="https://x.com/bushmasterson02"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="X (Twitter)"
-            >
-              <i
+              ><i
                 class="fab fa-x-twitter"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
             <a
               href="https://www.instagram.com/bushmasterson"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-            >
-              <i
+              ><i
                 class="fab fa-instagram"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
             <a
               href="https://bsky.app/profile/bushmasterson.bsky.social"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Bluesky"
-            >
-              <i
+              ><i
                 class="fab fa-bluesky"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
             <a
               href="https://www.threads.net/@bushmasterson"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Threads"
-            >
-              <i
+              ><i
                 class="fab fa-threads"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
             <a
               href="https://www.reddit.com/user/bushmaster_son"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Reddit"
-            >
-              <i
+              ><i
                 class="fab fa-reddit"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
             <a
               href="https://www.tiktok.com/@bushmasterson02"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TikTok"
-            >
-              <i
+              ><i
                 class="fab fa-tiktok"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
             <a
               href="https://on.soundcloud.com/4ywQ1rScTsyhMOeQgk"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="SoundCloud"
-            >
-              <i
+              ><i
                 class="fab fa-soundcloud"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
             <a
               href="mailto:bushmasterson@proton.me"
               aria-label="Email"
-            >
-              <i
+              ><i
                 class="fas fa-envelope"
                 aria-hidden="true"
-              ></i>
-            </a>
+              ></i
+            ></a>
           </nav>
         </footer>
 
@@ -476,6 +464,12 @@
             >·</span
           >
           <a href="terminal/">terminal</a>
+          <span
+            class="page-nav-dot"
+            aria-hidden="true"
+            >·</span
+          >
+          <a href="snake/">snake</a>
         </nav>
 
         <p class="footer-note">

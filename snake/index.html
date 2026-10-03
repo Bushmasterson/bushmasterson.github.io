@@ -8,7 +8,7 @@
     />
     <meta
       name="description"
-      content="bushmasterson — terminal."
+      content="bushmasterson — snake.exe"
     />
     <meta
       name="theme-color"
@@ -21,14 +21,14 @@
 
     <meta
       property="og:title"
-      content="terminal | bushmasterson"
+      content="snake.exe | bushmasterson"
     />
     <meta
       property="og:url"
-      content="https://bushmasterson.github.io/terminal/"
+      content="https://bushmasterson.github.io/snake/"
     />
 
-    <title>terminal | bushmasterson</title>
+    <title>snake.exe | bushmasterson</title>
 
     <script src="../assets/theme-init.js"></script>
 
@@ -61,7 +61,6 @@
       rel="stylesheet"
       href="../assets/css/main.css"
     />
-
     <link
       rel="stylesheet"
       href="../assets/icons/css/all.min.css"
@@ -130,53 +129,79 @@
       id="particles-canvas"
       aria-hidden="true"
     ></canvas>
-    <button
-      id="back-to-top"
-      type="button"
-      aria-label="Back to top"
-      >↑</button
-    >
 
     <main
-      class="container container--terminal"
+      class="container"
       id="main"
     >
       <article
-        class="terminal-page"
-        aria-label="Interactive terminal"
+        class="main-card"
+        aria-labelledby="page-title"
       >
-        <div class="terminal-page-bar">
-          <span class="term-dot"></span>
-          <span class="term-dot"></span>
-          <span class="term-dot"></span>
-          <span class="term-title">bushmasterson@arch: ~</span>
-        </div>
-        <div
-          class="terminal-page-output"
-          id="term-output"
-        >
-          <div class="term-line term-line--muted">
-            bushmasterson os v2.0 — type <span class="prompt">help</span> to
-            begin
-          </div>
-        </div>
-        <div class="terminal-page-prompt">
-          <span class="prompt">~$</span>
-          <input
-            class="term-input"
-            type="text"
-            autocomplete="off"
-            autocapitalize="off"
-            autocorrect="off"
-            spellcheck="false"
-            aria-label="Terminal input"
-          />
-        </div>
-      </article>
+        <header>
+          <h1
+            class="typed-line"
+            id="page-title"
+          >
+            <span aria-hidden="true">
+              <span class="prompt">bushmasterson@arch:~$</span>
+              <span
+                class="typed"
+                data-typed="./snake.exe"
+                data-speed="100"
+                data-delay="400"
+              ></span
+              ><span class="cursor-blink">|</span>
+            </span>
+            <span class="sr-only">snake.exe</span>
+          </h1>
+          <p class="subtitle">
+            <span aria-hidden="true">
+              <span class="prompt">&gt;</span>
+              <span
+                class="typed"
+                data-typed="classic 8-bit snake."
+                data-speed="55"
+                data-delay="1400"
+              ></span>
+            </span>
+            <span class="sr-only">classic 8-bit snake.</span>
+          </p>
+        </header>
 
-      <p class="page-footer">
-        <a href="../">← back to home</a>
-      </p>
+        <section
+          class="card snake-card"
+          aria-label="Snake game"
+        >
+          <div class="snake-canvas-wrap">
+            <canvas
+              id="snake-canvas"
+              width="320"
+              height="320"
+            ></canvas>
+          </div>
+          <div class="snake-footer">
+            <span class="snake-stat">
+              <span class="meta-label">score</span>
+              <b id="snake-score">0</b>
+            </span>
+            <span class="snake-stat snake-hint">
+              <span class="meta-label">keys</span> ↑↓←→ / wasd · space pause
+            </span>
+            <button
+              class="snake-restart"
+              type="button"
+              id="snake-restart"
+            >
+              restart
+            </button>
+          </div>
+        </section>
+
+        <p class="page-footer">
+          <a href="../">← back to home</a>
+        </p>
+      </article>
     </main>
   </body>
 </html>

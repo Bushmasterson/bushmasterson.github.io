@@ -30,21 +30,7 @@
 
     <title>uses | bushmasterson</title>
 
-    <script>
-      (function () {
-        try {
-          var stored = localStorage.getItem("theme");
-          var theme =
-            stored === "light" || stored === "dark"
-              ? stored
-              : window.matchMedia("(prefers-color-scheme: light)").matches
-                ? "light"
-                : "dark";
-          document.documentElement.dataset.theme = theme;
-          document.documentElement.style.colorScheme = theme;
-        } catch (e) {}
-      })();
-    </script>
+    <script src="../assets/theme-init.js"></script>
 
     <link
       rel="icon"
@@ -199,14 +185,9 @@
             <h2 id="uses-editor"><span class="prompt">~$</span> editor</h2>
           </div>
           <div class="card-content">
-            <p class="project-desc">
-              vs code with a minimal setup. neovim for quick edits in the
-              terminal.
-            </p>
+            <p class="project-desc"> vs code is simple. </p>
             <ul class="project-meta">
               <li><span class="meta-label">main</span> vs code</li>
-              <li><span class="meta-label">alt</span> neovim</li>
-              <li><span class="meta-label">theme</span> one dark pro</li>
             </ul>
           </div>
         </section>
@@ -241,13 +222,13 @@
           </div>
           <div class="card-content">
             <p class="project-desc">
-              c++ is the main language. python for scripts and tooling.
-              typescript for the web.
+              c++ is the main language. python for scripts and tooling. js/ts
+              for the web & bots.
             </p>
             <ul class="project-meta">
               <li><span class="meta-label">main</span> c++</li>
               <li><span class="meta-label">scripts</span> python</li>
-              <li><span class="meta-label">web</span> typescript</li>
+              <li><span class="meta-label">web & bots</span> js/ts</li>
             </ul>
           </div>
         </section>
@@ -271,31 +252,6 @@
               <li><span class="meta-label">notes</span> obsidian</li>
               <li><span class="meta-label">secrets</span> bitwarden</li>
               <li><span class="meta-label">mail</span> proton</li>
-              <li><span class="meta-label">vpn</span> proton</li>
-            </ul>
-          </div>
-        </section>
-
-        <section
-          class="card project-card"
-          data-index="05"
-          aria-labelledby="uses-hardware"
-        >
-          <div class="card-header">
-            <h2 id="uses-hardware"><span class="prompt">~$</span> hardware</h2>
-          </div>
-          <div class="card-content">
-            <p class="project-desc">
-              daily driver is a windows laptop. phone — poco x5 pro, moving to
-              iphone 15 pro.
-            </p>
-            <ul class="project-meta">
-              <li><span class="meta-label">laptop</span> windows 11</li>
-              <li
-                ><span class="meta-label">phone</span> poco x5 pro → iphone 15
-                pro</li
-              >
-              <li><span class="meta-label">audio</span> wired, always</li>
             </ul>
           </div>
         </section>
