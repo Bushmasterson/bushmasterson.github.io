@@ -1,8 +1,4 @@
-/**
- * Project filtering on /projects page.
- * Filters cards by data-tags. Supports ?filter=... query param.
- * Keeps URL in sync via replaceState; reacts to back/forward.
- */
+/* project filtering on /projects/ — reads and writes ?filter=... */
 
 type Filter = 'all' | 'telegram' | 'typescript' | 'c++' | 'python';
 
@@ -76,7 +72,6 @@ export function initProjectFilter(): void {
     }
   }
 
-  // Initial state from ?filter=...
   const params = new URLSearchParams(window.location.search);
   const initial = params.get('filter');
   applyFilter(isFilter(initial) ? initial : 'all', false);
@@ -88,7 +83,6 @@ export function initProjectFilter(): void {
     });
   });
 
-  // React to browser back/forward
   window.addEventListener('popstate', () => {
     const p = new URLSearchParams(window.location.search);
     const next = p.get('filter');

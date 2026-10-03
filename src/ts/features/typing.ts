@@ -1,8 +1,4 @@
-/**
- * Type text into elements marked with [data-typed].
- * - Respects prefers-reduced-motion (renders final text instantly).
- * - Screen readers read the pre-set text via an .sr-only sibling.
- */
+/* type text into [data-typed] elements */
 export function initTyping(): void {
   const els = document.querySelectorAll<HTMLElement>('[data-typed]');
   if (!els.length) return;
@@ -17,7 +13,7 @@ export function initTyping(): void {
       return;
     }
 
-    /* Clear first so the full text never flashes before typing starts. */
+    /* clear first so full text never flashes */
     el.textContent = '';
 
     const speed = Number(el.dataset['speed'] ?? 55);

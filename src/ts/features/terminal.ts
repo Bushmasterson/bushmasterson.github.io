@@ -1,9 +1,4 @@
-/**
- * Easter egg: 5 clicks on the title navigates to /terminal/.
- * The floating overlay terminal was removed in favor of the
- * dedicated /terminal/ page.
- */
-
+/* 5 clicks on the title -> /terminal/ */
 const CLICK_WINDOW_MS = 2000;
 const CLICKS_NEEDED = 5;
 const TERMINAL_PATH = '/terminal/';
