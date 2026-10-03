@@ -185,13 +185,50 @@
               height="320"
             ></canvas>
           </div>
+
+          <div
+            class="snake-difficulty"
+            role="group"
+            aria-label="Difficulty"
+          >
+            <span class="snake-difficulty-label">speed</span>
+            <button
+              class="snake-diff-btn snake-diff-btn--low"
+              type="button"
+              data-difficulty="low"
+              aria-pressed="false"
+            >
+              low
+            </button>
+            <button
+              class="snake-diff-btn snake-diff-btn--medium"
+              type="button"
+              data-difficulty="medium"
+              aria-pressed="false"
+            >
+              medium
+            </button>
+            <button
+              class="snake-diff-btn snake-diff-btn--high"
+              type="button"
+              data-difficulty="high"
+              aria-pressed="true"
+            >
+              high
+            </button>
+          </div>
+
           <div class="snake-footer">
             <span class="snake-stat">
               <span class="meta-label">score</span>
               <b id="snake-score">0</b>
             </span>
             <span class="snake-stat snake-hint">
-              <span class="meta-label">keys</span> ↑↓←→ / wasd · space pause
+              <span class="meta-label">keys</span> ↑↓←→ / wasd · space pause ·
+              1/2/3 speed
+            </span>
+            <span class="snake-stat snake-hint-touch">
+              <span class="meta-label">keys</span> swipe to steer · tap to start
             </span>
             <button
               class="snake-restart"
@@ -239,7 +276,7 @@
         >
           restart
         </button>
-        <p class="snake-gameover-hint">space / click</p>
+        <p class="snake-gameover-hint">space / tap</p>
       </div>
     </div>
   </body>
