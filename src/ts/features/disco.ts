@@ -1,9 +1,4 @@
-/**
- * Disco easter egg — triggered by typing `hahaha` in /terminal/.
- * Spawns a full-screen overlay with chaotic neon projectors.
- * Auto-stops after DISCO_DURATION_MS; Esc / click stop early.
- * Respects prefers-reduced-motion (never spawns).
- */
+/* disco easter egg — triggered by `hahaha` in /terminal/ */
 
 const DISCO_DURATION_MS = 12000;
 const PROJECTOR_COUNT = 16;
