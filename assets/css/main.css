@@ -664,10 +664,6 @@
     transition: opacity 0.6s var(--ease-out);
   }
 
-  .footer-note.is-fading {
-    opacity: 0;
-  }
-
   #back-to-top {
     position: fixed;
     bottom: calc(1.35rem + var(--safe-bottom));
@@ -1656,12 +1652,70 @@
     border-color: var(--border-hover);
   }
 
+  .now-playing-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
   .now-playing-label {
     color: var(--accent);
     opacity: 0.75;
     text-transform: lowercase;
     letter-spacing: 0.1em;
     font-size: 0.6rem;
+  }
+
+  .now-playing-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    font-family: inherit;
+    font-size: 0.62rem;
+    line-height: 1;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition:
+      color 0.25s var(--ease-out),
+      border-color 0.25s var(--ease-out),
+      background-color 0.25s var(--ease-out),
+      box-shadow 0.25s var(--ease-out),
+      transform 0.25s var(--ease-out);
+  }
+
+  @media (hover: hover) {
+    .now-playing-toggle:hover {
+      color: var(--accent-bright);
+      border-color: var(--border-active);
+      background: var(--accent-dim);
+      box-shadow: 0 0 10px var(--accent-dim);
+      transform: scale(1.05);
+    }
+  }
+
+  .now-playing-toggle:focus-visible {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 2px;
+  }
+
+  .now-playing-icon {
+    display: inline-block;
+    font-size: 0.55rem;
+    line-height: 1;
+    letter-spacing: 0;
+    transform: translateX(0.5px);
+  }
+
+  .now-playing.is-playing .now-playing-icon {
+    transform: translateX(0);
   }
 
   .now-playing-track {
@@ -1706,11 +1760,21 @@
 
   .now-playing-bar-fill {
     position: absolute;
-    inset: 0 40% 0 0;
+    inset: 0 55% 0 0;
     background: var(--accent);
-    opacity: 0.85;
+    opacity: 0.5;
     border-radius: inherit;
-    animation: nowPlayingBar 3s var(--ease-out) infinite alternate;
+    transition: opacity 0.3s var(--ease-out);
+  }
+
+  .now-playing.is-playing .now-playing-bar-fill {
+    opacity: 0.95;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .now-playing.is-playing .now-playing-bar-fill {
+      animation: nowPlayingBar 3s var(--ease-out) infinite alternate;
+    }
   }
 
   @keyframes nowPlayingBar {
