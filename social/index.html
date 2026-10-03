@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="bushmasterson — social links."
+    />
+    <meta
+      name="theme-color"
+      content="#0f0f10"
+    />
+    <meta
+      name="color-scheme"
+      content="dark light"
+    />
+
+    <meta
+      property="og:title"
+      content="social | bushmasterson"
+    />
+    <meta
+      property="og:url"
+      content="https://bushmasterson.github.io/social/"
+    />
+
+    <title>social | bushmasterson</title>
+
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f0f10'/%3E%3Ctext x='16' y='22' font-family='ui-monospace, monospace' font-size='18' font-weight='600' fill='%235cb8ac' text-anchor='middle'%3E%26%26%3C/text%3E%3C/svg%3E"
+    />
+
+    <link
+      rel="preload"
+      as="style"
+      href="../assets/css/main.css"
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="../assets/icons/webfonts/fa-solid-900.woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      as="font"
+      type="font/woff2"
+      href="../assets/icons/webfonts/fa-brands-400.woff2"
+      crossorigin
+    />
+
+    <link
+      rel="stylesheet"
+      href="../assets/css/main.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../assets/icons/css/all.min.css"
+      media="print"
+      onload="this.media = 'all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="../assets/icons/css/all.min.css"
+      />
+    </noscript>
+
+    <script
+      type="module"
+      src="../assets/js/main.js"
+    ></script>
+  </head>
+
+  <body>
+    <button
+      id="theme-toggle"
+      type="button"
+      class="theme-toggle"
+      aria-label="Toggle theme"
+    >
+      <svg
+        class="theme-icon theme-icon-sun"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <circle
+          cx="12"
+          cy="12"
+          r="4"
+          fill="currentColor"
+        />
+        <g
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M12 2v3" />
+          <path d="M12 19v3" />
+          <path d="M2 12h3" />
+          <path d="M19 12h3" />
+          <path d="m4.9 4.9 2.1 2.1" />
+          <path d="m17 17 2.1 2.1" />
+          <path d="m19.1 4.9-2.1 2.1" />
+          <path d="m7 17-2.1 2.1" />
+        </g>
+      </svg>
+      <svg
+        class="theme-icon theme-icon-moon"
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+      >
+        <path
+          fill="currentColor"
+          d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"
+        />
+      </svg>
+    </button>
+
+    <canvas
+      id="particles-canvas"
+      aria-hidden="true"
+    ></canvas>
+    <button
+      id="back-to-top"
+      type="button"
+      aria-label="Back to top"
+      >↑</button
+    >
+
+    <main
+      class="container"
+      id="main"
+    >
+      <article
+        class="main-card"
+        aria-labelledby="page-title"
+      >
+        <header>
+          <h1
+            class="typed-line"
+            id="page-title"
+          >
+            <span aria-hidden="true">
+              <span class="prompt">bushmasterson@arch:~$</span>
+              <span
+                class="typed"
+                data-typed="cat social.md"
+                data-speed="90"
+                data-delay="400"
+              ></span
+              ><span class="cursor-blink">|</span>
+            </span>
+            <span class="sr-only">social</span>
+          </h1>
+          <p class="subtitle">
+            <span aria-hidden="true">
+              <span class="prompt">&gt;</span>
+              <span
+                class="typed"
+                data-typed="where to find me."
+                data-speed="55"
+                data-delay="1400"
+              ></span>
+            </span>
+            <span class="sr-only">where to find me.</span>
+          </p>
+        </header>
+
+        <section
+          class="card project-card"
+          data-index="01"
+          aria-labelledby="social-primary"
+        >
+          <div class="card-header">
+            <h2 id="social-primary"><span class="prompt">~$</span> primary</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              where i actually post, reply, and check messages.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">handle</span> @bushmasterson</li>
+            </ul>
+            <div class="project-links">
+              <a
+                href="https://github.com/bushmasterson"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-github"
+                  aria-hidden="true"
+                ></i
+                ><span>github</span>
+              </a>
+              <a
+                href="https://telegram.me/bushmasterson"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-telegram"
+                  aria-hidden="true"
+                ></i
+                ><span>telegram</span>
+              </a>
+              <a
+                href="https://x.com/bushmasterson02"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-x-twitter"
+                  aria-hidden="true"
+                ></i
+                ><span>x</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="02"
+          aria-labelledby="social-mirror"
+        >
+          <div class="card-header">
+            <h2 id="social-mirror"><span class="prompt">~$</span> mirror</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              same content as primary, different algorithms. cross-posted when i
+              remember.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">handle</span> @bushmasterson</li>
+            </ul>
+            <div class="project-links">
+              <a
+                href="https://bsky.app/profile/bushmasterson.bsky.social"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-bluesky"
+                  aria-hidden="true"
+                ></i
+                ><span>bluesky</span>
+              </a>
+              <a
+                href="https://www.threads.net/@bushmasterson"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-threads"
+                  aria-hidden="true"
+                ></i
+                ><span>threads</span>
+              </a>
+              <a
+                href="https://www.instagram.com/bushmasterson"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-instagram"
+                  aria-hidden="true"
+                ></i
+                ><span>instagram</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="03"
+          aria-labelledby="social-extra"
+        >
+          <div class="card-header">
+            <h2 id="social-extra"><span class="prompt">~$</span> extra</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              less frequent. mostly lurking, occasionally posting.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">handles</span> varied</li>
+            </ul>
+            <div class="project-links">
+              <a
+                href="https://www.reddit.com/user/bushmaster_son"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-reddit"
+                  aria-hidden="true"
+                ></i
+                ><span>reddit</span>
+              </a>
+              <a
+                href="https://www.tiktok.com/@bushmasterson02"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-tiktok"
+                  aria-hidden="true"
+                ></i
+                ><span>tiktok</span>
+              </a>
+              <a
+                href="https://on.soundcloud.com/4ywQ1rScTsyhMOeQgk"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-soundcloud"
+                  aria-hidden="true"
+                ></i
+                ><span>soundcloud</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="04"
+          aria-labelledby="social-channel"
+        >
+          <div class="card-header">
+            <h2 id="social-channel"><span class="prompt">~$</span> channel</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              my cybersecurity and it news channel. hand-picked, no spam.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">topic</span> cybersecurity · it</li>
+              <li><span class="meta-label">status</span> active</li>
+            </ul>
+            <div class="project-links">
+              <a
+                href="https://t.me/bushnewschannel"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-telegram"
+                  aria-hidden="true"
+                ></i
+                ><span>bushnews</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          data-index="05"
+          aria-labelledby="social-contact"
+        >
+          <div class="card-header">
+            <h2 id="social-contact"><span class="prompt">~$</span> contact</h2>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              for formal messages — email. for everything else — telegram.
+            </p>
+            <ul class="project-meta">
+              <li
+                ><span class="meta-label">email</span>
+                bushmasterson@proton.me</li
+              >
+              <li><span class="meta-label">pgp</span> on request</li>
+            </ul>
+            <div class="project-links">
+              <a href="mailto:bushmasterson@proton.me">
+                <i
+                  class="fas fa-envelope"
+                  aria-hidden="true"
+                ></i
+                ><span>send email</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <p class="page-footer">
+          <a href="../">← back to home</a>
+        </p>
+      </article>
+    </main>
+  </body>
+</html>

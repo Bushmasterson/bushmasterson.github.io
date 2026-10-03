@@ -18,7 +18,7 @@ function getSystem(): Theme {
     : 'dark';
 }
 
-function apply(theme: Theme): void {
+export function applyTheme(theme: Theme): void {
   const root = document.documentElement;
   root.dataset['theme'] = theme;
   root.style.colorScheme = theme;
@@ -40,28 +40,37 @@ function apply(theme: Theme): void {
   window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
 }
 
+export function getCurrentTheme(): Theme {
+  return document.documentElement.dataset['theme'] === 'light'
+    ? 'light'
+    : 'dark';
+}
+
+export function setTheme(theme: Theme): void {
+  applyTheme(theme);
+  try {
+    localStorage.setItem(STORAGE_KEY, theme);
+  } catch {
+    /* ignore */
+  }
+}
+
+export function toggleTheme(): void {
+  setTheme(getCurrentTheme() === 'light' ? 'dark' : 'light');
+}
+
 export function initTheme(): void {
   const stored = getStored();
-  const initial = stored ?? getSystem();
-  apply(initial);
+  applyTheme(stored ?? getSystem());
 
   const btn = document.querySelector<HTMLButtonElement>('#theme-toggle');
   if (btn) {
-    btn.addEventListener('click', () => {
-      const current = document.documentElement.dataset['theme'];
-      const next: Theme = current === 'light' ? 'dark' : 'light';
-      apply(next);
-      try {
-        localStorage.setItem(STORAGE_KEY, next);
-      } catch {
-        /* ignore */
-      }
-    });
+    btn.addEventListener('click', () => toggleTheme());
   }
 
   window
     .matchMedia('(prefers-color-scheme: light)')
     .addEventListener('change', (e) => {
-      if (!getStored()) apply(e.matches ? 'light' : 'dark');
+      if (!getStored()) applyTheme(e.matches ? 'light' : 'dark');
     });
 }

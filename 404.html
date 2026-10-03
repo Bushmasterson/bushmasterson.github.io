@@ -26,58 +26,30 @@
       href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230f0f10'/%3E%3Ctext x='16' y='22' font-family='ui-monospace, monospace' font-size='18' font-weight='600' fill='%235cb8ac' text-anchor='middle'%3E%26%26%3C/text%3E%3C/svg%3E"
     />
 
+    <link
+      rel="stylesheet"
+      href="assets/icons/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="assets/css/main.css"
+    />
+    <script
+      type="module"
+      src="assets/js/main.js"
+    ></script>
+
     <style>
-      :root {
-        color-scheme: dark;
-        --bg: #0f0f10;
-        --surface: rgba(24, 24, 26, 0.42);
-        --border-subtle: rgba(255, 255, 255, 0.055);
-        --border-hover: rgba(255, 255, 255, 0.16);
-        --accent: #5cb8ac;
-        --accent-bright: #7bd0c3;
-        --accent-dim: rgba(92, 184, 172, 0.1);
-        --accent-glow: rgba(92, 184, 172, 0.22);
-        --text: #f1ece2;
-        --text-soft: #d6d1c6;
-        --muted: #a5a09a;
-        --font-mono:
-          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-          "Liberation Mono", "Courier New", monospace;
-        --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      body.body-404 {
+        display: block;
+        align-items: initial;
+        justify-content: initial;
+        padding: 3rem 1.5rem;
+        overflow-x: hidden;
+        overflow-y: auto;
       }
 
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-      }
-
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        min-height: 100vh;
-        min-height: 100dvh;
-        background: var(--bg);
-        color: var(--text);
-        font-family: var(--font-mono);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.5rem;
-        overflow: hidden;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        font-feature-settings:
-          "kern" 1,
-          "liga" 1;
-      }
-
-      /* Subtle background grid */
-      body::before {
+      body.body-404::before {
         content: "";
         position: fixed;
         inset: -50%;
@@ -90,15 +62,17 @@
         z-index: 0;
       }
 
-      .container {
+      .container--404 {
         position: relative;
         z-index: 1;
         width: min(100%, 520px);
+        margin: 0 auto;
         text-align: left;
       }
 
       .prompt-line {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         gap: 0.5rem;
         font-size: 0.85rem;
@@ -107,20 +81,14 @@
         letter-spacing: 0.02em;
       }
 
-      .prompt {
-        color: var(--accent);
-        font-weight: 500;
-        opacity: 0.85;
-      }
-
       .cursor {
         display: inline-block;
         color: var(--text);
-        animation: blink 0.9s steps(1) infinite;
+        animation: blink404 0.9s steps(1) infinite;
         margin-left: 0.1em;
       }
 
-      @keyframes blink {
+      @keyframes blink404 {
         0%,
         40% {
           opacity: 1;
@@ -131,7 +99,7 @@
         }
       }
 
-      h1 {
+      .container--404 h1 {
         font-size: clamp(3rem, 12vw, 5.5rem);
         font-weight: 500;
         line-height: 1;
@@ -140,24 +108,24 @@
         color: var(--text);
       }
 
-      h1 .digit {
+      .container--404 h1 .digit {
         color: var(--accent);
         text-shadow: 0 0 24px var(--accent-glow);
         transition: text-shadow 0.5s var(--ease-out);
       }
 
-      h1:hover .digit {
+      .container--404 h1:hover .digit {
         text-shadow: 0 0 36px var(--accent-glow);
       }
 
-      .message {
+      .container--404 .message {
         font-size: 0.95rem;
         line-height: 1.6;
         color: var(--text-soft);
         margin: 0 0 1.8rem;
       }
 
-      .message code {
+      .container--404 .message code {
         color: var(--accent);
         background: var(--accent-dim);
         padding: 0.1em 0.4em;
@@ -165,13 +133,13 @@
         font-size: 0.92em;
       }
 
-      .actions {
+      .container--404 .actions {
         display: flex;
         flex-wrap: wrap;
         gap: 0.6rem;
       }
 
-      .action {
+      .container--404 .action {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
@@ -191,18 +159,18 @@
           transform 0.3s var(--ease-out);
       }
 
-      .action:hover {
+      .container--404 .action:hover {
         color: var(--accent-bright);
         border-color: var(--border-hover);
         transform: translateY(-1px);
       }
 
-      .action:focus-visible {
+      .container--404 .action:focus-visible {
         outline: 2px solid var(--accent-bright);
         outline-offset: 3px;
       }
 
-      .action .key {
+      .container--404 .action .key {
         font-size: 0.72rem;
         color: var(--muted);
         border: 1px solid var(--border-subtle);
@@ -211,7 +179,7 @@
         letter-spacing: 0.05em;
       }
 
-      .footer {
+      .container--404 .footer {
         margin-top: 2rem;
         font-size: 0.78rem;
         color: var(--muted);
@@ -220,13 +188,19 @@
       }
 
       @media (max-width: 480px) {
-        h1 {
+        body.body-404 {
+          padding: 2rem 1.25rem;
+        }
+
+        .container--404 h1 {
           font-size: clamp(2.5rem, 15vw, 4rem);
         }
-        .message {
+
+        .container--404 .message {
           font-size: 0.9rem;
         }
-        .action {
+
+        .container--404 .action {
           padding: 0.55rem 0.9rem;
           font-size: 0.8rem;
         }
@@ -237,15 +211,16 @@
           animation: none;
           opacity: 1;
         }
-        * {
+
+        .container--404 * {
           transition-duration: 0.01ms !important;
         }
       }
     </style>
   </head>
 
-  <body>
-    <div class="container">
+  <body class="body-404">
+    <div class="container container--404">
       <div class="prompt-line">
         <span class="prompt">bushmasterson@arch:~$</span>
         <span>cd /requested/path</span>
@@ -269,7 +244,7 @@
       <div class="actions">
         <a
           class="action"
-          href="https://bushmasterson.github.io"
+          href="/"
         >
           <span>cd ~</span>
           <span class="key">HOME</span>
@@ -285,6 +260,41 @@
       </div>
 
       <p class="footer">— nothing to see here, move along.</p>
+
+      <section
+        class="snake-section"
+        aria-label="Snake game"
+      >
+        <div class="snake-header">
+          <span class="prompt">~$</span>
+          <span>./snake.exe</span>
+        </div>
+
+        <div class="snake-canvas-wrap">
+          <canvas
+            id="snake-canvas"
+            width="320"
+            height="320"
+          ></canvas>
+        </div>
+
+        <div class="snake-footer">
+          <span class="snake-stat">
+            <span class="meta-label">score</span>
+            <b id="snake-score">0</b>
+          </span>
+          <span class="snake-stat snake-hint">
+            <span class="meta-label">keys</span> ↑↓←→ / wasd · space pause
+          </span>
+          <button
+            class="snake-restart"
+            type="button"
+            id="snake-restart"
+          >
+            restart
+          </button>
+        </div>
+      </section>
     </div>
   </body>
 </html>
