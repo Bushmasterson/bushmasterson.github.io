@@ -15,6 +15,7 @@
     "lint:prettier": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
     "check": "npm run typecheck && npm run lint:prettier",
+    "changelog": "npx git-cliff --output CHANGELOG.md",
     "clean": "rimraf assets/js dist _site .vite node_modules/.cache",
     "prepare": "husky"
   },
@@ -44,6 +45,7 @@
   },
   "allowScripts": {
     "esbuild@0.24.2": true,
-    "esbuild@0.25.12": true
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.2": true
   }
 }
