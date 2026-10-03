@@ -15,7 +15,10 @@ const FOOD_MIN_DIST_FROM_HEAD = 4;
 const MAX_DT = TICK_MS * 3;
 
 /* Directional input queue: remember up to N turns for smooth steering */
-const DIR_QUEUE_MAX = 2;
+const DIR_QUEUE_MAX = 3;
+
+/* Minimum swipe distance (px) to register as a direction on touch */
+const SWIPE_MIN = 20;
 
 type Point = { x: number; y: number };
 
@@ -412,8 +415,44 @@ export function initSnake(): void {
     queueDirection(key);
   });
 
-  canvas.addEventListener('pointerdown', () => {
-    if (idle) beginPlaying();
+  /* Touch / pointer steering:
+     - First tap starts the game if idle
+     - Swipe up/down/left/right queues a direction */
+  let swipeStart: { x: number; y: number; id: number } | null = null;
+
+  canvas.addEventListener('pointerdown', (e) => {
+    if (idle) {
+      beginPlaying();
+      return;
+    }
+    swipeStart = { x: e.clientX, y: e.clientY, id: e.pointerId };
+  });
+
+  canvas.addEventListener('pointerup', (e) => {
+    if (!swipeStart || swipeStart.id !== e.pointerId) {
+      swipeStart = null;
+      return;
+    }
+
+    const dx = e.clientX - swipeStart.x;
+    const dy = e.clientY - swipeStart.y;
+    swipeStart = null;
+
+    if (!running || idle) return;
+
+    const absDx = Math.abs(dx);
+    const absDy = Math.abs(dy);
+    if (Math.max(absDx, absDy) < SWIPE_MIN) return;
+
+    if (absDx > absDy) {
+      queueDirection(dx > 0 ? 'arrowright' : 'arrowleft');
+    } else {
+      queueDirection(dy > 0 ? 'arrowdown' : 'arrowup');
+    }
+  });
+
+  canvas.addEventListener('pointercancel', () => {
+    swipeStart = null;
   });
 
   restartBtn?.addEventListener('click', (e) => {
