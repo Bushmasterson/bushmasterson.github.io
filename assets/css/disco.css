@@ -1,0 +1,80 @@
+/* ─── Disco easter egg (terminal `hahaha`) ─── */
+
+.disco {
+  position: fixed;
+  inset: 0;
+  z-index: 6000;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.88);
+  cursor: pointer;
+  animation: discoIn 0.25s ease-out;
+}
+
+.disco.disco-out {
+  animation: discoOut 0.4s ease-out forwards;
+}
+
+.disco-projector {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--size, 40vmin);
+  height: var(--size, 40vmin);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    hsl(var(--hue, 180), 100%, 62%) 0%,
+    hsl(var(--hue, 180), 100%, 55%) 25%,
+    transparent 70%
+  );
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  animation: discoMove var(--dur, 0.8s) ease-in-out infinite alternate;
+  animation-delay: var(--delay, 0s);
+  will-change: transform, filter;
+  pointer-events: none;
+}
+
+@keyframes discoMove {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    filter: blur(2px) hue-rotate(0deg);
+  }
+  50% {
+    transform: translate(
+        calc(-50% + var(--dx, 40vw)),
+        calc(-50% + var(--dy, 40vh))
+      )
+      scale(1.25);
+    filter: blur(4px) hue-rotate(180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(0.85);
+    filter: blur(2px) hue-rotate(360deg);
+  }
+}
+
+@keyframes discoIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes discoOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .disco {
+    display: none !important;
+  }
+}
