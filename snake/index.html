@@ -74,6 +74,11 @@
       />
     </noscript>
 
+    <link
+      rel="stylesheet"
+      href="../assets/css/snake-overlay.css"
+    />
+
     <script
       type="module"
       src="../assets/js/main.js"
@@ -203,5 +208,39 @@
         </p>
       </article>
     </main>
+
+    <div
+      id="snake-gameover"
+      class="snake-gameover"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="snake-gameover-title"
+      hidden
+    >
+      <div class="snake-gameover-inner">
+        <p class="snake-gameover-prompt">bushmasterson@arch:~$ ./snake.exe</p>
+        <h2
+          class="snake-gameover-title"
+          id="snake-gameover-title"
+        >
+          game over
+        </h2>
+        <p class="snake-gameover-score">
+          <span class="meta-label">score</span>
+          <b id="snake-final-score">0</b>
+          <span class="snake-gameover-sep">·</span>
+          <span class="meta-label">best</span>
+          <b id="snake-final-best">0</b>
+        </p>
+        <button
+          type="button"
+          class="snake-gameover-restart"
+          id="snake-gameover-restart"
+        >
+          restart
+        </button>
+        <p class="snake-gameover-hint">space / click</p>
+      </div>
+    </div>
   </body>
 </html>

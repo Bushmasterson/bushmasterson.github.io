@@ -7,6 +7,16 @@ const BEST_KEY = 'snake_best';
 const IDLE_MIN = 4;
 const IDLE_MAX = GRID - 5;
 
+/* Food: keep away from edges and from the head */
+const FOOD_PAD = 2;
+const FOOD_MIN_DIST_FROM_HEAD = 4;
+
+/* Cap accumulated time per frame (prevents tab-unfocus death spiral) */
+const MAX_DT = TICK_MS * 3;
+
+/* Directional input queue: remember up to N turns for smooth steering */
+const DIR_QUEUE_MAX = 2;
+
 type Point = { x: number; y: number };
 
 export function initSnake(): void {
@@ -40,7 +50,7 @@ export function initSnake(): void {
 
   let snake: Point[] = [];
   let dir: Point = { x: 1, y: 0 };
-  let nextDir: Point = { x: 1, y: 0 };
+  let dirQueue: Point[] = [];
   let food: Point = { x: 0, y: 0 };
   let score = 0;
   let best = 0;
@@ -62,18 +72,42 @@ export function initSnake(): void {
     if (scoreEl) scoreEl.textContent = String(score);
   };
 
+  /* Place food away from edges and away from the snake's head */
   const placeFood = (): void => {
+    const minX = FOOD_PAD;
+    const maxX = GRID - 1 - FOOD_PAD;
+    const minY = FOOD_PAD;
+    const maxY = GRID - 1 - FOOD_PAD;
+    const head = snake[0];
+
     for (let attempts = 0; attempts < 500; attempts += 1) {
       const p: Point = {
-        x: Math.floor(Math.random() * GRID),
-        y: Math.floor(Math.random() * GRID),
+        x: minX + Math.floor(Math.random() * (maxX - minX + 1)),
+        y: minY + Math.floor(Math.random() * (maxY - minY + 1)),
       };
-      if (!snake.some((s) => s.x === p.x && s.y === p.y)) {
-        food = p;
-        return;
+
+      if (snake.some((s) => s.x === p.x && s.y === p.y)) continue;
+
+      if (head) {
+        const dx = p.x - head.x;
+        const dy = p.y - head.y;
+        if (Math.sqrt(dx * dx + dy * dy) < FOOD_MIN_DIST_FROM_HEAD) continue;
+      }
+
+      food = p;
+      return;
+    }
+
+    /* Fallback: first free cell inside the safe rectangle */
+    for (let y = minY; y <= maxY; y += 1) {
+      for (let x = minX; x <= maxX; x += 1) {
+        if (!snake.some((s) => s.x === x && s.y === y)) {
+          food = { x, y };
+          return;
+        }
       }
     }
-    food = { x: 0, y: 0 };
+    food = { x: minX, y: minY };
   };
 
   const setSnakeDefault = (): void => {
@@ -83,7 +117,7 @@ export function initSnake(): void {
       { x: 6, y: 10 },
     ];
     dir = { x: 1, y: 0 };
-    nextDir = { x: 1, y: 0 };
+    dirQueue = [];
   };
 
   const showOverlay = (): void => {
@@ -143,7 +177,10 @@ export function initSnake(): void {
   };
 
   const step = (): void => {
-    dir = nextDir;
+    /* Consume one queued direction per tick for smooth steering */
+    const queued = dirQueue.shift();
+    if (queued) dir = queued;
+
     const head = snake[0];
     if (!head) return;
     const nh: Point = { x: head.x + dir.x, y: head.y + dir.y };
@@ -159,7 +196,7 @@ export function initSnake(): void {
 
       if (turn) {
         dir = turn;
-        nextDir = turn;
+        dirQueue = [];
       }
 
       snake.unshift({ x: head.x + dir.x, y: head.y + dir.y });
@@ -237,11 +274,14 @@ export function initSnake(): void {
 
     drawWalls();
 
-    ctx.fillStyle = '#ff5f57';
-    ctx.shadowColor = 'rgba(255, 95, 87, 0.7)';
-    ctx.shadowBlur = 14;
-    ctx.fillRect(food.x * CELL + 3, food.y * CELL + 3, CELL - 6, CELL - 6);
-    ctx.shadowBlur = 0;
+    /* Food: hide during idle patrol and after death */
+    if (!idle && !dead) {
+      ctx.fillStyle = '#ff5f57';
+      ctx.shadowColor = 'rgba(255, 95, 87, 0.7)';
+      ctx.shadowBlur = 14;
+      ctx.fillRect(food.x * CELL + 3, food.y * CELL + 3, CELL - 6, CELL - 6);
+      ctx.shadowBlur = 0;
+    }
 
     snake.forEach((s, i) => {
       const isHead = i === 0;
@@ -258,7 +298,8 @@ export function initSnake(): void {
   const frame = (now: number): void => {
     if (!running) return;
     if (last === 0) last = now;
-    const dt = now - last;
+    /* Cap dt so tab-unfocus doesn't trigger a chain of steps */
+    const dt = Math.min(now - last, MAX_DT);
     last = now;
 
     if (!paused) {
@@ -289,7 +330,47 @@ export function initSnake(): void {
     startLoop();
   };
 
+  /* Queue a direction change; reject 180° reversals against the last
+     pending direction so rapid inputs can't make the snake eat itself. */
+  const queueDirection = (key: string): void => {
+    const lastDir = dirQueue.length > 0 ? dirQueue[dirQueue.length - 1]! : dir;
+
+    let candidate: Point | null = null;
+
+    if (key === 'arrowup' || key === 'w') {
+      if (lastDir.y !== 1) candidate = { x: 0, y: -1 };
+    } else if (key === 'arrowdown' || key === 's') {
+      if (lastDir.y !== -1) candidate = { x: 0, y: 1 };
+    } else if (key === 'arrowleft' || key === 'a') {
+      if (lastDir.x !== 1) candidate = { x: -1, y: 0 };
+    } else if (key === 'arrowright' || key === 'd') {
+      if (lastDir.x !== -1) candidate = { x: 1, y: 0 };
+    }
+
+    if (!candidate) return;
+    if (dirQueue.length >= DIR_QUEUE_MAX) return;
+
+    /* Skip if identical to the last pending direction */
+    if (lastDir.x === candidate.x && lastDir.y === candidate.y) return;
+
+    dirQueue.push(candidate);
+  };
+
   window.addEventListener('keydown', (e) => {
+    /* Don't hijack keys while the user is typing in an input/textarea */
+    const active = document.activeElement as HTMLElement | null;
+    if (active) {
+      const tag = active.tagName.toLowerCase();
+      if (
+        tag === 'input' ||
+        tag === 'textarea' ||
+        tag === 'select' ||
+        active.isContentEditable
+      ) {
+        return;
+      }
+    }
+
     const key = e.key.toLowerCase();
     const isGameKey = [
       'arrowup',
@@ -326,26 +407,30 @@ export function initSnake(): void {
     }
 
     if (idle) beginPlaying();
-
     if (!running || idle) return;
 
-    if (key === 'arrowup' || key === 'w') {
-      if (dir.y !== 1) nextDir = { x: 0, y: -1 };
-    } else if (key === 'arrowdown' || key === 's') {
-      if (dir.y !== -1) nextDir = { x: 0, y: 1 };
-    } else if (key === 'arrowleft' || key === 'a') {
-      if (dir.x !== 1) nextDir = { x: -1, y: 0 };
-    } else if (key === 'arrowright' || key === 'd') {
-      if (dir.x !== -1) nextDir = { x: 1, y: 0 };
-    }
+    queueDirection(key);
   });
 
   canvas.addEventListener('pointerdown', () => {
     if (idle) beginPlaying();
   });
 
-  restartBtn?.addEventListener('click', newGame);
-  overlayRestartBtn?.addEventListener('click', newGame);
+  restartBtn?.addEventListener('click', (e) => {
+    (e.currentTarget as HTMLButtonElement).blur();
+    newGame();
+  });
+  overlayRestartBtn?.addEventListener('click', (e) => {
+    (e.currentTarget as HTMLButtonElement).blur();
+    newGame();
+  });
+
+  /* Auto-pause when the tab is hidden — user shouldn't come back to a dead snake */
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && running && !idle && !dead && !paused) {
+      paused = true;
+    }
+  });
 
   enterIdle();
   startLoop();
