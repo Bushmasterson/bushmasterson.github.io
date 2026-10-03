@@ -1,4 +1,5 @@
 import { getCurrentTheme, toggleTheme } from './theme.js';
+import { toggleDisco } from './disco.js';
 
 const VFS: Record<string, string[]> = {
   'about.md': [
@@ -47,6 +48,7 @@ const COMMANDS = [
   'date',
   'echo',
   'exit',
+  'hahaha',
   'help',
   'history',
   'ls',
@@ -211,6 +213,13 @@ export function initTerminalPage(): void {
         print('nice try.');
         scroll();
         break;
+
+      case 'hahaha': {
+        const started = toggleDisco();
+        print(started ? '~ party time ~' : '~ party over ~');
+        scroll();
+        break;
+      }
 
       case 'clear':
         output.innerHTML = '';
