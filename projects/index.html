@@ -194,7 +194,7 @@
 
         <div class="projects-toolbar">
           <span class="projects-count">
-            <b class="projects-count-num">3</b> projects
+            <b class="projects-count-num">4</b> projects
           </span>
           <div
             class="project-filters"
@@ -232,6 +232,14 @@
               aria-pressed="false"
             >
               c++
+            </button>
+            <button
+              class="filter-btn"
+              type="button"
+              data-filter="python"
+              aria-pressed="false"
+            >
+              python
             </button>
           </div>
         </div>
@@ -326,15 +334,55 @@
           <div class="card-content">
             <p class="project-desc">
               minimal cli task tracker. written in c++ for speed, portability,
-              and zero runtime dependencies.
+              and zero runtime dependencies. an android version is currently in
+              development with kotlin.
             </p>
             <ul class="project-meta">
               <li><span class="meta-label">stack</span> c++</li>
+              <li><span class="meta-label">android</span> kotlin (wip)</li>
               <li><span class="meta-label">license</span> mit</li>
             </ul>
             <div class="project-links">
               <a
                 href="https://github.com/Bushmasterson/bush-tasks"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i
+                  class="fab fa-github"
+                  aria-hidden="true"
+                ></i>
+                <span>github</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section
+          class="card project-card"
+          id="bush-math"
+          data-tags="python"
+          data-index="04"
+          aria-labelledby="bush-math-title"
+        >
+          <div class="card-header">
+            <h2 id="bush-math-title">
+              <span class="prompt">~$</span> cat bush-math.md
+            </h2>
+            <span class="project-status project-status--active">active</span>
+          </div>
+          <div class="card-content">
+            <p class="project-desc">
+              mathematical animations built with manim — visual explanations of
+              concepts i'm learning, from calculus to linear algebra.
+            </p>
+            <ul class="project-meta">
+              <li><span class="meta-label">stack</span> python · manim</li>
+              <li><span class="meta-label">license</span> mit</li>
+            </ul>
+            <div class="project-links">
+              <a
+                href="https://github.com/Bushmasterson/bush-math"
                 target="_blank"
                 rel="noopener noreferrer"
               >

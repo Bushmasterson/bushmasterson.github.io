@@ -11,7 +11,8 @@ const VFS: Record<string, string[]> = {
   'projects.md': [
     'bushnews   — cybersecurity & it news      [telegram]',
     'bush-bot   — telegram bot for updates     [typescript]',
-    'bush-tasks — cli task manager             [c++]',
+    'bush-tasks — cli task manager             [c++] · android (kotlin) wip',
+    'bush-math  — math animations with manim   [python]',
     '',
     '→ /projects for details',
   ],
