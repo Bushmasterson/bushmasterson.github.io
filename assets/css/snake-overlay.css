@@ -1,0 +1,198 @@
+/* ─── Snake: full-screen game over overlay ─── */
+
+.snake-gameover {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(92, 184, 172, 0.1),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at center,
+      rgba(10, 10, 11, 0.72),
+      rgba(10, 10, 11, 0.94)
+    );
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.snake-gameover[hidden] {
+  display: none !important;
+}
+
+.snake-gameover.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.snake-gameover-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2.2rem 2.6rem;
+  border: 1px solid rgba(92, 184, 172, 0.45);
+  border-radius: 18px;
+  background: rgba(10, 10, 11, 0.55);
+  text-align: center;
+  font-family:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+  transform: translateY(10px) scale(0.97);
+  opacity: 0;
+  box-shadow:
+    0 0 0 1px rgba(123, 208, 195, 0.08) inset,
+    0 0 40px rgba(92, 184, 172, 0.18),
+    0 20px 60px rgba(0, 0, 0, 0.5);
+  transition:
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.snake-gameover.is-visible .snake-gameover-inner {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.snake-gameover-prompt {
+  margin: 0;
+  font-size: 0.76rem;
+  color: #a5a09a;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.snake-gameover-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 7vw, 3.4rem);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: #7bd0c3;
+  text-transform: lowercase;
+  text-shadow:
+    0 0 8px rgba(123, 208, 195, 0.95),
+    0 0 22px rgba(92, 184, 172, 0.7),
+    0 0 60px rgba(92, 184, 172, 0.4);
+  animation: snakeGameOverGlitch 0.55s steps(4, end) 1;
+}
+
+@keyframes snakeGameOverGlitch {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    transform: translate(2px, -1px);
+  }
+  60% {
+    transform: translate(-1px, -1px);
+  }
+  80% {
+    transform: translate(1px, 1px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+.snake-gameover-score {
+  margin: 0.15rem 0 0.4rem;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.6em;
+  font-size: 0.88rem;
+  color: #d6d1c6;
+  letter-spacing: 0.05em;
+}
+
+.snake-gameover-score .meta-label {
+  color: #5cb8ac;
+  opacity: 0.85;
+  text-transform: lowercase;
+  letter-spacing: 0.08em;
+}
+
+.snake-gameover-score b {
+  color: #f1ece2;
+  font-weight: 600;
+  font-size: 1.2em;
+  text-shadow: 0 0 12px rgba(92, 184, 172, 0.22);
+}
+
+.snake-gameover-sep {
+  color: #a5a09a;
+  opacity: 0.45;
+  font-size: 1.1em;
+}
+
+.snake-gameover-restart {
+  margin-top: 0.4rem;
+  padding: 0.55em 1.5em;
+  font-family: inherit;
+  font-size: 0.82rem;
+  color: #7bd0c3;
+  background: transparent;
+  border: 1px solid rgba(92, 184, 172, 0.45);
+  border-radius: 999px;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  transition:
+    color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.snake-gameover-restart:hover,
+.snake-gameover-restart:focus-visible {
+  color: #0a0a0b;
+  background: #7bd0c3;
+  border-color: #7bd0c3;
+  box-shadow:
+    0 0 24px rgba(92, 184, 172, 0.22),
+    0 0 60px rgba(92, 184, 172, 0.25);
+  transform: translateY(-1px);
+}
+
+.snake-gameover-restart:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.snake-gameover-hint {
+  margin: 0.1rem 0 0;
+  font-size: 0.7rem;
+  color: #a5a09a;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  opacity: 0.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .snake-gameover,
+  .snake-gameover-inner {
+    transition: none;
+  }
+  .snake-gameover-title {
+    animation: none;
+  }
+}
+
+@media print {
+  .snake-gameover {
+    display: none !important;
+  }
+}

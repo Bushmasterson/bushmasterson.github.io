@@ -1293,25 +1293,6 @@
     box-shadow: 0 0 14px var(--accent-dim);
   }
 
-  .snake-over::after {
-    content: "game over";
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 4;
-    font-family: var(--font-mono);
-    font-size: 1.1rem;
-    letter-spacing: 0.3em;
-    text-transform: lowercase;
-    color: var(--accent);
-    background: rgba(10, 10, 11, 0.7);
-    text-shadow: 0 0 20px var(--accent-glow);
-    pointer-events: none;
-    animation: fadeIn 0.3s var(--ease-out) forwards;
-  }
-
   /* Easter eggs */
   #boot {
     position: fixed;

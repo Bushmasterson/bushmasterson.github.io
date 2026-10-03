@@ -8,7 +8,7 @@
     />
     <meta
       name="description"
-      content="bushmasterson — social links."
+      content="bushmasterson — snake.exe"
     />
     <meta
       name="theme-color"
@@ -21,14 +21,14 @@
 
     <meta
       property="og:title"
-      content="social | bushmasterson"
+      content="snake.exe | bushmasterson"
     />
     <meta
       property="og:url"
-      content="https://bushmasterson.github.io/social/"
+      content="https://bushmasterson.github.io/snake/"
     />
 
-    <title>social | bushmasterson</title>
+    <title>snake.exe | bushmasterson</title>
 
     <script src="../assets/theme-init.js"></script>
 
@@ -61,7 +61,6 @@
       rel="stylesheet"
       href="../assets/css/main.css"
     />
-
     <link
       rel="stylesheet"
       href="../assets/icons/css/all.min.css"
@@ -74,6 +73,11 @@
         href="../assets/icons/css/all.min.css"
       />
     </noscript>
+
+    <link
+      rel="stylesheet"
+      href="../assets/css/snake-overlay.css"
+    />
 
     <script
       type="module"
@@ -130,12 +134,6 @@
       id="particles-canvas"
       aria-hidden="true"
     ></canvas>
-    <button
-      id="back-to-top"
-      type="button"
-      aria-label="Back to top"
-      >↑</button
-    >
 
     <main
       class="container"
@@ -154,248 +152,54 @@
               <span class="prompt">bushmasterson@arch:~$</span>
               <span
                 class="typed"
-                data-typed="cat social.md"
-                data-speed="90"
+                data-typed="./snake.exe"
+                data-speed="100"
                 data-delay="400"
               ></span
               ><span class="cursor-blink">|</span>
             </span>
-            <span class="sr-only">social</span>
+            <span class="sr-only">snake.exe</span>
           </h1>
           <p class="subtitle">
             <span aria-hidden="true">
               <span class="prompt">&gt;</span>
               <span
                 class="typed"
-                data-typed="where to find me."
+                data-typed="classic 8-bit snake."
                 data-speed="55"
                 data-delay="1400"
               ></span>
             </span>
-            <span class="sr-only">where to find me.</span>
+            <span class="sr-only">classic 8-bit snake.</span>
           </p>
         </header>
 
         <section
-          class="card project-card"
-          data-index="01"
-          aria-labelledby="social-primary"
+          class="card snake-card"
+          aria-label="Snake game"
         >
-          <div class="card-header">
-            <h2 id="social-primary"><span class="prompt">~$</span> primary</h2>
+          <div class="snake-canvas-wrap">
+            <canvas
+              id="snake-canvas"
+              width="320"
+              height="320"
+            ></canvas>
           </div>
-          <div class="card-content">
-            <p class="project-desc">
-              where i actually post, reply, and check messages.
-            </p>
-            <ul class="project-meta">
-              <li><span class="meta-label">handle</span> @bushmasterson</li>
-            </ul>
-            <div class="project-links">
-              <a
-                href="https://github.com/bushmasterson"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-github"
-                  aria-hidden="true"
-                ></i
-                ><span>github</span>
-              </a>
-              <a
-                href="https://telegram.me/bushmasterson"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-telegram"
-                  aria-hidden="true"
-                ></i
-                ><span>telegram</span>
-              </a>
-              <a
-                href="https://x.com/bushmasterson02"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-x-twitter"
-                  aria-hidden="true"
-                ></i
-                ><span>x</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="card project-card"
-          data-index="02"
-          aria-labelledby="social-mirror"
-        >
-          <div class="card-header">
-            <h2 id="social-mirror"><span class="prompt">~$</span> mirror</h2>
-          </div>
-          <div class="card-content">
-            <p class="project-desc">
-              same content as primary, different algorithms. cross-posted when i
-              remember.
-            </p>
-            <ul class="project-meta">
-              <li><span class="meta-label">handle</span> @bushmasterson</li>
-            </ul>
-            <div class="project-links">
-              <a
-                href="https://bsky.app/profile/bushmasterson.bsky.social"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-bluesky"
-                  aria-hidden="true"
-                ></i
-                ><span>bluesky</span>
-              </a>
-              <a
-                href="https://www.threads.net/@bushmasterson"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-threads"
-                  aria-hidden="true"
-                ></i
-                ><span>threads</span>
-              </a>
-              <a
-                href="https://www.instagram.com/bushmasterson"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-instagram"
-                  aria-hidden="true"
-                ></i
-                ><span>instagram</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="card project-card"
-          data-index="03"
-          aria-labelledby="social-extra"
-        >
-          <div class="card-header">
-            <h2 id="social-extra"><span class="prompt">~$</span> extra</h2>
-          </div>
-          <div class="card-content">
-            <p class="project-desc">
-              less frequent. mostly lurking, occasionally posting.
-            </p>
-            <ul class="project-meta">
-              <li><span class="meta-label">handles</span> varied</li>
-            </ul>
-            <div class="project-links">
-              <a
-                href="https://www.reddit.com/user/bushmaster_son"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-reddit"
-                  aria-hidden="true"
-                ></i
-                ><span>reddit</span>
-              </a>
-              <a
-                href="https://www.tiktok.com/@bushmasterson02"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-tiktok"
-                  aria-hidden="true"
-                ></i
-                ><span>tiktok</span>
-              </a>
-              <a
-                href="https://on.soundcloud.com/4ywQ1rScTsyhMOeQgk"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-soundcloud"
-                  aria-hidden="true"
-                ></i
-                ><span>soundcloud</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="card project-card"
-          data-index="04"
-          aria-labelledby="social-channel"
-        >
-          <div class="card-header">
-            <h2 id="social-channel"><span class="prompt">~$</span> channel</h2>
-          </div>
-          <div class="card-content">
-            <p class="project-desc">
-              my cybersecurity and it news channel. hand-picked, no spam.
-            </p>
-            <ul class="project-meta">
-              <li><span class="meta-label">topic</span> cybersecurity · it</li>
-              <li><span class="meta-label">status</span> active</li>
-            </ul>
-            <div class="project-links">
-              <a
-                href="https://t.me/bushnewschannel"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i
-                  class="fab fa-telegram"
-                  aria-hidden="true"
-                ></i
-                ><span>bushnews</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <section
-          class="card project-card"
-          data-index="05"
-          aria-labelledby="social-contact"
-        >
-          <div class="card-header">
-            <h2 id="social-contact"><span class="prompt">~$</span> contact</h2>
-          </div>
-          <div class="card-content">
-            <p class="project-desc">
-              for formal messages — email. for everything else — telegram.
-            </p>
-            <ul class="project-meta">
-              <li
-                ><span class="meta-label">email</span>
-                bushmasterson@proton.me</li
-              >
-              <li><span class="meta-label">pgp</span> on request</li>
-            </ul>
-            <div class="project-links">
-              <a href="mailto:bushmasterson@proton.me">
-                <i
-                  class="fas fa-envelope"
-                  aria-hidden="true"
-                ></i
-                ><span>send email</span>
-              </a>
-            </div>
+          <div class="snake-footer">
+            <span class="snake-stat">
+              <span class="meta-label">score</span>
+              <b id="snake-score">0</b>
+            </span>
+            <span class="snake-stat snake-hint">
+              <span class="meta-label">keys</span> ↑↓←→ / wasd · space pause
+            </span>
+            <button
+              class="snake-restart"
+              type="button"
+              id="snake-restart"
+            >
+              restart
+            </button>
           </div>
         </section>
 
@@ -404,5 +208,39 @@
         </p>
       </article>
     </main>
+
+    <div
+      id="snake-gameover"
+      class="snake-gameover"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="snake-gameover-title"
+      hidden
+    >
+      <div class="snake-gameover-inner">
+        <p class="snake-gameover-prompt">bushmasterson@arch:~$ ./snake.exe</p>
+        <h2
+          class="snake-gameover-title"
+          id="snake-gameover-title"
+        >
+          game over
+        </h2>
+        <p class="snake-gameover-score">
+          <span class="meta-label">score</span>
+          <b id="snake-final-score">0</b>
+          <span class="snake-gameover-sep">·</span>
+          <span class="meta-label">best</span>
+          <b id="snake-final-best">0</b>
+        </p>
+        <button
+          type="button"
+          class="snake-gameover-restart"
+          id="snake-gameover-restart"
+        >
+          restart
+        </button>
+        <p class="snake-gameover-hint">space / click</p>
+      </div>
+    </div>
   </body>
 </html>
