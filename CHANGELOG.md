@@ -47,6 +47,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Update CHANGELOG (#48)
 - Update CHANGELOG (#50)
 - Update CHANGELOG (#52)
+- Update CHANGELOG (#53)
 
 ### Dependencies
 
@@ -59,6 +60,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compact README
 - Remove project structure section
 - Add CHANGELOG and CONTRIBUTING (#43)
+- `contributing` Wrap localhost link in angle brackets (#55)
 
 ### Features
 
@@ -83,6 +85,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `nav` Full footer links — about · projects · rules · social · uses
 - `about` Calisthenics, music ru, expanded hobbies + values; footer nav full
 - Aesthetic overhaul + optimization + terminal refactor (#51)
+- `music` Real c418 playback + static footer note (#56)
 
 ### Performance
 
