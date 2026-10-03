@@ -29,7 +29,7 @@
     />
     <meta
       property="og:url"
-      content="https://bushmasterson.github.io/projects/"
+      content="https://bushmasterson.github.io/projects.html"
     />
     <meta
       property="og:image"
@@ -42,7 +42,21 @@
 
     <title>projects | bushmasterson</title>
 
-    <script src="../assets/theme-init.js"></script>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : window.matchMedia("(prefers-color-scheme: light)").matches
+                ? "light"
+                : "dark";
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {}
+      })();
+    </script>
 
     <link
       rel="icon"
@@ -56,44 +70,44 @@
     <link
       rel="preload"
       as="style"
-      href="../assets/css/main.css"
+      href="assets/css/main.css"
     />
     <link
       rel="preload"
       as="font"
       type="font/woff2"
-      href="../assets/icons/webfonts/fa-solid-900.woff2"
+      href="assets/icons/webfonts/fa-solid-900.woff2"
       crossorigin
     />
     <link
       rel="preload"
       as="font"
       type="font/woff2"
-      href="../assets/icons/webfonts/fa-brands-400.woff2"
+      href="assets/icons/webfonts/fa-brands-400.woff2"
       crossorigin
     />
 
     <link
       rel="stylesheet"
-      href="../assets/css/main.css"
+      href="assets/css/main.css"
     />
 
     <link
       rel="stylesheet"
-      href="../assets/icons/css/all.min.css"
+      href="assets/icons/css/all.min.css"
       media="print"
       onload="this.media = 'all'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="../assets/icons/css/all.min.css"
+        href="assets/icons/css/all.min.css"
       />
     </noscript>
 
     <script
       type="module"
-      src="../assets/js/main.js"
+      src="assets/js/main.js"
     ></script>
   </head>
 
@@ -192,62 +206,15 @@
           </p>
         </header>
 
-        <div class="projects-toolbar">
-          <span class="projects-count">
-            <b class="projects-count-num">3</b> projects
-          </span>
-          <div
-            class="project-filters"
-            role="group"
-            aria-label="Filter by stack"
-          >
-            <button
-              class="filter-btn"
-              type="button"
-              data-filter="all"
-              aria-pressed="true"
-            >
-              all
-            </button>
-            <button
-              class="filter-btn"
-              type="button"
-              data-filter="telegram"
-              aria-pressed="false"
-            >
-              telegram
-            </button>
-            <button
-              class="filter-btn"
-              type="button"
-              data-filter="typescript"
-              aria-pressed="false"
-            >
-              typescript
-            </button>
-            <button
-              class="filter-btn"
-              type="button"
-              data-filter="c++"
-              aria-pressed="false"
-            >
-              c++
-            </button>
-          </div>
-        </div>
-
         <section
-          class="card project-card"
+          class="card"
           id="bushnews"
-          data-tags="telegram"
-          data-index="01"
           aria-labelledby="bushnews-title"
         >
           <div class="card-header">
             <h2 id="bushnews-title">
               <span class="prompt">~$</span> cat bushnews.md
             </h2>
-            <span class="project-status project-status--active">active</span>
           </div>
           <div class="card-content">
             <p class="project-desc">
@@ -256,35 +223,28 @@
             </p>
             <ul class="project-meta">
               <li><span class="meta-label">stack</span> telegram</li>
+              <li><span class="meta-label">status</span> active</li>
             </ul>
             <div class="project-links">
               <a
                 href="https://t.me/bushnewschannel"
                 target="_blank"
                 rel="noopener noreferrer"
+                >telegram channel</a
               >
-                <i
-                  class="fab fa-telegram"
-                  aria-hidden="true"
-                ></i>
-                <span>telegram channel</span>
-              </a>
             </div>
           </div>
         </section>
 
         <section
-          class="card project-card"
+          class="card"
           id="bush-bot"
-          data-tags="telegram,typescript"
-          data-index="02"
           aria-labelledby="bush-bot-title"
         >
           <div class="card-header">
             <h2 id="bush-bot-title">
               <span class="prompt">~$</span> cat bush-bot.md
             </h2>
-            <span class="project-status project-status--active">active</span>
           </div>
           <div class="card-content">
             <p class="project-desc">
@@ -293,35 +253,28 @@
             </p>
             <ul class="project-meta">
               <li><span class="meta-label">stack</span> typescript · node</li>
+              <li><span class="meta-label">status</span> active</li>
             </ul>
             <div class="project-links">
               <a
                 href="https://github.com/Bushmasterson/bush-bot"
                 target="_blank"
                 rel="noopener noreferrer"
+                >github</a
               >
-                <i
-                  class="fab fa-github"
-                  aria-hidden="true"
-                ></i>
-                <span>github</span>
-              </a>
             </div>
           </div>
         </section>
 
         <section
-          class="card project-card"
+          class="card"
           id="bush-tasks"
-          data-tags="c++"
-          data-index="03"
           aria-labelledby="bush-tasks-title"
         >
           <div class="card-header">
             <h2 id="bush-tasks-title">
               <span class="prompt">~$</span> cat bush-tasks.md
             </h2>
-            <span class="project-status project-status--active">active</span>
           </div>
           <div class="card-content">
             <p class="project-desc">
@@ -337,19 +290,14 @@
                 href="https://github.com/Bushmasterson/bush-tasks"
                 target="_blank"
                 rel="noopener noreferrer"
+                >github</a
               >
-                <i
-                  class="fab fa-github"
-                  aria-hidden="true"
-                ></i>
-                <span>github</span>
-              </a>
             </div>
           </div>
         </section>
 
         <p class="page-footer">
-          <a href="../">← back to home</a>
+          <a href="index.html">← back to home</a>
         </p>
       </article>
     </main>
