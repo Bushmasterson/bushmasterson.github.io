@@ -1,0 +1,242 @@
+# Contributing
+
+Thanks for wanting to help. This is a personal portfolio, but PRs are welcome
+for bug fixes, accessibility improvements, and performance wins.
+
+## Ground rules
+
+- **Never push directly to `main`.** It is protected by a ruleset — direct
+  pushes are rejected by GitHub. All changes go through pull requests.
+- **Squash only.** The repo is configured for squash merging. Your branch's
+  commits get compressed into one on `main`.
+- **Branch is auto-deleted** after merge.
+- **`main` is the only branch.** Everything else is temporary.
+
+## Requirements
+
+- **Node.js 24+** (see `.nvmrc`)
+- **npm 10+**
+- Git
+
+## Setup
+
+```bash
+git clone https://github.com/Bushmasterson/bushmasterson.github.io.git
+cd bushmasterson.github.io
+npm install
+```
+
+Husky hooks install automatically on `npm install`:
+
+- `pre-commit` → runs `lint-staged` (prettier on staged files)
+- `pre-push` → runs `npm run check` (tsc + prettier)
+
+## Local development
+
+```bash
+npm run dev
+```
+
+Starts Vite in watch mode (`vite build --watch`) and a static server on
+http://localhost:3000. Rebuilds `assets/js/main.js` on change, auto-reloads in
+browser.
+
+For a one-off production preview:
+
+```bash
+npm run build     # compile TS → assets/js/
+npm run preview   # serve built site on :3000
+```
+
+## Before opening a PR
+
+Run these locally — the same checks run in CI:
+
+```bash
+npx prettier --write .
+npx prettier --check .
+npx tsc --noEmit
+npx vite build
+```
+
+Or one-liner:
+
+```bash
+npm run check && npx vite build
+```
+
+All must pass cleanly. Pre-push hook also enforces `npm run check`, so if
+prettier complains, fix it locally before pushing.
+
+## Branch naming
+
+| Prefix         | Use for                    |
+| -------------- | -------------------------- |
+| `feat/...`     | New feature                |
+| `fix/...`      | Bug fix                    |
+| `chore/...`    | Maintenance, deps, configs |
+| `docs/...`     | Documentation only         |
+| `refactor/...` | No behavior change         |
+| `perf/...`     | Performance                |
+| `test/...`     | Tests                      |
+| `ci/...`       | CI/CD changes              |
+
+Example: `feat/snake-difficulty`, `fix/mobile-swipe`, `chore/deps-bump`.
+
+## Commit messages
+
+Follow Conventional Commits:
+
+```text
+feat: add new page
+fix(snake): prevent input queue overflow
+chore(deps): bump typescript to 5.9
+docs: update README
+```
+
+Format: `<type>(<scope>): <description>`
+
+- `type` — one of: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`,
+  `test`, `ci`
+- `scope` — optional, e.g. `snake`, `terminal`, `deps`
+- `description` — lowercase, imperative mood, no period
+
+## PR process
+
+1. Sync `main` and create a branch:
+
+   ```bash
+   git checkout main
+   git pull
+   git checkout -b feat/your-feature
+   ```
+
+2. Make changes, run checks.
+
+3. Commit and push:
+
+   ```bash
+   git add .
+   git commit -m "feat: your feature"
+   git push -u origin feat/your-feature
+   ```
+
+4. Open PR:
+
+   ```bash
+   gh pr create --title "feat: your feature" --body "description" --base main
+   ```
+
+5. Wait for CI. All 6 required checks must pass:
+
+   - **Lint, type, build** — prettier + tsc + vite build
+   - **CodeQL** — static analysis
+   - **Audit** — npm audit
+   - **Secrets** — gitleaks
+   - **CodeQL (javascript-typescript)** — matrix run
+   - **Review** — dependency review
+
+6. Merge with squash:
+
+   ```bash
+   gh pr merge --auto --squash
+   ```
+
+7. Clean up locally:
+
+   ```bash
+   git checkout main
+   git pull
+   git branch -D feat/your-feature
+   ```
+
+## Project structure
+
+```text
+.
+├── index.html              # home
+├── 404.html                # not found
+├── about/                  # /about/
+├── projects/               # /projects/
+├── rules/                  # /rules/
+├── social/                 # /social/
+├── terminal/               # /terminal/
+├── uses/                   # /uses/
+├── snake/                  # /snake/
+├── assets/
+│   ├── css/
+│   │   ├── main.css        # shared stylesheet
+│   │   ├── snake-overlay.css
+│   │   └── disco.css
+│   ├── icons/              # Font Awesome 7 (self-hosted)
+│   ├── images/
+│   └── js/                 # built from src/ts by vite — DO NOT EDIT
+├── src/ts/
+│   ├── main.ts             # entrypoint — boots all features
+│   ├── config.ts           # starfield tuning constants
+│   ├── types.ts
+│   ├── utils/color.ts
+│   └── features/
+│       ├── avatar.ts
+│       ├── back-to-top.ts
+│       ├── boot.ts
+│       ├── disco.ts
+│       ├── particles.ts
+│       ├── projects-filter.ts
+│       ├── snake.ts
+│       ├── terminal.ts     # hidden terminal easter egg (5 clicks)
+│       ├── terminal-page.ts # /terminal/ page
+│       ├── theme.ts
+│       └── typing.ts
+├── .github/workflows/      # CI/CD
+├── tsconfig.json
+├── vite.config.ts
+├── .prettierrc
+└── package.json
+```
+
+## What not to touch
+
+- `assets/js/` — generated by `vite build`. Do not edit manually. If you need to
+  change TS, edit `src/ts/`.
+- `assets/icons/` — vendored Font Awesome 7. Do not modify.
+- `main` — protected by ruleset. Use PRs.
+- `.github/workflows/` — changes to CI require care. Open an issue first if you
+  want to modify the pipeline.
+
+## Code style
+
+- **TypeScript** — strict mode, `noUncheckedIndexedAccess`,
+  `exactOptionalPropertyTypes`. Avoid `any`, use `unknown` + type guards.
+- **CSS** — layered via `@layer`, one-line comments only (e.g. `/* tokens */`,
+  `/* snake page */`). No decorative separators.
+- **HTML** — semantic tags, ARIA where needed, `sr-only` for screen readers.
+  Never nest `<html>` inside another page.
+- **Comments** — minimal, only when the "why" is non-obvious.
+- **Imports** — always use `.js` extension (ES modules).
+
+## Performance budgets
+
+Tracked by Lighthouse CI:
+
+- Performance ≥ 80
+- Accessibility ≥ 90
+- Best practices ≥ 90
+- SEO ≥ 90
+
+If your change drops these, CI will warn (not block).
+
+## Accessibility checklist
+
+Before opening a PR that touches UI:
+
+- [ ] Keyboard navigable
+- [ ] `:focus-visible` outline visible
+- [ ] `aria-label` on icon-only buttons
+- [ ] Respects `prefers-reduced-motion`
+- [ ] Works in both light and dark themes
+- [ ] Text contrast ratio ≥ 4.5:1
+
+## Questions?
+
+Open a discussion or an issue.
