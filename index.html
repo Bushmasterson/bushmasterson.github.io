@@ -511,17 +511,7 @@
           <a href="uses/">uses</a>
         </nav>
 
-        <p class="footer-note">
-          <span aria-hidden="true">
-            <span
-              class="typed"
-              data-typed="— coffee and code."
-              data-speed="50"
-              data-delay="2200"
-            ></span>
-          </span>
-          <span class="sr-only">coffee and code.</span>
-        </p>
+        <p class="footer-note">— coffee and code.</p>
       </article>
     </main>
 
@@ -529,7 +519,22 @@
       class="now-playing"
       aria-label="Now playing"
     >
-      <span class="now-playing-label">now playing</span>
+      <div class="now-playing-head">
+        <span class="now-playing-label">now playing</span>
+        <button
+          class="now-playing-toggle"
+          id="now-playing-toggle"
+          type="button"
+          aria-label="Play c418 — sweden"
+          aria-pressed="false"
+        >
+          <span
+            class="now-playing-icon"
+            aria-hidden="true"
+            >▶</span
+          >
+        </button>
+      </div>
       <span class="now-playing-track">c418 — sweden</span>
       <span class="now-playing-meta">minecraft — volume alpha (2011)</span>
       <span class="now-playing-copyright"
@@ -545,5 +550,12 @@
         ><span class="now-playing-bar-fill"></span
       ></span>
     </aside>
+
+    <audio
+      id="now-playing-audio"
+      src="assets/music/music.mp3"
+      loop
+      preload="none"
+    ></audio>
   </body>
 </html>

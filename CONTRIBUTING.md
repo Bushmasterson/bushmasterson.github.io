@@ -38,7 +38,7 @@ npm run dev
 ```
 
 Starts Vite in watch mode (`vite build --watch`) and a static server on
-http://localhost:3000. Rebuilds `assets/js/main.js` on change, auto-reloads in
+<http://localhost:3000>. Rebuilds `assets/js/main.js` on change, auto-reloads in
 browser.
 
 For a one-off production preview:
