@@ -57,7 +57,6 @@ const COMMANDS = [
   'sudo',
   'theme',
   'uses',
-  'whoami',
   'projects',
 ] as const;
 
@@ -125,7 +124,6 @@ export function initTerminalPage(): void {
         printLines([
           'available commands:',
           '  help          this message',
-          '  whoami        who am i',
           '  ls            list files',
           '  cat <file>    read a file',
           '  pwd           current directory',
@@ -140,10 +138,6 @@ export function initTerminalPage(): void {
           '  clear         clear screen',
           '  exit          go home',
         ]);
-        break;
-
-      case 'whoami':
-        printLines(['bushmasterson', 'freedom thinker, coder, athlete']);
         break;
 
       case 'ls':
