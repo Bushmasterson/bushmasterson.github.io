@@ -13,6 +13,12 @@
     <meta
       name="theme-color"
       content="#0f0f10"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#faf8f3"
+      media="(prefers-color-scheme: light)"
     />
     <meta
       name="color-scheme"
@@ -43,6 +49,16 @@
     <title>bushmasterson | developer &amp; cybersecurity enthusiast</title>
 
     <script src="assets/theme-init.js"></script>
+
+    <link
+      rel="preconnect"
+      href="https://bushmasterson.github.io"
+      crossorigin
+    />
+    <link
+      rel="dns-prefetch"
+      href="//bushmasterson.github.io"
+    />
 
     <link
       rel="icon"
@@ -189,6 +205,7 @@
           <h1
             class="typed-line"
             id="page-title"
+            title="click me 5 times"
           >
             <span aria-hidden="true">
               <span class="prompt">bushmasterson@arch:~$</span>
@@ -469,25 +486,25 @@
         >
           <a href="about/">about</a>
           <span
-            class="page-nav-dot"
+            class="page-nav-sep"
             aria-hidden="true"
             >·</span
           >
           <a href="projects/">projects</a>
           <span
-            class="page-nav-dot"
+            class="page-nav-sep"
             aria-hidden="true"
             >·</span
           >
           <a href="rules/">rules</a>
           <span
-            class="page-nav-dot"
+            class="page-nav-sep"
             aria-hidden="true"
             >·</span
           >
           <a href="social/">social</a>
           <span
-            class="page-nav-dot"
+            class="page-nav-sep"
             aria-hidden="true"
             >·</span
           >
@@ -507,5 +524,26 @@
         </p>
       </article>
     </main>
+
+    <aside
+      class="now-playing"
+      aria-label="Now playing"
+    >
+      <span class="now-playing-label">now playing</span>
+      <span class="now-playing-track">c418 — sweden</span>
+      <span class="now-playing-meta">minecraft — volume alpha (2011)</span>
+      <span class="now-playing-copyright"
+        >© c418 ·
+        <a
+          href="https://soundcloud.com/c418/sweden"
+          target="_blank"
+          rel="noopener noreferrer"
+          >soundcloud ↗</a
+        ></span
+      >
+      <span class="now-playing-bar"
+        ><span class="now-playing-bar-fill"></span
+      ></span>
+    </aside>
   </body>
 </html>

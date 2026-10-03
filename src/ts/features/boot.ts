@@ -2,8 +2,10 @@ const BOOT_LINES = [
   'bushmasterson bio v2.0',
   'loading kernel ............ ok',
   'mounting /dev/heart ....... ok',
-  'loading personality ....... ok',
+  'checking memories ......... ok',
+  'loading hopes ............. ok',
   'starting ...',
+  'c418 — sweden',
 ] as const;
 
 export function initBoot(): void {
@@ -29,7 +31,7 @@ export function initBoot(): void {
         overlay.classList.add('boot-done');
         sessionStorage.setItem('boot_shown', '1');
         setTimeout(() => overlay.remove(), 500);
-      }, 350);
+      }, 400);
       return;
     }
 
@@ -39,7 +41,7 @@ export function initBoot(): void {
     output.appendChild(line);
 
     i += 1;
-    setTimeout(next, 180);
+    setTimeout(next, 220);
   };
 
   next();
