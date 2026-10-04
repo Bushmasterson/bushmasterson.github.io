@@ -21,6 +21,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `snake` Game over overlay + 8 gameplay fixes
 - `index` Remove accidentally nested rules markup
 - `player` Make player a static card in the stack (#65)
+- `player` Rename music.mp3 to sweden.mp3 (#72)
 
 ### CI/CD
 
@@ -59,6 +60,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Update CHANGELOG (#67)
 - Refresh gitignore and prettierignore (#69)
 - Update CHANGELOG (#70)
+- Update CHANGELOG (#71)
 
 ### Dependencies
 
