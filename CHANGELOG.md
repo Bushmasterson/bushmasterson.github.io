@@ -61,6 +61,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Refresh gitignore and prettierignore (#69)
 - Update CHANGELOG (#70)
 - Update CHANGELOG (#71)
+- Update CHANGELOG (#73)
 
 ### Dependencies
 
