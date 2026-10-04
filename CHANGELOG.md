@@ -20,6 +20,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Update project links to /projects/
 - `snake` Game over overlay + 8 gameplay fixes
 - `index` Remove accidentally nested rules markup
+- `player` Make player a static card in the stack (#65)
 
 ### CI/CD
 
@@ -54,6 +55,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Update CHANGELOG (#60)
 - Update CHANGELOG (#63)
 - Update CHANGELOG (#64)
+- Update CHANGELOG (#66)
 
 ### Dependencies
 
