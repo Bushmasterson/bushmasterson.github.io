@@ -56,6 +56,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Update CHANGELOG (#63)
 - Update CHANGELOG (#64)
 - Update CHANGELOG (#66)
+- Update CHANGELOG (#67)
 
 ### Dependencies
 
