@@ -119,6 +119,9 @@ and this project adheres to
 - **player**: Rename music.mp3 to sweden.mp3 (#72) —
   [`637b631`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/637b631c83632d2505eed9d66ad6a60da2cbe2a5)
 
+- **player**: Wire up play button to new player ids (#77) —
+  [`00516fc`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/00516fcb4d92fd7d67b079a3e540d31276af32a5)
+
 ### ⚡ Performance
 
 - Fix all lighthouse issues —
