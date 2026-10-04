@@ -4,6 +4,7 @@ node_modules/
 .pnp
 .pnp.js
 .yarn/
+jspm_packages/
 
 # Build artifacts
 assets/js/
@@ -12,8 +13,6 @@ _site/
 .vite/
 coverage/
 .nyc_output/
-
-# TypeScript
 *.tsbuildinfo
 *.tsbuildinfo.*
 
@@ -24,9 +23,12 @@ coverage/
 .envrc
 .env.development
 .env.production
+.env.staging
+.env.test
 
 # Logs
 *.log
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -65,12 +67,15 @@ $RECYCLE.BIN/
 .markdownlintcache
 .parcel-cache/
 .cache/
+.npm-cache/
+.vite-cache/
 
 # Test outputs
 junit.xml
 test-results/
 playwright-report/
 cypress/
+.nyc_output/
 
 # Temp files
 *.bak
@@ -79,8 +84,15 @@ cypress/
 *~
 *.tmp
 *.temp
+*.pid
+*.seed
+*.tgz
+*.tar.gz
 
-# Package managers
+# Husky v9 generated
+.husky/_/
+
+# Alternate lockfiles (keep package-lock.json committed)
 pnpm-lock.yaml
 yarn.lock
 bun.lockb
