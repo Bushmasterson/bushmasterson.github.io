@@ -1,7 +1,7 @@
 # Dependencies
 node_modules/
 
-# Generated
+# Generated / vendored
 assets/js/
 assets/icons/
 dist/
@@ -9,6 +9,8 @@ _site/
 .vite/
 coverage/
 .nyc_output/
+*.min.js
+*.min.css
 
 # Lockfiles
 package-lock.json
@@ -16,27 +18,28 @@ pnpm-lock.yaml
 yarn.lock
 bun.lockb
 
-# Editors
+# Editors / OS
 .vscode/
 .idea/
 *.sublime-workspace
-
-# OS
 .DS_Store
 Thumbs.db
 Desktop.ini
 
-# Caches
+# Caches / build info
 *.tsbuildinfo
 .cache/
 .parcel-cache/
 .eslintcache
 .stylelintcache
+.markdownlintcache
 
 # Git internals
 .git/
+.husky/_/
 
-# Binary-ish
+# Binary-ish assets — prettier has no parser for them anyway,
+# but explicit is faster than letting it try
 *.png
 *.jpg
 *.jpeg
@@ -44,6 +47,7 @@ Desktop.ini
 *.webp
 *.avif
 *.ico
+*.svg
 *.woff
 *.woff2
 *.ttf
@@ -53,6 +57,14 @@ Desktop.ini
 *.zip
 *.gz
 *.tar
+*.tgz
+*.mp3
+*.mp4
+*.webm
+*.ogg
+*.wav
+*.flac
 
 # Logs
 *.log
+logs/
