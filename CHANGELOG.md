@@ -51,6 +51,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Update CHANGELOG (#54)
 - Update CHANGELOG (#57)
 - `ci` Trigger full pipeline smoke test (#59)
+- Update CHANGELOG (#60)
 
 ### Dependencies
 
