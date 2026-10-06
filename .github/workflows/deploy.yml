@@ -1,8 +1,16 @@
-name: Deploy to GitHub Pages
+name: Deploy
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - '.gitattributes'
+      - '.editorconfig'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/PULL_REQUEST_TEMPLATE.md'
   workflow_dispatch:
 
 concurrency:
@@ -22,7 +30,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -67,9 +75,8 @@ jobs:
           done
 
       - name: Minify CSS
-        run:
-          npx esbuild assets/css/main.css --minify
-          --outfile=_site/assets/css/main.css
+        run: |
+          npx esbuild assets/css/main.css --minify --outfile=_site/assets/css/main.css
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -97,7 +104,7 @@ jobs:
 
       - name: Summary
         run: |
-          echo "### 🚀 Deployed" >> $GITHUB_STEP_SUMMARY
+          echo "### Deployed" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "**URL:** ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY
           echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY

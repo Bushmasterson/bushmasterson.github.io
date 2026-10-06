@@ -1,0 +1,13 @@
+[default]
+extend-ignore-re = [
+  "bushmasterson",
+  "bushnews",
+  "bush-bot",
+  "bush-tasks",
+  "bush-math",
+  "manim",
+]
+
+[default.extend-words]
+c418 = "c418"
+intj = "intj"
