@@ -222,6 +222,9 @@ and this project adheres to
 - Refresh gitignore and prettierignore (#69) —
   [`9c696f1`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/9c696f1dc97876476c942a4c90ba52b1dda2c9d2)
 
+- **ci**: Group dependabot updates, audit production only (#91) —
+  [`d38fb2c`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/d38fb2cdc5929d1123e8d3b010ef7d4353537c53)
+
 ---
 
 _This changelog is generated automatically from
