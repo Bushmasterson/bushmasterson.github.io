@@ -19,6 +19,7 @@
 - [ ] `npm run typecheck` passes
 - [ ] `npm run lint:prettier` passes
 - [ ] `npm run build` passes
+- [ ] `npm audit --omit=dev` — 0 vulnerabilities
 - [ ] Tested locally in browser
 - [ ] Theme toggle (light/dark) works
 - [ ] F12 → Console is clean
