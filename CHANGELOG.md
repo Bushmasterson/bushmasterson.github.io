@@ -78,6 +78,10 @@ and this project adheres to
 - **design**: 60/30/10 tokens, cleaner terminal, drop whoami (#85) —
   [`d9ca78e`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/d9ca78e0fe8e48cddeb74e3cb41ec0222f07d238)
 
+- **design**: 60/30/10 tokens, cleaner terminal, move player, drop whoami (#87)
+  —
+  [`44e6c83`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/44e6c8329177bc62cd991574a3736a2c15df6f45)
+
 ### 🐛 Bug Fixes
 
 - Add gitignore and remove unnecessary files —
