@@ -1,3 +1,5 @@
+import { cssVar } from '../utils/color.js';
+
 const GRID = 20;
 const CELL = 16;
 const TICK_MS_DESKTOP = 110;
@@ -36,6 +38,54 @@ const isDifficulty = (v: string | null | undefined): v is Difficulty =>
 
 type Point = { x: number; y: number };
 
+type SnakeColors = {
+  bg: string;
+  grid: string;
+  wallGlow: string;
+  wallOuter: string;
+  wallMid: string;
+  wallInner: string;
+  snake: string;
+  head: string;
+  headGlow: string;
+  bodyGlow: string;
+  food: string;
+  foodGlow: string;
+};
+
+/* fallbacks used only if CSS custom properties are missing */
+const FALLBACK: SnakeColors = {
+  bg: '#0a0a0b',
+  grid: 'rgba(92, 184, 172, 0.07)',
+  wallGlow: 'rgba(92, 184, 172, 0.9)',
+  wallOuter: 'rgba(92, 184, 172, 0.35)',
+  wallMid: 'rgba(92, 184, 172, 0.55)',
+  wallInner: 'rgba(123, 208, 195, 0.85)',
+  snake: '#5cb8ac',
+  head: '#7bd0c3',
+  headGlow: 'rgba(123, 208, 195, 0.8)',
+  bodyGlow: 'rgba(92, 184, 172, 0.3)',
+  food: '#f4f4f5',
+  foodGlow: 'rgba(244, 244, 245, 0.7)',
+};
+
+function readSnakeColors(): SnakeColors {
+  return {
+    bg: cssVar('--snake-bg', FALLBACK.bg),
+    grid: cssVar('--snake-grid', FALLBACK.grid),
+    wallGlow: cssVar('--snake-wall-glow', FALLBACK.wallGlow),
+    wallOuter: cssVar('--snake-wall-outer', FALLBACK.wallOuter),
+    wallMid: cssVar('--snake-wall-mid', FALLBACK.wallMid),
+    wallInner: cssVar('--snake-wall-inner', FALLBACK.wallInner),
+    snake: cssVar('--snake-snake', FALLBACK.snake),
+    head: cssVar('--snake-head', FALLBACK.head),
+    headGlow: cssVar('--snake-head-glow', FALLBACK.headGlow),
+    bodyGlow: cssVar('--snake-body-glow', FALLBACK.bodyGlow),
+    food: cssVar('--snake-food', FALLBACK.food),
+    foodGlow: cssVar('--snake-food-glow', FALLBACK.foodGlow),
+  };
+}
+
 export function initSnake(): void {
   const canvas = document.querySelector<HTMLCanvasElement>('#snake-canvas');
   const scoreEl = document.querySelector<HTMLElement>('#snake-score');
@@ -55,6 +105,8 @@ export function initSnake(): void {
   if (!canvas || !wrap) return;
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
+
+  let colors = readSnakeColors();
 
   const isTouch = window.matchMedia('(pointer: coarse)').matches;
   const BASE_TICK_MS = isTouch ? TICK_MS_TOUCH : TICK_MS_DESKTOP;
@@ -292,19 +344,19 @@ export function initSnake(): void {
 
     ctx.save();
 
-    ctx.shadowColor = 'rgba(92, 184, 172, 0.9)';
+    ctx.shadowColor = colors.wallGlow;
     ctx.shadowBlur = 22;
-    ctx.strokeStyle = 'rgba(92, 184, 172, 0.35)';
+    ctx.strokeStyle = colors.wallOuter;
     ctx.lineWidth = 4;
     ctx.strokeRect(x, y, w, h);
 
     ctx.shadowBlur = 12;
-    ctx.strokeStyle = 'rgba(92, 184, 172, 0.55)';
+    ctx.strokeStyle = colors.wallMid;
     ctx.lineWidth = 2;
     ctx.strokeRect(x, y, w, h);
 
     ctx.shadowBlur = 4;
-    ctx.strokeStyle = 'rgba(123, 208, 195, 0.85)';
+    ctx.strokeStyle = colors.wallInner;
     ctx.lineWidth = 1;
     ctx.strokeRect(x, y, w, h);
 
@@ -312,10 +364,10 @@ export function initSnake(): void {
   };
 
   const draw = (): void => {
-    ctx.fillStyle = '#0a0a0b';
+    ctx.fillStyle = colors.bg;
     ctx.fillRect(0, 0, W, H);
 
-    ctx.strokeStyle = 'rgba(92, 184, 172, 0.07)';
+    ctx.strokeStyle = colors.grid;
     ctx.lineWidth = 1;
     for (let i = 0; i <= GRID; i += 1) {
       const p = i * CELL + 0.5;
@@ -332,8 +384,8 @@ export function initSnake(): void {
     drawWalls();
 
     if (!idle && !dead) {
-      ctx.fillStyle = '#ff5f57';
-      ctx.shadowColor = 'rgba(255, 95, 87, 0.7)';
+      ctx.fillStyle = colors.food;
+      ctx.shadowColor = colors.foodGlow;
       ctx.shadowBlur = 14;
       ctx.fillRect(food.x * CELL + 3, food.y * CELL + 3, CELL - 6, CELL - 6);
       ctx.shadowBlur = 0;
@@ -341,10 +393,8 @@ export function initSnake(): void {
 
     snake.forEach((s, i) => {
       const isHead = i === 0;
-      ctx.fillStyle = isHead ? '#7bd0c3' : '#5cb8ac';
-      ctx.shadowColor = isHead
-        ? 'rgba(123, 208, 195, 0.8)'
-        : 'rgba(92, 184, 172, 0.3)';
+      ctx.fillStyle = isHead ? colors.head : colors.snake;
+      ctx.shadowColor = isHead ? colors.headGlow : colors.bodyGlow;
       ctx.shadowBlur = isHead ? 18 : 6;
       ctx.fillRect(s.x * CELL + 1, s.y * CELL + 1, CELL - 2, CELL - 2);
     });
@@ -557,6 +607,12 @@ export function initSnake(): void {
     if (document.hidden && running && !idle && !dead && !paused) {
       paused = true;
     }
+  });
+
+  /* re-read CSS custom properties when theme changes */
+  window.addEventListener('themechange', () => {
+    colors = readSnakeColors();
+    draw();
   });
 
   enterIdle();

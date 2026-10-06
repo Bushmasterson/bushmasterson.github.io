@@ -42,56 +42,89 @@
   }
 }
 
-/* tokens */
+/* ==========================================================================
+   tokens — single source of truth for every color on the site
+   60% = dominant (background, largest surfaces)
+   30% = secondary (text, borders, cards)
+   10% = accent (links, buttons, highlights, focus)
+   ========================================================================== */
 @layer tokens {
   :root {
     color-scheme: dark;
 
-    --bg: #0f0f10;
-    --surface: rgba(24, 24, 26, 0.42);
-    --surface-card: #17171a;
-    --surface-card-hover: #1b1b1e;
+    /* --- 60% dominant — black -------------------------------------------- */
+    --bg: #0a0a0b;
+    --bg-elev: #101013;
+
+    /* --- 30% secondary — neutral white / grays --------------------------- */
+    --surface: rgba(255, 255, 255, 0.02);
+    --surface-card: #131317;
+    --surface-card-hover: #17171b;
+
+    --text: #f4f4f5;
+    --text-soft: #c7c7cc;
+    --muted: #8a8a92;
 
     --border-subtle: rgba(255, 255, 255, 0.055);
     --border-hover: rgba(255, 255, 255, 0.16);
     --border-active: rgba(92, 184, 172, 0.45);
 
+    --hairline: rgba(255, 255, 255, 0.012);
+    --track: rgba(255, 255, 255, 0.08);
+
+    /* --- 10% accent — turquoise ----------------------------------------- */
     --accent: #5cb8ac;
     --accent-bright: #7bd0c3;
     --accent-dim: rgba(92, 184, 172, 0.1);
     --accent-glow: rgba(92, 184, 172, 0.22);
 
+    /* --- overlay (modals, game over) ------------------------------------ */
+    --overlay-bg: rgba(0, 0, 0, 0.88);
+    --overlay-card: rgba(10, 10, 11, 0.55);
+
+    /* --- particles canvas ------------------------------------------------ */
     --cursor-line: rgba(255, 255, 255, 0.14);
-    --star-line: rgba(212, 212, 212, 1);
-    --star-fill: rgba(212, 212, 212, 1);
+    --star-line: rgba(200, 200, 200, 1);
+    --star-fill: rgba(200, 200, 200, 1);
 
-    --text: #f1ece2;
-    --text-soft: #d6d1c6;
-    --muted: #a5a09a;
+    /* --- snake canvas (read by snake.ts) -------------------------------- */
+    --snake-bg: #0a0a0b;
+    --snake-grid: rgba(92, 184, 172, 0.07);
+    --snake-wall-glow: rgba(92, 184, 172, 0.9);
+    --snake-wall-outer: rgba(92, 184, 172, 0.35);
+    --snake-wall-mid: rgba(92, 184, 172, 0.55);
+    --snake-wall-inner: rgba(123, 208, 195, 0.85);
+    --snake-snake: #5cb8ac;
+    --snake-head: #7bd0c3;
+    --snake-head-glow: rgba(123, 208, 195, 0.8);
+    --snake-body-glow: rgba(92, 184, 172, 0.3);
+    --snake-food: #f4f4f5;
+    --snake-food-glow: rgba(244, 244, 245, 0.7);
+    --crt-line: rgba(0, 0, 0, 0.22);
 
-    --shadow-card:
-      0 12px 32px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3),
-      0 0 0 1px rgba(255, 255, 255, 0.015) inset;
-    --shadow-hover:
-      0 18px 42px rgba(0, 0, 0, 0.55), 0 0 32px rgba(92, 184, 172, 0.08),
-      0 0 0 1px rgba(255, 255, 255, 0.03) inset;
-    --shadow-avatar:
-      0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 18px rgba(255, 255, 255, 0.08),
-      0 0 55px rgba(255, 255, 255, 0.14), 0 14px 36px rgba(0, 0, 0, 0.35);
-    --shadow-avatar-hover:
-      0 0 0 1px rgba(255, 255, 255, 0.2), 0 0 28px rgba(255, 255, 255, 0.14),
-      0 0 90px rgba(255, 255, 255, 0.22), 0 20px 44px rgba(0, 0, 0, 0.4);
+    /* --- terminal page --------------------------------------------------- */
+    --term-bg: rgba(10, 10, 11, 0.97);
+    --term-fg: #f4f4f5;
+    --term-fg-soft: #c7c7cc;
+    --term-muted: #8a8a92;
+    --term-border: rgba(255, 255, 255, 0.055);
 
+    /* --- disco overlay --------------------------------------------------- */
+    --disco-bg: rgba(0, 0, 0, 0.88);
+
+    /* --- radii ----------------------------------------------------------- */
     --radius-card: 18px;
     --radius-card-sm: 14px;
     --radius-pill: 999px;
 
+    /* --- typography ------------------------------------------------------ */
     --fs-xs: clamp(0.7rem, 0.68rem + 0.1vw, 0.78rem);
     --fs-sm: clamp(0.78rem, 0.76rem + 0.15vw, 0.875rem);
     --fs-base: clamp(0.875rem, 0.86rem + 0.2vw, 0.95rem);
     --fs-lg: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
     --fs-title: clamp(1rem, 0.88rem + 1vw, 1.65rem);
 
+    /* --- spacing --------------------------------------------------------- */
     --space-1: clamp(0.3rem, 0.28rem + 0.15vw, 0.4rem);
     --space-2: clamp(0.55rem, 0.5rem + 0.3vw, 0.75rem);
     --space-3: clamp(0.85rem, 0.75rem + 0.5vw, 1.15rem);
@@ -103,55 +136,119 @@
     --footer-icon-size: 32px;
     --footer-icon-gap: 0.35rem;
 
+    /* --- motion ---------------------------------------------------------- */
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 
+    /* --- font ------------------------------------------------------------ */
     --font-mono:
       ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
 
+    /* --- safe areas ------------------------------------------------------ */
     --safe-top: env(safe-area-inset-top, 0px);
     --safe-right: env(safe-area-inset-right, 0px);
     --safe-bottom: env(safe-area-inset-bottom, 0px);
     --safe-left: env(safe-area-inset-left, 0px);
+
+    /* --- shadows --------------------------------------------------------- */
+    --shadow-card:
+      0 12px 32px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3),
+      0 0 0 1px rgba(255, 255, 255, 0.015) inset;
+    --shadow-hover:
+      0 18px 42px rgba(0, 0, 0, 0.55), 0 0 32px var(--accent-glow),
+      0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+    --shadow-avatar:
+      0 0 0 1px rgba(255, 255, 255, 0.1), 0 0 18px rgba(255, 255, 255, 0.08),
+      0 0 55px rgba(255, 255, 255, 0.14), 0 14px 36px rgba(0, 0, 0, 0.35);
+    --shadow-avatar-hover:
+      0 0 0 1px rgba(255, 255, 255, 0.2), 0 0 28px rgba(255, 255, 255, 0.14),
+      0 0 90px rgba(255, 255, 255, 0.22), 0 20px 44px rgba(0, 0, 0, 0.4);
+    --shadow-btn: 0 12px 28px rgba(0, 0, 0, 0.25);
+    --shadow-terminal: 0 24px 60px rgba(0, 0, 0, 0.55);
+    --shadow-snake: 0 18px 40px rgba(0, 0, 0, 0.4);
+    --shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.5);
   }
 
   [data-theme="light"] {
     color-scheme: light;
 
-    --bg: #faf8f3;
-    --surface: rgba(255, 255, 255, 0.65);
-    --surface-card: #ffffff;
-    --surface-card-hover: #fdfcf9;
+    /* --- 60% dominant — white -------------------------------------------- */
+    --bg: #f5f5f7;
+    --bg-elev: #ffffff;
 
-    --border-subtle: rgba(20, 20, 20, 0.07);
-    --border-hover: rgba(20, 20, 20, 0.16);
+    /* --- 30% secondary — dark neutrals ----------------------------------- */
+    --surface: rgba(255, 255, 255, 0.7);
+    --surface-card: #ffffff;
+    --surface-card-hover: #fafafb;
+
+    --text: #0a0a0b;
+    --text-soft: #2a2a2f;
+    --muted: #6a6a72;
+
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(0, 0, 0, 0.16);
     --border-active: rgba(13, 122, 109, 0.5);
 
+    --hairline: rgba(0, 0, 0, 0.012);
+    --track: rgba(0, 0, 0, 0.08);
+
+    /* --- 10% accent — darkened turquoise for contrast -------------------- */
     --accent: #0d7a6d;
     --accent-bright: #0a6357;
-    --accent-dim: rgba(13, 122, 109, 0.08);
-    --accent-glow: rgba(13, 122, 109, 0.15);
+    --accent-dim: rgba(13, 122, 109, 0.1);
+    --accent-glow: rgba(13, 122, 109, 0.2);
 
-    --cursor-line: rgba(20, 20, 20, 0.13);
-    --star-line: rgba(60, 60, 60, 1);
-    --star-fill: rgba(60, 60, 60, 1);
+    /* --- overlay --------------------------------------------------------- */
+    --overlay-bg: rgba(255, 255, 255, 0.88);
+    --overlay-card: rgba(255, 255, 255, 0.75);
 
-    --text: #1a1a1a;
-    --text-soft: #3a3835;
-    --muted: #6a655c;
+    /* --- particles ------------------------------------------------------- */
+    --cursor-line: rgba(0, 0, 0, 0.15);
+    --star-line: rgba(40, 40, 40, 1);
+    --star-fill: rgba(40, 40, 40, 1);
 
+    /* --- snake canvas ---------------------------------------------------- */
+    --snake-bg: #f5f5f7;
+    --snake-grid: rgba(13, 122, 109, 0.1);
+    --snake-wall-glow: rgba(13, 122, 109, 0.8);
+    --snake-wall-outer: rgba(13, 122, 109, 0.4);
+    --snake-wall-mid: rgba(13, 122, 109, 0.6);
+    --snake-wall-inner: rgba(10, 99, 87, 0.9);
+    --snake-snake: #0d7a6d;
+    --snake-head: #0a6357;
+    --snake-head-glow: rgba(10, 99, 87, 0.7);
+    --snake-body-glow: rgba(13, 122, 109, 0.25);
+    --snake-food: #0a0a0b;
+    --snake-food-glow: rgba(10, 10, 11, 0.6);
+    --crt-line: rgba(0, 0, 0, 0.06);
+
+    /* --- terminal page --------------------------------------------------- */
+    --term-bg: rgba(255, 255, 255, 0.97);
+    --term-fg: #0a0a0b;
+    --term-fg-soft: #2a2a2f;
+    --term-muted: #6a6a72;
+    --term-border: rgba(0, 0, 0, 0.08);
+
+    /* --- disco overlay (always dark) ------------------------------------- */
+    --disco-bg: rgba(0, 0, 0, 0.88);
+
+    /* --- shadows (softer on light) --------------------------------------- */
     --shadow-card:
-      0 12px 32px rgba(20, 20, 20, 0.06), 0 2px 6px rgba(20, 20, 20, 0.04),
-      0 0 0 1px rgba(20, 20, 20, 0.02) inset;
+      0 12px 32px rgba(20, 20, 25, 0.06), 0 2px 6px rgba(20, 20, 25, 0.04),
+      0 0 0 1px rgba(20, 20, 25, 0.02) inset;
     --shadow-hover:
-      0 18px 42px rgba(20, 20, 20, 0.1), 0 0 32px rgba(13, 122, 109, 0.06),
-      0 0 0 1px rgba(20, 20, 20, 0.03) inset;
+      0 18px 42px rgba(20, 20, 25, 0.1), 0 0 32px var(--accent-glow),
+      0 0 0 1px rgba(20, 20, 25, 0.03) inset;
     --shadow-avatar:
       0 0 0 1px rgba(0, 0, 0, 0.08), 0 0 18px rgba(0, 0, 0, 0.06),
       0 0 55px rgba(255, 255, 255, 0.9), 0 14px 36px rgba(0, 0, 0, 0.1);
     --shadow-avatar-hover:
       0 0 0 1px rgba(0, 0, 0, 0.16), 0 0 28px rgba(0, 0, 0, 0.1),
       0 0 90px rgba(255, 255, 255, 1), 0 20px 44px rgba(0, 0, 0, 0.16);
+    --shadow-btn: 0 12px 28px rgba(0, 0, 0, 0.2);
+    --shadow-terminal: 0 24px 60px rgba(20, 20, 25, 0.15);
+    --shadow-snake: 0 18px 40px rgba(20, 20, 25, 0.12);
+    --shadow-modal: 0 20px 60px rgba(20, 20, 25, 0.2);
   }
 }
 
@@ -514,7 +611,7 @@
     border: 1px solid var(--border-subtle);
     border-radius: 5px;
     letter-spacing: 0.03em;
-    background: rgba(255, 255, 255, 0.012);
+    background: var(--hairline);
     transition:
       color 0.25s var(--ease-out),
       border-color 0.25s var(--ease-out),
@@ -573,7 +670,7 @@
     border-radius: var(--radius-pill);
     object-fit: cover;
     margin: calc(-1 * clamp(55px, 16vw, 80px)) auto 12px;
-    border: 2px solid rgba(255, 255, 255, 0.14);
+    border: 2px solid var(--border-hover);
     box-shadow: var(--shadow-avatar);
     image-rendering: auto;
     backface-visibility: hidden;
@@ -583,20 +680,12 @@
       border-color 0.45s var(--ease-out);
   }
 
-  [data-theme="light"] .avatar {
-    border-color: rgba(0, 0, 0, 0.08);
-  }
-
   @media (hover: hover) {
     .avatar:hover {
       transform: scale(1.04);
-      border-color: rgba(255, 255, 255, 0.28);
+      border-color: var(--border-active);
       box-shadow: var(--shadow-avatar-hover);
     }
-  }
-
-  [data-theme="light"] .avatar:hover {
-    border-color: rgba(0, 0, 0, 0.16);
   }
 
   .footer-links {
@@ -637,13 +726,9 @@
     .footer-links a:hover {
       color: var(--text);
       opacity: 1;
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.55));
+      filter: drop-shadow(0 0 8px var(--accent-glow));
       transform: translateY(-1px);
     }
-  }
-
-  [data-theme="light"] .footer-links a:hover {
-    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.45));
   }
 
   .footer-links a:focus-visible {
@@ -677,7 +762,7 @@
     opacity: 0;
     transform: scale(0.85);
     z-index: 1000;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--shadow-btn);
     transition:
       opacity 0.35s var(--ease-out),
       transform 0.35s var(--ease-out),
@@ -720,16 +805,6 @@
 
   .page-nav a.active {
     color: var(--accent-bright);
-  }
-
-  .page-nav-dot {
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 10px var(--accent-glow);
-    animation: navDotPulse 2.4s var(--ease-out) infinite;
   }
 
   @media (hover: hover) {
@@ -898,25 +973,12 @@
     }
     50% {
       opacity: 0.6;
-      box-shadow: 0 0 0 5px rgba(0, 0, 0, 0);
-    }
-  }
-
-  @keyframes navDotPulse {
-    0%,
-    100% {
-      opacity: 0.7;
-      box-shadow: 0 0 8px var(--accent-glow);
-    }
-    50% {
-      opacity: 1;
-      box-shadow: 0 0 14px var(--accent-glow);
+      box-shadow: 0 0 0 5px transparent;
     }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .project-status--active::before,
-    .page-nav-dot {
+    .project-status--active::before {
       animation: none;
     }
   }
@@ -1045,7 +1107,7 @@
     inset: -50%;
     background-image: radial-gradient(
       circle at center,
-      rgba(92, 184, 172, 0.05) 0%,
+      var(--accent-dim) 0%,
       transparent 60%
     );
     pointer-events: none;
@@ -1191,16 +1253,14 @@
     display: flex;
     flex-direction: column;
     height: min(78vh, 720px);
-    background: rgba(10, 10, 11, 0.97);
+    background: var(--term-bg);
     border: 1px solid var(--border-hover);
     border-radius: var(--radius-card);
-    box-shadow:
-      0 24px 60px rgba(0, 0, 0, 0.55),
-      0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+    box-shadow: var(--shadow-terminal);
     overflow: hidden;
     font-family: var(--font-mono);
     font-size: 0.82rem;
-    color: #f1ece2;
+    color: var(--term-fg);
     text-align: left;
   }
 
@@ -1209,8 +1269,8 @@
     align-items: center;
     gap: 0.35rem;
     padding: 0.55rem 0.85rem;
-    background: rgba(255, 255, 255, 0.03);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
+    background: var(--surface);
+    border-bottom: 1px solid var(--term-border);
   }
 
   .terminal-page-output {
@@ -1219,7 +1279,7 @@
     padding: 0.9rem 1.1rem;
     line-height: 1.65;
     scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+    scrollbar-color: var(--border-hover) transparent;
   }
 
   .terminal-page-output::-webkit-scrollbar {
@@ -1227,18 +1287,18 @@
   }
 
   .terminal-page-output::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.16);
+    background: var(--border-hover);
     border-radius: 999px;
   }
 
   .terminal-page-output .term-line {
-    color: #d6d1c6;
+    color: var(--term-fg-soft);
     white-space: pre-wrap;
     word-break: break-word;
   }
 
   .terminal-page-output .term-echo {
-    color: #a5a09a;
+    color: var(--term-muted);
     margin-top: 0.6rem;
   }
 
@@ -1253,34 +1313,20 @@
     letter-spacing: 0.02em;
   }
 
-  .terminal-page-output .term-head::before {
-    content: "● ";
-    color: var(--accent);
-    opacity: 0.75;
-  }
-
-  .terminal-page-output .term-rule {
-    color: rgba(255, 255, 255, 0.08);
-    margin: 0.2rem 0 0.4rem;
-    letter-spacing: 0.02em;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
   .terminal-page-output .term-body {
-    color: #d6d1c6;
+    color: var(--term-fg-soft);
     padding-left: 0.6rem;
   }
 
   .terminal-page-output .term-group {
     color: var(--accent);
-    opacity: 0.7;
+    opacity: 0.75;
     margin-top: 0.7rem;
     letter-spacing: 0.06em;
   }
 
   .terminal-page-output .term-muted {
-    color: #7a756c;
+    color: var(--term-muted);
   }
 
   .terminal-page-prompt {
@@ -1288,8 +1334,8 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.7rem 1.1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.055);
-    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid var(--term-border);
+    background: var(--hairline);
   }
 
   .terminal-page-prompt .prompt {
@@ -1301,7 +1347,7 @@
     background: transparent;
     border: none;
     outline: none;
-    color: #f1ece2;
+    color: var(--term-fg);
     font: inherit;
     caret-color: var(--accent);
   }
@@ -1318,13 +1364,13 @@
     align-items: center;
     justify-content: center;
     padding: 0.9rem;
-    background: #0a0a0b;
+    background: var(--snake-bg);
     border: 1px solid var(--border-hover);
     border-radius: var(--radius-card-sm);
     box-shadow:
-      0 0 0 1px rgba(92, 184, 172, 0.1),
-      0 0 40px rgba(92, 184, 172, 0.08),
-      0 18px 40px rgba(0, 0, 0, 0.4);
+      0 0 0 1px var(--accent-dim),
+      0 0 40px var(--accent-dim),
+      var(--shadow-snake);
     overflow: hidden;
   }
 
@@ -1336,8 +1382,8 @@
     z-index: 2;
     background-image: repeating-linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.22) 0px,
-      rgba(0, 0, 0, 0.22) 1px,
+      var(--crt-line) 0px,
+      var(--crt-line) 1px,
       transparent 1px,
       transparent 3px
     );
@@ -1360,7 +1406,7 @@
     width: 100%;
     max-width: 320px;
     aspect-ratio: 1 / 1;
-    background: #0a0a0b;
+    background: var(--snake-bg);
     border-radius: 4px;
     image-rendering: pixelated;
     touch-action: none;
@@ -1387,15 +1433,12 @@
   }
 
   .snake-diff-btn {
-    --pill-accent: var(--accent);
-    --pill-glow: var(--accent-glow);
-    --pill-bg: transparent;
     padding: 0.28em 0.85em;
     font-family: inherit;
     font-size: 0.7rem;
     letter-spacing: 0.08em;
     color: var(--muted);
-    background: var(--pill-bg);
+    background: transparent;
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-pill);
     cursor: pointer;
@@ -1409,46 +1452,28 @@
       opacity 0.3s var(--ease-out);
   }
 
-  .snake-diff-btn--low {
-    --pill-accent: #6dd36d;
-    --pill-glow: rgba(109, 211, 109, 0.35);
-    --pill-bg: rgba(109, 211, 109, 0.08);
-  }
-
-  .snake-diff-btn--medium {
-    --pill-accent: #e5c85b;
-    --pill-glow: rgba(229, 200, 91, 0.35);
-    --pill-bg: rgba(229, 200, 91, 0.08);
-  }
-
-  .snake-diff-btn--high {
-    --pill-accent: #e57a5b;
-    --pill-glow: rgba(229, 122, 91, 0.4);
-    --pill-bg: rgba(229, 122, 91, 0.08);
-  }
-
   @media (hover: hover) {
     .snake-diff-btn:hover {
-      color: var(--pill-accent);
-      border-color: var(--pill-accent);
+      color: var(--accent);
+      border-color: var(--accent);
       opacity: 1;
       transform: translateY(-1px);
-      box-shadow: 0 0 14px var(--pill-glow);
+      box-shadow: 0 0 14px var(--accent-glow);
     }
   }
 
   .snake-diff-btn[aria-pressed="true"] {
-    color: var(--pill-accent);
-    border-color: var(--pill-accent);
-    background: var(--pill-bg);
+    color: var(--accent-bright);
+    border-color: var(--accent);
+    background: var(--accent-dim);
     opacity: 1;
     box-shadow:
-      0 0 16px var(--pill-glow),
-      0 0 0 1px var(--pill-accent) inset;
+      0 0 16px var(--accent-glow),
+      0 0 0 1px var(--accent) inset;
   }
 
   .snake-diff-btn:focus-visible {
-    outline: 2px solid var(--pill-accent);
+    outline: 2px solid var(--accent-bright);
     outline-offset: 3px;
   }
 
@@ -1462,13 +1487,13 @@
     0%,
     100% {
       box-shadow:
-        0 0 16px var(--pill-glow),
-        0 0 0 1px var(--pill-accent) inset;
+        0 0 16px var(--accent-glow),
+        0 0 0 1px var(--accent) inset;
     }
     50% {
       box-shadow:
-        0 0 22px var(--pill-glow),
-        0 0 0 1px var(--pill-accent) inset;
+        0 0 22px var(--accent-glow),
+        0 0 0 1px var(--accent) inset;
     }
   }
 
@@ -1557,7 +1582,7 @@
     position: fixed;
     inset: 0;
     z-index: 9999;
-    background: #0a0a0b;
+    background: var(--bg);
     color: var(--accent);
     font-family: var(--font-mono);
     font-size: 0.82rem;
@@ -1620,15 +1645,11 @@
     }
   }
 
-  /*
-   * player — static card, same look as other .card elements.
-   * no position: fixed, no transform, no z-index games.
-   */
+  /* player — static card, same look as other .card elements */
   .player {
     padding: var(--space-3);
   }
 
-  /* header inside the player: title on the left, play button on the right */
   .player .card-header {
     display: flex;
     align-items: center;
@@ -1740,13 +1761,9 @@
     top: 50%;
     height: 2px;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.08);
+    background: var(--track);
     border-radius: 2px;
     transition: background 0.25s var(--ease-out);
-  }
-
-  [data-theme="light"] .player-progress::before {
-    background: rgba(20, 20, 20, 0.1);
   }
 
   .player-progress-bar {
@@ -1932,8 +1949,8 @@
   @media (prefers-contrast: more) {
     :root {
       --text: #ffffff;
-      --text-soft: #e8e4dc;
-      --muted: #c9c4bd;
+      --text-soft: #e8e8ea;
+      --muted: #c9c9cd;
       --border-subtle: rgba(255, 255, 255, 0.2);
       --border-hover: rgba(255, 255, 255, 0.4);
     }
@@ -1950,7 +1967,7 @@
   @media (prefers-reduced-transparency: reduce) {
     :root {
       --surface: #1a1a1c;
-      --surface-card: #17171a;
+      --surface-card: #131317;
     }
 
     [data-theme="light"] {

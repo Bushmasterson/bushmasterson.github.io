@@ -26,7 +26,7 @@ export function applyTheme(theme: Theme): void {
   const meta = document.querySelector<HTMLMetaElement>(
     'meta[name="theme-color"]',
   );
-  if (meta) meta.content = theme === 'light' ? '#faf8f3' : '#0f0f10';
+  if (meta) meta.content = theme === 'light' ? '#f5f5f7' : '#0a0a0b';
 
   const btn = document.querySelector<HTMLButtonElement>('#theme-toggle');
   if (btn) {

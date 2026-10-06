@@ -1,11 +1,11 @@
-/* disco easter egg */
+/* disco easter egg — colors from tokens */
 
 .disco {
   position: fixed;
   inset: 0;
   z-index: 6000;
   overflow: hidden;
-  background: rgba(0, 0, 0, 0.88);
+  background: var(--disco-bg);
   cursor: pointer;
   animation: discoIn 0.25s ease-out;
 }

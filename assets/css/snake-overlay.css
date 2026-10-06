@@ -1,4 +1,4 @@
-/* snake game-over overlay */
+/* snake game-over overlay — colors from tokens */
 
 .snake-gameover {
   position: fixed;
@@ -9,20 +9,12 @@
   justify-content: center;
   padding: 1.5rem;
   background:
-    radial-gradient(
-      circle at 50% 40%,
-      rgba(92, 184, 172, 0.1),
-      transparent 55%
-    ),
-    radial-gradient(
-      circle at center,
-      rgba(10, 10, 11, 0.72),
-      rgba(10, 10, 11, 0.94)
-    );
+    radial-gradient(circle at 50% 40%, var(--accent-dim), transparent 55%),
+    radial-gradient(circle at center, var(--overlay-bg), var(--bg));
   backdrop-filter: blur(10px) saturate(120%);
   -webkit-backdrop-filter: blur(10px) saturate(120%);
   opacity: 0;
-  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.35s var(--ease-out);
   pointer-events: none;
 }
 
@@ -42,22 +34,20 @@
   align-items: center;
   gap: 1rem;
   padding: 2.2rem 2.6rem;
-  border: 1px solid rgba(92, 184, 172, 0.45);
-  border-radius: 18px;
-  background: rgba(10, 10, 11, 0.55);
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius-card);
+  background: var(--overlay-card);
   text-align: center;
-  font-family:
-    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  font-family: var(--font-mono);
   transform: translateY(10px) scale(0.97);
   opacity: 0;
   box-shadow:
-    0 0 0 1px rgba(123, 208, 195, 0.08) inset,
-    0 0 40px rgba(92, 184, 172, 0.18),
-    0 20px 60px rgba(0, 0, 0, 0.5);
+    0 0 0 1px var(--accent-dim) inset,
+    0 0 40px var(--accent-glow),
+    var(--shadow-modal);
   transition:
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transform 0.5s var(--ease-out),
+    opacity 0.5s var(--ease-out);
 }
 
 .snake-gameover.is-visible .snake-gameover-inner {
@@ -68,7 +58,7 @@
 .snake-gameover-prompt {
   margin: 0;
   font-size: 0.76rem;
-  color: #a5a09a;
+  color: var(--muted);
   letter-spacing: 0.05em;
   opacity: 0.85;
 }
@@ -78,12 +68,12 @@
   font-size: clamp(2.1rem, 7vw, 3.4rem);
   font-weight: 500;
   letter-spacing: 0.2em;
-  color: #7bd0c3;
+  color: var(--accent-bright);
   text-transform: lowercase;
   text-shadow:
-    0 0 8px rgba(123, 208, 195, 0.95),
-    0 0 22px rgba(92, 184, 172, 0.7),
-    0 0 60px rgba(92, 184, 172, 0.4);
+    0 0 8px var(--accent-bright),
+    0 0 22px var(--accent),
+    0 0 60px var(--accent-glow);
   animation: snakeGameOverGlitch 0.55s steps(4, end) 1;
 }
 
@@ -114,26 +104,26 @@
   align-items: baseline;
   gap: 0.6em;
   font-size: 0.88rem;
-  color: #d6d1c6;
+  color: var(--text-soft);
   letter-spacing: 0.05em;
 }
 
 .snake-gameover-score .meta-label {
-  color: #5cb8ac;
+  color: var(--accent);
   opacity: 0.85;
   text-transform: lowercase;
   letter-spacing: 0.08em;
 }
 
 .snake-gameover-score b {
-  color: #f1ece2;
+  color: var(--text);
   font-weight: 600;
   font-size: 1.2em;
-  text-shadow: 0 0 12px rgba(92, 184, 172, 0.22);
+  text-shadow: 0 0 12px var(--accent-glow);
 }
 
 .snake-gameover-sep {
-  color: #a5a09a;
+  color: var(--muted);
   opacity: 0.45;
   font-size: 1.1em;
 }
@@ -143,28 +133,28 @@
   padding: 0.55em 1.5em;
   font-family: inherit;
   font-size: 0.82rem;
-  color: #7bd0c3;
+  color: var(--accent-bright);
   background: transparent;
-  border: 1px solid rgba(92, 184, 172, 0.45);
-  border-radius: 999px;
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius-pill);
   letter-spacing: 0.12em;
   cursor: pointer;
   transition:
-    color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    color 0.25s var(--ease-out),
+    background-color 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out),
+    transform 0.25s var(--ease-out),
+    border-color 0.25s var(--ease-out);
 }
 
 .snake-gameover-restart:hover,
 .snake-gameover-restart:focus-visible {
-  color: #0a0a0b;
-  background: #7bd0c3;
-  border-color: #7bd0c3;
+  color: var(--bg);
+  background: var(--accent-bright);
+  border-color: var(--accent-bright);
   box-shadow:
-    0 0 24px rgba(92, 184, 172, 0.22),
-    0 0 60px rgba(92, 184, 172, 0.25);
+    0 0 24px var(--accent-glow),
+    0 0 60px var(--accent-glow);
   transform: translateY(-1px);
 }
 
@@ -175,7 +165,7 @@
 .snake-gameover-hint {
   margin: 0.1rem 0 0;
   font-size: 0.7rem;
-  color: #a5a09a;
+  color: var(--muted);
   letter-spacing: 0.14em;
   text-transform: lowercase;
   opacity: 0.65;
