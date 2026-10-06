@@ -3,22 +3,8 @@ name: CodeQL Analysis
 on:
   push:
     branches: [main]
-    paths:
-      - 'src/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'tsconfig.json'
-      - 'vite.config.ts'
-      - '.github/workflows/codeql.yml'
   pull_request:
     branches: [main]
-    paths:
-      - 'src/**'
-      - 'package.json'
-      - 'package-lock.json'
-      - 'tsconfig.json'
-      - 'vite.config.ts'
-      - '.github/workflows/codeql.yml'
   schedule:
     - cron: '0 6 * * 1'
   workflow_dispatch:
