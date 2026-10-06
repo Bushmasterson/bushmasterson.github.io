@@ -49,7 +49,7 @@ jobs:
         with:
           args: >-
             --verbose --no-progress --cache --max-cache-age 1d --accept
-            200,204,206,301,302,303,307,308,403,429 --exclude-mail './**/*.html'
+            200,204,206,301,302,303,307,308,403,429 './**/*.html'
           fail: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
