@@ -1,0 +1,29 @@
+typescript:
+  - changed-files:
+      - any-glob-to-any-file: 'src/ts/**'
+
+css:
+  - changed-files:
+      - any-glob-to-any-file: 'assets/css/**'
+
+html:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.html'
+
+assets:
+  - changed-files:
+      - any-glob-to-any-file: 'assets/**'
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file: '.github/**'
+
+docs:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.md'
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'package.json'
+          - 'package-lock.json'

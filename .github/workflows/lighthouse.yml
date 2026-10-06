@@ -1,8 +1,16 @@
-name: Lighthouse
+name: Lighthouse Audit
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'LICENSE'
+      - '.gitignore'
+      - '.gitattributes'
+      - '.editorconfig'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/PULL_REQUEST_TEMPLATE.md'
   schedule:
     - cron: '0 6 * * 0'
   workflow_dispatch:
@@ -16,13 +24,13 @@ permissions:
 
 jobs:
   audit:
-    name: Audit performance and accessibility
+    name: Performance and accessibility
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
