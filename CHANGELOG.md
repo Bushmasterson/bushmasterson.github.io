@@ -225,6 +225,12 @@ and this project adheres to
 - **ci**: Group dependabot updates, audit production only (#91) —
   [`d38fb2c`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/d38fb2cdc5929d1123e8d3b010ef7d4353537c53)
 
+- **ci**: Split workflows, remove codeql duplicate, add 6 new checks (#97) —
+  [`0cfe511`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/0cfe511e7c5b78f5a6112c2fc180b09849646ecc)
+
+- **ci**: Run build and codeql on every PR (#99) —
+  [`512b0d4`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/512b0d4f6d0d6c89b7ecd3ce690af1bbadd27d5d)
+
 ---
 
 _This changelog is generated automatically from
