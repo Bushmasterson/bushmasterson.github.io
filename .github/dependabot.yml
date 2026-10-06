@@ -14,11 +14,25 @@ updates:
     labels:
       - dependencies
     groups:
-      dev-dependencies:
+      dev-lint:
         patterns:
           - 'typescript'
           - 'prettier'
+          - 'eslint*'
           - '@types/*'
+        update-types:
+          - minor
+          - patch
+      dev-tools:
+        patterns:
+          - 'vite'
+          - 'esbuild'
+          - 'serve'
+          - 'concurrently'
+          - 'html-minifier-terser'
+          - 'lint-staged'
+          - 'husky'
+          - 'rimraf'
         update-types:
           - minor
           - patch
@@ -36,3 +50,10 @@ updates:
       include: scope
     labels:
       - ci
+    groups:
+      actions-minor:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
