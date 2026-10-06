@@ -75,6 +75,9 @@ and this project adheres to
 - **music**: Real c418 playback + static footer note (#56) —
   [`54edfc6`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/54edfc6b660fbe3e1d5618cff99ca3c800d57e04)
 
+- **design**: 60/30/10 tokens, cleaner terminal, drop whoami (#85) —
+  [`d9ca78e`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/d9ca78e0fe8e48cddeb74e3cb41ec0222f07d238)
+
 ### 🐛 Bug Fixes
 
 - Add gitignore and remove unnecessary files —
