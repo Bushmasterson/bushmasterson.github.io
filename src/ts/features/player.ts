@@ -1,25 +1,20 @@
-/* music player — play/pause, seek, keyboard */
-
-const LABEL_PLAY = 'Play c418 — sweden';
-const LABEL_PAUSE = 'Pause c418 — sweden';
-
 export function initPlayer(): void {
   const player = document.querySelector<HTMLElement>('#player');
   const toggle = document.querySelector<HTMLButtonElement>('#player-toggle');
   const audio = document.querySelector<HTMLAudioElement>('#player-audio');
-  const progress = document.querySelector<HTMLElement>('#player-progress');
-  const bar = document.querySelector<HTMLElement>('#player-progress-bar');
   const currentEl = document.querySelector<HTMLElement>('#player-current');
   const totalEl = document.querySelector<HTMLElement>('#player-total');
+  const progressEl = document.querySelector<HTMLElement>('#player-progress');
+  const barEl = document.querySelector<HTMLElement>('#player-progress-bar');
 
   if (
     !player ||
     !toggle ||
     !audio ||
-    !progress ||
-    !bar ||
     !currentEl ||
-    !totalEl
+    !totalEl ||
+    !progressEl ||
+    !barEl
   ) {
     return;
   }
@@ -33,19 +28,19 @@ export function initPlayer(): void {
     return `${m}:${String(sec).padStart(2, '0')}`;
   };
 
-  const setPlaying = (playing: boolean): void => {
-    player.classList.toggle('is-playing', playing);
-    toggle.setAttribute('aria-pressed', String(playing));
-    toggle.setAttribute('aria-label', playing ? LABEL_PAUSE : LABEL_PLAY);
-  };
-
   const updateProgress = (): void => {
     const duration = audio.duration;
     const current = audio.currentTime;
     const pct = duration > 0 ? (current / duration) * 100 : 0;
-    bar.style.width = `${pct}%`;
+    barEl.style.width = `${pct}%`;
     currentEl.textContent = formatTime(current);
-    progress.setAttribute('aria-valuenow', String(Math.round(pct)));
+    progressEl.setAttribute('aria-valuenow', String(Math.round(pct)));
+  };
+
+  const setPlaying = (playing: boolean): void => {
+    player.classList.toggle('is-playing', playing);
+    toggle.setAttribute('aria-pressed', String(playing));
+    toggle.setAttribute('aria-label', playing ? 'Pause' : 'Play');
   };
 
   toggle.addEventListener('click', () => {
@@ -74,25 +69,25 @@ export function initPlayer(): void {
   const seek = (clientX: number): void => {
     const duration = audio.duration;
     if (!duration) return;
-    const rect = progress.getBoundingClientRect();
+    const rect = progressEl.getBoundingClientRect();
     const pct = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
     audio.currentTime = pct * duration;
   };
 
-  progress.addEventListener('pointerdown', (e) => {
+  progressEl.addEventListener('pointerdown', (e) => {
     seek(e.clientX);
-    progress.setPointerCapture(e.pointerId);
+    progressEl.setPointerCapture(e.pointerId);
   });
 
-  progress.addEventListener('pointermove', (e) => {
-    if (progress.hasPointerCapture(e.pointerId)) seek(e.clientX);
+  progressEl.addEventListener('pointermove', (e) => {
+    if (progressEl.hasPointerCapture(e.pointerId)) seek(e.clientX);
   });
 
-  progress.addEventListener('pointerup', (e) => {
-    progress.releasePointerCapture(e.pointerId);
+  progressEl.addEventListener('pointerup', (e) => {
+    progressEl.releasePointerCapture(e.pointerId);
   });
 
-  progress.addEventListener('keydown', (e) => {
+  progressEl.addEventListener('keydown', (e) => {
     const duration = audio.duration;
     if (!duration) return;
     const step = 5;
@@ -115,6 +110,5 @@ export function initPlayer(): void {
     }
   });
 
-  setPlaying(false);
   updateProgress();
 }

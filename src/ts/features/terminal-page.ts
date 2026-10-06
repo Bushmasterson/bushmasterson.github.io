@@ -6,25 +6,25 @@ const VFS: Record<string, string[]> = {
     'birthday on november 2',
     'live in moscow',
     'i code in c++ (main), python and typescript',
-    'i speak in russian & english, learning german',
-    'male · intj',
+    'i speak russian & english, learning german',
+    'male - intj',
   ],
   'projects.md': [
-    'bushnews   — cybersecurity & it news      [telegram]',
-    'bush-bot   — telegram bot for updates     [typescript]',
-    'bush-tasks — cli task manager             [c++] · android (kotlin) wip',
-    'bush-math  — math animations with manim   [python]',
+    'bushnews   - cybersecurity & it news      [telegram]',
+    'bush-bot   - telegram bot for updates     [typescript]',
+    'bush-tasks - cli task manager             [c++] - android (kotlin) wip',
+    'bush-math  - math animations with manim   [python]',
     '',
-    '→ /projects for details',
+    '-> /projects for details',
   ],
   'uses.md': [
-    'editor     vs code · neovim',
-    'terminal   windows terminal · git bash',
-    'languages  c++ · python · typescript',
-    'tools      git · vite · obsidian · bitwarden · proton',
-    'hardware   windows 11 · poco x5 pro → iphone 15 pro',
+    'editor     vs code - neovim',
+    'terminal   windows terminal - git bash',
+    'languages  c++ - python - typescript',
+    'tools      git - vite - obsidian - bitwarden - proton',
+    'hardware   windows 11 - poco x5 pro -> iphone 15 pro',
     '',
-    '→ /uses for details',
+    '-> /uses for details',
   ],
   'social.md': [
     'github     github.com/bushmasterson',
@@ -32,7 +32,7 @@ const VFS: Record<string, string[]> = {
     'x          x.com/bushmasterson02',
     'email      bushmasterson@proton.me',
     '',
-    '→ /social for full list',
+    '-> /social for full list',
   ],
   'rules.md': [
     '1. keep talk respectful and clear.',
@@ -42,7 +42,6 @@ const VFS: Record<string, string[]> = {
 };
 
 const COMMANDS = [
-  'banner',
   'cat',
   'cd',
   'clear',
@@ -54,20 +53,17 @@ const COMMANDS = [
   'history',
   'ls',
   'man',
-  'neofetch',
   'pwd',
   'social',
   'sudo',
   'theme',
   'tree',
   'uses',
-  'whoami',
   'projects',
 ] as const;
 
 const MAN: Record<string, string> = {
   help: 'list all commands, grouped by purpose',
-  whoami: 'print current user identity',
   ls: 'list files in current directory',
   cat: 'read a file: cat <file>',
   tree: 'print file tree of the virtual fs',
@@ -81,8 +77,6 @@ const MAN: Record<string, string> = {
   echo: 'print the given text',
   history: 'show command history',
   clear: 'clear the screen',
-  neofetch: 'print system info banner',
-  banner: 'print large ascii name',
   hahaha: 'surprise',
   sudo: 'attempt privileged command',
   exit: 'go back to the home page',
@@ -114,21 +108,14 @@ export function initTerminalPage(): void {
   const printGroup = (title: string): void => {
     const line = document.createElement('div');
     line.className = 'term-line term-group';
-    line.textContent = `╭─ ${title}`;
+    line.textContent = `[${title}]`;
     output.appendChild(line);
   };
 
   const printHead = (title: string, meta = ''): void => {
     const line = document.createElement('div');
     line.className = 'term-line term-head';
-    line.textContent = meta ? `${title}  ──  ${meta}` : title;
-    output.appendChild(line);
-  };
-
-  const printRule = (): void => {
-    const line = document.createElement('div');
-    line.className = 'term-line term-rule';
-    line.textContent = '─'.repeat(60);
+    line.textContent = meta ? `${title} — ${meta}` : title;
     output.appendChild(line);
   };
 
@@ -172,12 +159,10 @@ export function initTerminalPage(): void {
       [
         'info',
         [
-          'whoami        who am i',
           'projects      list projects',
           'uses          what i use',
           'social        social links',
           'date          current time',
-          'neofetch      system info',
         ],
       ],
       [
@@ -188,60 +173,28 @@ export function initTerminalPage(): void {
           'history       command history',
           'clear         clear screen',
           'hahaha        surprise',
-          'banner        ascii banner',
           'exit          go home',
         ],
       ],
     ];
     groups.forEach(([name, cmds]) => {
       printGroup(name);
-      cmds.forEach((c) => print(`│   ${c}`, 'term-line term-body'));
+      cmds.forEach((c) => print(`  ${c}`, 'term-line term-body'));
     });
     scroll();
-  };
-
-  const showNeofetch = (): void => {
-    const banner = [
-      '    ▄▄▄▄▄    bushmasterson@arch',
-      '  ▄█▀▀▀▀▀█▄  ─────────────────',
-      ' █▀  ▄▄▄  ▀█  os       arch linux',
-      ' █  █▀▀▀█  █  host     personal site',
-      ' █  █   █  █  kernel   6.x-custom',
-      ' █▄  ▀▀▀  ▄█  shell    zsh',
-      '  ▀█▄▄▄▄▄█▀   lang     c++ / py / ts',
-      '    ▀▀▀▀▀    editor   vscode',
-    ];
-    printHead('neofetch', 'system info');
-    printRule();
-    printLines(banner, false);
-  };
-
-  const showBanner = (): void => {
-    const art = [
-      '  ██████╗ ██╗   ██╗███████╗██╗  ██╗███╗   ███╗ █████╗ ███████╗████████╗███████╗██████╗ ███████╗ ██████╗ ███╗   ██╗',
-      '  ██╔══██╗██║   ██║██╔════╝██║  ██║████╗ ████║██╔══██╗██╔════╝╚══██╔══╝██╔════╝██╔══██╗██╔════╝██╔═══██╗████╗  ██║',
-      '  ██████╔╝██║   ██║███████╗███████║██╔████╔██║███████║███████╗   ██║   █████╗  ██████╔╝███████╗██║   ██║██╔██╗ ██║',
-      '  ██╔══██╗██║   ██║╚════██║██╔══██║██║╚██╔╝██║██╔══██║╚════██║   ██║   ██╔══╝  ██╔══██╗╚════██║██║   ██║██║╚██╗██║',
-      '  ██████╔╝╚██████╔╝███████║██║  ██║██║ ╚═╝ ██║██║  ██║███████║   ██║   ███████╗██║  ██║███████║╚██████╔╝██║ ╚████║',
-      '  ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝',
-    ];
-    printHead('banner', 'ascii name');
-    printRule();
-    printLines(art, false);
   };
 
   const showTree = (): void => {
     const lines = [
       '~/bushmasterson',
-      '├── about.md',
-      '├── projects.md',
-      '├── rules.md',
-      '├── social.md',
-      '├── uses.md',
-      '└── (hidden)',
+      '  about.md',
+      '  projects.md',
+      '  rules.md',
+      '  social.md',
+      '  uses.md',
+      '  (hidden)',
     ];
     printHead('tree', `${Object.keys(VFS).length} files`);
-    printRule();
     printLines(lines, false);
   };
 
@@ -266,22 +219,11 @@ export function initTerminalPage(): void {
         showHelp();
         break;
 
-      case 'whoami':
-        printHead('whoami', 'identity');
-        printRule();
-        printLines([
-          'bushmasterson',
-          'freedom thinker, coder, athlete',
-          'c++ / python / typescript',
-        ]);
-        break;
-
       case 'ls': {
         const files = Object.keys(VFS);
         printHead('ls', `${files.length} files`);
-        printRule();
         printLines(
-          files.map((f) => `· ${f}`),
+          files.map((f) => `- ${f}`),
           false,
         );
         break;
@@ -302,7 +244,6 @@ export function initTerminalPage(): void {
           break;
         }
         printHead(`cat ${arg}`, `${file.length} lines`);
-        printRule();
         printLines(file);
         break;
       }
@@ -310,7 +251,7 @@ export function initTerminalPage(): void {
       case 'man': {
         if (!arg) {
           print('usage: man <command>');
-          print('available: ' + COMMANDS.join(' · '));
+          print('available: ' + COMMANDS.join(' - '));
           break;
         }
         const man = MAN[arg];
@@ -319,14 +260,12 @@ export function initTerminalPage(): void {
           break;
         }
         printHead(`man ${arg}`, 'manual');
-        printRule();
         printLines([man]);
         break;
       }
 
       case 'pwd':
         printHead('pwd', 'working directory');
-        printRule();
         printLines([
           cwd === '~' ? '/home/bushmasterson' : `/home/bushmasterson/${cwd}`,
         ]);
@@ -335,25 +274,22 @@ export function initTerminalPage(): void {
       case 'cd': {
         const next = !arg || arg === '~' || arg === '..' ? '~' : arg;
         cwd = next;
-        printHead('cd', `→ ${cwd}`);
+        printHead('cd', `-> ${cwd}`);
         break;
       }
 
       case 'projects':
         printHead('projects', 'what i build');
-        printRule();
         printLines(VFS['projects.md'] ?? []);
         break;
 
       case 'uses':
         printHead('uses', 'daily tools');
-        printRule();
         printLines(VFS['uses.md'] ?? []);
         break;
 
       case 'social':
         printHead('social', 'where to find me');
-        printRule();
         printLines(VFS['social.md'] ?? []);
         break;
 
@@ -362,14 +298,13 @@ export function initTerminalPage(): void {
         const pad = (n: number): string => String(n).padStart(2, '0');
         const iso = `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
         printHead('date', 'current time');
-        printRule();
         printLines([`${iso} msk`]);
         break;
       }
 
       case 'theme': {
         toggleTheme();
-        printHead('theme', `→ ${getCurrentTheme()}`);
+        printHead('theme', `-> ${getCurrentTheme()}`);
         break;
       }
 
@@ -380,7 +315,6 @@ export function initTerminalPage(): void {
 
       case 'history':
         printHead('history', `${Math.max(0, history.length - 1)} entries`);
-        printRule();
         history
           .slice(0, -1)
           .forEach((h, i) =>
@@ -391,16 +325,7 @@ export function initTerminalPage(): void {
 
       case 'sudo':
         printHead('sudo', 'permission denied');
-        printRule();
         printLines(['nice try.', 'but this incident will be reported.']);
-        break;
-
-      case 'neofetch':
-        showNeofetch();
-        break;
-
-      case 'banner':
-        showBanner();
         break;
 
       case 'hahaha': {

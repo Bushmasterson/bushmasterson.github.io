@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" fill="#0a0a0b" />
+  <text
+    x="90"
+    y="120"
+    font-family="ui-monospace, monospace"
+    font-size="90"
+    font-weight="600"
+    fill="#5cb8ac"
+    text-anchor="middle"
+  >&amp;&amp;</text>
+</svg>
