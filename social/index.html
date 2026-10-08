@@ -31,7 +31,7 @@
     />
     <meta
       property="og:url"
-      content="https://bushmasterson.github.io/social/"
+      content="https://bushmasterson.github.io/social"
     />
 
     <title>social | bushmasterson</title>
@@ -99,11 +99,17 @@
   </head>
 
   <body>
+    <a
+      class="skip-link"
+      href="#main"
+      >skip to content</a
+    >
+
     <button
       id="theme-toggle"
       type="button"
       class="theme-toggle"
-      aria-label="Toggle theme"
+      aria-label="switch theme"
     >
       <svg
         class="theme-icon theme-icon-sun"
@@ -150,7 +156,7 @@
     <button
       id="back-to-top"
       type="button"
-      aria-label="Back to top"
+      aria-label="back to top"
       >↑</button
     >
 
@@ -178,6 +184,9 @@
               ><span class="cursor-blink">|</span>
             </span>
             <span class="sr-only">social</span>
+            <noscript>
+              <span class="prompt">bushmasterson@arch:~$</span> cat social.md
+            </noscript>
           </h1>
           <p class="subtitle">
             <span aria-hidden="true">
@@ -190,6 +199,9 @@
               ></span>
             </span>
             <span class="sr-only">where to find me.</span>
+            <noscript>
+              <span class="prompt">&gt;</span> where to find me.
+            </noscript>
           </p>
         </header>
 
@@ -199,11 +211,13 @@
           aria-labelledby="social-primary"
         >
           <div class="card-header">
-            <h2 id="social-primary"><span class="prompt">~$</span> primary</h2>
+            <h2 id="social-primary">
+              <span class="prompt">~$</span> primary
+            </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
-              where i actually post, reply, and check messages.
+              where i actually post, reply & check messages.
             </p>
             <ul class="project-meta">
               <li><span class="meta-label">handle</span> @bushmasterson</li>
@@ -217,8 +231,8 @@
                 <i
                   class="fab fa-github"
                   aria-hidden="true"
-                ></i
-                ><span>github</span>
+                ></i>
+                <span>github</span>
               </a>
               <a
                 href="https://telegram.me/bushmasterson"
@@ -228,8 +242,8 @@
                 <i
                   class="fab fa-telegram"
                   aria-hidden="true"
-                ></i
-                ><span>telegram</span>
+                ></i>
+                <span>telegram</span>
               </a>
               <a
                 href="https://x.com/bushmasterson02"
@@ -239,8 +253,8 @@
                 <i
                   class="fab fa-x-twitter"
                   aria-hidden="true"
-                ></i
-                ><span>x</span>
+                ></i>
+                <span>x</span>
               </a>
             </div>
           </div>
@@ -252,10 +266,10 @@
           aria-labelledby="social-mirror"
         >
           <div class="card-header">
-            <h2 id="social-mirror"><span class="prompt">~$</span> mirror</h2>
+            <h2 id="social-mirror"> <span class="prompt">~$</span> mirror </h2>
           </div>
           <div class="card-content">
-            <p class="project-desc"> alt socials </p>
+            <p class="project-desc">alt socials.</p>
             <ul class="project-meta">
               <li><span class="meta-label">handle</span> @bushmasterson</li>
             </ul>
@@ -268,8 +282,8 @@
                 <i
                   class="fab fa-bluesky"
                   aria-hidden="true"
-                ></i
-                ><span>bluesky</span>
+                ></i>
+                <span>bluesky</span>
               </a>
               <a
                 href="https://www.threads.net/@bushmasterson"
@@ -279,8 +293,8 @@
                 <i
                   class="fab fa-threads"
                   aria-hidden="true"
-                ></i
-                ><span>threads</span>
+                ></i>
+                <span>threads</span>
               </a>
               <a
                 href="https://www.instagram.com/bushmasterson"
@@ -290,8 +304,8 @@
                 <i
                   class="fab fa-instagram"
                   aria-hidden="true"
-                ></i
-                ><span>instagram</span>
+                ></i>
+                <span>instagram</span>
               </a>
             </div>
           </div>
@@ -303,10 +317,10 @@
           aria-labelledby="social-extra"
         >
           <div class="card-header">
-            <h2 id="social-extra"><span class="prompt">~$</span> extra</h2>
+            <h2 id="social-extra"> <span class="prompt">~$</span> extra </h2>
           </div>
           <div class="card-content">
-            <p class="project-desc"> less frequent. mostly lurking. </p>
+            <p class="project-desc">less frequent. mostly lurking.</p>
             <ul class="project-meta">
               <li><span class="meta-label">handles</span> varied</li>
             </ul>
@@ -319,8 +333,8 @@
                 <i
                   class="fab fa-reddit"
                   aria-hidden="true"
-                ></i
-                ><span>reddit</span>
+                ></i>
+                <span>reddit</span>
               </a>
               <a
                 href="https://www.tiktok.com/@bushmasterson02"
@@ -330,8 +344,8 @@
                 <i
                   class="fab fa-tiktok"
                   aria-hidden="true"
-                ></i
-                ><span>tiktok</span>
+                ></i>
+                <span>tiktok</span>
               </a>
               <a
                 href="https://on.soundcloud.com/4ywQ1rScTsyhMOeQgk"
@@ -341,8 +355,8 @@
                 <i
                   class="fab fa-soundcloud"
                   aria-hidden="true"
-                ></i
-                ><span>soundcloud</span>
+                ></i>
+                <span>soundcloud</span>
               </a>
             </div>
           </div>
@@ -354,12 +368,14 @@
           aria-labelledby="social-channel"
         >
           <div class="card-header">
-            <h2 id="social-channel"><span class="prompt">~$</span> channel</h2>
+            <h2 id="social-channel">
+              <span class="prompt">~$</span> channel
+            </h2>
           </div>
           <div class="card-content">
-            <p class="project-desc"> my cybersecurity and it news channel. </p>
+            <p class="project-desc">my cybersecurity & it news channel.</p>
             <ul class="project-meta">
-              <li><span class="meta-label">topic</span> cybersecurity · it</li>
+              <li><span class="meta-label">topic</span> cybersecurity & it</li>
               <li><span class="meta-label">status</span> active</li>
             </ul>
             <div class="project-links">
@@ -371,8 +387,8 @@
                 <i
                   class="fab fa-telegram"
                   aria-hidden="true"
-                ></i
-                ><span>bushnews</span>
+                ></i>
+                <span>bushnews</span>
               </a>
             </div>
           </div>
@@ -384,11 +400,13 @@
           aria-labelledby="social-contact"
         >
           <div class="card-header">
-            <h2 id="social-contact"><span class="prompt">~$</span> contact</h2>
+            <h2 id="social-contact">
+              <span class="prompt">~$</span> contact
+            </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
-              for formal messages — email. for everything else — telegram.
+              formal messages — email. everything else — telegram.
             </p>
             <ul class="project-meta">
               <li
@@ -402,15 +420,15 @@
                 <i
                   class="fas fa-envelope"
                   aria-hidden="true"
-                ></i
-                ><span>send email</span>
+                ></i>
+                <span>send email</span>
               </a>
             </div>
           </div>
         </section>
 
         <p class="page-footer">
-          <a href="../">← back to home</a>
+          <a href="..">← back to home</a>
         </p>
       </article>
     </main>

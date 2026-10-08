@@ -23,17 +23,20 @@ export function applyTheme(theme: Theme): void {
   root.dataset['theme'] = theme;
   root.style.colorScheme = theme;
 
-  const meta = document.querySelector<HTMLMetaElement>(
-    'meta[name="theme-color"]',
-  );
-  if (meta) meta.content = theme === 'light' ? '#f5f5f7' : '#0a0a0b';
+  document
+    .querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]')
+    .forEach((meta) => {
+      if (meta.media.includes('dark')) meta.content = '#0a0a0b';
+      else if (meta.media.includes('light')) meta.content = '#f5f5f7';
+      else meta.content = theme === 'light' ? '#f5f5f7' : '#0a0a0b';
+    });
 
   const btn = document.querySelector<HTMLButtonElement>('#theme-toggle');
   if (btn) {
     btn.setAttribute('aria-pressed', String(theme === 'light'));
     btn.setAttribute(
       'aria-label',
-      theme === 'light' ? 'Switch to dark theme' : 'Switch to light theme',
+      theme === 'light' ? 'switch to dark theme' : 'switch to light theme',
     );
   }
 

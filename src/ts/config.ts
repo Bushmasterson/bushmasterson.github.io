@@ -15,11 +15,6 @@ export const CFG = {
   cursorLineWidth: 0.8,
   cursorNearest: 3,
 
-  /* movement */
-  fallSpeed: 0.4,
-  fallSpeedCompact: 0.3,
-  parallax: 18,
-
   /* twinkle */
   twinkleSpeedMin: 0.3,
   twinkleSpeedMax: 1.0,

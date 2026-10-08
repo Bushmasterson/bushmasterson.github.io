@@ -1,7 +1,7 @@
-/* 5 clicks on the title -> /terminal/ */
+/* 5 clicks on the title → terminal page */
 const CLICK_WINDOW_MS = 2000;
 const CLICKS_NEEDED = 5;
-const TERMINAL_PATH = '/terminal/';
+const TERMINAL_PATH = '/terminal';
 
 export function initTerminal(): void {
   const title = document.querySelector<HTMLElement>('.typed-line');

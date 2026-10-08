@@ -8,7 +8,7 @@
     />
     <meta
       name="description"
-      content="bushmasterson — typescript and c++ developer, cybersecurity enthusiast, creator of tools and communities."
+      content="bushmasterson — typescript & c++ developer, cybersecurity enthusiast, creator of tools & communities."
     />
     <meta
       name="theme-color"
@@ -31,7 +31,7 @@
     />
     <meta
       property="og:description"
-      content="typescript and c++ developer focused on cybersecurity, open source projects, and community building."
+      content="typescript & c++ developer focused on cybersecurity, open source projects, & community building."
     />
     <meta
       property="og:url"
@@ -67,7 +67,7 @@
     />
     <link
       rel="apple-touch-icon"
-      href="assets/apple-touch-icon.svg"
+      href="assets/apple-touch-icon.png"
     />
 
     <link
@@ -121,11 +121,17 @@
   </head>
 
   <body>
+    <a
+      class="skip-link"
+      href="#main"
+      >skip to content</a
+    >
+
     <button
       id="theme-toggle"
       type="button"
       class="theme-toggle"
-      aria-label="Toggle theme"
+      aria-label="switch theme"
     >
       <svg
         class="theme-icon theme-icon-sun"
@@ -179,7 +185,7 @@
     <button
       id="back-to-top"
       type="button"
-      aria-label="Back to top"
+      aria-label="back to top"
       >↑</button
     >
 
@@ -206,7 +212,6 @@
           <h1
             class="typed-line"
             id="page-title"
-            title="click me 5 times"
           >
             <span aria-hidden="true">
               <span class="prompt">bushmasterson@arch:~$</span>
@@ -219,6 +224,9 @@
               ><span class="cursor-blink">|</span>
             </span>
             <span class="sr-only">bushmasterson — whoami</span>
+            <noscript>
+              <span class="prompt">bushmasterson@arch:~$</span> whoami
+            </noscript>
           </h1>
           <p class="subtitle">
             <span aria-hidden="true">
@@ -231,6 +239,9 @@
               ></span>
             </span>
             <span class="sr-only">freedom thinker, coder, athlete.</span>
+            <noscript>
+              <span class="prompt">&gt;</span> freedom thinker, coder, athlete.
+            </noscript>
           </p>
         </header>
 
@@ -240,9 +251,9 @@
           aria-labelledby="card-about-title"
         >
           <div class="card-header">
-            <h2 id="card-about-title"
-              ><span class="prompt">~$</span> cat about.md</h2
-            >
+            <h2 id="card-about-title">
+              <span class="prompt">~$</span> cat about.md
+            </h2>
           </div>
           <div class="card-content">
             <p>
@@ -264,17 +275,14 @@
                 class="fas fa-code icon"
                 aria-hidden="true"
               ></i>
-              <span>i code in c++ (main), python and js/ts</span>
+              <span>i code in c++ (main), python & js/ts</span>
             </p>
             <p>
               <i
                 class="fas fa-language icon"
                 aria-hidden="true"
               ></i>
-              <span
-                >i speak in russian &amp; english and started to learn
-                german</span
-              >
+              <span>i speak russian & english & learning german</span>
             </p>
             <p>
               <i
@@ -291,7 +299,7 @@
               <span>intj</span>
             </p>
             <p class="card-more">
-              <a href="about/">~$ more info</a>
+              <a href="about">~$ more info</a>
             </p>
           </div>
         </section>
@@ -302,53 +310,51 @@
           aria-labelledby="card-projects-title"
         >
           <div class="card-header">
-            <h2 id="card-projects-title"
-              ><span class="prompt">~$</span> cat projects.md</h2
-            >
+            <h2 id="card-projects-title">
+              <span class="prompt">~$</span> cat projects.md
+            </h2>
           </div>
           <div class="card-content">
-            <ul>
+            <ul role="list">
               <li>
-                <a href="projects/#bushnews">bushnews</a>
+                <a href="projects#bushnews">bushnews</a>
                 <span class="desc">— cybersecurity &amp; it news</span>
                 <a
                   class="stack"
-                  href="projects/?filter=telegram"
+                  href="projects?filter=telegram"
                   >telegram</a
                 >
               </li>
               <li>
-                <a href="projects/#bush-bot">bush-bot</a>
+                <a href="projects#bush-bot">bush-bot</a>
                 <span class="desc">— telegram bot for updates</span>
                 <a
                   class="stack"
-                  href="projects/?filter=typescript"
+                  href="projects?filter=typescript"
                   >typescript</a
                 >
               </li>
               <li>
-                <a href="projects/#bush-tasks">bush-tasks</a>
-                <span class="desc"
-                  >— cli task manager · android (kotlin) wip</span
-                >
+                <a href="projects#bush-tasks">bush-tasks</a>
+                <span class="desc">— cli task manager & android wip</span>
                 <a
                   class="stack"
-                  href="projects/?filter=c%2B%2B"
+                  href="projects?filter=c%2B%2B"
                   >c++</a
                 >
               </li>
               <li>
-                <a href="projects/#bush-math">bush-math</a>
+                <a href="projects#bush-math">bush-math</a>
                 <span class="desc">— math animations with manim</span>
                 <a
                   class="stack"
-                  href="projects/?filter=python"
+                  href="projects?filter=python"
                   >python</a
                 >
               </li>
             </ul>
             <p class="card-more">
-              <a href="projects/">~$ more info</a>
+              <a href="projects">~$ more info</a>
             </p>
           </div>
         </section>
@@ -359,18 +365,18 @@
           aria-labelledby="card-rules-title"
         >
           <div class="card-header">
-            <h2 id="card-rules-title"
-              ><span class="prompt">~$</span> cat rules.md</h2
-            >
+            <h2 id="card-rules-title">
+              <span class="prompt">~$</span> cat rules.md
+            </h2>
           </div>
           <div class="card-content">
             <ol>
-              <li>keep talk respectful and clear.</li>
+              <li>keep talk respectful & clear.</li>
               <li>use email for formal messages.</li>
               <li>there may be fakes, be vigilant.</li>
             </ol>
             <p class="card-more">
-              <a href="rules/">~$ more info</a>
+              <a href="rules">~$ more info</a>
             </p>
           </div>
         </section>
@@ -378,15 +384,15 @@
         <section
           class="card player"
           id="player"
-          aria-label="Music player"
+          aria-label="music player"
         >
           <div class="card-header">
-            <h2><span class="prompt">~$</span> now playing</h2>
+            <h2> <span class="prompt">~$</span> now playing </h2>
             <button
               class="player-btn"
               id="player-toggle"
               type="button"
-              aria-label="Play"
+              aria-label="play c418 — sweden"
               aria-pressed="false"
             >
               <svg
@@ -420,7 +426,7 @@
                 class="player-progress"
                 id="player-progress"
                 role="slider"
-                aria-label="Seek"
+                aria-label="seek"
                 aria-valuemin="0"
                 aria-valuemax="100"
                 aria-valuenow="0"
@@ -443,7 +449,7 @@
             </div>
 
             <p class="player-meta">
-              <span>© c418 · minecraft — volume alpha (2011)</span>
+              <span>© c418 & minecraft — volume alpha (2011)</span>
               <a
                 href="https://soundcloud.com/c418/sweden"
                 target="_blank"
@@ -457,13 +463,13 @@
         <footer>
           <nav
             class="footer-links"
-            aria-label="Social media and contact links"
+            aria-label="social media & contact links"
           >
             <a
               href="https://github.com/bushmasterson"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label="github"
               ><i
                 class="fab fa-github"
                 aria-hidden="true"
@@ -473,7 +479,7 @@
               href="https://telegram.me/bushmasterson"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Telegram"
+              aria-label="telegram"
               ><i
                 class="fab fa-telegram-plane"
                 aria-hidden="true"
@@ -483,7 +489,7 @@
               href="https://x.com/bushmasterson02"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="X (Twitter)"
+              aria-label="x (twitter)"
               ><i
                 class="fab fa-x-twitter"
                 aria-hidden="true"
@@ -493,7 +499,7 @@
               href="https://www.instagram.com/bushmasterson"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram"
+              aria-label="instagram"
               ><i
                 class="fab fa-instagram"
                 aria-hidden="true"
@@ -503,7 +509,7 @@
               href="https://bsky.app/profile/bushmasterson.bsky.social"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Bluesky"
+              aria-label="bluesky"
               ><i
                 class="fab fa-bluesky"
                 aria-hidden="true"
@@ -513,7 +519,7 @@
               href="https://www.threads.net/@bushmasterson"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Threads"
+              aria-label="threads"
               ><i
                 class="fab fa-threads"
                 aria-hidden="true"
@@ -523,7 +529,7 @@
               href="https://www.reddit.com/user/bushmaster_son"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Reddit"
+              aria-label="reddit"
               ><i
                 class="fab fa-reddit"
                 aria-hidden="true"
@@ -533,7 +539,7 @@
               href="https://www.tiktok.com/@bushmasterson02"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="TikTok"
+              aria-label="tiktok"
               ><i
                 class="fab fa-tiktok"
                 aria-hidden="true"
@@ -543,7 +549,7 @@
               href="https://on.soundcloud.com/4ywQ1rScTsyhMOeQgk"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="SoundCloud"
+              aria-label="soundcloud"
               ><i
                 class="fab fa-soundcloud"
                 aria-hidden="true"
@@ -551,7 +557,7 @@
             ></a>
             <a
               href="mailto:bushmasterson@proton.me"
-              aria-label="Email"
+              aria-label="email"
               ><i
                 class="fas fa-envelope"
                 aria-hidden="true"
@@ -562,43 +568,43 @@
 
         <nav
           class="page-nav"
-          aria-label="Other pages"
+          aria-label="other pages"
         >
-          <a href="about/">about</a>
+          <a href="about">about</a>
           <span
             class="page-nav-sep"
             aria-hidden="true"
             >·</span
           >
-          <a href="projects/">projects</a>
+          <a href="projects">projects</a>
           <span
             class="page-nav-sep"
             aria-hidden="true"
             >·</span
           >
-          <a href="rules/">rules</a>
+          <a href="rules">rules</a>
           <span
             class="page-nav-sep"
             aria-hidden="true"
             >·</span
           >
-          <a href="social/">social</a>
+          <a href="social">social</a>
           <span
             class="page-nav-sep"
             aria-hidden="true"
             >·</span
           >
-          <a href="uses/">uses</a>
+          <a href="uses">uses</a>
         </nav>
 
-        <p class="footer-note">— coffee and code.</p>
+        <p class="footer-note">— coffee & code.</p>
       </article>
     </main>
 
     <audio
       id="player-audio"
       src="assets/music/sweden.mp3"
-      preload="auto"
+      preload="metadata"
     ></audio>
   </body>
 </html>
