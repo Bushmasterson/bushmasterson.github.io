@@ -8,7 +8,7 @@
     />
     <meta
       name="description"
-      content="bushmasterson — projects, tools, and experiments."
+      content="bushmasterson — projects, tools & experiments."
     />
     <meta
       name="theme-color"
@@ -31,11 +31,11 @@
     />
     <meta
       property="og:description"
-      content="projects, tools, and experiments."
+      content="projects, tools & experiments."
     />
     <meta
       property="og:url"
-      content="https://bushmasterson.github.io/projects/"
+      content="https://bushmasterson.github.io/projects"
     />
     <meta
       property="og:image"
@@ -111,11 +111,17 @@
   </head>
 
   <body>
+    <a
+      class="skip-link"
+      href="#main"
+      >skip to content</a
+    >
+
     <button
       id="theme-toggle"
       type="button"
       class="theme-toggle"
-      aria-label="Toggle theme"
+      aria-label="switch theme"
     >
       <svg
         class="theme-icon theme-icon-sun"
@@ -162,7 +168,7 @@
     <button
       id="back-to-top"
       type="button"
-      aria-label="Back to top"
+      aria-label="back to top"
       >↑</button
     >
 
@@ -190,18 +196,24 @@
               ><span class="cursor-blink">|</span>
             </span>
             <span class="sr-only">projects</span>
+            <noscript>
+              <span class="prompt">bushmasterson@arch:~$</span> cd projects
+            </noscript>
           </h1>
           <p class="subtitle">
             <span aria-hidden="true">
               <span class="prompt">&gt;</span>
               <span
                 class="typed"
-                data-typed="what i build and maintain."
+                data-typed="what i build & maintain."
                 data-speed="55"
                 data-delay="1400"
               ></span>
             </span>
-            <span class="sr-only">what i build and maintain.</span>
+            <span class="sr-only">what i build & maintain.</span>
+            <noscript>
+              <span class="prompt">&gt;</span> what i build & maintain.
+            </noscript>
           </p>
         </header>
 
@@ -212,7 +224,7 @@
           <div
             class="project-filters"
             role="group"
-            aria-label="Filter by stack"
+            aria-label="filter by stack"
           >
             <button
               class="filter-btn"
@@ -272,8 +284,8 @@
           </div>
           <div class="card-content">
             <p class="project-desc">
-              curated cybersecurity &amp; it news. hand-picked links, security
-              advisories, tool discoveries and clearness.
+              curated cybersecurity & it news. hand-picked links, security
+              advisories, tool discoveries & clearness.
             </p>
             <ul class="project-meta">
               <li><span class="meta-label">stack</span> telegram</li>
@@ -309,10 +321,10 @@
           </div>
           <div class="card-content">
             <p class="project-desc">
-              telegram bot for help in my chat and personal chats.
+              telegram bot for help in my chat & personal chats.
             </p>
             <ul class="project-meta">
-              <li><span class="meta-label">stack</span> typescript · node</li>
+              <li><span class="meta-label">stack</span> typescript & node</li>
               <li><span class="meta-label">source</span> private</li>
             </ul>
           </div>
@@ -333,8 +345,8 @@
           </div>
           <div class="card-content">
             <p class="project-desc">
-              minimal cli task tracker. written in c++ for speed, portability,
-              and zero runtime dependencies. an android version is currently in
+              minimal cli task tracker. written in c++ for speed, portability &
+              zero runtime dependencies. an android version is currently in
               development with kotlin.
             </p>
             <ul class="project-meta">
@@ -377,7 +389,7 @@
               concepts i'm learning, from calculus to linear algebra.
             </p>
             <ul class="project-meta">
-              <li><span class="meta-label">stack</span> python · manim</li>
+              <li><span class="meta-label">stack</span> python & manim</li>
               <li><span class="meta-label">license</span> mit</li>
             </ul>
             <div class="project-links">
@@ -397,7 +409,7 @@
         </section>
 
         <p class="page-footer">
-          <a href="../">← back to home</a>
+          <a href="..">← back to home</a>
         </p>
       </article>
     </main>

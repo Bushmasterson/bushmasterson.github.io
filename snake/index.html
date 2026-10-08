@@ -31,7 +31,7 @@
     />
     <meta
       property="og:url"
-      content="https://bushmasterson.github.io/snake/"
+      content="https://bushmasterson.github.io/snake"
     />
 
     <title>snake.exe | bushmasterson</title>
@@ -103,11 +103,17 @@
   </head>
 
   <body>
+    <a
+      class="skip-link"
+      href="#main"
+      >skip to content</a
+    >
+
     <button
       id="theme-toggle"
       type="button"
       class="theme-toggle"
-      aria-label="Toggle theme"
+      aria-label="switch theme"
     >
       <svg
         class="theme-icon theme-icon-sun"
@@ -176,6 +182,9 @@
               ><span class="cursor-blink">|</span>
             </span>
             <span class="sr-only">snake.exe</span>
+            <noscript>
+              <span class="prompt">bushmasterson@arch:~$</span> ./snake.exe
+            </noscript>
           </h1>
           <p class="subtitle">
             <span aria-hidden="true">
@@ -188,29 +197,34 @@
               ></span>
             </span>
             <span class="sr-only">classic 8-bit snake.</span>
+            <noscript>
+              <span class="prompt">&gt;</span> classic 8-bit snake.
+            </noscript>
           </p>
         </header>
 
         <section
           class="card snake-card"
-          aria-label="Snake game"
+          aria-label="snake game"
         >
           <div class="snake-canvas-wrap">
             <canvas
               id="snake-canvas"
               width="320"
               height="320"
+              tabindex="0"
+              aria-label="snake game field"
             ></canvas>
           </div>
 
           <div
             class="snake-difficulty"
             role="group"
-            aria-label="Difficulty"
+            aria-label="difficulty"
           >
             <span class="snake-difficulty-label">speed</span>
             <button
-              class="snake-diff-btn snake-diff-btn--low"
+              class="snake-diff-btn"
               type="button"
               data-difficulty="low"
               aria-pressed="false"
@@ -218,7 +232,7 @@
               low
             </button>
             <button
-              class="snake-diff-btn snake-diff-btn--medium"
+              class="snake-diff-btn"
               type="button"
               data-difficulty="medium"
               aria-pressed="false"
@@ -226,7 +240,7 @@
               medium
             </button>
             <button
-              class="snake-diff-btn snake-diff-btn--high"
+              class="snake-diff-btn"
               type="button"
               data-difficulty="high"
               aria-pressed="true"
@@ -241,11 +255,11 @@
               <b id="snake-score">0</b>
             </span>
             <span class="snake-stat snake-hint">
-              <span class="meta-label">keys</span> ↑↓←→ / wasd · space pause ·
+              <span class="meta-label">keys</span> arrows / wasd & space pause &
               1/2/3 speed
             </span>
             <span class="snake-stat snake-hint-touch">
-              <span class="meta-label">keys</span> swipe to steer · tap to start
+              <span class="meta-label">keys</span> swipe to steer & tap to start
             </span>
             <button
               class="snake-restart"
@@ -258,7 +272,7 @@
         </section>
 
         <p class="page-footer">
-          <a href="../">← back to home</a>
+          <a href="..">← back to home</a>
         </p>
       </article>
     </main>
@@ -282,7 +296,11 @@
         <p class="snake-gameover-score">
           <span class="meta-label">score</span>
           <b id="snake-final-score">0</b>
-          <span class="snake-gameover-sep">·</span>
+          <span
+            class="snake-gameover-sep"
+            aria-hidden="true"
+            >·</span
+          >
           <span class="meta-label">best</span>
           <b id="snake-final-best">0</b>
         </p>

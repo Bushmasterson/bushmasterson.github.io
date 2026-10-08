@@ -1,4 +1,4 @@
-/* project filtering on /projects/ — reads and writes ?filter=... */
+/* project filtering on the projects page — reads and writes ?filter=... */
 
 type Filter = 'all' | 'telegram' | 'typescript' | 'c++' | 'python';
 
@@ -22,7 +22,13 @@ export function initProjectFilter(): void {
 
   if (!buttons.length || !cards.length) return;
 
+  let currentFilter: Filter = 'all';
+
   function applyFilter(filter: Filter, updateUrl: boolean): void {
+    if (filter === currentFilter && !updateUrl) return;
+
+    const changed = filter !== currentFilter;
+    currentFilter = filter;
     let visible = 0;
 
     cards.forEach((card) => {
@@ -36,17 +42,20 @@ export function initProjectFilter(): void {
       if (match) {
         card.hidden = false;
         visible += 1;
-        card.animate(
-          [
-            { opacity: 0, transform: 'translateY(6px)' },
-            { opacity: 1, transform: 'translateY(0)' },
-          ],
-          {
-            duration: 320,
-            easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
-            fill: 'both',
-          },
-        );
+
+        if (changed) {
+          card.animate(
+            [
+              { opacity: 0, transform: 'translateY(6px)' },
+              { opacity: 1, transform: 'translateY(0)' },
+            ],
+            {
+              duration: 320,
+              easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+              fill: 'both',
+            },
+          );
+        }
       } else {
         card.hidden = true;
       }

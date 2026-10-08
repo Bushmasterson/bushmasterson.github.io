@@ -5,26 +5,26 @@ const VFS: Record<string, string[]> = {
   'about.md': [
     'birthday on november 2',
     'live in moscow',
-    'i code in c++ (main), python and typescript',
-    'i speak russian & english, learning german',
-    'male - intj',
+    'c++ (main) & python & typescript',
+    'russian & english & learning german',
+    'male & intj',
   ],
   'projects.md': [
-    'bushnews   - cybersecurity & it news      [telegram]',
-    'bush-bot   - telegram bot for updates     [typescript]',
-    'bush-tasks - cli task manager             [c++] - android (kotlin) wip',
-    'bush-math  - math animations with manim   [python]',
+    'bushnews   — cybersecurity & it news       [telegram]',
+    'bush-bot   — telegram bot for updates      [typescript]',
+    'bush-tasks — cli task manager              [c++] & android wip',
+    'bush-math  — math animations with manim    [python]',
     '',
-    '-> /projects for details',
+    '→ /projects for details',
   ],
   'uses.md': [
-    'editor     vs code - neovim',
-    'terminal   windows terminal - git bash',
-    'languages  c++ - python - typescript',
-    'tools      git - vite - obsidian - bitwarden - proton',
-    'hardware   windows 11 - poco x5 pro -> iphone 15 pro',
+    'editor     vs code & neovim',
+    'terminal   windows terminal & git bash',
+    'languages  c++ & python & typescript',
+    'tools      git & vite & obsidian & bitwarden & proton',
+    'hardware   windows 11 & poco x5 pro → iphone 15 pro',
     '',
-    '-> /uses for details',
+    '→ /uses for details',
   ],
   'social.md': [
     'github     github.com/bushmasterson',
@@ -32,7 +32,7 @@ const VFS: Record<string, string[]> = {
     'x          x.com/bushmasterson02',
     'email      bushmasterson@proton.me',
     '',
-    '-> /social for full list',
+    '→ /social for full list',
   ],
   'rules.md': [
     '1. keep talk respectful and clear.',
@@ -251,7 +251,7 @@ export function initTerminalPage(): void {
       case 'man': {
         if (!arg) {
           print('usage: man <command>');
-          print('available: ' + COMMANDS.join(' - '));
+          print('available: ' + COMMANDS.join(' & '));
           break;
         }
         const man = MAN[arg];
@@ -274,7 +274,7 @@ export function initTerminalPage(): void {
       case 'cd': {
         const next = !arg || arg === '~' || arg === '..' ? '~' : arg;
         cwd = next;
-        printHead('cd', `-> ${cwd}`);
+        printHead('cd', `→ ${cwd}`);
         break;
       }
 
@@ -304,7 +304,7 @@ export function initTerminalPage(): void {
 
       case 'theme': {
         toggleTheme();
-        printHead('theme', `-> ${getCurrentTheme()}`);
+        printHead('theme', `→ ${getCurrentTheme()}`);
         break;
       }
 
@@ -339,7 +339,7 @@ export function initTerminalPage(): void {
         return;
 
       case 'exit':
-        window.location.href = '../';
+        window.location.href = '..';
         return;
 
       default:
@@ -365,7 +365,7 @@ export function initTerminalPage(): void {
     if (e.ctrlKey && e.key.toLowerCase() === 'c') {
       e.preventDefault();
       input.value = '';
-      print(`${currentPrompt()} ${input.value}^C`, 'term-line term-echo');
+      print(`${currentPrompt()} ^C`, 'term-line term-echo');
       scroll();
       return;
     }
@@ -436,8 +436,9 @@ export function initTerminalPage(): void {
 
   page.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
-    if (target.closest('a')) return;
+    if (target.closest('a, button')) return;
     input.focus();
   });
+
   input.focus();
 }

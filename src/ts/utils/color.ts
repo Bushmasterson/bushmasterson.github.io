@@ -1,4 +1,4 @@
-/* read a css variable from :root */
+/* read a css custom property from the document root */
 export function cssVar(name: string, fallback: string): string {
   const value = getComputedStyle(document.documentElement)
     .getPropertyValue(name)
@@ -6,7 +6,7 @@ export function cssVar(name: string, fallback: string): string {
   return value || fallback;
 }
 
-/* convert rgba(r,g,b,a) to r,g,b */
+/* extract the rgb triple from an rgba/hex color string */
 export function rgbTriple(rgba: string, fallback = '212,212,212'): string {
   const match = rgba.match(/rgba?\(([^)]+)\)/);
   const inner = match?.[1];

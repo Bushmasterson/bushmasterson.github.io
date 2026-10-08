@@ -12,6 +12,7 @@ export function initParticles(
   let particles: Particle[] = [];
   let connectDistance = CFG.connectDistance;
   let connectDistance2 = connectDistance * connectDistance;
+  let frame = 0;
 
   let cursorRGB = '255,255,255';
   let lineRGB = '212,212,212';
@@ -195,7 +196,16 @@ export function initParticles(
     }
 
     ctx.shadowBlur = 0;
-    requestAnimationFrame(draw);
+    frame = requestAnimationFrame(draw);
+  }
+
+  function start(): void {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(draw);
+  }
+
+  function stop(): void {
+    cancelAnimationFrame(frame);
   }
 
   resetCanvas();
@@ -206,7 +216,11 @@ export function initParticles(
     document.addEventListener('pointerleave', clearPointer);
     document.addEventListener('pointercancel', clearPointer);
     window.addEventListener('themechange', readColors);
-    requestAnimationFrame(draw);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else start();
+    });
+    start();
   } else {
     canvas.style.display = 'none';
   }

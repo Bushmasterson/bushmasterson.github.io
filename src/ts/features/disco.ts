@@ -1,4 +1,4 @@
-/* disco easter egg — triggered by `hahaha` in /terminal/ */
+/* disco easter egg — triggered by `hahaha` in the terminal page */
 
 const DISCO_DURATION_MS = 12000;
 const PROJECTOR_COUNT = 16;
@@ -47,7 +47,10 @@ function startDisco(): boolean {
     if (e.key === 'Escape') stopDisco();
   };
   window.addEventListener('keydown', keyHandler);
-  overlay.addEventListener('click', stopDisco);
+  overlay.addEventListener('click', (e) => {
+    e.stopPropagation();
+    stopDisco();
+  });
 
   return true;
 }
