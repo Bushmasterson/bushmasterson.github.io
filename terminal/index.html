@@ -31,7 +31,7 @@
     />
     <meta
       property="og:url"
-      content="https://bushmasterson.github.io/terminal/"
+      content="https://bushmasterson.github.io/terminal"
     />
 
     <title>terminal | bushmasterson</title>
@@ -104,11 +104,17 @@
   </head>
 
   <body>
+    <a
+      class="skip-link"
+      href="#main"
+      >skip to content</a
+    >
+
     <button
       id="theme-toggle"
       type="button"
       class="theme-toggle"
-      aria-label="Toggle theme"
+      aria-label="switch theme"
     >
       <svg
         class="theme-icon theme-icon-sun"
@@ -155,7 +161,7 @@
     <button
       id="back-to-top"
       type="button"
-      aria-label="Back to top"
+      aria-label="back to top"
       >↑</button
     >
 
@@ -165,17 +171,28 @@
     >
       <article
         class="terminal-page"
-        aria-label="Interactive terminal"
+        aria-label="interactive terminal"
       >
         <div class="terminal-page-bar">
-          <span class="term-dot"></span>
-          <span class="term-dot"></span>
-          <span class="term-dot"></span>
+          <span
+            class="term-dot"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="term-dot"
+            aria-hidden="true"
+          ></span>
+          <span
+            class="term-dot"
+            aria-hidden="true"
+          ></span>
           <span class="term-title">bushmasterson@arch: ~</span>
         </div>
         <div
           class="terminal-page-output"
           id="term-output"
+          aria-live="polite"
+          aria-atomic="false"
         >
           <div class="term-line term-muted">
             bushmasterson os v2.0 — type <span class="prompt">help</span> to
@@ -191,13 +208,13 @@
             autocapitalize="off"
             autocorrect="off"
             spellcheck="false"
-            aria-label="Terminal input"
+            aria-label="terminal input"
           />
         </div>
       </article>
 
       <p class="page-footer">
-        <a href="../">← back to home</a>
+        <a href="..">← back to home</a>
       </p>
     </main>
   </body>

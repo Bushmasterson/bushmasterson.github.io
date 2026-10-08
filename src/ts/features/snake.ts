@@ -11,17 +11,17 @@ const DIFF_KEY = 'snake_difficulty';
 const IDLE_MIN = 4;
 const IDLE_MAX = GRID - 5;
 
-/* food padding */
+/* food placement */
 const FOOD_PAD = 2;
 const FOOD_MIN_DIST_FROM_HEAD = 4;
 
-/* dt cap per frame */
+/* per frame delta cap */
 const MAX_DT_FACTOR = 3;
 
 /* direction queue */
 const DIR_QUEUE_MAX = 3;
 
-/* swipe */
+/* swipe gesture */
 const SWIPE_MIN = 18;
 const SWIPE_DEADZONE = 1.3;
 
@@ -53,7 +53,6 @@ type SnakeColors = {
   foodGlow: string;
 };
 
-/* fallbacks used only if CSS custom properties are missing */
 const FALLBACK: SnakeColors = {
   bg: '#0a0a0b',
   grid: 'rgba(92, 184, 172, 0.07)',
@@ -242,6 +241,7 @@ export function initSnake(): void {
     overlay.hidden = false;
     void overlay.offsetWidth;
     overlay.classList.add('is-visible');
+    overlayRestartBtn?.focus();
   };
 
   const hideOverlay = (): void => {
@@ -475,7 +475,13 @@ export function initSnake(): void {
 
     const key = e.key.toLowerCase();
 
-    /* quick difficulty switch */
+    if (e.key === 'Escape' && dead && overlay && !overlay.hidden) {
+      e.preventDefault();
+      enterIdle();
+      canvas.focus();
+      return;
+    }
+
     if (key === '1') {
       setDifficulty('low');
       return;
@@ -508,9 +514,13 @@ export function initSnake(): void {
     const inView = rect.top < window.innerHeight && rect.bottom > 0;
     if (!inView) return;
 
+    const isSpace = key === ' ';
+    const shouldCapture = !idle || isSpace || running;
+    if (!shouldCapture) return;
+
     e.preventDefault();
 
-    if (key === ' ') {
+    if (isSpace) {
       if (!running && dead) {
         newGame();
         return;
@@ -529,7 +539,6 @@ export function initSnake(): void {
     queueDirection(key);
   });
 
-  /* swipe / tap */
   let swipeStart: { x: number; y: number; id: number } | null = null;
   let swipeFired = false;
 
@@ -609,7 +618,6 @@ export function initSnake(): void {
     }
   });
 
-  /* re-read CSS custom properties when theme changes */
   window.addEventListener('themechange', () => {
     colors = readSnakeColors();
     draw();

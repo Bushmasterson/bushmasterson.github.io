@@ -31,7 +31,7 @@
     />
     <meta
       property="og:url"
-      content="https://bushmasterson.github.io/about/"
+      content="https://bushmasterson.github.io/about"
     />
 
     <title>about | bushmasterson</title>
@@ -99,11 +99,17 @@
   </head>
 
   <body>
+    <a
+      class="skip-link"
+      href="#main"
+      >skip to content</a
+    >
+
     <button
       id="theme-toggle"
       type="button"
       class="theme-toggle"
-      aria-label="Toggle theme"
+      aria-label="switch theme"
     >
       <svg
         class="theme-icon theme-icon-sun"
@@ -150,7 +156,7 @@
     <button
       id="back-to-top"
       type="button"
-      aria-label="Back to top"
+      aria-label="back to top"
       >↑</button
     >
 
@@ -178,6 +184,9 @@
               ><span class="cursor-blink">|</span>
             </span>
             <span class="sr-only">about</span>
+            <noscript>
+              <span class="prompt">bushmasterson@arch:~$</span> cat about.md
+            </noscript>
           </h1>
           <p class="subtitle">
             <span aria-hidden="true">
@@ -190,6 +199,9 @@
               ></span>
             </span>
             <span class="sr-only">a longer read.</span>
+            <noscript>
+              <span class="prompt">&gt;</span> a longer read.
+            </noscript>
           </p>
         </header>
 
@@ -199,11 +211,11 @@
           aria-labelledby="about-basics"
         >
           <div class="card-header">
-            <h2 id="about-basics"><span class="prompt">~$</span> basics</h2>
+            <h2 id="about-basics"> <span class="prompt">~$</span> basics </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
-              the short version. if you want the long one — talk to me.
+              short version. want the long one — talk to me.
             </p>
             <ul class="project-meta">
               <li><span class="meta-label">birthday</span> november 2</li>
@@ -220,11 +232,11 @@
           aria-labelledby="about-code"
         >
           <div class="card-header">
-            <h2 id="about-code"><span class="prompt">~$</span> code</h2>
+            <h2 id="about-code"> <span class="prompt">~$</span> code </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
-              c++ is home. python for manip and simple tasks. js/ts when it has
+              c++ is home. python for scripts & simple tasks. js/ts when it has
               to live in a browser or chat with telegram.
             </p>
             <ul class="project-meta">
@@ -233,8 +245,8 @@
               <li><span class="meta-label">web & bots</span> js/ts</li>
               <li><span class="meta-label">editor</span> vs code</li>
               <li
-                ><span class="meta-label">terminal</span> windows terminal · git
-                bash, will switch to arch linux soon.</li
+                ><span class="meta-label">terminal</span> windows terminal & git
+                bash, will switch to arch linux soon</li
               >
             </ul>
           </div>
@@ -246,12 +258,12 @@
           aria-labelledby="about-languages"
         >
           <div class="card-header">
-            <h2 id="about-languages"
-              ><span class="prompt">~$</span> languages</h2
-            >
+            <h2 id="about-languages">
+              <span class="prompt">~$</span> languages
+            </h2>
           </div>
           <div class="card-content">
-            <p class="project-desc"> slowly adding a third. </p>
+            <p class="project-desc">slowly adding a third.</p>
             <ul class="project-meta">
               <li><span class="meta-label">native</span> russian</li>
               <li><span class="meta-label">fluent</span> english</li>
@@ -266,7 +278,7 @@
           aria-labelledby="about-hobbies"
         >
           <div class="card-header">
-            <h2 id="about-hobbies"><span class="prompt">~$</span> hobbies</h2>
+            <h2 id="about-hobbies"> <span class="prompt">~$</span> hobbies </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
@@ -274,27 +286,27 @@
             </p>
             <ul class="project-meta">
               <li
-                ><span class="meta-label">building</span> side projects ·
-                experiments · clis</li
+                ><span class="meta-label">building</span> side projects &
+                experiments & clis</li
               >
               <li
                 ><span class="meta-label">listening</span> digging underground
                 music</li
               >
               <li
-                ><span class="meta-label">moving</span> calisthenics · running ·
+                ><span class="meta-label">moving</span> calisthenics & running &
                 mobility</li
               >
               <li
-                ><span class="meta-label">reading</span> sci-fi · non-fiction ·
+                ><span class="meta-label">reading</span> sci-fi & non-fiction &
                 essays</li
               >
               <li
-                ><span class="meta-label">watching</span> films · docs ·
+                ><span class="meta-label">watching</span> films & docs &
                 long-form</li
               >
               <li
-                ><span class="meta-label">thinking</span> philosophy ·
+                ><span class="meta-label">thinking</span> philosophy &
                 self-improvement</li
               >
             </ul>
@@ -307,7 +319,7 @@
           aria-labelledby="about-music"
         >
           <div class="card-header">
-            <h2 id="about-music"><span class="prompt">~$</span> music</h2>
+            <h2 id="about-music"> <span class="prompt">~$</span> music </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
@@ -317,11 +329,11 @@
             <ul class="project-meta">
               <li><span class="meta-label">service</span> soundcloud go+</li>
               <li
-                ><span class="meta-label">genres</span> emo rap · cloud ·
+                ><span class="meta-label">genres</span> emo rap & cloud &
                 rage</li
               >
               <li
-                ><span class="meta-label">artists</span> juice wrld, lil peep ·
+                ><span class="meta-label">artists</span> juice wrld, lil peep &
                 carti, pyrokinesis, horus, xxx</li
               >
             </ul>
@@ -334,7 +346,9 @@
           aria-labelledby="about-music-ru"
         >
           <div class="card-header">
-            <h2 id="about-music-ru"><span class="prompt">~$</span> music ru</h2>
+            <h2 id="about-music-ru">
+              <span class="prompt">~$</span> music ru
+            </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
@@ -343,7 +357,7 @@
             </p>
             <ul class="project-meta">
               <li
-                ><span class="meta-label">artists</span> norma tale · horus ·
+                ><span class="meta-label">artists</span> norma tale & horus &
                 pyrokinesis</li
               >
               <li><span class="meta-label">scene</span> russian rap</li>
@@ -357,7 +371,7 @@
           aria-labelledby="about-sports"
         >
           <div class="card-header">
-            <h2 id="about-sports"><span class="prompt">~$</span> sports</h2>
+            <h2 id="about-sports"> <span class="prompt">~$</span> sports </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
@@ -365,8 +379,8 @@
             </p>
             <ul class="project-meta">
               <li
-                ><span class="meta-label">regular</span> calisthenics · running
-                · mobility</li
+                ><span class="meta-label">regular</span> calisthenics & running
+                & mobility</li
               >
               <li
                 ><span class="meta-label">mindset</span> consistency over
@@ -382,12 +396,10 @@
           aria-labelledby="about-values"
         >
           <div class="card-header">
-            <h2 id="about-values"><span class="prompt">~$</span> values</h2>
+            <h2 id="about-values"> <span class="prompt">~$</span> values </h2>
           </div>
           <div class="card-content">
-            <p class="project-desc">
-              what matters to me, in no particular order.
-            </p>
+            <p class="project-desc">what matters to me, in no order.</p>
             <ul class="project-meta">
               <li
                 ><span class="meta-label">freedom</span> of thought & action</li
@@ -411,7 +423,7 @@
         </section>
 
         <p class="page-footer">
-          <a href="../">← back to home</a>
+          <a href="..">← back to home</a>
         </p>
       </article>
     </main>

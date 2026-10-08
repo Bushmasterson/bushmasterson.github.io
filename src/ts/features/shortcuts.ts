@@ -1,6 +1,6 @@
 import { toggleTheme } from './theme.js';
 
-const TERMINAL_PATH = '/terminal/';
+const TERMINAL_PATH = '/terminal';
 
 let goPressed = false;
 let goTimer = 0;
@@ -24,10 +24,10 @@ export function initShortcuts(): void {
     const key = e.key.toLowerCase();
 
     if (e.key === 'Escape') {
-      const openOverlay = document.querySelector<HTMLElement>(
-        '#terminal.open, .disco, #snake-gameover.is-visible',
+      const overlay = document.querySelector<HTMLElement>(
+        '.disco, #snake-gameover.is-visible',
       );
-      if (openOverlay) {
+      if (overlay) {
         document.dispatchEvent(new CustomEvent('overlay-close'));
         return;
       }

@@ -13,7 +13,12 @@ export function initBoot(): void {
   if (!overlay) return;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const seen = sessionStorage.getItem('boot_shown');
+  let seen = false;
+  try {
+    seen = sessionStorage.getItem('boot_shown') === '1';
+  } catch {
+    /* ignore */
+  }
 
   if (seen || reduced) {
     overlay.remove();
@@ -25,13 +30,23 @@ export function initBoot(): void {
 
   let i = 0;
 
+  const finish = (): void => {
+    if (!overlay.isConnected) return;
+    overlay.classList.add('boot-done');
+    try {
+      sessionStorage.setItem('boot_shown', '1');
+    } catch {
+      /* ignore */
+    }
+    window.setTimeout(() => {
+      if (overlay.isConnected) overlay.remove();
+    }, 500);
+  };
+
   const next = (): void => {
+    if (!overlay.isConnected) return;
     if (i >= BOOT_LINES.length) {
-      setTimeout(() => {
-        overlay.classList.add('boot-done');
-        sessionStorage.setItem('boot_shown', '1');
-        setTimeout(() => overlay.remove(), 500);
-      }, 400);
+      window.setTimeout(finish, 400);
       return;
     }
 
@@ -41,7 +56,7 @@ export function initBoot(): void {
     output.appendChild(line);
 
     i += 1;
-    setTimeout(next, 220);
+    window.setTimeout(next, 220);
   };
 
   next();

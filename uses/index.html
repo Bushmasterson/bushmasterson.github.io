@@ -31,7 +31,7 @@
     />
     <meta
       property="og:url"
-      content="https://bushmasterson.github.io/uses/"
+      content="https://bushmasterson.github.io/uses"
     />
 
     <title>uses | bushmasterson</title>
@@ -99,11 +99,17 @@
   </head>
 
   <body>
+    <a
+      class="skip-link"
+      href="#main"
+      >skip to content</a
+    >
+
     <button
       id="theme-toggle"
       type="button"
       class="theme-toggle"
-      aria-label="Toggle theme"
+      aria-label="switch theme"
     >
       <svg
         class="theme-icon theme-icon-sun"
@@ -150,7 +156,7 @@
     <button
       id="back-to-top"
       type="button"
-      aria-label="Back to top"
+      aria-label="back to top"
       >↑</button
     >
 
@@ -178,6 +184,9 @@
               ><span class="cursor-blink">|</span>
             </span>
             <span class="sr-only">uses</span>
+            <noscript>
+              <span class="prompt">bushmasterson@arch:~$</span> cat uses.md
+            </noscript>
           </h1>
           <p class="subtitle">
             <span aria-hidden="true">
@@ -190,6 +199,9 @@
               ></span>
             </span>
             <span class="sr-only">what i use daily.</span>
+            <noscript>
+              <span class="prompt">&gt;</span> what i use daily.
+            </noscript>
           </p>
         </header>
 
@@ -199,10 +211,10 @@
           aria-labelledby="uses-editor"
         >
           <div class="card-header">
-            <h2 id="uses-editor"><span class="prompt">~$</span> editor</h2>
+            <h2 id="uses-editor"> <span class="prompt">~$</span> editor </h2>
           </div>
           <div class="card-content">
-            <p class="project-desc"> vs code is simple. </p>
+            <p class="project-desc">vs code is simple.</p>
             <ul class="project-meta">
               <li><span class="meta-label">main</span> vs code</li>
             </ul>
@@ -215,7 +227,9 @@
           aria-labelledby="uses-terminal"
         >
           <div class="card-header">
-            <h2 id="uses-terminal"><span class="prompt">~$</span> terminal</h2>
+            <h2 id="uses-terminal">
+              <span class="prompt">~$</span> terminal
+            </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
@@ -223,7 +237,7 @@
               for scripts.
             </p>
             <ul class="project-meta">
-              <li><span class="meta-label">shell</span> bash · powershell</li>
+              <li><span class="meta-label">shell</span> bash & powershell</li>
               <li><span class="meta-label">prompt</span> starship</li>
             </ul>
           </div>
@@ -235,12 +249,12 @@
           aria-labelledby="uses-langs"
         >
           <div class="card-header">
-            <h2 id="uses-langs"><span class="prompt">~$</span> languages</h2>
+            <h2 id="uses-langs"> <span class="prompt">~$</span> languages </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
-              c++ is the main language. python for scripts and tooling. js/ts
-              for the web & bots.
+              c++ is the main language. python for scripts & tooling. js/ts for
+              the web & bots.
             </p>
             <ul class="project-meta">
               <li><span class="meta-label">main</span> c++</li>
@@ -256,7 +270,7 @@
           aria-labelledby="uses-tools"
         >
           <div class="card-header">
-            <h2 id="uses-tools"><span class="prompt">~$</span> tools</h2>
+            <h2 id="uses-tools"> <span class="prompt">~$</span> tools </h2>
           </div>
           <div class="card-content">
             <p class="project-desc">
@@ -264,8 +278,8 @@
               where avoidable.
             </p>
             <ul class="project-meta">
-              <li><span class="meta-label">vcs</span> git · github</li>
-              <li><span class="meta-label">build</span> vite · npm</li>
+              <li><span class="meta-label">vcs</span> git & github</li>
+              <li><span class="meta-label">build</span> vite & npm</li>
               <li><span class="meta-label">notes</span> obsidian</li>
               <li><span class="meta-label">secrets</span> bitwarden</li>
               <li><span class="meta-label">mail</span> proton</li>
@@ -274,7 +288,7 @@
         </section>
 
         <p class="page-footer">
-          <a href="../">← back to home</a>
+          <a href="..">← back to home</a>
         </p>
       </article>
     </main>

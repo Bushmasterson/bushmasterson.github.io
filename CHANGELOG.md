@@ -129,6 +129,9 @@ and this project adheres to
 - **player**: Wire up play button to new player ids (#77) —
   [`00516fc`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/00516fcb4d92fd7d67b079a3e540d31276af32a5)
 
+- 27 bugs, a11y polish and typography cleanup (#100) —
+  [`ca51f2c`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/ca51f2c366913b4a5b46d7a6788c6e3099c5da9c)
+
 ### ⚡ Performance
 
 - Fix all lighthouse issues —

@@ -1,11 +1,11 @@
-/* disco easter egg — colors from tokens */
+/* disco easter egg — triggered by `hahaha` in the terminal page */
 
 .disco {
   position: fixed;
   inset: 0;
   z-index: 6000;
   overflow: hidden;
-  background: var(--disco-bg);
+  background: var(--overlay-bg);
   cursor: pointer;
   animation: discoIn 0.25s ease-out;
 }
