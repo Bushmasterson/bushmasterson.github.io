@@ -132,6 +132,9 @@ and this project adheres to
 - 27 bugs, a11y polish and typography cleanup (#100) —
   [`ca51f2c`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/ca51f2c366913b4a5b46d7a6788c6e3099c5da9c)
 
+- Del png favicon (#102) —
+  [`d9e1676`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/d9e16760c4dc550929e83a995d749abc9bb67f8b)
+
 ### ⚡ Performance
 
 - Fix all lighthouse issues —
