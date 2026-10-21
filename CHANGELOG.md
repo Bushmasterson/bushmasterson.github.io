@@ -82,6 +82,9 @@ and this project adheres to
   —
   [`44e6c83`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/44e6c8329177bc62cd991574a3736a2c15df6f45)
 
+- Improve content and responsive design (#111) —
+  [`8946b32`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/8946b32c200bffebe5bba200126bd1ed41d71b00)
+
 ### 🐛 Bug Fixes
 
 - Add gitignore and remove unnecessary files —
@@ -144,6 +147,9 @@ and this project adheres to
 
 - Unify paths, assets served from assets/, fix svg arc —
   [`9c59aa6`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/9c59aa60f2b0ebc6cc193991ae5997b45378dc12)
+
+- Unify site structure and tooling (#109) —
+  [`35c117f`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/35c117fc76cb1521462bd4363ca9ca492ba415a6)
 
 ### 📝 Documentation
 
