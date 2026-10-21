@@ -1,21 +1,26 @@
-# Default — everything
+# Default owner for all repository files
+* @Bushmasterson
 
-- @Bushmasterson
-
-# CI and workflows
-
+# Repository automation
 /.github/ @Bushmasterson
+/.husky/ @Bushmasterson
+/.github/CODEOWNERS @Bushmasterson
 
-# Configs
+# Project configuration
+/package.json @Bushmasterson
+/package-lock.json @Bushmasterson
+/tsconfig.json @Bushmasterson
+/vite.config.ts @Bushmasterson
+/.prettierrc @Bushmasterson
+/.prettierignore @Bushmasterson
+/.editorconfig @Bushmasterson
+/.gitattributes @Bushmasterson
+/.gitignore @Bushmasterson
+/.npmrc @Bushmasterson
+/.nvmrc @Bushmasterson
 
-/tsconfig.json @Bushmasterson /vite.config.ts @Bushmasterson /package.json
-@Bushmasterson /package-lock.json @Bushmasterson /.prettierrc @Bushmasterson
-/.editorconfig @Bushmasterson /.gitattributes @Bushmasterson
-
-# Source
-
+# Application source and styles
 /src/ @Bushmasterson
-
-# Generated assets
-
-/assets/js/ @Bushmasterson /assets/icons/ @Bushmasterson
+/assets/css/ @Bushmasterson
+/assets/js/ @Bushmasterson
+/assets/icons/ @Bushmasterson

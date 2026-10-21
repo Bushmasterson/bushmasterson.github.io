@@ -62,10 +62,6 @@
 *.mp3       binary
 *.mp4       binary
 
-package-lock.json   merge=ours -diff
-pnpm-lock.yaml      merge=ours -diff
-yarn.lock           merge=ours -diff
-
 assets/icons/**     linguist-vendored
 assets/icons/**     linguist-generated
 assets/js/**        linguist-generated
@@ -77,16 +73,3 @@ dist/**             linguist-generated
 
 *.md                linguist-documentation
 docs/**             linguist-documentation
-
-.github/            export-ignore
-.vscode/            export-ignore
-.gitattributes      export-ignore
-.gitignore          export-ignore
-.prettierrc         export-ignore
-.prettierignore     export-ignore
-.editorconfig       export-ignore
-tsconfig.json       export-ignore
-vite.config.ts      export-ignore
-package.json        export-ignore
-package-lock.json   export-ignore
-node_modules/       export-ignore

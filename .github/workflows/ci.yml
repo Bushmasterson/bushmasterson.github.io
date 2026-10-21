@@ -46,6 +46,6 @@ jobs:
 
       - name: Verify build output
         run: |
-          test -f assets/js/main.js || (echo "main.js missing" && exit 1)
-          test -f assets/js/main.js.map || (echo "main.js.map missing" && exit 1)
+          test -s assets/js/main.js || (echo "main.js missing or empty" && exit 1)
+          test -s assets/js/main.js.map || (echo "main.js.map missing or empty" && exit 1)
           echo "Build output verified."
