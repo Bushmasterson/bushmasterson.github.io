@@ -13,6 +13,7 @@ plain TypeScript, and zero runtime dependencies.
 - Boot screen, hidden terminal, vim-style highlight.
 - Modular TS — features isolated in `src/ts/features/`.
 - Layered CSS via `@layer` for a predictable cascade.
+- Design tokens isolated in `assets/css/tokens.css` for easier theme tuning.
 - Fully responsive, safe-area aware.
 - Respects `prefers-reduced-motion`, `prefers-color-scheme`.
 
