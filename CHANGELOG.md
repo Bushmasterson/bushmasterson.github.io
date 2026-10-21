@@ -145,6 +145,9 @@ and this project adheres to
 - Unify paths, assets served from assets/, fix svg arc —
   [`9c59aa6`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/9c59aa60f2b0ebc6cc193991ae5997b45378dc12)
 
+- Unify site structure and tooling (#109) —
+  [`35c117f`](https://github.com/Bushmasterson/bushmasterson.github.io/commit/35c117fc76cb1521462bd4363ca9ca492ba415a6)
+
 ### 📝 Documentation
 
 - Add 'python' language to about me section and refresh text —
