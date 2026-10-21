@@ -180,7 +180,7 @@
 
   header h1:hover {
     color: var(--accent-bright);
-    text-shadow: 0 0 26px var(--accent-glow);
+    text-shadow: none;
   }
 
   header p {
@@ -196,8 +196,8 @@
   }
 
   header p:hover {
-    color: var(--accent-bright);
-    text-shadow: 0 0 22px var(--accent-glow);
+    color: var(--text);
+    text-shadow: none;
   }
 }
 
@@ -2017,5 +2017,58 @@
   #boot,
   .typed-line::before {
     display: none !important;
+  }
+}
+
+/* phase 2: calm, resilient interaction defaults */
+@layer a11y {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    overflow-wrap: anywhere;
+  }
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [tabindex] {
+    scroll-margin-block: 6rem;
+  }
+  .footer-links {
+    row-gap: 0.45rem;
+  }
+  .footer-links a {
+    min-width: 40px;
+    min-height: 40px;
+  }
+  @media (max-width: 480px) {
+    .footer-links {
+      max-width: 100%;
+      padding-inline: 0.25rem;
+      gap: clamp(0.35rem, 2.2vw, 0.7rem);
+    }
+    .page-nav {
+      flex-wrap: wrap;
+      row-gap: 0.4rem;
+    }
+    .card,
+    .project-card {
+      min-width: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
