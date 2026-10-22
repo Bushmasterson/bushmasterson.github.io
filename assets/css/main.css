@@ -273,8 +273,8 @@
     border-radius: var(--radius-card);
     padding: var(--space-3);
     box-shadow: var(--shadow-card);
-    backdrop-filter: blur(14px) saturate(130%);
-    -webkit-backdrop-filter: blur(14px) saturate(130%);
+    backdrop-filter: blur(var(--blur-parent)) saturate(110%);
+    -webkit-backdrop-filter: blur(var(--blur-parent)) saturate(110%);
     text-align: left;
     transition:
       border-color 0.5s var(--ease-out),
@@ -314,11 +314,11 @@
       border-color: var(--border-hover);
       background: var(--surface-card-hover);
       box-shadow: var(--shadow-hover);
-      transform: translateY(-2px);
+      transform: none;
     }
 
     .card:hover .card-header h2 {
-      transform: translateX(2px);
+      transform: none;
     }
   }
 
@@ -1013,7 +1013,7 @@
     .action:hover {
       color: var(--accent-bright);
       border-color: var(--border-hover);
-      transform: translateY(-2px);
+      transform: none;
       box-shadow: 0 0 24px var(--accent-dim);
     }
   }
@@ -2025,6 +2025,10 @@
   html {
     scroll-behavior: smooth;
   }
+  ::selection {
+    background: var(--accent-dim);
+    color: var(--text);
+  }
   body {
     overflow-wrap: anywhere;
   }
@@ -2070,5 +2074,52 @@
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/* phase 3: unified, restrained surface and interaction system */
+@layer components {
+  .main-card,
+  .card,
+  .project-card,
+  .snake-card {
+    border-color: var(--border-subtle);
+  }
+  .main-card {
+    backdrop-filter: blur(var(--blur-parent)) saturate(110%);
+    -webkit-backdrop-filter: blur(var(--blur-parent)) saturate(110%);
+  }
+  .card,
+  .project-card {
+    transition:
+      border-color 220ms var(--ease-out),
+      background-color 220ms var(--ease-out),
+      box-shadow 220ms var(--ease-out);
+  }
+  .card:hover,
+  .project-card:hover {
+    border-color: var(--border-hover);
+  }
+  .card a,
+  .project-card a,
+  .card-content a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+  }
+  .card-content :is(p, li),
+  .project-meta {
+    line-height: 1.7;
+  }
+  .player-track {
+    overflow-wrap: anywhere;
+  }
+}
+@media (max-width: 600px) {
+  .main-card {
+    padding: clamp(0.8rem, 3.5vw, 1.1rem);
+  }
+  .card,
+  .project-card {
+    padding-inline: clamp(0.75rem, 3.2vw, 1rem);
   }
 }

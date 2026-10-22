@@ -18,7 +18,7 @@
     "typecheck:watch": "tsc --noEmit --watch --preserveWatchOutput",
     "lint:prettier": "prettier --check .",
     "lint:prettier:fix": "prettier --write .",
-    "check": "npm run typecheck && npm run lint:prettier",
+    "check": "npm run typecheck && npm run lint:prettier && npm run build",
     "changelog": "npx git-cliff --output CHANGELOG.md",
     "clean": "rimraf assets/js dist _site .vite node_modules/.cache",
     "prepare": "husky"
